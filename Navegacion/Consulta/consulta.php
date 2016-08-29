@@ -1,57 +1,144 @@
-<?php 
-    //creamos la sesion 
-    session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
-?>
+<!DOCTYPE html>
 <html>
-<head>
-<title>Consulta</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-</head>
 <link rel="shortcut icon" href="favicon.png">
+<script type="text/javascript" src="../../bootstrap/js/jquery-latest.js"></script> 
+<script type="text/javascript" src="../../bootstrap/js/jquery.tablesorter.js"></script> 
+<link href="../../bootstrap/css/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="../../bootstrap/js/tablecloth.js"></script>
 
+<script type="text/javascript">	
+$(document).ready(function() 
+    { 
+        $("#myTable").tablesorter(); 
+    } 
+); 
+ 
+ $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+    } 
+); 
+
+
+
+</script>
 <style type="text/css">
-body
- {
-     background-image: url(blue.jpg);
-     background-size: 100% 300%;
-     background-repeat: no-repeat;
- }
- #p{position:absolute; left:813px; top:33px; width:175px; height:76px;}
+
+#p:hover
+{
+	opacity: 1.0;
+	filter: alpha(opacity=100);
+	transform: scale(1.12);
+	transition-duration: 0.4s;
+}
+
+#myTable{cursor: pointer;}
 </style>
-<div style="position:absolute; left:10%; top:0px; width:1024px; height:768px;">
-	<div style="background-image:url(Untitled-22_01.png); position:absolute; left:0px; top:0px; width:1024px; height:27px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_02.png); position:absolute; left:0px; top:27px; width:36px; height:741px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_03.png); position:absolute; left:36px; top:27px; width:75px; height:75px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_04.png); position:absolute; left:111px; top:27px; width:913px; height:6px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_05.png); position:absolute; left:111px; top:33px; width:702px; height:1px;" title="">
-	</div>
-	<div id="p" onclick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(Untitled-22_06.png); " title="">
-	</div>
-	<div style="background-image:url(Untitled-22_07.png); position:absolute; left:988px; top:33px; width:36px; height:735px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_08.png); position:absolute; left:111px; top:34px; width:27px; height:734px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_09.png); position:absolute; left:138px; top:34px; width:296px; height:62px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_10.png); position:absolute; left:434px; top:34px; width:379px; height:734px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_11.png); position:absolute; left:138px; top:96px; width:296px; height:672px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_12.png); position:absolute; left:36px; top:102px; width:75px; height:666px;" title="">
-	</div>
-	<div style="background-image:url(Untitled-22_13.png); position:absolute; left:813px; top:109px; width:175px; height:659px;" title="">
-	</div>
+
+
+<head>
+	<title>Table Sorter Consolidados</title>
+</head>
+<body>
+
+<div>
+
+<?php
+			$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
+
+			/* comprobar la conexión */
+			if (mysqli_connect_errno()) {
+			    printf("Falló la conexión: %s\n", mysqli_connect_error());
+			    exit();
+			}
+
+			$consulta = "SELECT 
+			 CONS_ID,
+			 CONS_DESCRIPCION, 
+			 CONS_FEC_GEN_DES, 
+			 CONS_FEC_GEN_HAS, 
+			 CONS_FEC_VEN_DES, 
+			 CONS_FEC_VEN_HAS, 
+			 CONS_FEC_CON_DES, 
+			 CONS_FEC_CON_HAS, 
+			 CONS_FEC_PRE_DES, 
+			 CONS_FEC_PRE_HAS, 
+			 CONS_PER, 
+			 CONS_UNI_PRE, 
+			 CONS_RIT_VEN, 
+			 CONS_POR_VTA_NHO, 
+			 CONS_VER, 
+			 CONS_CONS, 
+			 CONS_IND_ID_REE, 
+			 CONS_IND_FECHA_REE, 
+			 CONS_IND_VALOR_REE 
+			 FROM TB_CONSOLIDADOS";
+
+			if ($resultado = $mysqli->query($consulta)) {
+
+			    /* obtener el array de objetos */
+			    echo "<center>";
+			    echo "<table id='myTable' class='tablesorter'>"; 
+			    echo "<thead>";
+	            echo "<tr align='center'>";  
+				echo "<th>ID CONSOLIDADO";  
+				echo "<th>DESCRIPCION";
+				echo "<th>GENERACION DESDE";   
+				echo "<th>GENERACION HASTA"; 
+				echo "<th>VENTAS DESDE";   
+				echo "<th>VENTAS HASTA";
+				echo "<th>CONSTRUCCION DESDE";   
+				echo "<th>CONSTRUCCION HASTA";
+				echo "<th>PRESUPUESTO DESDE";   
+				echo "<th>PRESUPUESTO HASTA";
+				echo "<th>PERIODICIDAD";
+				echo "<th>UNIDAD PRESENTACION";
+				echo "<th>RITMO VENTAS";
+				echo "<th>% VENTAS NUEVO HOGAR";
+				echo "<th>VERSION";
+				echo "<th>MONEDA RE-EXPRESION";
+				echo "<th>FECHA";
+				echo "<th>VALOR";
+				echo "</tr>";
+				echo "</thead>"; 
+				echo "<tbody>";
+			    while ($fila = $resultado->fetch_row()) {
+			       //printf ("%s (%s)\n", $fila[0], $fila[1], $fila[2]);
+			         
+			        echo "<tr align='center'>";  
+				    echo "<td>$fila[0]";  
+				    echo "<td>$fila[1]";
+				    echo "<td>$fila[2]";
+				    echo "<td>$fila[3]";
+				    echo "<td>$fila[4]";  
+				    echo "<td>$fila[5]";
+				    echo "<td>$fila[6]";
+				    echo "<td>$fila[7]";
+				    echo "<td>$fila[8]";  
+				    echo "<td>$fila[9]";
+				    echo "<td>$fila[10]";
+				    echo "<td>$fila[11]";
+				    echo "<td>$fila[12]";  
+				    echo "<td>$fila[13]";
+				    echo "<td>$fila[14]";
+				    echo "<td>$fila[15]";
+				    echo "<td>$fila[16]";  
+				    echo "<td>$fila[17]";
+				    
+			    }
+			    echo "</tbody>";
+			    echo "</table>";
+			    echo "</center>";  
+
+			    /* liberar el conjunto de resultados */
+			    $resultado->close();
+			}
+
+			/* cerrar la conexión */
+			$mysqli->close();
+	 	?>	
+
 </div>
+
 </body>
 </html>
