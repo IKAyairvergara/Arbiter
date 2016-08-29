@@ -17,6 +17,8 @@
 <link rel="shortcut icon" href="favicon.png">
 <link href="../../bootstrap/css/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript" src="../../bootstrap/js/tablecloth.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/jquery-latest.js"></script> 
+<script type="text/javascript" src="../../bootstrap/js/jquery.tablesorter.js"></script> 
 <style type="text/css">
 body
  {
