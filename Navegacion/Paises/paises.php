@@ -66,7 +66,7 @@ body
 	transform: scale(1.12);
 	transition-duration: 0.4s;
 }
-
+ #myTable{cursor: pointer;}
  #p5{}
  #p6{}
  #p7{}
@@ -110,11 +110,14 @@ body
 
 			    /* obtener el array de objetos */
 			    echo "<center>";
-			    echo "<table border = '1' cellspacing='0' cellpadding='0' >";  
+			    echo "<table border = '1' cellspacing='0' cellpadding='0' table id='myTable' class='tablesorter' >";
+			    echo "<thead>";  
 	            echo "<tr align='center'>";  
 				echo "<th>COD";  
 				echo "<th>DESCRIPCIÓN";   
-				echo "</tr>"; 
+				echo "</tr>";
+				echo "</thead>"; 
+				echo "<tbody>"; 
 
 			    while ($fila = $resultado->fetch_row()) {
 			       //printf ("%s (%s)\n", $fila[0], $fila[1], $fila[2]);
@@ -123,6 +126,7 @@ body
 				    echo "<td>$fila[1]";
 				    echo "</tr>";
 			    }
+			    echo "</tbody>";
 			    echo "</table>";
 			    echo "</center>";  
 
