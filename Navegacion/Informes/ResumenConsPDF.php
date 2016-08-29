@@ -384,7 +384,7 @@ AND PRO_ID = RES_DET_PRO_ID";
 			
 			->setCellValue($columnas[$h].'25','% Total')
 					 
-					 ->setCellValue('A1',   $fila['RES_C_TOTAL_UNIDADES'])
+					 ->setCellValue('A1',   'RESUMEN')
 					 ->setCellValue('B6',   $fila['RES_C_TOTAL_UNIDADES'])
 					 ->setCellValue('B7',   $fila['RES_C_AREA_PROMEDIO_UNIDAD'])
 					 ->setCellValue('B8',   $fila['RES_C_TOTAL_AREA_CONSTRUIDA'])

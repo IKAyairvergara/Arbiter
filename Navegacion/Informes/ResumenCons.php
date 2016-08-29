@@ -250,7 +250,7 @@ AND PRO_ID = RES_DET_PRO_ID";
 							'HA','HB','HC','HD','HE','HF','HG','HH','HI','HJ','HK','HL','HM','HN','HO','HP','HQ','HR','HS','HT','HU','HV','HW','HX','HY','HZ',
 							'IA','IB','IC','ID','IE','IF','IG','IH','II','IJ','IK','IL','IM','IN','IO','IP','IQ','IR','IS','IT','IU','IV','IW','IX','IY','IZ');
 		
-		$a=10;
+		$a=11;
 		$b=11;
 		$c=12;
 		$d=13;
@@ -395,7 +395,8 @@ AND PRO_ID = RES_DET_PRO_ID";
 			while ($fila = $resultado1->fetch_array()) {
 			
 					$objPHPExcel->setActiveSheetIndex(0) 
-					 ->setCellValue('A1',   $fila['RES_C_TOTAL_UNIDADES'])
+					 ->setCellValue('A1',  'RESUMEN')
+					 ->setCellValue('B5',  'INFORMACION GENERAL')
 					 ->setCellValue('B6',   $fila['RES_C_TOTAL_UNIDADES'])
 					 ->setCellValue('B7',   $fila['RES_C_AREA_PROMEDIO_UNIDAD'])
 					 ->setCellValue('B8',   $fila['RES_C_TOTAL_AREA_CONSTRUIDA'])
@@ -1603,7 +1604,11 @@ AND PRO_ID = RES_DET_PRO_ID";
 					->setCellValue($columnas[$o].'25','Valor/Unidad')
 					->setCellValue($columnas[$p].'25','Ejecución Al corte')
 			
-					->setCellValue($columnas[$q].'25','% Total')			
+					->setCellValue($columnas[$q].'25','% Total')
+
+					 ->setCellValue('B5',  'INFORMACION GENERAL')
+
+					 ->setCellValue('A5',  'INFORMACION GENERAL')					 
 					;
 					
 				
@@ -1988,10 +1993,8 @@ $objPHPExcel->getActiveSheet()->getStyle($columnas[$j].'1')->applyFromArray($cel
 		$objPHPExcel->getActiveSheet()->getStyle($columnas[$j].'5')->applyFromArray($celdaAzulOscuro);		
 				
 					
-					if($a<11){ 
-					$a=$a+11;}
-					else{
-					$a=$a+10;}
+					
+					$a=$a+10;
 					
 					$b=$b+10;
 					$c=$c+10;
@@ -2023,6 +2026,7 @@ $objPHPExcel->getActiveSheet()->getStyle($columnas[$j].'1')->applyFromArray($cel
 	 $objPHPExcel->getActiveSheet()->getColumnDimensionByColumn(7)->setWidth(16);
 	
 	
+					 
 
 		
 		// Se asigna el nombre a la hoja

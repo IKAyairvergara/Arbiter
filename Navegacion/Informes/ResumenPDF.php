@@ -285,12 +285,12 @@ $rendererLibraryPath = dirname(__FILE__).'/' . $rendererLibrary;
 		while ($fila = $resultado->fetch_array()) {
 			
 					$objPHPExcel->setActiveSheetIndex(0) 
-					 ->setCellValue('A1',   $fila['RES_C_TOTAL_UNIDADES'])
+					 ->setCellValue('A1',   'RESUMEN')
 					 ->setCellValue('B6',   $fila['RES_C_TOTAL_UNIDADES'])
 					 ->setCellValue('B7',   $fila['RES_C_AREA_PROMEDIO_UNIDAD'])
 					 ->setCellValue('B8',   $fila['RES_C_TOTAL_AREA_CONSTRUIDA'])
 					 ->setCellValue('B9',   $fila['RES_C_TOTAL_AREA_VENDIBLE']) 
-					 ->setCellValue('B10',   $fila['RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO'])
+					 ->setCellValue('B10',  $fila['RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO'])
 					 ->setCellValue('B11',  $fila['RES_C_DENSIDAD_INDICE_OCUPACION'])
 					 ->setCellValue('B12',  $fila['RES_C_VALOR_METRO_CUADRADO_LOTE_URBANIZADO'])
 					 ->setCellValue('B13',  $fila['RES_C_NUMERO_PARQUEOS'])
