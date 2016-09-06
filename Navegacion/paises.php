@@ -1,4 +1,15 @@
-﻿<html>
+﻿<?php 
+    //creamos la sesion 
+    session_start(); 
+    //validamos si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion nos regresará a login.php 
+    if(!isset($_SESSION['user_id']))  
+    { 
+        header('Location: ../../index.php');  
+        exit(); 
+    } 
+?>
+<html>
 <head>
 <title>Paises</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -82,7 +93,7 @@ body
 	<div style="background-image:url(Untitled-1_10.png); position:absolute; left:37px; top:158px; width:953px; height:494px;overflow: scroll;" title="">
 	
 	<?php
-		$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
+		include "../../php/conexion.php";
 
 			/* comprobar la conexión */
 
