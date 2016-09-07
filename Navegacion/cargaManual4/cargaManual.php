@@ -2821,23 +2821,23 @@ input[type=file]{
 										'$res_modelo',
 										'$res_fecha',
 										$res_total_unidades,
-										$res_area_promedio_unidad,
+										$res_area_promedio,
 										$res_total_area_construida,
 										$res_total_area_vendible,
-										$res_area_util_lote_asignada_subproyecto,
-										$res_densidad_indice_ocupacion,
-										$res_valor_metro_cuadrado_lote_urbanizado,
+										$res_area_util_lote,
+										$res_densidad,
+										$res_lote_urbanizado,
 										$res_numero_parqueos,
-										$res_relacion_parqueos_numero_parqueos_por_unidad,
+										$res_relacion_parqueos,
 										$res_numero_depositos,
-										'$res_fecha_inicio_y_terminacion_ventas',
-										'$res_fecha_inicio_y_terminacion_construccion',
-										$res_ritmo_ventas_mensual_promedio,
-										'$res_punto_equilibrio_unidades',
-										$res_tasa_promedio_incremento_precios,
-										$res_porcentaje_ventas_nuevogar,
+										'$res_fecha_inicio_f_ventas',
+										'$res_fecha_inicio_f_construccion',
+										$res_ritmo_ventas,
+										'$res_punto_equilobrio',
+										$res_tasa_promedio_precios,
+										$res_ventas_nuevo_hogar,
 										'$res_fecha_presupuesto',
-										$res_tasa_promedio_incremento_presupuesto,
+										$res_tasa_promedio_incremento,
 										$res_c_tot_ui,
 								$res_c_tot_uip,
 								$res_c_tot_uii,
@@ -3738,7 +3738,7 @@ input[type=file]{
 									
 										//Check Nulls
 										if($res_total_unidades==null||is_string ($res_total_unidades)){$res_total_unidades=0;}
-										if($res_area_promedio_unidad==null||is_string ($res_area_promedio_unidad)){$res_area_promedio_unidad=0;}
+										if($res_area_promedio_unidad==null){$res_area_promedio_unidad=0;}
 										if($res_total_area_construida==null||is_string ($res_total_area_construida)){$res_total_area_construida=0;}
 										if($res_total_area_vendible==null||is_string ($res_total_area_vendible)){$res_total_area_vendible=0;}
 										if($res_area_util_lote_asignada_subproyecto==null||is_string ($res_area_util_lote_asignada_subproyecto)){$res_area_util_lote_asignada_subproyecto=0;}
@@ -4709,23 +4709,23 @@ input[type=file]{
 										'$res_modelo',
 										'$res_fecha',
 										$res_total_unidades,
-										$res_area_promedio_unidad,
+										$res_area_promedio,
 										$res_total_area_construida,
 										$res_total_area_vendible,
-										$res_area_util_lote_asignada_subproyecto,
-										$res_densidad_indice_ocupacion,
-										$res_valor_metro_cuadrado_lote_urbanizado,
+										$res_area_util_lote,
+										$res_densidad,
+										$res_lote_urbanizado,
 										$res_numero_parqueos,
-										$res_relacion_parqueos_numero_parqueos_por_unidad,
+										$res_relacion_parqueos,
 										$res_numero_depositos,
-										'$res_fecha_inicio_y_terminacion_ventas',
-										'$res_fecha_inicio_y_terminacion_construccion',
-										$res_ritmo_ventas_mensual_promedio,
-										'$res_punto_equilibrio_unidades',
-										$res_tasa_promedio_incremento_precios,
-										$res_porcentaje_ventas_nuevogar,
+										'$res_fecha_inicio_f_ventas',
+										'$res_fecha_inicio_f_construccion',
+										$res_ritmo_ventas,
+										'$res_punto_equilobrio',
+										$res_tasa_promedio_precios,
+										$res_ventas_nuevo_hogar,
 										'$res_fecha_presupuesto',
-										$res_tasa_promedio_incremento_presupuesto,
+										$res_tasa_promedio_incremento,
 										$res_c_tot_ui,
 										$res_c_tot_uip,
 										$res_c_tot_uii,
@@ -5654,9 +5654,3 @@ function checkstring($checkvar){
 
 </body>
 </html>
-
-
-
-
-
-

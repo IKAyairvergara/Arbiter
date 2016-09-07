@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>jqGrid Ejemplo 1: Cargar datos de una tabla MySql </title>
+        <link rel="stylesheet" type="text/css" media="screen" href="css/flick/jquery-ui-1.8.16.custom.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid.css" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="jqgrid/js/i18n/grid.locale-es.js" type="text/javascript"></script>
+        <script src="jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+            jQuery("#tblclientes").jqGrid({
+                    url:'clientes.php',
+                    datatype: 'json',
+                    mtype: 'POST',
+                    colNames:['ConsolidadoID','Descripcion', 'FechaGeneraciónDesde','FechaGeneraciónHasta','FechaVentasDesde','FechaVentasHasta','FechaConstruccionDesde','FechaConstruccionHasta','FechaPresupuestoDesde','FechaPresupuestoHasta','Periodicidad','UnidadPresentacion','RitmoVentas','CostoVentaNuevoHogar','Version','MonedaReexpresion','FechaMonedaReexpresion','ValorFechaReexpresion'],
+                    colModel:[
+                        {name:'CONS_ID'         , index:'CONS_ID'         , align: 'right', width:160,resizable:true, sortable:true},
+                        {name:'CONS_DESCRIPCION', index:'CONS_DESCRIPCION', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_GEN_DES', index:'CONS_FEC_GEN_DES', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_GEN_HAS', index:'CONS_FEC_GEN_HAS', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_VEN_DES', index:'CONS_FEC_VEN_DES', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_VEN_HAS', index:'CONS_FEC_VEN_HAS', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_CON_DES', index:'CONS_FEC_CON_DES', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_CON_HAS', index:'CONS_FEC_CON_HAS', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_PRE_DES', index:'CONS_FEC_PRE_DES', width:160,resizable:true, sortable:true},
+                        {name:'CONS_FEC_PRE_HAS', index:'CONS_FEC_CON_HAS', width:160,resizable:true, sortable:true},
+                        {name:'CONS_PER'        , index:'CONS_PER'        , width:160,resizable:true, sortable:true},
+                        {name:'CONS_UNI_PRE'    , index:'CONS_UNI_PRE'    , width:160,resizable:true, sortable:true},
+                        {name:'CONS_RIT_VEN'    , index:'CONS_RIT_VEN'    , width:160,resizable:true, sortable:true},
+                        {name:'CONS_POR_VTA_NHO', index:'CONS_POR_VTA_NHO', width:160,resizable:true, sortable:true},
+                        {name:'CONS_VER'        , index:'CONS_VER'        , width:160,resizable:true, sortable:true},
+                        {name:'CONS_IND_ID_REE' , index:'CONS_IND_ID_REE' , width:160,resizable:true, sortable:true},
+                        {name:'CONS_IND_FECHA_REE' , index:'CONS_IND_FECHA_REE', width:160,resizable:true, sortable:true},
+                        {name:'CONS_IND_VALOR_REE' , index:'CONS_IND_VALOR_REE', width:160,resizable:true, sortable:true}
+                        
+                        
+                         ],
+                    pager: '#paginacion',
+                    rowNum:10,
+                    rowList:[10,20,30,40,50],
+                    sortname: 'CONS_ID',
+                    sortorder: 'asc',
+                    viewrecords: true,
+                    width:1200,
+                    height:194,
+                    autosearch:true,
+                    caption: 'Tabla de Consulta'
+                });              
+            });
+        </script>
+
+    </head>
+    <body>
+    <div title="">
+        <table id="tblclientes" ></table>
+        <div id="paginacion"> </div>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="jquery,ui,easy,easyui,web">
+	<meta name="description" content="easyui help you build your web page easily!">
+	<title>Expand row in DataGrid to show subgrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript">
+
+		$(function(){
+			$('#dg').datagrid({
+				view: detailview,
+				detailFormatter:function(index,row){
+					return '<div style="padding:2px"><table id="ddv-' + index + '"></table></div>';
+				},
+				onExpandRow: function(index,row){
+					$('#ddv-'+index).datagrid({
+						url:'datagrid22_getdetail.php?itemid='+row.CONS_ID,
+						fitColumns:true,
+						singleSelect:true,
+						rownumbers:true,
+						loadMsg:'',
+						height:'auto',
+						columns:[[
+							{field:'SEL_DET_PRO_ID',title:'PROYECTO ID',width:200},
+							{field:'PRO_DESCRIPCION',title:'NOMBRE',width:100,align:'right'},
+							{field:'SEL_MODELO',title:'MODELO',width:100,align:'right'},
+							{field:'SEL_DET_ETAPA',title:'ETAPA',width:100,align:'right'}
+						]],
+						onResize:function(){
+							$('#dg').datagrid('fixDetailRowHeight',index);
+						},
+						onLoadSuccess:function(){
+							setTimeout(function(){
+								$('#dg').datagrid('fixDetailRowHeight',index);
+							},0);
+						}
+					});
+					$('#dg').datagrid('fixDetailRowHeight',index);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<h2>Expand row in DataGrid to show subgrid</h2>
+	<div class="demo-info" style="margin-bottom:10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>Click the expand button to expand row and view subgrid.</div>
+	</div>
+	
+	<table id="dg" style="width:650px;height:250px"
+			url="datagrid22_getdata.php" 
+			title="DataGrid - SubGrid"
+			singleSelect="true" fitColumns="true">
+		<thead>
+			<tr>
+				<th field="CONS_ID" width="80">Consolidado ID</th>
+				<th field="CONS_DESCRIPCION" width="100">DESCRIPCION</th>
+				<th field="CONS_FEC_GEN_DES" align="right" width="80">FechaGeneracionDesde</th>
+				<th field="CONS_FEC_GEN_HAS" align="right" width="80">FechaGeneracionHasta</th>
+				<th field="CONS_PER" width="220">Periodicidad</th>
+				<th field="CONS_UNI_PRE" width="60" align="center">Unidad de Presentacion</th>
+			</tr>
+		</thead>
+	</table>
+	
+	
+</body>
+</html>
