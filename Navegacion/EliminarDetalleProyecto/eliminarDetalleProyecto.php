@@ -193,7 +193,7 @@ body
 
       
 	<?php 
-		include "../php/conexion.php";
+		include "../../php/conexion.php";
 			
 			
 
@@ -201,7 +201,7 @@ body
 			 $PROY_ID= $_POST['pais'];
 			$ETAPA= $_POST['estado'];
 			if($_POST["pais"]!=""){
-			  $query = "DELETE FROM TB_DETALLE_PROYECTO WHERE DET_PRO_ID = '$PROY_ID' AND DET_ETAPA= '$ETAPA'";
+			  $query = "DELETE FROM tb_detalle_proyecto WHERE DET_PRO_ID = '$PROY_ID' AND DET_ETAPA= '$ETAPA'";
 			  $result = $mysqli->query($query);
 				   if($result==false){
 						print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='eliminarDetalleProyecto.php';</script>";

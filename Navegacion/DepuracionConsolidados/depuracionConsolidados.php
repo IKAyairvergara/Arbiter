@@ -84,7 +84,7 @@ body
 			    exit();
 			}
 			
-			$consulta = "Select CONS_ID, CONS_DESCRIPCION FROM TB_CONSOLIDADOS";
+			$consulta = "Select CONS_ID, CONS_DESCRIPCION FROM tb_consolidados";
 
 			if ($resultado = $mysqli->query($consulta)) {
 

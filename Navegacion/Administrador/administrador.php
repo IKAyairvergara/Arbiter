@@ -68,7 +68,7 @@
 	<div style="background-image:url(usuariosActivos_10.png); position:absolute; left:36px; top:147px; width:952px; height:494px; overflow:scroll;" title="">
 		<?php
       #$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
-      include "../php/conexion.php";
+      include "../../php/conexion.php";
       /* comprobar la conexión */
       if (mysqli_connect_errno()) {
           printf("Falló la conexión: %s\n", mysqli_connect_error());

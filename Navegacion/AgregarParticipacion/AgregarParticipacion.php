@@ -94,7 +94,7 @@ body
 	</form>
 	</center>
 		<?php 
-			include "../php/conexion.php";
+			include "../../php/conexion.php";
 				
 				
 				function quitar_tildes($cadena) {
@@ -116,7 +116,7 @@ body
 				$CIUD_DESCRIPCION3 = strtoupper($CIUD_DESCRIPCION2);
 				
 				if($_POST["CIUD_ID"]!=""&& $_POST["CIUD_DESCRIPCION"]!=""){					
-	     			$query = "INSERT INTO TB_PARTICIPACION (PAR_ID, PAR_DESCRIPCION) VALUES ('$CIUD_ID3','$CIUD_DESCRIPCION3')";
+	     			$query = "INSERT INTO tb_participacion (PAR_ID, PAR_DESCRIPCION) VALUES ('$CIUD_ID3','$CIUD_DESCRIPCION3')";
 		      		$result = $mysqli->query($query);
 					if($result==false){
 							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarParticipacion.php';</script>";

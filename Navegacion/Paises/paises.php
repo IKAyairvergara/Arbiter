@@ -102,7 +102,7 @@ body
 			    exit();
 			}
 
-			$consulta = "SELECT PAI_ID, PAI_DESCRIPCION FROM TB_PAIS";
+			$consulta = "SELECT PAI_ID, PAI_DESCRIPCION FROM tb_pais";
 
 			if ($resultado = $mysqli->query($consulta)) {
 

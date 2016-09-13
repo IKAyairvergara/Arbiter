@@ -1,10 +1,10 @@
 <?php
 						require "seleccion.php";
-						include "../php/conexion.php";
+						include "../../php/conexion.php";
 						#$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
 						error_reporting(0);
 						
-						$query2 = "SELECT * FROM TB_SELECCION WHERE SEL_CONS_ID = 'N';";
+						$query2 = "SELECT * FROM tb_seleccion WHERE SEL_CONS_ID = 'N';";
 						$Resultado2 = $mysqli->query($query2);
 						
 						if(mysqli_num_rows($Resultado2)>0){
@@ -50,7 +50,7 @@
 
 										$CodigoID = $Proyecto."-CONS-".$Version;
 
-										$query = "INSERT INTO TB_CONSOLIDADOS (CONS_ID, CONS_DESCRIPCION, CONS_FEC_GEN_DES, CONS_FEC_GEN_HAS, CONS_FEC_VEN_DES, CONS_FEC_VEN_HAS, CONS_FEC_CON_DES, CONS_FEC_CON_HAS, CONS_FEC_PRE_DES, CONS_FEC_PRE_HAS, CONS_PER, CONS_UNI_PRE, CONS_IND_ID_REE,
+										$query = "INSERT INTO tb_consolidados (CONS_ID, CONS_DESCRIPCION, CONS_FEC_GEN_DES, CONS_FEC_GEN_HAS, CONS_FEC_VEN_DES, CONS_FEC_VEN_HAS, CONS_FEC_CON_DES, CONS_FEC_CON_HAS, CONS_FEC_PRE_DES, CONS_FEC_PRE_HAS, CONS_PER, CONS_UNI_PRE, CONS_IND_ID_REE,
 											CONS_IND_FECHA_REE, CONS_IND_VALOR_REE , CONS_RIT_VEN, CONS_POR_VTA_NHO, CONS_VER, CONS_CONS) 
 								      VALUES ('$CodigoID', '$Tituloinf', '$Genedesde1', '$Genehasta1', '$Ventasdesde1','$Ventashasta1','$Constdesde1','$Consthasta1','$Prepdesde1','$Prephasta1','$Periodicidad','$Unidadpre','$Monedare','$Fecha','$Valor','$Ritmo','$Nuevohogar','$Version','N');";
 									    

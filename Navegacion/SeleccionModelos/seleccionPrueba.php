@@ -1,6 +1,6 @@
 <?php	
 		require "seleccionModelos.php";
-		include "../php/conexion.php";	
+		include "../../php/conexion.php";	
 		
 			error_reporting(0);
 			
@@ -10,7 +10,7 @@
 			        {
 			        	  
 			        	list($id,$etapa,$modelo) = explode("**",$checkBox[$i]); 
-			         	$query="INSERT INTO TB_SELECCION (SEL_C_CONS_ID,SEL_CONS_ID) VALUES ('".$checkBox[$i]."','N')";     
+			         	$query="INSERT INTO tb_seleccion (SEL_C_CONS_ID,SEL_CONS_ID) VALUES ('".$checkBox[$i]."','N')";     
 			            $resultados = $mysqli->query($query);     
 			        }
 			    #echo "Completo";

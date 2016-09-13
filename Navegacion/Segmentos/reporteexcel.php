@@ -51,7 +51,7 @@ $consulta = "SELECT
 		FCT_C_TOTAL_INGRESOS,
 		FCT_C_FLUJO_NETO_CAJA,
 		FCT_C_FLUJO_ACUMULADO
-		FROM 	TB_C_FLUJO_CAJA_TERRENO";
+		FROM 	tb_c_flujo_caja_terreno";
 
 	$resultado = $conexion->query($consulta);
 	if($resultado->num_rows > 0 ){

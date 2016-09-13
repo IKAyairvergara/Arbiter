@@ -101,7 +101,7 @@ body
 </form>
 </center>
 	<?php
-		include "../php/conexion.php";
+		include "../../php/conexion.php";
 		
 		function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
@@ -122,7 +122,7 @@ body
 
 		if(isset($_POST['IND_ID'])&& isset($_POST["IND_FECHA"])){
 			if($_POST["IND_ID"]!="" && $_POST["IND_FECHA"]!=""){
-				$update = "UPDATE TB_INDICADOR SET IND_FECHA='$IND_FECHA', IND_DESCRIPCION='$IND_DESCRIPCION2', IND_VALOR='$IND_VALOR' WHERE IND_ID='$IND_ID' and IND_FECHA='$IND_FECHA'";
+				$update = "UPDATE tb_indicador SET IND_FECHA='$IND_FECHA', IND_DESCRIPCION='$IND_DESCRIPCION2', IND_VALOR='$IND_VALOR' WHERE IND_ID='$IND_ID' and IND_FECHA='$IND_FECHA'";
 				$resultado = $mysqli -> query($update);
 				if($resultado==false){
 					print "<script>alert(\"El registro no puede ser editado\");window.location='Editar2Indicadores.php';</script>";

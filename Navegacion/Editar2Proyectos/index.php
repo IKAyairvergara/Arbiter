@@ -108,7 +108,7 @@ $mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u
 $PAIS= $_POST['pais'];
 $CIUDAD= $_POST['estado'];
 
-		      $query = "INSERT INTO TB_RICHITO (R_ID, R_CAMPO1,R_CAMPO2) VALUES ('123','$PAIS', '$CIUDAD')";
+		      $query = "INSERT INTO tb_richito (R_ID, R_CAMPO1,R_CAMPO2) VALUES ('123','$PAIS', '$CIUDAD')";
 		      $result = $mysqli->query($query);
     	      $mysqli->close();
 

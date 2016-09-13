@@ -123,7 +123,7 @@ body
 			<label> Nombre de Usuario a modificar <span class="req">*</span></label>
         		<select name='username' id='username' required>
         		<?php
-				    include "../php/conexion.php";
+				    include "../../php/conexion.php";
 				    $qr ="SELECT * FROM user"; 
 				        $i = 0;
 				            if ($resultado = $mysqli->query($qr)) {
@@ -162,7 +162,7 @@ body
       </form>
 
       <?php
-	include "../php/conexion.php";
+	include "../../php/conexion.php";
 
 	$Usuario=$_POST['username'];
 	$Nombre= $_POST['fullname'];
@@ -171,7 +171,7 @@ body
 	$rol=$_POST['rol'];
 
 
-	//$update = "UPDATE TB_CIUDAD SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
+	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
 	if(isset($_POST['username'])){
 		$update = "update user set fullname ='$Nombre' , email = '$Correo', password = '$Contrasenia', rol = '$rol'  where username ='$Usuario'";
 		$resultado = $mysqli -> query($update);

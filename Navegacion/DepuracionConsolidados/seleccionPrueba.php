@@ -1,6 +1,6 @@
 <?php		
 		require "DepuracionConsolidados.php";
-		include "../php/conexion.php";	
+		include "../../php/conexion.php";	
 			
 			
 			error_reporting(0);
@@ -12,12 +12,12 @@
 			        {
 			        
 			        	list($proyecto,$etapa) = explode("**",$checkBox[$i]); 
-			          $query="DELETE FROM TB_CONSOLIDADOS WHERE CONS_ID='$proyecto' AND CONS_DESCRIPCION='$etapa'";  
+			          $query="DELETE FROM tb_consolidados WHERE CONS_ID='$proyecto' AND CONS_DESCRIPCION='$etapa'";  
 					
-						$delete_fct="DELETE  FROM TB_C_FLUJO_CAJA WHERE FLC_C_CONS_ID= '$proyecto'";
-						$delete_flc="DELETE  FROM TB_C_FLUJO_CAJA_TERRENO WHERE FCT_C_CONS_ID= '$proyecto' ";
-						$delete_res="DELETE  FROM TB_C_RESUMEN WHERE RES_C_CONS_ID= '$proyecto' ";
-						$delete_ofl="DELETE  FROM TB_C_OTROS_FLUJOS WHERE OFL_C_CONS_ID= '$proyecto' ";
+						$delete_fct="DELETE  FROM tb_c_flujo_caja WHERE FLC_C_CONS_ID= '$proyecto'";
+						$delete_flc="DELETE  FROM tb_c_flujo_caja_terreno WHERE FCT_C_CONS_ID= '$proyecto' ";
+						$delete_res="DELETE  FROM tb_c_resumen WHERE RES_C_CONS_ID= '$proyecto' ";
+						$delete_ofl="DELETE  FROM tb_c_otros_flujos WHERE OFL_C_CONS_ID= '$proyecto' ";
 							
 			            $resultados = $mysqli->query($query);  
 

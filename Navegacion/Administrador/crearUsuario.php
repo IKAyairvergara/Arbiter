@@ -117,7 +117,7 @@
 if(!empty($_POST)){
   if(isset($_POST["username"]) &&isset($_POST["fullname"]) &&isset($_POST["email"]) &&isset($_POST["password"]) &&isset($_POST["confirm_password"])){
     if($_POST["username"]!=""&& $_POST["fullname"]!=""&&$_POST["email"]!=""&&$_POST["password"]!=""&&$_POST["password"]==$_POST["confirm_password"]){
-      include "../php/conexion.php";
+      include "../../php/conexion.php";
       
       $found=false;
       $sql1= "select * from user where username=\"$_POST[username]\" or email=\"$_POST[email]\"";

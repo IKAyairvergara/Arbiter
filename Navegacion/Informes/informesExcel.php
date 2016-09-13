@@ -170,8 +170,8 @@ body
 	
 	<select name="CONS_ID" style="left:107px; top:400px; width:784px; height:56px; font-size:20px ; font-family: verdana">
     <?php
-		include "../php/conexion.php";
-		$qr ="SELECT * FROM TB_CONSOLIDADOS WHERE CONS_CONS='S'"; 
+		include "../../php/conexion.php";
+		$qr ="SELECT * FROM tb_consolidados WHERE CONS_CONS='S'"; 
         $i = 0;
         if ($resultado = $mysqli->query($qr)) {
         	while ($consolidados = $resultado->fetch_row()) {

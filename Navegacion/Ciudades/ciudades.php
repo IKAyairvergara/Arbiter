@@ -103,7 +103,7 @@ body
 			    exit();
 			}
 
-			$consulta = "SELECT A.CIU_PAI_ID, B.PAI_DESCRIPCION, A.CIU_ID, A.CIU_DESCRIPCION  FROM TB_CIUDAD A LEFT JOIN TB_PAIS B on A.CIU_PAI_ID=B.PAI_ID
+			$consulta = "SELECT A.CIU_PAI_ID, B.PAI_DESCRIPCION, A.CIU_ID, A.CIU_DESCRIPCION  FROM tb_ciudad A LEFT JOIN tb_pais B on A.CIU_PAI_ID=B.PAI_ID
 ORDER BY B.PAI_DESCRIPCION, A.CIU_DESCRIPCION";
 
 			if ($resultado = $mysqli->query($consulta)) {

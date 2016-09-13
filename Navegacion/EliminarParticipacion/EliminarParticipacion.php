@@ -97,8 +97,8 @@ body
     					<td><label for="PAR_ID" request></label> 
   						 <select name='PAR_ID' id='PAR_ID' required>
 								<?php
-				                include "../php/conexion.php";
-				                $qr ="SELECT * FROM TB_PARTICIPACION"; 
+				                include "../../php/conexion.php";
+				                $qr ="SELECT * FROM tb_participacion"; 
 				                $i = 0;
 				                if ($resultado = $mysqli->query($qr)) {
 				                    while ($fila = $resultado->fetch_row()) {
@@ -131,13 +131,13 @@ body
                </form>
                
                 <?php
-			   	include "../php/conexion.php";
+			   	include "../../php/conexion.php";
 				
 				
 				if(isset($_POST['PAR_ID'])){
 					$PAR_ID= $_POST['PAR_ID'];
 					if($_POST["PAR_ID"]!=""){
-						$query = "DELETE FROM TB_PARTICIPACION WHERE PAR_ID= '$PAR_ID'";
+						$query = "DELETE FROM tb_participacion WHERE PAR_ID= '$PAR_ID'";
 						$result = $mysqli->query($query);
 							if($result==false){
 								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarParticipacion.php';</script>";

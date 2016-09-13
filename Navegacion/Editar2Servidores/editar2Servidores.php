@@ -87,8 +87,8 @@ body
 				    <td><label for="PAI_SERV" required></label>
 				    <select name='PAI_SERV' id='PAI_SERV' required>
 						<?php
-		                include "../php/conexion.php";
-		                $qr ="SELECT * FROM TB_SERVIDOR"; 
+		                include "../../php/conexion.php";
+		                $qr ="SELECT * FROM tb_servidor"; 
 		                $i = 0;
 		                if ($resultado = $mysqli->query($qr)) {
 		                    while ($fila = $resultado->fetch_row()) {
@@ -120,14 +120,14 @@ body
 	</center>
 
 	<?php
-		include "../php/conexion.php";
+		include "../../php/conexion.php";
 		
 
-		//$update = "UPDATE TB_CIUDAD SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
+		//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
 		if(isset($_POST['PAI_SERV'])){
 			$PAIS= $_POST['PAI_SERV'];
 		$RUTA=$_POST['RUTA_SERV'];   
-			$update = "UPDATE TB_SERVIDOR set SER_RUTA ='$RUTA' where SER_PAI_CODIGO='$PAIS'";
+			$update = "UPDATE tb_servidor set SER_RUTA ='$RUTA' where SER_PAI_CODIGO='$PAIS'";
 
 			$resultado = $mysqli -> query($update);
 			if($resultado==true){

@@ -359,7 +359,7 @@ input[type="checkbox"]:checked + label {
 					$mysqli = new mysqli("localhost", "u517611460_ika", "Colombia2016*", "u517611460_model"); 
 						
 							
-					$tb_proyecto = "SELECT * FROM TB_PROYECTO WHERE PRO_ID = '$proyecto'";
+					$tb_proyecto = "SELECT * FROM tb_proyecto WHERE PRO_ID = '$proyecto'";
 					$resultado_tb=$mysqli -> query($tb_proyecto);
 					
 					
@@ -371,7 +371,7 @@ input[type="checkbox"]:checked + label {
 					}				
 					else{
 						
-					$tb_etapa = "SELECT * FROM TB_DETALLE_PROYECTO WHERE DET_PRO_ID = '$proyecto' AND DET_ETAPA = $etapa";
+					$tb_etapa = "SELECT * FROM tb_detalle_proyecto WHERE DET_PRO_ID = '$proyecto' AND DET_ETAPA = $etapa";
 					$resultado_et=$mysqli -> query($tb_etapa);
 					
 					if($resultado_et->num_rows <1 ){
@@ -407,7 +407,7 @@ input[type="checkbox"]:checked + label {
 					}
 						
 					
-					$check_overwrite= "SELECT * FROM TB_FLUJO_CAJA_TERRENO WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
+					$check_overwrite= "SELECT * FROM tb_flujo_caja_terreno WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
 					$resultado_tb=$mysqli -> query($check_overwrite);
 					
 					
@@ -416,10 +416,10 @@ input[type="checkbox"]:checked + label {
 					
 						if($reemplazar=="s" ){
 					
-						$delete_fct="DELETE  FROM TB_FLUJO_CAJA WHERE FLC_DET_PRO_ID= '$proyecto' AND FLC_DET_ETAPA=$etapa AND FLC_MODELO='$modelo' ";
-						$delete_flc="DELETE  FROM TB_FLUJO_CAJA_TERRENO WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa AND FCT_MODELO='$modelo'";
-						$delete_res="DELETE  FROM TB_RESUMEN WHERE RES_DET_PRO_ID= '$proyecto' AND RES_DET_ETAPA=$etapa AND RES_MODELO='$modelo'";
-						$delete_ofl="DELETE  FROM TB_OTROS_FLUJOS WHERE OFL_DET_PRO_ID= '$proyecto' AND OFL_DET_ETAPA=$etapa AND OFL_MODELO='$modelo'";
+						$delete_fct="DELETE  FROM tb_flujo_caja WHERE FLC_DET_PRO_ID= '$proyecto' AND FLC_DET_ETAPA=$etapa AND FLC_MODELO='$modelo' ";
+						$delete_flc="DELETE  FROM tb_flujo_caja_terreno WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa AND FCT_MODELO='$modelo'";
+						$delete_res="DELETE  FROM tb_resumen WHERE RES_DET_PRO_ID= '$proyecto' AND RES_DET_ETAPA=$etapa AND RES_MODELO='$modelo'";
+						$delete_ofl="DELETE  FROM tb_otros_flujos WHERE OFL_DET_PRO_ID= '$proyecto' AND OFL_DET_ETAPA=$etapa AND OFL_MODELO='$modelo'";
 						
 						$A=$mysqli -> query($delete_fct);
 						$A=$mysqli -> query($delete_flc);
@@ -715,7 +715,7 @@ input[type="checkbox"]:checked + label {
 								}
 							//---------------Check Nulls---------------
 						
-						$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO TB_FLUJO_CAJA_TERRENO(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
+						$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO tb_flujo_caja_terreno(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
 						FCT_VALOR_ADQUISICION_PAGOS, FCT_VAP_ANTICIPO_OTROS_PAGOS, FCT_VAP_ABONOS_PACTADOS_POR_VENTAS, 
 						FCT_COSTOS_URBANISMO, FCT_CU_INCREMENTOS, FCT_CU_INVERSION_MENSUAL, 
 						FCT_COSTOS_INFRAESTRUCTURA, FCT_CI_INCREMENTOS, FCT_CI_RECUPERACION_COSTOS, 
@@ -1173,7 +1173,7 @@ input[type="checkbox"]:checked + label {
 						//---------------Check Nulls---------------
 						
 						
-							$envio_Tb_Flujo_Caja="INSERT INTO TB_FLUJO_CAJA (FLC_DET_PRO_ID, FLC_DET_ETAPA, FLC_MODELO, FLC_FECHA, FLC_URBANISMO_INTERNO, 
+							$envio_Tb_Flujo_Caja="INSERT INTO tb_flujo_caja (FLC_DET_PRO_ID, FLC_DET_ETAPA, FLC_MODELO, FLC_FECHA, FLC_URBANISMO_INTERNO, 
 							FLC_UI_PRESUPUESTO, FLC_UI_INCREMENTOS, FLC_COSTOS_MATERIALES_MANO_OBRA, FLC_CM_PRESUPUESTO, FLC_CM_INCREMENTOS, 
 							FLC_GASTOS_IMPREVISTOS, FLC_COSTOS_POSTVENTA, FLC_COSTO_DIRECTO_CONSTRUCCION, 
 							FLC_HONORARIOS_CONSTRUCCION, FLC_HC_HONORARIOS_CONSTRUCCION, FLC_HC_GASTOS_REEMBOLSABLES,	
@@ -1633,7 +1633,7 @@ input[type="checkbox"]:checked + label {
 						}		
 		
 			//----------------------------------RESUMEN---------------------
-								$envio_Tb_Resumen="INSERT INTO TB_RESUMEN (RES_DET_PRO_ID,RES_DET_ETAPA,
+								$envio_Tb_Resumen="INSERT INTO tb_resumen (RES_DET_PRO_ID,RES_DET_ETAPA,
 								RES_MODELO,RES_FECHA,RES_TOTAL_UNIDADES,RES_AREA_PROMEDIO_UNIDAD,RES_TOTAL_AREA_CONSTRUIDA,
 								RES_TOTAL_AREA_VENDIBLE,RES_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO,
 								RES_DENSIDAD_INDICE_OCUPACION,RES_VALOR_METRO_CUADRADO_LOTE_URBANIZADO,					
@@ -2026,7 +2026,7 @@ input[type="checkbox"]:checked + label {
 								
 								//---------------Check Nulls---------------
 				
-				$envio_Tb_Otros_Flujos="INSERT INTO TB_OTROS_FLUJOS (OFL_DET_PRO_ID, OFL_DET_ETAPA, OFL_MODELO, OFL_FECHA, OFL_COSTO_CONSTRUCCION, OFL_HONORARIOS_COLPATRIA, OFL_GASTOS_OPERACION_COLPATRIA, 
+				$envio_Tb_Otros_Flujos="INSERT INTO tb_otros_flujos (OFL_DET_PRO_ID, OFL_DET_ETAPA, OFL_MODELO, OFL_FECHA, OFL_COSTO_CONSTRUCCION, OFL_HONORARIOS_COLPATRIA, OFL_GASTOS_OPERACION_COLPATRIA, 
 					OFL_GO_PROMOTORA_OPERACION, OFL_GO_PROMOTORA_OVERHEAD, OFL_GO_CONSTRUCTORA_OPERACION, OFL_GO_CONSTRUCTORA_OVERHEAD, OFL_GO_TRANSACCIONES_INMOBILIARIAS_OPERACION,
 					OFL_GO_TRANSACCIONES_INMOBLIARIAS_OVERHEAD, OFL_OTROS_PAGOS_EFECTUADOS_POR_FIDUCIA, OFL_VALOR_TERRENO, 
 					OFL_EGRESOS_CREDITO_CONSTRUCTOR, OFL_IMPUESTO_TRANSACCIONES_FINANCIERAS_COLPATRIA, OFL_COMISION_FIDUCIARIA_NUEVOGAR_SIN_FIDUCIARIA,OFL_OTROS_COSTOS_Y_GASTOS,
@@ -2442,7 +2442,7 @@ input[type="checkbox"]:checked + label {
 								}
 							//---------------Check Nulls---------------
 						
-						$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO TB_FLUJO_CAJA_TERRENO(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
+						$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO tb_flujo_caja_terreno(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
 						FCT_VALOR_ADQUISICION_PAGOS, FCT_VAP_ANTICIPO_OTROS_PAGOS, FCT_VAP_ABONOS_PACTADOS_POR_VENTAS, 
 						FCT_COSTOS_URBANISMO, FCT_CU_INCREMENTOS, FCT_CU_INVERSION_MENSUAL, 
 						FCT_COSTOS_INFRAESTRUCTURA, FCT_CI_INCREMENTOS, FCT_CI_RECUPERACION_COSTOS, 
@@ -2900,7 +2900,7 @@ input[type="checkbox"]:checked + label {
 						//---------------Check Nulls---------------
 						
 						
-							$envio_Tb_Flujo_Caja="INSERT INTO TB_FLUJO_CAJA (FLC_DET_PRO_ID, FLC_DET_ETAPA, FLC_MODELO, FLC_FECHA, FLC_URBANISMO_INTERNO, 
+							$envio_Tb_Flujo_Caja="INSERT INTO tb_flujo_caja (FLC_DET_PRO_ID, FLC_DET_ETAPA, FLC_MODELO, FLC_FECHA, FLC_URBANISMO_INTERNO, 
 							FLC_UI_PRESUPUESTO, FLC_UI_INCREMENTOS, FLC_COSTOS_MATERIALES_MANO_OBRA, FLC_CM_PRESUPUESTO, FLC_CM_INCREMENTOS, 
 							FLC_GASTOS_IMPREVISTOS, FLC_COSTOS_POSTVENTA, FLC_COSTO_DIRECTO_CONSTRUCCION, 
 							FLC_HONORARIOS_CONSTRUCCION, FLC_HC_HONORARIOS_CONSTRUCCION, FLC_HC_GASTOS_REEMBOLSABLES,	
@@ -3360,7 +3360,7 @@ input[type="checkbox"]:checked + label {
 						}		
 		
 			//----------------------------------RESUMEN---------------------
-								$envio_Tb_Resumen="INSERT INTO TB_RESUMEN (RES_DET_PRO_ID,RES_DET_ETAPA,
+								$envio_Tb_Resumen="INSERT INTO tb_resumen (RES_DET_PRO_ID,RES_DET_ETAPA,
 								RES_MODELO,RES_FECHA,RES_TOTAL_UNIDADES,RES_AREA_PROMEDIO_UNIDAD,RES_TOTAL_AREA_CONSTRUIDA,
 								RES_TOTAL_AREA_VENDIBLE,RES_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO,
 								RES_DENSIDAD_INDICE_OCUPACION,RES_VALOR_METRO_CUADRADO_LOTE_URBANIZADO,					
@@ -3753,7 +3753,7 @@ input[type="checkbox"]:checked + label {
 								
 								//---------------Check Nulls---------------
 				
-				$envio_Tb_Otros_Flujos="INSERT INTO TB_OTROS_FLUJOS (OFL_DET_PRO_ID, OFL_DET_ETAPA, OFL_MODELO, OFL_FECHA, OFL_COSTO_CONSTRUCCION, OFL_HONORARIOS_COLPATRIA, OFL_GASTOS_OPERACION_COLPATRIA, 
+				$envio_Tb_Otros_Flujos="INSERT INTO tb_otros_flujos (OFL_DET_PRO_ID, OFL_DET_ETAPA, OFL_MODELO, OFL_FECHA, OFL_COSTO_CONSTRUCCION, OFL_HONORARIOS_COLPATRIA, OFL_GASTOS_OPERACION_COLPATRIA, 
 					OFL_GO_PROMOTORA_OPERACION, OFL_GO_PROMOTORA_OVERHEAD, OFL_GO_CONSTRUCTORA_OPERACION, OFL_GO_CONSTRUCTORA_OVERHEAD, OFL_GO_TRANSACCIONES_INMOBILIARIAS_OPERACION,
 					OFL_GO_TRANSACCIONES_INMOBLIARIAS_OVERHEAD, OFL_OTROS_PAGOS_EFECTUADOS_POR_FIDUCIA, OFL_VALOR_TERRENO, 
 					OFL_EGRESOS_CREDITO_CONSTRUCTOR, OFL_IMPUESTO_TRANSACCIONES_FINANCIERAS_COLPATRIA, OFL_COMISION_FIDUCIARIA_NUEVOGAR_SIN_FIDUCIARIA,OFL_OTROS_COSTOS_Y_GASTOS,

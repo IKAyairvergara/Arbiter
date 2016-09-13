@@ -26,7 +26,7 @@
 
 							$CodigoID = $Proyecto."-CONS-".$Version;
 
-							$query = "INSERT INTO TB_CONSOLIDADOS (CONS_ID, CONS_DESCRIPCION, CONS_FEC_GEN_DES, CONS_FEC_GEN_HAS, CONS_FEC_VEN_DES, CONS_FEC_VEN_HAS, CONS_FEC_CON_DES, CONS_FEC_CON_HAS, CONS_FEC_PRE_DES, CONS_FEC_PRE_HAS, CONS_PER, CONS_UNI_PRE, CONS_MON_REE, CONS_RIT_VEN, CONS_POR_VTA_NHO, CONS_VER) 
+							$query = "INSERT INTO tb_consolidados (CONS_ID, CONS_DESCRIPCION, CONS_FEC_GEN_DES, CONS_FEC_GEN_HAS, CONS_FEC_VEN_DES, CONS_FEC_VEN_HAS, CONS_FEC_CON_DES, CONS_FEC_CON_HAS, CONS_FEC_PRE_DES, CONS_FEC_PRE_HAS, CONS_PER, CONS_UNI_PRE, CONS_MON_REE, CONS_RIT_VEN, CONS_POR_VTA_NHO, CONS_VER) 
 					      VALUES ('$CodigoID', '$Tituloinf', '$Genedesde', '$Genehasta', '$Ventasdesde','$Ventashasta','$Constdesde','$Consthasta','$Prepdesde','$Prephasta','$Periodicidad','$Unidadpre','$Monedare','$Ritmo','$Nuevohogar','$Version')";
 
 					      $result = $mysqli->query($query);

@@ -190,8 +190,8 @@ body
 	    <label for="CIUD_PAISES_EDIT"></label>
 	    <select name='CIUD_PAISES_EDIT' id='CIUD_PAISES_EDIT'  required>
 		<?php
-		include "../php/conexion.php";
-		$qr ="SELECT * FROM TB_PAIS";
+		include "../../php/conexion.php";
+		$qr ="SELECT * FROM tb_pais";
 		$i = 0;
 		if ($resultado = $mysqli->query($qr)) {
 		 while ($fila = $resultado->fetch_row()) {
@@ -210,10 +210,10 @@ body
 </table>
 </form>
 <?php
-	include "../php/conexion.php";
+	include "../../php/conexion.php";
 	
 	
-	//$update = "UPDATE TB_CIUDAD SET CIU_DESCRIPCION = '$CIUD_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
+	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$CIUD_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
 
 
 				if(isset($_POST['estado'])){
@@ -223,7 +223,7 @@ body
 	$CIUD_PAISES=$_POST['pais'];
 	$CIUD_PAISES_EDIT=$_POST['CIUD_PAISES_EDIT'];
 	
-					$update = "UPDATE TB_CIUDAD set CIU_DESCRIPCION='$CIUD_DESCRIPCION' , CIU_PAI_ID='$CIUD_PAISES_EDIT' where CIU_DESCRIPCION='$CIU_ID' and CIU_PAI_ID='$CIUD_PAISES'";
+					$update = "UPDATE tb_ciudad set CIU_DESCRIPCION='$CIUD_DESCRIPCION' , CIU_PAI_ID='$CIUD_PAISES_EDIT' where CIU_DESCRIPCION='$CIU_ID' and CIU_PAI_ID='$CIUD_PAISES'";
 					$resultado = $mysqli -> query($update);
 					if($result==true){
 						print "<script>alert(\"No se ha podido realizar el cambio\");window.location='Editar2Ciudades.php';</script>";

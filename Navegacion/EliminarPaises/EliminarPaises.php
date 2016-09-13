@@ -97,8 +97,8 @@ body
     					<td><label for="CIUD_ID"></label>
                         <select name='CIUD_ID' id='CIUD_ID'> 
                         <?php
-							include "../php/conexion.php";
-							$qr ="SELECT * FROM TB_PAIS"; 
+							include "../../php/conexion.php";
+							$qr ="SELECT * FROM tb_pais"; 
 							$i = 0;
 							if ($resultado = $mysqli->query($qr)) {
 								while ($fila = $resultado->fetch_row()) {
@@ -131,7 +131,7 @@ body
 
       
 	<?php 
-		include "../php/conexion.php";
+		include "../../php/conexion.php";
 			if(isset($_POST['CIUD_ID'])){
 	$CIU_ID=$_POST['CIUD_ID'];}
 			
@@ -139,7 +139,7 @@ body
 	    if(isset($_POST['CIUD_ID'])){
 			if($_POST["CIUD_ID"]!=""){
 
-	      $query = "DELETE FROM TB_PAIS WHERE PAI_ID= '$CIU_ID'";
+	      $query = "DELETE FROM tb_pais WHERE PAI_ID= '$CIU_ID'";
 		  $result = $mysqli->query($query);
 	       if($result==false){
 				print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarPaises.php';</script>";

@@ -61,7 +61,7 @@
 		FCT_C_TIR_EM,
 		FCT_C_TIR_MOD_EA,
 		FCT_C_TIR_MOD_EM
-		FROM 	TB_C_FLUJO_CAJA_TERRENO WHERE FCT_C_CONS_ID='$Example'";
+		FROM 	tb_c_flujo_caja_terreno WHERE FCT_C_CONS_ID='$Example'";
 
 	$resultado = $conexion->query($consulta);
 	if($resultado->num_rows > 0 ){

@@ -201,7 +201,7 @@ body
               </center>
                    
 			<?php 
-			include "../php/conexion.php";
+			include "../../php/conexion.php";
 			if(isset($_POST['pais'])){
 	$PAIS=$_POST['pais'];}
 	
@@ -214,7 +214,7 @@ body
 
 			     if(isset($_POST['pais'])){
 					if($_POST["pais"]!=""){
-					  $query = "DELETE FROM TB_CIUDAD WHERE CIU_DESCRIPCION = '$CIUDAD' AND CIU_PAI_ID= '$PAIS' ";
+					  $query = "DELETE FROM tb_ciudad WHERE CIU_DESCRIPCION = '$CIUDAD' AND CIU_PAI_ID= '$PAIS' ";
 					  $result = $mysqli->query($query);
 						   if($result==false){
 								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarCiudades.php';</script>";

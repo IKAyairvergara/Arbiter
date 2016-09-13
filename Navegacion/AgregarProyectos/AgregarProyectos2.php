@@ -88,7 +88,7 @@ $PROY_DESCRIPCION=$_SESSION['PROY_DESCRIPCION']=$_GET['PROY_DESCRIPCION'];
                        <td style="color: white; font-family:sans-serif;font-size:20;">
                        		<?php 
 //QUERY COMBO 1
-$query="select * from TB_PAIS"; 
+$query="select * from tb_pais"; 
 $res=mysql_query($query);
 ?>
 
@@ -112,7 +112,7 @@ $res=mysql_query($query);
 <td style="color: white; font-family:sans-serif;font-size:20;">                        
 <?php 
 //QUERY COMBO 2
-$query2="select * from TB_CIUDAD WHERE CIU_PAI_ID='$PAI_ID[0]'"; 
+$query2="select * from tb_ciudad WHERE CIU_PAI_ID='$PAI_ID[0]'"; 
 $res2=mysql_query($query2);
 ?>
 
