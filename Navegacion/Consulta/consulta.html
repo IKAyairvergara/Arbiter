@@ -2,9 +2,92 @@
 <head>
 <title>Consulta</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="jquery,ui,easy,easyui,web">
+	<meta name="description" content="easyui help you build your web page easily!">
+	<title>Expand row in DataGrid to show subgrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript">
+
+		$(function(){
+			$('#dg').datagrid({
+				view: detailview,
+				detailFormatter:function(index,row){
+					return '<div style="padding:2px"><table id="ddv-' + index + '"></table></div>';
+				},
+				onExpandRow: function(index,row){
+					$('#ddv-'+index).datagrid({
+						url:'datagrid22_getdetail.php?itemid='+row.CONS_ID,
+						fitColumns:true,
+						singleSelect:true,
+						rownumbers:true,
+						loadMsg:'',
+						height:'auto',
+						columns:[[
+							{field:'SEL_DET_PRO_ID',title:'PROYECTO ID',width:200},
+							{field:'PRO_DESCRIPCION',title:'NOMBRE',width:100,align:'right'},
+							{field:'SEL_MODELO',title:'MODELO',width:100,align:'right'},
+							{field:'SEL_DET_ETAPA',title:'ETAPA',width:100,align:'right'}
+						]],
+						onResize:function(){
+							$('#dg').datagrid('fixDetailRowHeight',index);
+						},
+						onLoadSuccess:function(){
+							setTimeout(function(){
+								$('#dg').datagrid('fixDetailRowHeight',index);
+							},0);
+						}
+					});
+					$('#dg').datagrid('fixDetailRowHeight',index);
+				}
+			});
+		});
+	</script>
 </head>
 <link rel="shortcut icon" href="favicon.png">
+<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript">
 
+		$(function(){
+			$('#dg').datagrid({
+				view: detailview,
+				detailFormatter:function(index,row){
+					return '<div style="padding:2px"><table id="ddv-' + index + '"></table></div>';
+				},
+				onExpandRow: function(index,row){
+					$('#ddv-'+index).datagrid({
+						url:'datagrid22_getdetail.php?itemid='+row.CONS_ID,
+						fitColumns:true,
+						singleSelect:true,
+						rownumbers:true,
+						loadMsg:'',
+						height:'auto',
+						columns:[[
+							{field:'SEL_DET_PRO_ID',title:'PROYECTO ID',width:200},
+							{field:'PRO_DESCRIPCION',title:'NOMBRE',width:100,align:'right'},
+							{field:'SEL_MODELO',title:'MODELO',width:100,align:'right'},
+							{field:'SEL_DET_ETAPA',title:'ETAPA',width:100,align:'right'}
+						]],
+						onResize:function(){
+							$('#dg').datagrid('fixDetailRowHeight',index);
+						},
+						onLoadSuccess:function(){
+							setTimeout(function(){
+								$('#dg').datagrid('fixDetailRowHeight',index);
+							},0);
+						}
+					});
+					$('#dg').datagrid('fixDetailRowHeight',index);
+				}
+			});
+		});
+	</script>
+	
 <style type="text/css">
 body
  {
@@ -36,9 +119,33 @@ body
 	</div>
 	<div style="background-image:url(Untitled-22_11.png); position:absolute; left:138px; top:96px; width:296px; height:672px;" title="">
 	</div>
+	<div style="background-image:url(14.png); position:absolute; left:597px; top:33px; width:179px; height:76px;" title="">
+	</div>
+	
 	<div style="background-image:url(Untitled-22_12.png); position:absolute; left:36px; top:102px; width:75px; height:666px;" title="">
 	</div>
 	<div style="background-image:url(Untitled-22_13.png); position:absolute; left:813px; top:109px; width:175px; height:659px;" title="">
+	</div>
+	<div style="background-image:url(12.png); position:absolute; left:36px; top:158px; width:954px; height:494px;" title="">
+	
+	
+	<table id="dg" style="width:650px;height:250px"
+			url="datagrid22_getdata.php" 
+			title="DataGrid - SubGrid"
+			singleSelect="true" fitColumns="true">
+		<thead>
+			<tr>
+				<th field="CONS_ID" width="80">Consolidado ID</th>
+				<th field="CONS_DESCRIPCION" width="100">DESCRIPCION</th>
+				<th field="CONS_FEC_GEN_DES" align="right" width="80">FechaGeneracionDesde</th>
+				<th field="CONS_FEC_GEN_HAS" align="right" width="80">FechaGeneracionHasta</th>
+				<th field="CONS_PER" width="220">Periodicidad</th>
+				<th field="CONS_UNI_PRE" width="60" align="center">Unidad de Presentacion</th>
+			</tr>
+		</thead>
+	</table>
+		</thead>
+	</table>
 	</div>
 </div>
 </body>

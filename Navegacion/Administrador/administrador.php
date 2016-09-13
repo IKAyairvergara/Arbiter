@@ -67,6 +67,7 @@
 	</div>
 	<div style="background-image:url(usuariosActivos_10.png); position:absolute; left:36px; top:147px; width:952px; height:494px; overflow:scroll;" title="">
 		<?php
+<<<<<<< HEAD
       #$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
       include "../../php/conexion.php";
       /* comprobar la conexión */
@@ -74,6 +75,11 @@
           printf("Falló la conexión: %s\n", mysqli_connect_error());
           exit();
       }
+=======
+    
+      include "../php/conexion.php";
+     
+>>>>>>> 606e662e35cf4b912f4bdf494a5134ae38ccdf8d
 
       $query = "SELECT fullname, username, email, password, created_at  FROM user";
 
