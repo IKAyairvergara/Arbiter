@@ -1,4 +1,19 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: CargaAutomatica.php
 
+==> DESCRIPCION: Pantalla que permite cargar arhivos XLS en conjunto. El tope máximo del monto de subida es 16 MB. El archivo escribe en cada una de las tablas
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
 <!-- saved from url=(0109)file:///Users/yvmechanics/Library/Caches/Save%20For%20Web%20AI/carga%20automatica_001/carga%20automatica.html -->
 <?php
 session_start();
@@ -110,15 +125,17 @@ input[type=file]{
     </form>
  
 <?php
+#Establecer valores por defecto para el script, losvalores se eliminan al terminar la ejecución
 ini_set('memory_limit', '-1');
  		
-
+#Limita el tiempo máximo de una ejecución
 set_time_limit(0);
 
 
-
+#Reporte de errores 
 error_reporting(0);	
 
+#Obtener ruta de origen de archivos a cargar 
 function listar($ruta){
 if (is_dir($ruta)) {
 if ($dir = opendir($ruta)) {
@@ -149,7 +166,7 @@ $test=0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	foreach ($_FILES['files']['name'] as $i => $name) {
 		if (strlen($_FILES['files']['name'][$i]) > 1) {
-		//subir la imagen del articulo
+		 //subir la imagen del articulo
 		$_SESSION['contador']=$_SESSION['contador']+1;
 		$test++;
 		$nameEXCEL = $_FILES['files']['name'][$i];
@@ -167,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if($a=="CNS"){	
 
 				if($d=="xlsx"){		
-				//verificacion si se ha subido un archivo
+				 //verificacion si se ha subido un archivo
 					if(is_uploaded_file($tmpEXCEL)){
 					copy($tmpEXCEL,$urlnueva);	
 					require_once '../../PHPExcel/Classes/PHPExcel/IOFactory.php';
@@ -178,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 					$nom_pro;
 
 
-					//verificacion si existe o no el proyecto a subir	
+					 //verificacion si existe o no el proyecto a subir	
 					if($resultado_tb->num_rows <1 ){
 					$errorproyecto++;
 					}				
@@ -190,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 							$tb_etapa = "SELECT * FROM tb_detalle_proyecto WHERE DET_PRO_ID = '$proyecto' AND DET_ETAPA = $etapa";
 							$resultado_et=$mysqli -> query($tb_etapa);
 
-							//verificacion si existe o no la etapa del proyecto a subir
+							 //verificacion si existe o no la etapa del proyecto a subir
 
 							if($resultado_et->num_rows <1 ){
 							$erroretapa++;
@@ -201,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 							$pages=0;
 
 							$check_model=0;
-							//Verificacion Modelo A-B
+							 //Verificacion Modelo A-B
 							foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
 							$worksheetTitle = $worksheet->getTitle();
 							$pages++;

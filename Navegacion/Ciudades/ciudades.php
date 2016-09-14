@@ -1,8 +1,25 @@
-﻿<?php 
-    //creamos la sesion 
+﻿<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: ciudades.php
+
+==> DESCRIPCION: Pantalla que permite visualizar las ciudades parametrizadas en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
+<?php 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -95,6 +112,8 @@ body
 	</div>
 	<div style="background-image:url(ciudades_14.png); position:absolute; left:37px; top:158px; width:953px; height:494px; overflow:scroll;" title="">
 	<?php
+
+		# Se incluye el archivo de conexion
 		include "../../php/conexion.php";
 
 			/* comprobar la conexión */
@@ -102,7 +121,7 @@ body
 			    printf("Falló la conexión: %s\n", mysqli_connect_error());
 			    exit();
 			}
-
+			# Consulta a la base de datos JOIN entre  paises y ciudades
 			$consulta = "SELECT A.CIU_PAI_ID, B.PAI_DESCRIPCION, A.CIU_ID, A.CIU_DESCRIPCION  FROM tb_ciudad A LEFT JOIN tb_pais B on A.CIU_PAI_ID=B.PAI_ID
 ORDER BY B.PAI_DESCRIPCION, A.CIU_DESCRIPCION";
 

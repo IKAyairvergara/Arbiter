@@ -1,11 +1,31 @@
-<?php session_start(); ?>
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: crearUsuario.php
+
+==> DESCRIPCION: Pantalla que permite agregar nuevos usuarios al aplicativo. La información se guarda en la base de datos
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
+<?php 
+//Se crea la sesion 
+session_start(); 
+?>
 <html>
 <head>
 <title>Agregar</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <script>
-
+  // Funcion para validar si el password se ha ingresado correctamente
   function validarPasswd(){
 
     var p1 = document.getElementById("password").value;
@@ -20,7 +40,7 @@
       return true; 
     }
   }
-
+  // Funcion que valida que la contrasena ingresada sea de optima seguridad//
   function checkForm(form){
 
     if(form.username.value == "") {
@@ -168,10 +188,11 @@ body
       </form>
 </center>
 <?php
-
+# Validar si el usuario ya ha sido creado con anterioridad
 if(!empty($_POST)){
   if(isset($_POST["username"]) &&isset($_POST["fullname"]) &&isset($_POST["email"]) &&isset($_POST["password"]) &&isset($_POST["confirm_password"])){
     if($_POST["username"]!=""&& $_POST["fullname"]!=""&&$_POST["email"]!=""&&$_POST["password"]!=""&&$_POST["password"]==$_POST["confirm_password"]){
+      # Incluir Conexion
       include "../../php/conexion.php";
       
       $found=false;
@@ -194,7 +215,7 @@ if(!empty($_POST)){
       if($a!=$b){
          print "<script>alert(\"Error!, La contraseña no coincide\");</script>";
       }
-
+        # Insertar el usuario en la base de datos
         $sql = "insert into user (username,fullname,email,password,created_at) value (\"$_POST[username]\",\"$_POST[fullname]\",\"$_POST[email]\",\"$_POST[password]\",NOW())";
         
         $query = $con->query($sql);

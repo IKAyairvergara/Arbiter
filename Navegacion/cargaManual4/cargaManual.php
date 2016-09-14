@@ -1,3 +1,20 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: carga.php
+
+==> DESCRIPCION: Pantalla que permite ingresar al apartado de carga manual o automatica.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
     //creamos la sesion 
     session_start(); 
@@ -9,7 +26,7 @@
         exit(); 
     } 	
 		
-		
+#Reporte de errores 	
 error_reporting(0);	
 	
 ?>
@@ -396,15 +413,16 @@ input[type=file]{
 			if(is_uploaded_file($tmpEXCEL)){
 							copy($tmpEXCEL,$urlnueva);	
 							
-							
+				# Verificar si hay datos 			
 				if(isset($_POST['radio'])){
+							#Llamar a la librería de Excel
 							require_once '../../PHPExcel/Classes/PHPExcel/IOFactory.php';
 							
 							$reemplazar=($_POST['radio']);
 							
 							$objPHPExcel = PHPExcel_IOFactory::load('../../xls/55CN-001-CTRL_09.xls');
 							
-							
+							# Se incluye el arhivo de conexión
 							include "../../php/conexion.php";	
 								
 									

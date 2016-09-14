@@ -1,8 +1,26 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: AgregarPaises.php
+
+==> DESCRIPCION: Pantalla que permite agregar nuevos paises a la parametrización de la informacion. La informacion se guarda en la base de datos
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion 
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+     //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php 
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -106,7 +124,10 @@ body
 	</center>
 
 		<?php 
-			include "../../php/conexion.php";			
+			# Se incluye el archivo de conexion
+			include "../../php/conexion.php";	
+			#Funcion para quitar las tildes de los elementos ingresados por el usuario	
+
 				function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
 					$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
@@ -115,16 +136,14 @@ body
 				}
 				
 						    
-		    //Comprovamos si se han recivido datos del formulario
-		    //Como vemos se lo utilizando el campo nombre
-			
+		    # Se comprueba que las  variables posean informacion
 		    if(isset($_POST['PAIS_ID'])&&isset($_POST['PAIS_DESCRIPCION'])){
 				$PAIS_DESCRIPCION= $_POST['PAIS_DESCRIPCION'];
 				$PAIS_DESCRIPCION2 = quitar_tildes($PAIS_DESCRIPCION);//quita tildes
-				$PAIS_DESCRIPCION3 = strtoupper($PAIS_DESCRIPCION2);
+				$PAIS_DESCRIPCION3 = strtoupper($PAIS_DESCRIPCION2); // Volver mayusculas las letras
 				
 				$PAIS_ID= $_POST['PAIS_ID'];
-			
+				# Realizar inserción del nuevo pais en la base de datos 
 				if($_POST["PAIS_ID"]!=""&& $_POST["PAIS_DESCRIPCION"]!=""){
 					$query = "INSERT INTO tb_pais (PAI_ID, PAI_DESCRIPCION) VALUES ('$PAIS_ID', '$PAIS_DESCRIPCION3')";
 					$result = $mysqli->query($query);
@@ -136,7 +155,7 @@ body
 							}
 						}
 					}
-
+			#Cerrar Conexion
 	    	$mysqli->close();
 		?>
 
