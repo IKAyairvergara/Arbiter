@@ -82,7 +82,7 @@ body
 			    exit();
 			}
 
-			$consulta = "SELECT SER_PAI_CODIGO, SER_RUTA  FROM TB_SERVIDOR ";
+			$consulta = "SELECT SER_PAI_CODIGO, SER_RUTA  FROM tb_servidor ";
 
 			if ($resultado = $mysqli->query($consulta)) {
 

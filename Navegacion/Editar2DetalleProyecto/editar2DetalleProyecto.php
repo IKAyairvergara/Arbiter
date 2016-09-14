@@ -169,8 +169,8 @@ body
 	    
 	    <select name='SEG' id='SEG'>
 		<?php
-		include "../php/conexion.php";
-		$qr ="SELECT * FROM TB_SEGMENTO"; 
+		include "../../php/conexion.php";
+		$qr ="SELECT * FROM tb_segmento"; 
 		$i = 0;
 		if ($resultado = $mysqli->query($qr)) {
 		 while ($fila = $resultado->fetch_row()) {
@@ -191,8 +191,8 @@ body
 	    
 	    <select name='PP' id='PP'>
 		<?php
-		include "../php/conexion.php";
-		$qr ="SELECT * FROM TB_PARTICIPACION"; 
+		include "../../php/conexion.php";
+		$qr ="SELECT * FROM tb_participacion"; 
 		$i = 0;
 		if ($resultado = $mysqli->query($qr)) {
 		 while ($fila = $resultado->fetch_row()) {
@@ -207,7 +207,7 @@ body
     </td>
     </tr>
 		<?php 
-			include "../php/conexion.php";
+			include "../../php/conexion.php";
 				
 				
 
@@ -220,7 +220,7 @@ body
 				$PP= $_POST['PP'];
 				 
 				if($_POST["pais"]!=""){
-				  $query = "UPDATE TB_DETALLE_PROYECTO SET DET_SEG_ID = '$SEG', DET_PAR_ID='$PP'  WHERE DET_ETAPA = '$ETA' AND DET_PRO_ID = '$CIU_ID'";
+				  $query = "UPDATE tb_detalle_proyecto SET DET_SEG_ID = '$SEG', DET_PAR_ID='$PP'  WHERE DET_ETAPA = '$ETA' AND DET_PRO_ID = '$CIU_ID'";
 				  $result = $mysqli->query($query);
 					   if($result==false){
 							print "<script>alert(\"ERROR\");window.location='editar2DetalleProyecto.php';</script>";

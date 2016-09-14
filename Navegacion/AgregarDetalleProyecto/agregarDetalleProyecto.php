@@ -80,8 +80,8 @@ body
 	    <td>
         <select name='DET_PRO_ID' id='DET_PRO_ID' required>
 				<?php
-                include "../php/conexion.php";
-                $qr ="SELECT * FROM TB_PROYECTO"; 
+                include "../../php/conexion.php";
+                $qr ="SELECT * FROM tb_proyecto"; 
                 $i = 0;
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
@@ -105,8 +105,8 @@ body
 	    <td>
         <select name='DET_SEG_ID' id='DET_SEG_ID' required/>
 				<?php
-                include "../php/conexion.php";
-                $qr ="SELECT * FROM TB_SEGMENTO"; 
+                include "../../php/conexion.php";
+                $qr ="SELECT * FROM tb_segmento"; 
                 $i = 0;
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
@@ -125,8 +125,8 @@ body
 	    <td>
         <select name='DET_PAR_ID' id='DET_PAR_ID' required>
 				<?php
-                include "../php/conexion.php";
-                $qr ="SELECT * FROM TB_PARTICIPACION"; 
+                include "../../php/conexion.php";
+                $qr ="SELECT * FROM tb_participacion"; 
                 $i = 0;
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
@@ -146,7 +146,7 @@ body
 	</form>
 	</center>
 		<?php 
-			include "../php/conexion.php";
+			include "../../php/conexion.php";
 				
 
 			if(isset($_POST['DET_PRO_ID'])){
@@ -156,7 +156,7 @@ body
 			$DET_SEG_ID=$_POST['DET_SEG_ID'];
 			$DET_PAR_ID=$_POST['DET_PAR_ID']; 		
 				if($_POST["DET_ETAPA"]!=""){					
-	     			$query = "INSERT INTO TB_DETALLE_PROYECTO (DET_PRO_ID, DET_ETAPA, DET_SEG_ID, DET_PAR_ID) VALUES ('$DET_PRO_ID', '$DET_ETAPA','$DET_SEG_ID','$DET_PAR_ID')";
+	     			$query = "INSERT INTO tb_detalle_proyecto (DET_PRO_ID, DET_ETAPA, DET_SEG_ID, DET_PAR_ID) VALUES ('$DET_PRO_ID', '$DET_ETAPA','$DET_SEG_ID','$DET_PAR_ID')";
 					$result = $mysqli->query($query);
 					if($result==false){
 							print "<script>alert(\"los datos estan duplicados\");window.location='agregarDetalleProyecto.php';</script>";

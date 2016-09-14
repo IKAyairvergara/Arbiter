@@ -152,7 +152,7 @@ body
 			
         		<select name='username' id='username' required>
         		<?php
-				    include "../php/conexion.php";
+				    include "../../php/conexion.php";
 				    $qr ="SELECT * FROM user"; 
 				        $i = 0;
 				            if ($resultado = $mysqli->query($qr)) {
@@ -190,12 +190,12 @@ body
           <input id="p2" type="image" src='editar_22.png' name="aceptar"  value="aceptar"/>
       </form>
       <?php
-	include "../php/conexion.php";
+	include "../../php/conexion.php";
 
 	
 
 
-	//$update = "UPDATE TB_CIUDAD SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
+	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
 	if(isset($_POST['username'])){
     $Usuario=$_POST['username'];
   $Nombre= $_POST['fullname'];

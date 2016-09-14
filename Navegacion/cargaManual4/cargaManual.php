@@ -405,10 +405,10 @@ input[type=file]{
 							$objPHPExcel = PHPExcel_IOFactory::load('../../xls/55CN-001-CTRL_09.xls');
 							
 							
-							include "../php/conexion.php";	
+							include "../../php/conexion.php";	
 								
 									
-							$tb_proyecto = "SELECT * FROM TB_PROYECTO WHERE PRO_ID = '$proyecto'";
+							$tb_proyecto = "SELECT * FROM tb_proyecto WHERE PRO_ID = '$proyecto'";
 							$resultado_tb=$mysqli -> query($tb_proyecto);
 							$nom_pro;
 						
@@ -423,7 +423,7 @@ input[type=file]{
 								$nom_pro=$fila['PRO_DESCRIPCION'];
 							}
 								
-							$tb_etapa = "SELECT * FROM TB_DETALLE_PROYECTO WHERE DET_PRO_ID = '$proyecto' AND DET_ETAPA = $etapa";
+							$tb_etapa = "SELECT * FROM tb_detalle_proyecto WHERE DET_PRO_ID = '$proyecto' AND DET_ETAPA = $etapa";
 							$resultado_et=$mysqli -> query($tb_etapa);
 							
 							//verificacion si existe o no la etapa del proyecto a subir
@@ -527,8 +527,8 @@ input[type=file]{
 							}
 								
 							
-							$check_overwrite_fct= "SELECT * FROM TB_FLUJO_CAJA_TERRENO WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
-							$check_overwrite_fc="SELECT * FROM TB_FLUJO_CAJA WHERE F_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
+							$check_overwrite_fct= "SELECT * FROM tb_flujo_caja_terreno WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
+							$check_overwrite_fc="SELECT * FROM tb_flujo_caja WHERE F_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
 							
 							//Verificacion si el usuario indico la sobreescritura de los datos
 							$resultado_tb=$mysqli -> query($check_overwrite_fct);
@@ -543,11 +543,11 @@ input[type=file]{
 							
 								if($reemplazar=="s" ){
 							//Eliminacion de informacion para luego reemplazar
-								$delete_fct="DELETE  FROM TB_FLUJO_CAJA WHERE FLC_DET_PRO_ID= '$proyecto' AND FLC_DET_ETAPA=$etapa AND FLC_MODELO='$modelo' ";
-								$delete_flc="DELETE  FROM TB_FLUJO_CAJA_TERRENO WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa AND FCT_MODELO='$modelo'";
-								$delete_res="DELETE  FROM TB_RESUMEN WHERE RES_DET_PRO_ID= '$proyecto' AND RES_DET_ETAPA=$etapa AND RES_MODELO='$modelo'";
-								$delete_ofl="DELETE  FROM TB_OTROS_FLUJOS WHERE OFL_DET_PRO_ID= '$proyecto' AND OFL_DET_ETAPA=$etapa AND OFL_MODELO='$modelo'";
-								$delete_mod="DELETE  FROM TB_MODELOS WHERE MOD_DET_PRO_ID= '$proyecto' AND MOD_DET_ETAPA=$etapa AND MOD_MODELO='$modelo'";
+								$delete_fct="DELETE  FROM tb_flujo_caja WHERE FLC_DET_PRO_ID= '$proyecto' AND FLC_DET_ETAPA=$etapa AND FLC_MODELO='$modelo' ";
+								$delete_flc="DELETE  FROM tb_flujo_caja_terreno WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa AND FCT_MODELO='$modelo'";
+								$delete_res="DELETE  FROM tb_resumen WHERE RES_DET_PRO_ID= '$proyecto' AND RES_DET_ETAPA=$etapa AND RES_MODELO='$modelo'";
+								$delete_ofl="DELETE  FROM tb_otros_flujos WHERE OFL_DET_PRO_ID= '$proyecto' AND OFL_DET_ETAPA=$etapa AND OFL_MODELO='$modelo'";
+								$delete_mod="DELETE  FROM tb_modelos WHERE MOD_DET_PRO_ID= '$proyecto' AND MOD_DET_ETAPA=$etapa AND MOD_MODELO='$modelo'";
 								
 								if(!$resultado_res= $mysqli -> query($delete_fct)){
 							//echo('There was an error running the query [' . $mysqli->error . '].</br>');
@@ -582,7 +582,7 @@ input[type=file]{
 							OtrosFlujos($objPHPExcel,$ofl_i,$ofl_var,$proyecto,$etapa,$modelo,$mysqli);	
 							//------------Fin ingreso datos 
 							
-							$envio_Tb_modelos="INSERT INTO TB_MODELOS (MOD_DET_PRO_ID, MOD_DET_ETAPA, MOD_MODELO)
+							$envio_Tb_modelos="INSERT INTO tb_modelos (MOD_DET_PRO_ID, MOD_DET_ETAPA, MOD_MODELO)
 							VALUES ('$proyecto',$etapa,'$modelo')";	
 							$resultado_mod=false;
 							if(!$resultado_mod= $mysqli -> query($envio_Tb_modelos)){
@@ -625,7 +625,7 @@ input[type=file]{
 							//------------Fin ingreso datos 
 							
 							
-								$envio_Tb_modelos="INSERT INTO TB_MODELOS (MOD_DET_PRO_ID, MOD_DET_ETAPA, MOD_MODELO)
+								$envio_Tb_modelos="INSERT INTO tb_modelos (MOD_DET_PRO_ID, MOD_DET_ETAPA, MOD_MODELO)
 							VALUES ('$proyecto',$etapa,'$modelo')";
 								
 							$resultado_mod=false;
@@ -1014,7 +1014,7 @@ input[type=file]{
 								
 								//Insercion de datos
 								
-								$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO TB_FLUJO_CAJA_TERRENO(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
+								$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO tb_flujo_caja_terreno(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
 								FCT_VALOR_ADQUISICION_PAGOS, FCT_VAP_ANTICIPO_OTROS_PAGOS, FCT_VAP_ABONOS_PACTADOS_POR_VENTAS, 
 								FCT_COSTOS_URBANISMO, FCT_CU_INCREMENTOS, FCT_CU_INVERSION_MENSUAL, 
 								FCT_COSTOS_INFRAESTRUCTURA, FCT_CI_INCREMENTOS, FCT_CI_RECUPERACION_COSTOS, 
@@ -1471,7 +1471,7 @@ input[type=file]{
 								//---------------Check Nulls---------------
 								
 								//Insercion de datos 
-									$envio_Tb_Flujo_Caja="INSERT INTO TB_FLUJO_CAJA (FLC_DET_PRO_ID, FLC_DET_ETAPA, FLC_MODELO, FLC_FECHA, FLC_URBANISMO_INTERNO, 
+									$envio_Tb_Flujo_Caja="INSERT INTO tb_flujo_caja (FLC_DET_PRO_ID, FLC_DET_ETAPA, FLC_MODELO, FLC_FECHA, FLC_URBANISMO_INTERNO, 
 									FLC_UI_PRESUPUESTO, FLC_UI_INCREMENTOS, FLC_COSTOS_MATERIALES_MANO_OBRA, FLC_CM_PRESUPUESTO, FLC_CM_INCREMENTOS, 
 									FLC_GASTOS_IMPREVISTOS, FLC_COSTOS_POSTVENTA, FLC_COSTO_DIRECTO_CONSTRUCCION, 
 									FLC_HONORARIOS_CONSTRUCCION, FLC_HC_HONORARIOS_CONSTRUCCION, FLC_HC_GASTOS_REEMBOLSABLES,	
@@ -2414,7 +2414,7 @@ input[type=file]{
 			//----------------------------------RESUMEN---------------------
 							
 							//Insercion de datos
-							$envio_Tb_Resumen="INSERT INTO TB_RESUMEN (
+							$envio_Tb_Resumen="INSERT INTO tb_resumen (
 							RES_DET_PRO_ID,
 							RES_DET_ETAPA,
 								RES_MODELO,
@@ -2821,23 +2821,23 @@ input[type=file]{
 										'$res_modelo',
 										'$res_fecha',
 										$res_total_unidades,
-										$res_area_promedio_unidad,
+										$res_area_promedio,
 										$res_total_area_construida,
 										$res_total_area_vendible,
-										$res_area_util_lote_asignada_subproyecto,
-										$res_densidad_indice_ocupacion,
-										$res_valor_metro_cuadrado_lote_urbanizado,
+										$res_area_util_lote,
+										$res_densidad,
+										$res_lote_urbanizado,
 										$res_numero_parqueos,
-										$res_relacion_parqueos_numero_parqueos_por_unidad,
+										$res_relacion_parqueos,
 										$res_numero_depositos,
-										'$res_fecha_inicio_y_terminacion_ventas',
-										'$res_fecha_inicio_y_terminacion_construccion',
-										$res_ritmo_ventas_mensual_promedio,
-										'$res_punto_equilibrio_unidades',
-										$res_tasa_promedio_incremento_precios,
-										$res_porcentaje_ventas_nuevogar,
+										'$res_fecha_inicio_f_ventas',
+										'$res_fecha_inicio_f_construccion',
+										$res_ritmo_ventas,
+										'$res_punto_equilobrio',
+										$res_tasa_promedio_precios,
+										$res_ventas_nuevo_hogar,
 										'$res_fecha_presupuesto',
-										$res_tasa_promedio_incremento_presupuesto,
+										$res_tasa_promedio_incremento,
 										$res_c_tot_ui,
 								$res_c_tot_uip,
 								$res_c_tot_uii,
@@ -3738,7 +3738,7 @@ input[type=file]{
 									
 										//Check Nulls
 										if($res_total_unidades==null||is_string ($res_total_unidades)){$res_total_unidades=0;}
-										if($res_area_promedio_unidad==null||is_string ($res_area_promedio_unidad)){$res_area_promedio_unidad=0;}
+										if($res_area_promedio_unidad==null){$res_area_promedio_unidad=0;}
 										if($res_total_area_construida==null||is_string ($res_total_area_construida)){$res_total_area_construida=0;}
 										if($res_total_area_vendible==null||is_string ($res_total_area_vendible)){$res_total_area_vendible=0;}
 										if($res_area_util_lote_asignada_subproyecto==null||is_string ($res_area_util_lote_asignada_subproyecto)){$res_area_util_lote_asignada_subproyecto=0;}
@@ -4219,7 +4219,7 @@ input[type=file]{
 									//----------------------------------RESUMEN---------------------
 					
 					//Insercion de datos 481
-									$envio_Tb_Resumen="INSERT INTO TB_RESUMEN (
+									$envio_Tb_Resumen="INSERT INTO tb_resumen (
 										RES_DET_PRO_ID,
 										RES_DET_ETAPA,
 										RES_MODELO,
@@ -4709,23 +4709,23 @@ input[type=file]{
 										'$res_modelo',
 										'$res_fecha',
 										$res_total_unidades,
-										$res_area_promedio_unidad,
+										$res_area_promedio,
 										$res_total_area_construida,
 										$res_total_area_vendible,
-										$res_area_util_lote_asignada_subproyecto,
-										$res_densidad_indice_ocupacion,
-										$res_valor_metro_cuadrado_lote_urbanizado,
+										$res_area_util_lote,
+										$res_densidad,
+										$res_lote_urbanizado,
 										$res_numero_parqueos,
-										$res_relacion_parqueos_numero_parqueos_por_unidad,
+										$res_relacion_parqueos,
 										$res_numero_depositos,
-										'$res_fecha_inicio_y_terminacion_ventas',
-										'$res_fecha_inicio_y_terminacion_construccion',
-										$res_ritmo_ventas_mensual_promedio,
-										'$res_punto_equilibrio_unidades',
-										$res_tasa_promedio_incremento_precios,
-										$res_porcentaje_ventas_nuevogar,
+										'$res_fecha_inicio_f_ventas',
+										'$res_fecha_inicio_f_construccion',
+										$res_ritmo_ventas,
+										'$res_punto_equilobrio',
+										$res_tasa_promedio_precios,
+										$res_ventas_nuevo_hogar,
 										'$res_fecha_presupuesto',
-										$res_tasa_promedio_incremento_presupuesto,
+										$res_tasa_promedio_incremento,
 										$res_c_tot_ui,
 										$res_c_tot_uip,
 										$res_c_tot_uii,
@@ -5537,7 +5537,7 @@ function checkstring($checkvar){
 						
 						
 						//Insercion de datos
-						$envio_Tb_Otros_Flujos="INSERT INTO TB_OTROS_FLUJOS (OFL_DET_PRO_ID, OFL_DET_ETAPA, OFL_MODELO, OFL_FECHA, OFL_COSTO_CONSTRUCCION, OFL_HONORARIOS_COLPATRIA, OFL_GASTOS_OPERACION_COLPATRIA, 
+						$envio_Tb_Otros_Flujos="INSERT INTO tb_otros_flujos (OFL_DET_PRO_ID, OFL_DET_ETAPA, OFL_MODELO, OFL_FECHA, OFL_COSTO_CONSTRUCCION, OFL_HONORARIOS_COLPATRIA, OFL_GASTOS_OPERACION_COLPATRIA, 
 							OFL_GO_PROMOTORA_OPERACION, OFL_GO_PROMOTORA_OVERHEAD, OFL_GO_CONSTRUCTORA_OPERACION, OFL_GO_CONSTRUCTORA_OVERHEAD, OFL_GO_TRANSACCIONES_INMOBILIARIAS_OPERACION,
 							OFL_GO_TRANSACCIONES_INMOBLIARIAS_OVERHEAD, OFL_OTROS_PAGOS_EFECTUADOS_POR_FIDUCIA, OFL_VALOR_TERRENO, 
 							OFL_EGRESOS_CREDITO_CONSTRUCTOR, OFL_IMPUESTO_TRANSACCIONES_FINANCIERAS_COLPATRIA, OFL_COMISION_FIDUCIARIA_NUEVOGAR_SIN_FIDUCIARIA,OFL_OTROS_COSTOS_Y_GASTOS,
@@ -5654,9 +5654,3 @@ function checkstring($checkvar){
 
 </body>
 </html>
-
-
-
-
-
-

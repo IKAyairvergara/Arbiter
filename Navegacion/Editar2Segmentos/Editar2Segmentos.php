@@ -102,16 +102,16 @@ body
 </form>
 </CENTER>
 	<?php
-	include "../php/conexion.php";
+	include "../../php/conexion.php";
 	
 
-	//$update = "UPDATE TB_CIUDAD SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
+	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
 	if(isset($_POST['SEG_ID'])){
 		
 		$SEG_ID= $_POST['SEG_ID'];
 		$SEG_DESCRIPCION=$_POST['SEG_DESCRIPCION'];   
 	
-		$update = "update TB_SEGMENTO set SEG_DESCRIPCION ='$SEG_DESCRIPCION' where SEG_ID='$SEG_ID'";
+		$update = "update tb_segmento set SEG_DESCRIPCION ='$SEG_DESCRIPCION' where SEG_ID='$SEG_ID'";
 		$resultado = $mysqli -> query($update);
 		if($result==true){
 			print "<script>alert(\"no se a podido realizar el cambio\");window.location='Editar2Segmentos.php';</script>";

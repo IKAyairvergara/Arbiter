@@ -101,8 +101,8 @@ body
     					</label>            
                         <select name='IND_ID' id='IND_ID' required>
 								<?php
-				                include "../php/conexion.php";
-				                $qr ="SELECT * FROM TB_PROYECTO"; 
+				                include "../../php/conexion.php";
+				                $qr ="SELECT * FROM tb_proyecto"; 
 				                $i = 0;
 				                if ($resultado = $mysqli->query($qr)) {
 				                    while ($fila = $resultado->fetch_row()) {
@@ -131,12 +131,12 @@ body
                
                <?php
 			   
-				include "../php/conexion.php";
+				include "../../php/conexion.php";
 				
 				if(isset($_POST['IND_ID'])){
 					$IND_ID= $_POST['IND_ID'];
 					if($_POST["IND_ID"]!=""){
-						$query = "DELETE FROM TB_PROYECTO WHERE PRO_ID= '$IND_ID'";
+						$query = "DELETE FROM tb_proyecto WHERE PRO_ID= '$IND_ID'";
 						$result = $mysqli->query($query);
 							if($result==false){
 								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarProyectos.php';</script>";

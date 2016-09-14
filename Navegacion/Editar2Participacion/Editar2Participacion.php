@@ -99,15 +99,15 @@ body
 </center>
 
     <?php
-	include "../php/conexion.php";
+	include "../../php/conexion.php";
 	
 
-	//$update = "UPDATE TB_CIUDAD SET CIU_DESCRIPCION = '$PAR_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
+	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$PAR_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
 	if(isset($_POST['PAR_ID'])){
 		$PAR_ID= $_POST['PAR_ID'];
 	$PAR_DESCRIPCION=$_POST['PAR_DESCRIPCION'];   
 		
-		$update = "UPDATE TB_PARTICIPACION SET PAR_DESCRIPCION = '$PAR_DESCRIPCION' WHERE PAR_ID = '$PAR_ID'";
+		$update = "UPDATE tb_participacion SET PAR_DESCRIPCION = '$PAR_DESCRIPCION' WHERE PAR_ID = '$PAR_ID'";
 		$resultado = $mysqli -> query($update);
 		if($result==true){
 			print "<script>alert(\"no se a podido realizar el cambio\");window.location='Editar2Participacion.php';</script>";

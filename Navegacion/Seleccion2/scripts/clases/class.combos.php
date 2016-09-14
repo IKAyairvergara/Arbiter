@@ -6,7 +6,7 @@ class selects extends MySQL
 	
 	function cargarPaises()
 	{
-		$consulta = parent::consulta("SELECT IND_ID, IND_DESCRIPCION FROM TB_INDICADOR ORDER BY IND_ID ASC");
+		$consulta = parent::consulta("SELECT IND_ID, IND_DESCRIPCION FROM tb_indicador ORDER BY IND_ID ASC");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
@@ -26,7 +26,7 @@ class selects extends MySQL
 	}
 	function cargarEstados()
 	{
-		$consulta = parent::consulta("SELECT IND_FECHA FROM TB_INDICADOR WHERE IND_ID = '".$this->code."'");
+		$consulta = parent::consulta("SELECT IND_FECHA FROM tb_indicador WHERE IND_ID = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
@@ -46,7 +46,7 @@ class selects extends MySQL
 		
 	function cargarCiudades()
 	{
-		$consulta = parent::consulta("SELECT IND_VALOR FROM TB_INDICADOR WHERE IND_FECHA = '".$this->code."'");
+		$consulta = parent::consulta("SELECT IND_VALOR FROM tb_indicador WHERE IND_FECHA = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{

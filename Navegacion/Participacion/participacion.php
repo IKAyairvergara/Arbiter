@@ -104,7 +104,7 @@ body
 			    exit();
 			}
 
-			$consulta = "SELECT PAR_ID, PAR_DESCRIPCION FROM TB_PARTICIPACION ORDER BY PAR_ID";
+			$consulta = "SELECT PAR_ID, PAR_DESCRIPCION FROM tb_participacion ORDER BY PAR_ID";
 
 			if ($resultado = $mysqli->query($consulta)) {
 

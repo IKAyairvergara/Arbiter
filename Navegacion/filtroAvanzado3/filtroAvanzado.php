@@ -313,8 +313,8 @@ function dependencia_estado()
 			
 				<select name='IND_ID' id='IND_ID' style="left:389px; top:536px; width:123px; height:30px;" required>
 								<?php
-				                include "../php/conexion.php";
-				                $qr ="SELECT * FROM TB_SEGMENTO"; 
+				                include "../../php/conexion.php";
+				                $qr ="SELECT * FROM tb_segmento"; 
 				                $i = 0;
 				                if ($resultado = $mysqli->query($qr)) {
 				                    while ($fila = $resultado->fetch_row()) {
@@ -334,8 +334,8 @@ function dependencia_estado()
 			
 			<select name='PAR_ID' id='PAR_ID' style="left:389px; top:583px; width:123px; height:30px;" required>
 								<?php
-				                include "../php/conexion.php";
-				                $qr ="SELECT * FROM TB_PARTICIPACION"; 
+				                include "../../php/conexion.php";
+				                $qr ="SELECT * FROM tb_participacion"; 
 				                $i = 0;
 				                if ($resultado = $mysqli->query($qr)) {
 				                    while ($fila = $resultado->fetch_row()) {
@@ -372,7 +372,7 @@ function dependencia_estado()
 </div>
 </form>
 <?php 
-				include "../php/conexion.php";
+				include "../../php/conexion.php";
 				#$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
 				 ##Variables
 					
@@ -417,7 +417,7 @@ function dependencia_estado()
 					 }
 						     
 					  
-					  $query = "INSERT INTO TB_FILTRO_AVANZADO (FA_RITMO_VENTAS_CBX, FA_RITMO_VENTAS_DESDE, FA_RITMO_VENTAS_HASTA, FA_VLVND_COSTO_DIRECTO_CBX, FA_VLVND_COSTO_DIRECTO_DESDE, FA_VLVND_COSTO_DIRECTO_HASTA, FA_VLVND_VENTAS_CBX, FA_VLVND_VENTAS_DESDE, FA_VLVND_VENTAS_HASTA, FA_VL_UN_COSTO_VENTAS_CBX, FA_VL_UN_COSTO_VENTAS_DESDE, FA_VL_UN_COSTO_VENTAS_HASTA, FA_COSTO_VENTAS_CBX, FA_COSTO_VENTAS_DESDE, FA_COSTO_VENTAS_HASTA, FA_PAIS, FA_CIUDAD, FA_SEGMENTO, FA_PARTICIPACION)
+					  $query = "INSERT INTO tb_filtro_avanzado (FA_RITMO_VENTAS_CBX, FA_RITMO_VENTAS_DESDE, FA_RITMO_VENTAS_HASTA, FA_VLVND_COSTO_DIRECTO_CBX, FA_VLVND_COSTO_DIRECTO_DESDE, FA_VLVND_COSTO_DIRECTO_HASTA, FA_VLVND_VENTAS_CBX, FA_VLVND_VENTAS_DESDE, FA_VLVND_VENTAS_HASTA, FA_VL_UN_COSTO_VENTAS_CBX, FA_VL_UN_COSTO_VENTAS_DESDE, FA_VL_UN_COSTO_VENTAS_HASTA, FA_COSTO_VENTAS_CBX, FA_COSTO_VENTAS_DESDE, FA_COSTO_VENTAS_HASTA, FA_PAIS, FA_CIUDAD, FA_SEGMENTO, FA_PARTICIPACION)
 					   		VALUES ('$Ritmo_CBX',
 							$Ritmo_Desde,
 							$Ritmo_Hasta,

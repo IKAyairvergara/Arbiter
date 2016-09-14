@@ -9,17 +9,17 @@
 		}	
 		//--------------------------------------------------------------------------------------------------------------------------		
 		function insertar($nombreRon){			
-			$sql="INSERT INTO TB_SELECCION (SEL_DET_PRO_ID,SEL_DET_ETAPA,SEL_MODELO) values ('".$nombreRon."','1','A')";
+			$sql="INSERT INTO tb_seleccion (SEL_DET_PRO_ID,SEL_DET_ETAPA,SEL_MODELO) values ('".$nombreRon."','1','A')";
 			mysqli_query($this->conn, $sql);
 			header("Location: ../vista/index.php");
 		}
 		//--------------------------------------------------------------------------------------------------------------------------		
 		function borrar($id){
-			$sql="INSERT INTO TB_SELECCION (SEL_DET_PRO_ID,SEL_DET_ETAPA,SEL_MODELO) values ('".$id."','1','A')";	
+			$sql="INSERT INTO tb_seleccion (SEL_DET_PRO_ID,SEL_DET_ETAPA,SEL_MODELO) values ('".$id."','1','A')";	
 			mysqli_query($this->conn, $sql);			
 		}
 		function listar(){
-			$sql="select * from TB_CONSOLIDADOS";
+			$sql="select * from tb_consolidados";
 			$rs=mysqli_query($this->conn, $sql);
 			$i=0;
 			echo "<center><table>";

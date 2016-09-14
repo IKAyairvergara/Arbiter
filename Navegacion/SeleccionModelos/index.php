@@ -35,7 +35,7 @@
                         exit();
                     }
 
-                    $consulta = "Select MOD_DET_PRO_ID, MOD_DET_ETAPA, MOD_MODELO FROM TB_MODELOS";
+                    $consulta = "Select MOD_DET_PRO_ID, MOD_DET_ETAPA, MOD_MODELO FROM tb_modelos";
 
                     if ($resultado = $mysqli->query($consulta)) {
 

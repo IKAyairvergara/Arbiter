@@ -80,7 +80,7 @@ body
 	<div style="background-image:url(proyectos_10.png); position:absolute; left:39px; top:159px; width:953px; height:494px;overflow:auto;" title="">
 	<!--<input type="submit" name="delete" value="Generar">-->
 	<?php
-			include "../php/conexion.php";
+			include "../../php/conexion.php";
 
 			/* comprobar la conexión */
 			if (mysqli_connect_errno()) {
@@ -88,7 +88,7 @@ body
 			    exit();
 			}
 
-			$consulta = "Select CONS_ID, CONS_DESCRIPCION FROM TB_CONSOLIDADOS";
+			$consulta = "Select CONS_ID, CONS_DESCRIPCION FROM tb_consolidados";
 
 			if ($resultado = $mysqli->query($consulta)) {
 

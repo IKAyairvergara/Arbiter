@@ -98,8 +98,8 @@ body
     					<td><label for="IND_ID"></label> 
     					<select name='IND_ID' id='IND_ID' required>
 								<?php
-				                include "../php/conexion.php";
-				                $qr ="SELECT * FROM TB_SEGMENTO"; 
+				                include "../../php/conexion.php";
+				                $qr ="SELECT * FROM tb_segmento"; 
 				                $i = 0;
 				                if ($resultado = $mysqli->query($qr)) {
 				                    while ($fila = $resultado->fetch_row()) {
@@ -131,14 +131,14 @@ body
       
 
 	<?php 
-		include "../php/conexion.php";
+		include "../../php/conexion.php";
 			
 
 	    if(isset($_POST['IND_ID'])){
 			$IND_ID= $_POST['IND_ID'];
 			if($_POST["IND_ID"]!=""){
 
-	      $query = "DELETE FROM TB_SEGMENTO WHERE SEG_ID= '$IND_ID'";
+	      $query = "DELETE FROM tb_segmento WHERE SEG_ID= '$IND_ID'";
 		  $result = $mysqli->query($query);
 	       if($result==false){
 				print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarSegmentos.php';</script>";

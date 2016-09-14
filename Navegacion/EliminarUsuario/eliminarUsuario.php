@@ -78,7 +78,7 @@ body
               <label style="color: white; font-family:sans-serif;font-size:20;"> Nombre de Usuario a eliminar <span class="req">*</span></label>
               	<select name='username' id='username' required>
 				 <?php
-				    include "../php/conexion.php";
+				    include "../../php/conexion.php";
 				    $qr ="SELECT * FROM user"; 
 				        $i = 0;
 				            if ($resultado = $mysqli->query($qr)) {
@@ -95,7 +95,7 @@ body
 		<input id="p2" type="image" src='eliminar_17.png' name="aceptar"  value="aceptar"/>
      </form>
      <?php 
-		include "../php/conexion.php";
+		include "../../php/conexion.php";
 		
 		
 

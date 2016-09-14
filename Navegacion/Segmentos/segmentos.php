@@ -98,7 +98,7 @@ body
 			    exit();
 			}
 
-			$consulta = "SELECT SEG_ID, SEG_DESCRIPCION FROM TB_SEGMENTO";
+			$consulta = "SELECT SEG_ID, SEG_DESCRIPCION FROM tb_segmento";
 
 			if ($resultado = $mysqli->query($consulta)) {
 

@@ -98,7 +98,7 @@ body
 	</form>
 	</center>
 		<?php 
-			include "../php/conexion.php";			
+			include "../../php/conexion.php";			
 				function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
 					$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
@@ -123,7 +123,7 @@ body
 				
 				
 				if($_POST["CIUD_ID"]!=""&& $_POST["CIUD_DESCRIPCION"]!=""){					
-	     			$query = "INSERT INTO TB_INDICADOR (IND_ID, IND_DESCRIPCION,IND_FECHA,IND_VALOR) VALUES ('$CIUD_ID3', '$CIUD_DESCRIPCION3','$IND_FEC','$IND_VAL')";
+	     			$query = "INSERT INTO tb_indicador (IND_ID, IND_DESCRIPCION,IND_FECHA,IND_VALOR) VALUES ('$CIUD_ID3', '$CIUD_DESCRIPCION3','$IND_FEC','$IND_VAL')";
 		      		$result = $mysqli->query($query);
 					if($result==false){
 							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarIndicadores.php';</script>";

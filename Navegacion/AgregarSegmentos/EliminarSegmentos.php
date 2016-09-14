@@ -88,7 +88,7 @@ body
 
 	    if(isset($_POST['IND_ID'])){
 
-	      $query = "DELETE FROM TB_SEGMENTO WHERE SEG_ID= '$CIU_ID'";
+	      $query = "DELETE FROM tb_segmento WHERE SEG_ID= '$CIU_ID'";
 	      $mysqli->query($query);
 
 	     }

@@ -15,6 +15,10 @@
 	<script type="text/javascript" src="table/js/jquery.tablesorter.js"></script> 
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 60676762f38f84fb69b6d2bc3e32a9bfe4157ef6
 	<script type="text/javascript">
 
 		$(function(){
@@ -32,14 +36,19 @@
 						singleSelect:true,
 						rownumbers:true,
 						sortname: 'COD',
+<<<<<<< HEAD
                         sortorder: 'asc',
 						subgrid:true,
+=======
+                        sortorder: 'desc',
+>>>>>>> 60676762f38f84fb69b6d2bc3e32a9bfe4157ef6
 						loadMsg:'Cargando...',
 						viewrecords:true,
 						height:'auto',
 						rowNum:10,
 						rowList:[10,20,30,40,50],
 						columns:[[
+<<<<<<< HEAD
 							{field:'COD',   title:'COD',   width:100,align:'left',sortable:true,sortorder:'asc'},
 							{field:'NOMBRE',title:'NOMBRE',width:200,align:'left',sortable:true,sortorder:'asc'},
 							{field:'MODELO',title:'MODELO',width:100,align:'left',sortable:true,sortorder:'asc'},
@@ -48,6 +57,13 @@
 					   	sortname: 'COD',
                     	sortorder: 'asc',
                     	viewrecords: true,
+=======
+							{field:'COD',   title:'COD',   width:100,align:'left'},
+							{field:'NOMBRE',title:'NOMBRE',width:200,align:'left'},
+							{field:'MODELO',title:'MODELO',width:100,align:'left'},
+							{field:'ETAPA', title:'ETAPA', width:100,align:'left'}
+						]],
+>>>>>>> 60676762f38f84fb69b6d2bc3e32a9bfe4157ef6
 						onResize:function(){
 							$('#dg').datagrid('fixDetailRowHeight',index);
 						},
@@ -61,8 +77,12 @@
 				}
 			});
 			$("table").tablesorter(); 
+<<<<<<< HEAD
 			$('#dg').tablesorter();
 						
+=======
+			$('#dg').tablesorter(); 
+>>>>>>> 60676762f38f84fb69b6d2bc3e32a9bfe4157ef6
 			
 		});
 	</script>
@@ -127,12 +147,22 @@ body
 	
 	<table id="dg" style="width:954px;height:494px"
 			url="datagrid22_getdata.php" 
+<<<<<<< HEAD
 			title="Consulta "
 			singleSelect="true" 
 			fitcolumns="true" 
 			pagination="true"
 			sortname='CONS_ID'
 			>
+=======
+			title="Consulta"
+			singleSelect="true" 
+			fitColumns="true" 
+			sortable="true"
+			sortName="CONS_ID" 
+			sortOrder="asc"
+            pagination="true">
+>>>>>>> 60676762f38f84fb69b6d2bc3e32a9bfe4157ef6
 		<thead>
 			<tr>
 				<th field="CONS_ID"          sortable="true" width="70" >CONSOLIDADO</th>

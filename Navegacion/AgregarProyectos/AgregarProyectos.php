@@ -174,7 +174,7 @@ body
 	</form>
 	</center>
 		<?php 
-			include "../php/conexion.php";
+			include "../../php/conexion.php";
 				function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
 					$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
@@ -199,7 +199,7 @@ body
 					$PROY_PAIS=$_POST['pais'];
 				$PROY_CIU=$_POST['estado'];
 					if($_POST["CIUD_ID"]!=""&& $_POST["PROY_DESCRIPCION"]!=""){
-		      			$query = "INSERT INTO TB_PROYECTO (PRO_ID, PRO_DESCRIPCION, PRO_PAI_ID,PRO_CIU_ID) VALUES ('$CIUD_ID3', '$PROY_DESCR3','$PROY_PAIS','$PROY_CIU')";
+		      			$query = "INSERT INTO tb_proyecto (PRO_ID, PRO_DESCRIPCION, PRO_PAI_ID,PRO_CIU_ID) VALUES ('$CIUD_ID3', '$PROY_DESCR3','$PROY_PAIS','$PROY_CIU')";
 		      			$result = $mysqli->query($query);
 						if($result==false){
 							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarProyectos.php';</script>";

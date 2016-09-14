@@ -92,8 +92,8 @@ body
     <td style="color: white; font-family:sans-serif;font-size:20;" ><label for="PAIS_ID"></label>
     	<select name='PAIS_ID' id='PAIS_ID' >
 				<?php
-                include "../php/conexion.php";
-                $qr ="SELECT * FROM TB_PAIS";
+                include "../../php/conexion.php";
+                $qr ="SELECT * FROM tb_pais";
                 $i = 0;
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
@@ -124,7 +124,7 @@ body
 </form>
 
 <?php
-			include "../php/conexion.php";			
+			include "../../php/conexion.php";			
 				function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
 					$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
@@ -141,7 +141,7 @@ body
 				
 				$PAIS_ID= $_POST['PAIS_ID'];
 					
-					$update = "UPDATE TB_PAIS SET PAI_DESCRIPCION = '$PAIS_DESCRIPCION3' WHERE PAI_ID = '$PAIS_ID'";
+					$update = "UPDATE tb_pais SET PAI_DESCRIPCION = '$PAIS_DESCRIPCION3' WHERE PAI_ID = '$PAIS_ID'";
 					$resultado = $mysqli -> query($update);
 					if($result==true){
 						print "<script>alert(\"no se a podido realizar el cambio\");window.location='Editar2Paises.php';</script>";

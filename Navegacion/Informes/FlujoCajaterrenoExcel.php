@@ -1,9 +1,5 @@
 <?php
-    $conexion = new mysqli("localhost", "u517611460_ika", "Colombia2016*", "arbiter",3306);
-	if (mysqli_connect_errno()) {
-    	printf("La conexión con el servidor de base de datos falló: %s\n", mysqli_connect_error());
-    	exit();
-	} 
+    include "../../php/conexion.php";
 	
 	$Example=$_GET['dato']; 
 	
@@ -61,7 +57,7 @@
 		FCT_C_TIR_EM,
 		FCT_C_TIR_MOD_EA,
 		FCT_C_TIR_MOD_EM
-		FROM 	TB_C_FLUJO_CAJA_TERRENO WHERE FCT_C_CONS_ID='$Example'";
+		FROM 	tb_c_flujo_caja_terreno WHERE FCT_C_CONS_ID='$Example'";
 
 	$resultado = $conexion->query($consulta);
 	if($resultado->num_rows > 0 ){
@@ -77,6 +73,20 @@
 		// Se crea el objeto PHPExcel
 		$objPHPExcel = new PHPExcel();
 
+		$BStyle = array(
+  'borders' => array(
+    'outline' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+    )
+  )
+);
+
+$colorLetra = array(
+    'font'  => array(
+        'color' => array('rgb' => '918080'),
+        
+    ));
+		
 		// Se asignan las propiedades del libro
 		$objPHPExcel->getProperties()->setCreator("IKA") //Autor
 							 ->setLastModifiedBy("IKA") //Ultimo usuario que lo modificó
@@ -275,14 +285,34 @@
 						'type' => PHPExcel_Style_Fill::FILL_SOLID,
 							'color' => array('rgb' => 'F2F2F2'))));	
 							
-				$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'49')->applyFromArray(
-								array('borders' => array(
-									'allborders' => array(
-									'style' => PHPExcel_Style_Border::BORDER_THIN
-									))));
+				$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'4')->applyFromArray($BStyle);
+							
+				 $objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'49')->applyFromArray($BStyle);
+				 
+				 $objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'4')->applyFromArray($BStyle);
+
+$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'6:'.$columnas[$c].'7')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'9:'.$columnas[$c].'10')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'12:'.$columnas[$c].'14')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'22:'.$columnas[$c].'24')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'26:'.$columnas[$c].'29')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'31:'.$columnas[$c].'32')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'35:'.$columnas[$c].'36')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'41:'.$columnas[$c].'42')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'44:'.$columnas[$c].'45')->applyFromArray($colorLetra);
+	
+	
 				//Formato Separador con comas
 				  $objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'49')
-					->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+					->getNumberFormat()->setFormatCode('#,##0');
 					
 				 $objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3')
 				 ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_MYMINUS);
@@ -376,6 +406,17 @@
 
 	//Bordes
 	
+	$abc = array(
+      'borders' => array(
+          'allborders' => array(
+              'style' => PHPExcel_Style_Border::BORDER_NONE
+          )
+      )
+  );
+  
+  $objPHPExcel->getDefaultStyle()->applyFromArray($abc);	
+	
+	
 	$styleArray = array(
 	  'borders' => array(
 		'allborders' => array(
@@ -383,25 +424,49 @@
 		)
 	  )
 	);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('A3:A4')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('A5:A49')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B3:B4')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B5:B49')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('C3:C4')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('C5:C49')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('D3:D4')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('D5:D49')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('E3:E4')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('E5:E49')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B51:B52')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('C51:C52')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('D51:D52')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('E51:E52')->applyFromArray($BStyle);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('G51:G52')->applyFromArray($BStyle);
+//-------
 
+	$objPHPExcel->getActiveSheet()->getStyle('A16:'.$columnas[$c].'16')->applyFromArray($styleArray);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('A33:'.$columnas[$c].'33')->applyFromArray($styleArray);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('A37:'.$columnas[$c].'37')->applyFromArray($styleArray);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('A38:'.$columnas[$c].'38')->applyFromArray($styleArray);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('A47:'.$columnas[$c].'47')->applyFromArray($styleArray);
 
-	$objPHPExcel->getActiveSheet()->getStyle('A3:A49')->applyFromArray($styleArray);
-
-	$objPHPExcel->getActiveSheet()->getStyle('B3:B49')->applyFromArray($styleArray);
 	
-	$objPHPExcel->getActiveSheet()->getStyle('C3:C49')->applyFromArray($styleArray);
-	
-	$objPHPExcel->getActiveSheet()->getStyle('B51:F51')->applyFromArray($styleArray);
-	
-	$objPHPExcel->getActiveSheet()->getStyle('B52:F52')->applyFromArray($styleArray);
-	
-	$objPHPExcel->getActiveSheet()->getStyle('C3:C49')->applyFromArray($styleArray);
-	
-	$objPHPExcel->getActiveSheet()->getStyle('D3:D49')->applyFromArray($styleArray);
-	
-	$objPHPExcel->getActiveSheet()->getStyle('E3:E49')->applyFromArray($styleArray);
-	
-	$objPHPExcel->getActiveSheet()->getStyle('G51:G52')->applyFromArray($styleArray);
 	
 	//Cambio color Letra
 	$blanco  = array(
@@ -412,11 +477,7 @@
 	
 	
 	
-	$colorLetra = array(
-    'font'  => array(
-        'color' => array('rgb' => '918080'),
-        
-    ));
+	
 	
 	//--------Blanco
 	
@@ -453,7 +514,23 @@
 	$objPHPExcel->getActiveSheet()->getStyle('A44:A45')->applyFromArray($colorLetra);
 	
 	
+	$objPHPExcel->getActiveSheet()->getStyle('B6:B7')->applyFromArray($colorLetra);
 	
+	$objPHPExcel->getActiveSheet()->getStyle('B9:B10')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B12:B14')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B22:B24')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B26:B29')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B31:B32')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B35:B36')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B41:B42')->applyFromArray($colorLetra);
+	
+	$objPHPExcel->getActiveSheet()->getStyle('B44:B45')->applyFromArray($colorLetra);
 	
 		//Cambio Color Celdas
 		$objPHPExcel->getActiveSheet()->getStyle('A3:A4')->applyFromArray(
@@ -522,40 +599,30 @@
 		);
 		
 	
-	$objPHPExcel->getActiveSheet()->getStyle('A5:'.$columnas[$c].'5')->applyFromArray(
+	$objPHPExcel->getActiveSheet()->getStyle('A16:'.$columnas[$c].'16')->applyFromArray(
       $negrilla);	
 		
 		
-		$objPHPExcel->getActiveSheet()->getStyle('A8:'.$columnas[$c].'8')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('A33:'.$columnas[$c].'33')->applyFromArray(
        $negrilla);			
 		
 		
-		$objPHPExcel->getActiveSheet()->getStyle('A11:'.$columnas[$c].'11')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('A37:'.$columnas[$c].'37')->applyFromArray(
         $negrilla);	
 
-		$objPHPExcel->getActiveSheet()->getStyle('A19:'.$columnas[$c].'19')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('A38:'.$columnas[$c].'38')->applyFromArray(
        $negrilla);			
 				
-		$objPHPExcel->getActiveSheet()->getStyle('A20:'.$columnas[$c].'20')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('A47:'.$columnas[$c].'47')->applyFromArray(
         $negrilla);		
 
-		$objPHPExcel->getActiveSheet()->getStyle('A21:'.$columnas[$c].'21')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('A48:'.$columnas[$c].'48')->applyFromArray(
        $negrilla);						
 			
-		$objPHPExcel->getActiveSheet()->getStyle('A25:'.$columnas[$c].'25')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('A49:'.$columnas[$c].'49')->applyFromArray(
        $negrilla);
 	   
-	   	$objPHPExcel->getActiveSheet()->getStyle('A30:'.$columnas[$c].'30')->applyFromArray(
-       $negrilla);
 	   
-	   	$objPHPExcel->getActiveSheet()->getStyle('A34:'.$columnas[$c].'34')->applyFromArray(
-       $negrilla);
-	   
-	   	$objPHPExcel->getActiveSheet()->getStyle('A43:'.$columnas[$c].'43')->applyFromArray(
-       $negrilla);
-	   
-	   	$objPHPExcel->getActiveSheet()->getStyle('A46:'.$columnas[$c].'46')->applyFromArray(
-       $negrilla);
 			
 				
 		//Combinar Celdas

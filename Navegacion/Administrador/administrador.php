@@ -1,4 +1,21 @@
 
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: administrador.php
+
+==> DESCRIPCION: Panel principal del módulo de administrador para visualizacion de usuarios existentes en el sistema
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <!-- saved from url=(0099)file:///Users/yvmechanics/Library/Caches/Save%20For%20Web%20AI/usuariosActivos/usuariosActivos.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Usuarios Activos</title>
@@ -67,16 +84,14 @@
 	</div>
 	<div style="background-image:url(usuariosActivos_10.png); position:absolute; left:36px; top:147px; width:952px; height:494px; overflow:scroll;" title="">
 		<?php
-      #$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
-      include "../php/conexion.php";
-      /* comprobar la conexión */
-      if (mysqli_connect_errno()) {
-          printf("Falló la conexión: %s\n", mysqli_connect_error());
-          exit();
-      }
-
+    
+      #Llamar Archivo de Conexión
+      include "../../php/conexion.php";
+     
+      #Consulta a la tabla de usuarios del sistema
       $query = "SELECT fullname, username, email, password, created_at  FROM user";
 
+      #Crear tabla dinámica para mostrar los datos en estructura table html
       if ($resultado = $mysqli->query($query)) {
 
           /* obtener el array de objetos */
@@ -91,7 +106,7 @@
           echo "</tr>"; 
 
           while ($fila = $resultado->fetch_row()) {
-             //printf ("%s (%s)\n", $fila[0], $fila[1], $fila[2]);
+             
             echo "<tr align='center'>";  
             echo "<td>$fila[0]";  
             echo "<td>$fila[1]";

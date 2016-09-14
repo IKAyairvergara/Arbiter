@@ -196,7 +196,7 @@ body
 	</center>
      
             		<?php
-						include "../php/conexion.php";
+						include "../../php/conexion.php";
 						
 
 							if(isset($_POST['pais'])&& isset($_POST['estado'])){
@@ -205,7 +205,7 @@ body
 								$IND_ID= $_POST['pais'];
 								$IND_FEC= $_POST['estado'];
 								if($_POST['pais']!="" && $_POST['estado']!=""){
-									$query = "DELETE FROM TB_INDICADOR WHERE IND_ID = '$IND_ID' AND IND_FECHA = '$IND_FEC'";
+									$query = "DELETE FROM tb_indicador WHERE IND_ID = '$IND_ID' AND IND_FECHA = '$IND_FEC'";
 									$result = $mysqli->query($query);
 									if($result){
 										print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Indicadores/indicadores.php';</script>";

@@ -71,7 +71,7 @@ body
 	
 	<?php
 		//	$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
-			include "../php/conexion.php";
+			include "../../php/conexion.php";
 			/* comprobar la conexión */
 			if (mysqli_connect_errno()) {
 			    printf("Falló la conexión: %s\n", mysqli_connect_error());
@@ -79,12 +79,12 @@ body
 			}
 
 			$consulta = "SELECT MOD_DET_PRO_ID, MOD_DET_ETAPA, PRO_DESCRIPCION, PAI_DESCRIPCION, CIU_DESCRIPCION,SEG_DESCRIPCION,MOD_MODELO
-            FROM TB_MODELOS
-            ,TB_PROYECTO
-            ,TB_DETALLE_PROYECTO
-            ,TB_PAIS
-            ,TB_CIUDAD
-            ,TB_SEGMENTO
+            FROM tb_modelos
+            ,tb_proyecto
+            ,tb_detalle_proyecto
+            ,tb_pais
+            ,tb_ciudad
+            ,tb_segmento
                  WHERE MOD_DET_PRO_ID= PRO_ID
 					     AND PRO_ID = DET_PRO_ID
 					     AND MOD_DET_ETAPA = DET_ETAPA

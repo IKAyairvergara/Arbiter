@@ -6,7 +6,7 @@ class selects extends MySQL
 	
 	function cargarPaises()
 	{
-		$consulta = parent::consulta("SELECT A.PRO_DESCRIPCION, B.DET_PRO_ID FROM TB_PROYECTO A RIGHT JOIN TB_DETALLE_PROYECTO B ON  A.PRO_ID=B.DET_PRO_ID");
+		$consulta = parent::consulta("SELECT A.PRO_DESCRIPCION, B.DET_PRO_ID FROM tb_proyecto A RIGHT JOIN tb_detalle_proyecto B ON  A.PRO_ID=B.DET_PRO_ID");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
@@ -26,7 +26,7 @@ class selects extends MySQL
 	}
 	function cargarEstados()
 	{
-		$consulta = parent::consulta("SELECT DET_ETAPA FROM TB_DETALLE_PROYECTO WHERE DET_PRO_ID = '".$this->code."'");
+		$consulta = parent::consulta("SELECT DET_ETAPA FROM tb_detalle_proyecto WHERE DET_PRO_ID = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
@@ -46,7 +46,7 @@ class selects extends MySQL
 		
 	function cargarCiudades()
 	{
-		$consulta = parent::consulta("SELECT CIU_DESCRIPCION FROM TB_CIUDAD WHERE CIU_PAI_ID = '".$this->code."'");
+		$consulta = parent::consulta("SELECT CIU_DESCRIPCION FROM tb_ciudad WHERE CIU_PAI_ID = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{

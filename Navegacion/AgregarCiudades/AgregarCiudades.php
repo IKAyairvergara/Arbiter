@@ -1,8 +1,24 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: AgregarCiudades.php
+
+==> DESCRIPCION: Pantalla que permite agregar nuevas ciudades a la parametrización de la información. La información se guarda en la base de datos
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion 
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php 
     if(!isset($_SESSION['user_id']))  
     { 
 		header('Location: ../../index.php');  
@@ -101,8 +117,8 @@ body
 	    <td><label for="PAIS"></label> 
         	<select name='CIUD_PAISES' id='CIUD_PAISES' required>
 				<?php
-                include "../php/conexion.php";
-                $qr ="SELECT * FROM TB_PAIS"; 
+                include "../../php/conexion.php";
+                $qr ="SELECT * FROM tb_pais"; 
                 $i = 0;
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
@@ -126,7 +142,9 @@ body
 	</form>
 	</center>
 		<?php 
-				include "../php/conexion.php";
+				# Se incluye el archivo de conexion
+				include "../../php/conexion.php";
+				#Funcion para quitar las tildes de los elementos ingresados por el usuario
 				function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
 					$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
@@ -135,19 +153,20 @@ body
 				}
 				
 
-		    
+		    # Se comprueba que las  variables posean informacion
 		    if(isset($_POST['CIUD_ID'])&& isset($_POST["CIUD_DESCRIPCION"])&& isset($_POST["CIUD_PAISES"])){
 					$CIUD_ID= $_POST['CIUD_ID'];
 				$CIUD_ID2 = quitar_tildes($CIUD_ID);//quita tildes
-				$CIUD_ID3 = strtoupper($CIUD_ID2);
+				$CIUD_ID3 = strtoupper($CIUD_ID2); // Volver mayusculas las letras
 				
 				$CIUD_DESCRIPCION= $_POST['CIUD_DESCRIPCION'];
 				$CIUD_DESCRIPCION2 = quitar_tildes($CIUD_DESCRIPCION);//quita tildes
-				$CIUD_DESCRIPCION3 = strtoupper($CIUD_DESCRIPCION2);
-				
+				$CIUD_DESCRIPCION3 = strtoupper($CIUD_DESCRIPCION2); // Volver mayusculas las letras
+
+				# Realizar inserción de la nueva ciudad en la base de datos 
 				$CIUD_PAISES=$_POST['CIUD_PAISES']; 
 					if($_POST["CIUD_ID"]!=""&& $_POST["CIUD_DESCRIPCION"]!=""&& $_POST["CIUD_PAISES"]!=""){
-						$query = "INSERT INTO TB_CIUDAD (CIU_ID, CIU_DESCRIPCION,CIU_PAI_ID) VALUES ('$CIUD_ID3', '$CIUD_DESCRIPCION3','$CIUD_PAISES')";
+						$query = "INSERT INTO tb_ciudad (CIU_ID, CIU_DESCRIPCION,CIU_PAI_ID) VALUES ('$CIUD_ID3', '$CIUD_DESCRIPCION3','$CIUD_PAISES')";
 						$result = $mysqli->query($query);
 						if($result==false){
 							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarCiudades.php';</script>";
@@ -161,6 +180,7 @@ body
 							}
 			
 			}
+			#Cerrar Conexion
 			$mysqli->close();
 			
 		?>	

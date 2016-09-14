@@ -11,7 +11,7 @@
            $html.="<tr>";
            $name = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
            $email = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(1, $row)->getValue());
-           $sql = "INSERT INTO TB_LOG(LOG_NOMBRE, LOG_ID) VALUES ('".$name."', '".$email."')";
+           $sql = "INSERT INTO tb_log(LOG_NOMBRE, LOG_ID) VALUES ('".$name."', '".$email."')";
            mysqli_query($connect, $sql);
            $html.= '<td>'.$name.'</td>';
            $html .= '<td>'.$email.'</td>';
