@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: editar2Participacion.php
+
+==> DESCRIPCION: Pantalla que permite editar los tipos de participacion parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -99,23 +116,23 @@ body
 </center>
 
     <?php
+    #Icluir conexion 
 	include "../../php/conexion.php";
-	
-
-	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$PAR_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
+	# Confirmar si hay datos diligenciados
 	if(isset($_POST['PAR_ID'])){
 		$PAR_ID= $_POST['PAR_ID'];
 	$PAR_DESCRIPCION=$_POST['PAR_DESCRIPCION'];   
-		
+		# Actualizar base de datos
 		$update = "UPDATE tb_participacion SET PAR_DESCRIPCION = '$PAR_DESCRIPCION' WHERE PAR_ID = '$PAR_ID'";
 		$resultado = $mysqli -> query($update);
 		if($result==true){
-			print "<script>alert(\"no se a podido realizar el cambio\");window.location='Editar2Participacion.php';</script>";
+			print "<script>alert(\"no se ha podido realizar el cambio\");window.location='Editar2Participacion.php';</script>";
 			}
 		else{
 			print "<script>alert(\"\Cambio realizado con exito\");window.location='../Participacion/participacion.php';</script>";
 			}
 		}
+	#cerrar conexion 
 	$mysqli->close();
 	?>
 

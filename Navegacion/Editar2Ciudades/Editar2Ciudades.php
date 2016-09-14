@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: Editar2Ciudades.php
+
+==> DESCRIPCION: Pantalla que permite editar las ciudades parametrizadas en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -210,19 +227,17 @@ body
 </table>
 </form>
 <?php
+	# Se incluye conexion a la BD
 	include "../../php/conexion.php";
 	
-	
-	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$CIUD_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
-
-
-				if(isset($_POST['estado'])){
+	# Verificacion que las varaibles tengan datos 
+	if(isset($_POST['estado'])){
 					
 					$CIU_ID= $_POST['estado'];
 	$CIUD_DESCRIPCION=$_POST['CIUD_DESCRIPCION'];   
 	$CIUD_PAISES=$_POST['pais'];
 	$CIUD_PAISES_EDIT=$_POST['CIUD_PAISES_EDIT'];
-	
+					# Enviar actualizacion del dato a la base de datos
 					$update = "UPDATE tb_ciudad set CIU_DESCRIPCION='$CIUD_DESCRIPCION' , CIU_PAI_ID='$CIUD_PAISES_EDIT' where CIU_DESCRIPCION='$CIU_ID' and CIU_PAI_ID='$CIUD_PAISES'";
 					$resultado = $mysqli -> query($update);
 					if($result==true){

@@ -1,9 +1,10 @@
 <?php	
 
-
+		# Llamado de archivo para captura de datos
 		require "DepuracionProyectos.php";
+		#Archivo de conexin 
 		include "../../php/conexion.php";	
-		
+			#nivel de reporte de errores
 			error_reporting(0);
 			
 			$checkBox = $_POST['proyecto'];

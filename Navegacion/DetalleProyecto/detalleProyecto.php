@@ -1,8 +1,25 @@
-﻿<?php 
-    //creamos la sesion 
+﻿<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: detalleProyecto.php
+
+==> DESCRIPCION: Pantalla que permite visualizar el detalle de los proyectos parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
+<?php 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -89,6 +106,7 @@ body
 	</div>
 	<div style="background-image:url(detalleProyecto_10.png); position:absolute; left:37px; top:158px; width:953px; height:494px; overflow:scroll;" title="">
 		<?php
+		# Se llama la conexion al servidor y a la bd
 		include "../../php/conexion.php";
 
 			/* comprobar la conexión */

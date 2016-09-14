@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: editar2Paises.php
+
+==> DESCRIPCION: Pantalla que permite editar los paises parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -92,9 +109,12 @@ body
     <td style="color: white; font-family:sans-serif;font-size:20;" ><label for="PAIS_ID"></label>
     	<select name='PAIS_ID' id='PAIS_ID' >
 				<?php
+				# Incluir conexion a base de datos y servidor
                 include "../../php/conexion.php";
+                #Realizar consuta a base de datos
                 $qr ="SELECT * FROM tb_pais";
                 $i = 0;
+                # Mostrar datos en combo box dinamico
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
                         echo "<option value='" .$fila[0]."''>";
@@ -102,6 +122,7 @@ body
                         echo "</option>";
                         }
                     }
+                    #Cerrar conexion 
                 $mysqli->close();
                 ?>
 			</select>
@@ -124,7 +145,9 @@ body
 </form>
 
 <?php
-			include "../../php/conexion.php";			
+			#Incluir conexion 
+			include "../../php/conexion.php";	
+			# Funcion para quitar las tildes de las variables ingresadas			
 				function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
 					$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
@@ -137,10 +160,10 @@ body
 					
 				$PAIS_DESCRIPCION= $_POST['PAIS_DESCRIPCION'];
 				$PAIS_DESCRIPCION2 = quitar_tildes($PAIS_DESCRIPCION);//quita tildes
-				$PAIS_DESCRIPCION3 = strtoupper($PAIS_DESCRIPCION2);
+				$PAIS_DESCRIPCION3 = strtoupper($PAIS_DESCRIPCION2); // COnvertir en mayusculas
 				
 				$PAIS_ID= $_POST['PAIS_ID'];
-					
+					#Enviar actualizacion a la base de datos
 					$update = "UPDATE tb_pais SET PAI_DESCRIPCION = '$PAIS_DESCRIPCION3' WHERE PAI_ID = '$PAIS_ID'";
 					$resultado = $mysqli -> query($update);
 					if($result==true){

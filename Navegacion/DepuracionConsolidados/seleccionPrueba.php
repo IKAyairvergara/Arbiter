@@ -1,8 +1,10 @@
-<?php		
+<?php	
+		#Trae datos del arhivo	
 		require "DepuracionConsolidados.php";
+		# Se incluye el archivo de conexion
 		include "../../php/conexion.php";	
 			
-			
+			#nivel de reporte de errores
 			error_reporting(0);
 
 

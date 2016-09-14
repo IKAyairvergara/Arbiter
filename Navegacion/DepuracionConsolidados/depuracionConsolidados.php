@@ -1,8 +1,24 @@
-﻿<?php 
-    //creamos la sesion 
+﻿<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: depuracionConsolidados.php
+
+==> DESCRIPCION: Pantalla que permite visualizar y depurar los consolidados parametrizados en el sistema. El archivo llama a selecciónPrueba.php
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+<?php 
+    //Se crea la sesion
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php 
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -75,7 +91,7 @@ body
 	
 	
 	<?php
-	//No Se Organiza el php del html debido a que necesita el php para mostrar la informacion de la bd
+	//Se Organiza el php del html debido a que necesita el php para mostrar la informacion de la bd
 				include "../../php/conexion.php";
 
 			/* comprobar la conexión */

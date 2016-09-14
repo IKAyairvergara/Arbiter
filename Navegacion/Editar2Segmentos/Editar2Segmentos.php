@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: editar2Segmentos.php
+
+==> DESCRIPCION: Pantalla que permite editar los segmentos parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -102,15 +119,14 @@ body
 </form>
 </CENTER>
 	<?php
+	# Incluir conexion
 	include "../../php/conexion.php";
 	
-
-	//$update = "UPDATE tb_ciudad SET CIU_DESCRIPCION = '$SEG_DESCRIPCION', CIU_PAI_ID = '$CIUD_PAISES' WHERE CIU_ID = '$CIU_ID'";
 	if(isset($_POST['SEG_ID'])){
 		
 		$SEG_ID= $_POST['SEG_ID'];
 		$SEG_DESCRIPCION=$_POST['SEG_DESCRIPCION'];   
-	
+		#enviar actualizacion a la base de datos
 		$update = "update tb_segmento set SEG_DESCRIPCION ='$SEG_DESCRIPCION' where SEG_ID='$SEG_ID'";
 		$resultado = $mysqli -> query($update);
 		if($result==true){
@@ -120,6 +136,7 @@ body
 			print "<script>alert(\"\Cambio realizado con exito\");window.location='../Segmentos/segmentos.php';</script>";
 			}
 		}
+	#Cerrar conexion 
 	$mysqli->close();
 	?>
 

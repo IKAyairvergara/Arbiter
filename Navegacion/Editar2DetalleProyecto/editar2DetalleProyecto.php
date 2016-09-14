@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: editar2DetalleProyecto.php
+
+==> DESCRIPCION: Pantalla que permite editar el detalle de los proyectos parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -169,9 +186,12 @@ body
 	    
 	    <select name='SEG' id='SEG'>
 		<?php
+		#Incluir Conexion 
 		include "../../php/conexion.php";
+		#Realizar Consulta
 		$qr ="SELECT * FROM tb_segmento"; 
 		$i = 0;
+		# Mostrar datos como combo box
 		if ($resultado = $mysqli->query($qr)) {
 		 while ($fila = $resultado->fetch_row()) {
 						echo "<option value='" .$fila[0]."''>";
@@ -191,9 +211,12 @@ body
 	    
 	    <select name='PP' id='PP'>
 		<?php
+		#Incluir conexion 
 		include "../../php/conexion.php";
+		#Realizar consulta
 		$qr ="SELECT * FROM tb_participacion"; 
 		$i = 0;
+		# Mostrar datos como combo box
 		if ($resultado = $mysqli->query($qr)) {
 		 while ($fila = $resultado->fetch_row()) {
 						echo "<option value='" .$fila[0]."''>";
@@ -201,18 +224,16 @@ body
                         echo "</option>";
 			    }
 			}
-	$mysqli->close();
+		#cerrar conexion 
+		$mysqli->close();
 		?>	  
 		</select>
     </td>
     </tr>
 		<?php 
+			#incluir conexion a base de datos
 			include "../../php/conexion.php";
-				
-				
-
-
-
+			 #Verificar que existan variables con datos
 		     if(isset($_POST['pais'])){
 				 $CIU_ID= $_POST['pais'];
 				$ETA= $_POST['estado'];
@@ -220,6 +241,7 @@ body
 				$PP= $_POST['PP'];
 				 
 				if($_POST["pais"]!=""){
+					#Realizar actualizacion a la base de datos
 				  $query = "UPDATE tb_detalle_proyecto SET DET_SEG_ID = '$SEG', DET_PAR_ID='$PP'  WHERE DET_ETAPA = '$ETA' AND DET_PRO_ID = '$CIU_ID'";
 				  $result = $mysqli->query($query);
 					   if($result==false){

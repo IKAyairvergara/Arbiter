@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: eliminarCiudades.php
+
+==> DESCRIPCION: Pantalla que permite eliminar ciudades parametrizadas en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -201,19 +218,22 @@ body
               </center>
                    
 			<?php 
+			#Incluir conexion 
 			include "../../php/conexion.php";
+			#verificar datos
 			if(isset($_POST['pais'])){
-	$PAIS=$_POST['pais'];}
+			$PAIS=$_POST['pais'];}
 	
 	
 	
-	if(isset($_POST['estado'])){
-	$CIUDAD=$_POST['estado'];}
+			if(isset($_POST['estado'])){
+			$CIUDAD=$_POST['estado'];}
 	
 					
 
 			     if(isset($_POST['pais'])){
 					if($_POST["pais"]!=""){
+						#enviar consulta a la base de datos
 					  $query = "DELETE FROM tb_ciudad WHERE CIU_DESCRIPCION = '$CIUDAD' AND CIU_PAI_ID= '$PAIS' ";
 					  $result = $mysqli->query($query);
 						   if($result==false){

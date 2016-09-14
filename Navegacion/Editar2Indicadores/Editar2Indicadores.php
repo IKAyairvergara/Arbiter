@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: editar2Indicadores.php
+
+==> DESCRIPCION: Pantalla que permite editar los indicadores parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -197,7 +214,9 @@ body
 </form>
 </center>
 	<?php
-		include "../../php/conexion.php";			
+		# Se incluye conexion a la base de datos
+		include "../../php/conexion.php";	
+				# Funcion para quitar las tildes de las variables ingresadas		
 				function quitar_tildes($cadena) {
 					$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
 					$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
@@ -207,7 +226,7 @@ body
 		if(isset($_POST['enviar'])){		
 		$IND_DESCRIPCION= $_POST['IND_DESCRIPCION'];
 		$IND_DESCRIPCION2 = quitar_tildes($IND_DESCRIPCION);//quita tildes
-		$IND_DESCRIPCION3 = strtoupper($IND_DESCRIPCION2);
+		$IND_DESCRIPCION3 = strtoupper($IND_DESCRIPCION2); // COnvertir en mayusculas
 		
 		
 		
@@ -217,6 +236,7 @@ body
 		$IND_VALOR=$_POST['IND_VALOR'];
 		if(isset($_POST['pais'])&& isset($_POST["estado"])){
 			if($_POST["pais"]!="" && $_POST["estado"]!=""){
+				#Enviar actualizacion a la base de datos
 				$update = "UPDATE tb_indicador SET IND_FECHA='$IND_FECHA', IND_DESCRIPCION='$IND_DESCRIPCION3', IND_VALOR='$IND_VALOR' WHERE IND_ID='$IND_ID' and IND_FECHA='$IND_FECHA'";
 				$resultado = $mysqli -> query($update);
 				if($resultado==false){
