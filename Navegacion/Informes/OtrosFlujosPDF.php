@@ -1,3 +1,19 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: OtrosFlujosPDF.php
+
+==> DESCRIPCION: Codigo fuente para generacion de informes de otros flujos en formato PDF
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+======
+-->
 <?php
 session_start();
 

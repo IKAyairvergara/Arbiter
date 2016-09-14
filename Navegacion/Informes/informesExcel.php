@@ -1,3 +1,19 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: informesExcel.php
+
+==> DESCRIPCION: Codigo fuente para generacion de informes en formato excel
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+======
+-->
 <?php
 		ob_get_contents();
 		ob_clean();

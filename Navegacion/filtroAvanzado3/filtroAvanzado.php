@@ -1,4 +1,31 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: filtroAvanzado.php
 
+==> DESCRIPCION: Pantalla que permite completar datos adicionales para un consolidado.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
+<?php 
+    //Se crea la sesion  
+    session_start(); 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
+    if(!isset($_SESSION['user_id']))  
+    { 
+        header('Location: ../../index.php');  
+        exit(); 
+    } 
+?>
 <!-- saved from url=(0101)file:///Users/yvmechanics/Library/Caches/Save%20For%20Web%20AI/filtroAvanzado_009/filtroAvanzado.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Filtro Avanzado</title>
@@ -265,7 +292,7 @@ function dependencia_estado()
 	<div style="background-image:url(filtroAvanzado_36.png); position:absolute; left:695px; top:350px; width:132px; height:14px;" title="">
 	</div>
 	<div style="background-image:url(filtroAvanzado_37.png); position:absolute; left:390px; top:364px; width:123px; height:30px;" title="">
-				<select name="varCostoVentas" id="varCostoVentas"  onchange="if(this.options[1].selected) document.getElementById('hastaVarCostoVentas').disabled=true; else if(this.options[3].selected) document.getElementById('hastaVarCostoVentas').disabled=true; else if(this.options[4].selected) document.getElementById('hastaVarCostoVentas').disabled=true;" style="left:390px; top:364px; width:123px; height:30px;">
+				<select name="costoVentas" id="costoVentas"  onchange="if(this.options[1].selected) document.getElementById('hastaCostoVentas').disabled=true; else if(this.options[3].selected) document.getElementById('hastaCostoVentas').disabled=true; else if(this.options[4].selected) document.getElementById('hastaCostoVentas').disabled=true;" style="left:390px; top:364px; width:123px; height:30px;">
 					<option>Seleccionar</option>
 					<option value=">">Mayor Que</option>
 					<option value="<>">Entre</option>
@@ -275,12 +302,12 @@ function dependencia_estado()
 	</div>
 	<div style="background-image:url(filtroAvanzado_38.png); position:absolute; left:539px; top:364px; width:131px; height:30px;" title="">
 			<label>
-					<input type="number" placeholder="Valor" id="desdeVarCostoVentas" name="desdeVarCostoVentas" tabindex="2" style="width:131px; height:30px;">
-			</label>	
+					<input type="number" placeholder="Valor" id="desdeCostoVentas" name="desdeCostoVentas" tabindex="2" style="width:131px; height:30px;">
+			</label>	`
 	</div>
 	<div style="background-image:url(filtroAvanzado_39.png); position:absolute; left:695px; top:364px; width:132px; height:30px;" title="">
 			<label>
-					<input type="number" placeholder="Valor" id="hastaVarCostoVentas" name="hastaVarCostoVentas" tabindex="2" style="width:132px; height:30px;">
+					<input type="number" placeholder="Valor" id="hastaCostoVentas" name="hastaCostoVentas" tabindex="2" style="width:132px; height:30px;">
 			</label>
 	</div>
 	<div style="background-image:url(filtroAvanzado_40.png); position:absolute; left:390px; top:394px; width:123px; height:28px;" title="">
@@ -314,7 +341,7 @@ function dependencia_estado()
 				<select name='IND_ID' id='IND_ID' style="left:389px; top:536px; width:123px; height:30px;" required>
 								<?php
 				                include "../../php/conexion.php";
-				                $qr ="SELECT * FROM tb_segmento"; 
+				                $qr ="SELECT * FROM TB_SEGMENTO"; 
 				                $i = 0;
 				                if ($resultado = $mysqli->query($qr)) {
 				                    while ($fila = $resultado->fetch_row()) {
@@ -335,7 +362,7 @@ function dependencia_estado()
 			<select name='PAR_ID' id='PAR_ID' style="left:389px; top:583px; width:123px; height:30px;" required>
 								<?php
 				                include "../../php/conexion.php";
-				                $qr ="SELECT * FROM tb_participacion"; 
+				                $qr ="SELECT * FROM TB_PARTICIPACION"; 
 				                $i = 0;
 				                if ($resultado = $mysqli->query($qr)) {
 				                    while ($fila = $resultado->fetch_row()) {
@@ -375,6 +402,8 @@ function dependencia_estado()
 				include "../../php/conexion.php";
 				#$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
 				 ##Variables
+				 
+				 error_reporting(0);
 					
 				if(isset($_POST['pais'])){
 					if($_POST["pais"]!=""){
@@ -417,7 +446,7 @@ function dependencia_estado()
 					 }
 						     
 					  
-					  $query = "INSERT INTO tb_filtro_avanzado (FA_RITMO_VENTAS_CBX, FA_RITMO_VENTAS_DESDE, FA_RITMO_VENTAS_HASTA, FA_VLVND_COSTO_DIRECTO_CBX, FA_VLVND_COSTO_DIRECTO_DESDE, FA_VLVND_COSTO_DIRECTO_HASTA, FA_VLVND_VENTAS_CBX, FA_VLVND_VENTAS_DESDE, FA_VLVND_VENTAS_HASTA, FA_VL_UN_COSTO_VENTAS_CBX, FA_VL_UN_COSTO_VENTAS_DESDE, FA_VL_UN_COSTO_VENTAS_HASTA, FA_COSTO_VENTAS_CBX, FA_COSTO_VENTAS_DESDE, FA_COSTO_VENTAS_HASTA, FA_PAIS, FA_CIUDAD, FA_SEGMENTO, FA_PARTICIPACION)
+					  $query = "INSERT INTO TB_FILTRO_AVANZADO (FA_RITMO_VENTAS_CBX, FA_RITMO_VENTAS_DESDE, FA_RITMO_VENTAS_HASTA, FA_VLVND_COSTO_DIRECTO_CBX, FA_VLVND_COSTO_DIRECTO_DESDE, FA_VLVND_COSTO_DIRECTO_HASTA, FA_VLVND_VENTAS_CBX, FA_VLVND_VENTAS_DESDE, FA_VLVND_VENTAS_HASTA, FA_VL_UN_COSTO_VENTAS_CBX, FA_VL_UN_COSTO_VENTAS_DESDE, FA_VL_UN_COSTO_VENTAS_HASTA, FA_COSTO_VENTAS_CBX, FA_COSTO_VENTAS_DESDE,FA_COSTO_VENTAS_HASTA,FA_PAIS, FA_CIUDAD, FA_SEGMENTO, FA_PARTICIPACION)
 					   		VALUES ('$Ritmo_CBX',
 							$Ritmo_Desde,
 							$Ritmo_Hasta,
@@ -436,7 +465,8 @@ function dependencia_estado()
 							'$Pais',
 							'$Ciudad',
 							'$Segmento',
-							$Participacion);"; 
+							'$Participacion'
+							 );"; 
 					  
 					  $result = $mysqli->query($query);
 						   
@@ -445,6 +475,7 @@ function dependencia_estado()
 							}
 							else{
 								print "<script>alert(\"Por Favor Complete todos los campos correctamente\");</script>";
+								echo('There was an error running the query [' . $mysqli->error . '].</br>');
 								}
 							}
 

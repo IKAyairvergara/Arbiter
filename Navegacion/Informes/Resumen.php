@@ -1,3 +1,19 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: Resumen.php
+
+==> DESCRIPCION: Codigo fuente para generacion de informes de resumen en formato excel
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+======
+-->
 <?php
    include "../../php/conexion.php";
 	

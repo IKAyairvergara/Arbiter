@@ -1,3 +1,19 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: parametrizacion.php
+
+==> DESCRIPCION: Pantalla parametrizacion
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+======
+-->
 <?php 
     //creamos la sesion 
     session_start(); 

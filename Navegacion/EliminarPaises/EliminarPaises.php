@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: eliminarPaises.php
+
+==> DESCRIPCION: Pantalla que permite eliminar paises parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  
@@ -97,9 +114,12 @@ body
     					<td><label for="CIUD_ID"></label>
                         <select name='CIUD_ID' id='CIUD_ID'> 
                         <?php
+                        	#incluir conexion y servidor
 							include "../../php/conexion.php";
+							# consulta a la base de datos
 							$qr ="SELECT * FROM tb_pais"; 
 							$i = 0;
+							#mostrar datos obtenidos en combo box
 							if ($resultado = $mysqli->query($qr)) {
 								while ($fila = $resultado->fetch_row()) {
 									echo "<option value='" .$fila[0]."''>";
@@ -107,7 +127,8 @@ body
 									echo "</option>";
 									}
 								}
-							$mysqli->close();
+								#cerrar conexion
+								$mysqli->close();
 							?>
                             </select>
                         </td>
@@ -131,14 +152,16 @@ body
 
       
 	<?php 
+		#incluir conexion 
 		include "../../php/conexion.php";
+		#Validar Datos
 			if(isset($_POST['CIUD_ID'])){
 	$CIU_ID=$_POST['CIUD_ID'];}
 			
 
 	    if(isset($_POST['CIUD_ID'])){
 			if($_POST["CIUD_ID"]!=""){
-
+		  #enviar dato a eliminar a la base de datos
 	      $query = "DELETE FROM tb_pais WHERE PAI_ID= '$CIU_ID'";
 		  $result = $mysqli->query($query);
 	       if($result==false){

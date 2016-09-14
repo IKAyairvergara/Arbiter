@@ -1,3 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: eliminarUsuario.php
+
+==> DESCRIPCION: Pantalla que permite eliminar los usuarios creados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
+<?php 
+    //Se crea la sesion  
+    session_start(); 
+    
+?>
 <html>
 <head>
 <title>Eliminar</title>

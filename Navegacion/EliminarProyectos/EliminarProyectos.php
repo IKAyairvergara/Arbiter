@@ -1,8 +1,25 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: eliminarProyectos.php
+
+==> DESCRIPCION: Pantalla que permite eliminar los proyectos parametrizados en el sistema.
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
+
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion  
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php
     if(!isset($_SESSION['user_id']))  
     { 
         header('Location: ../../index.php');  

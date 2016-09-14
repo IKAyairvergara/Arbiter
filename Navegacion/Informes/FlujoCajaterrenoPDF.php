@@ -1,5 +1,22 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: FlujoCajaTerrenoPDF.php
+
+==> DESCRIPCION: Codigo fuente para generacion de informes de flujo caja terreno en formato PDF
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
 <?php
-    $conexion = new mysqli("localhost", "u517611460_ika", "Colombia2016*", "arbiter",3306);
+    include "../../php/conexion.php";
+    #$conexion = new mysqli("localhost", "u517611460_ika", "Colombia2016*", "arbiter",3306);
 	if (mysqli_connect_errno()) {
     	printf("La conexión con el servidor de base de datos falló: %s\n", mysqli_connect_error());
     	exit();

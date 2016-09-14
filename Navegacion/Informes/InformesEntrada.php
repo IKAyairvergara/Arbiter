@@ -1,3 +1,19 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: InformesEntrada.php
+
+==> DESCRIPCION: pantalla principal de informes
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
 <html>
 <head>
 <title>Informes</title>
