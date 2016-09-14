@@ -1,8 +1,24 @@
+<!-- 
+=======================================================================================================================
+==> TITULO DE ARCHIVO: AgregarCiudades.php
+
+==> DESCRIPCION: Pantalla que permite agregar nuevas ciudades a la parametrización de la informacion. La informacion se guarda en la base de datos
+
+==> FECHA: Septiembre de 2016
+
+==> AUTOR: IKA CONSULTORES
+
+==> PROYECTO: ARBITER 
+
+==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
+
+=======================================================================================================================
+-->
 <?php 
-    //creamos la sesion 
+    //Se crea la sesion 
     session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
+    //Se valida si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion regresará a login.php 
     if(!isset($_SESSION['user_id']))  
     { 
 		header('Location: ../../index.php');  
@@ -80,9 +96,12 @@ body
 	    <td>
         <select name='DET_PRO_ID' id='DET_PRO_ID' required>
 				<?php
-                include "../../php/conexion.php";
+				# Se incluye el archivo de conexion
+                include "../php/conexion.php";
+                #Traer datos de la tabla de proyectos
                 $qr ="SELECT * FROM tb_proyecto"; 
                 $i = 0;
+                # Visualizar los datos en un COMBO BOX dinámico asignando el codigo de pais como valor de la variable  HTML
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
                         echo "<option value='" .$fila[0]."''>";
@@ -90,8 +109,9 @@ body
                         echo "</option>";
                         }
                     }
+                    #Cerrar conexión
                 $mysqli->close();
-                ?>	  
+                ?>	    
 			</select>
         </td>
 	  </tr>
@@ -105,9 +125,12 @@ body
 	    <td>
         <select name='DET_SEG_ID' id='DET_SEG_ID' required/>
 				<?php
-                include "../../php/conexion.php";
-                $qr ="SELECT * FROM tb_segmento"; 
+				# Se incluye el archivo de conexion
+                include "../php/conexion.php";
+                #Traer datos de la tabla Segmento
+                $qr ="SELECT * FROM tb_segmento";
                 $i = 0;
+                # Visualizar los datos en un COMBO BOX dinámico asignando el codigo de pais como valor de la variable  HTML
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
                         echo "<option value='" .$fila[0]."''>";
@@ -115,6 +138,7 @@ body
                         echo "</option>";
                         }
                     }
+                 #Cerrar conexión
                 $mysqli->close();
                 ?>	  
 			</select>
@@ -125,9 +149,12 @@ body
 	    <td>
         <select name='DET_PAR_ID' id='DET_PAR_ID' required>
 				<?php
-                include "../../php/conexion.php";
+				# Se incluye el archivo de conexion
+                include "../php/conexion.php";
+                #Traer datos de la tabla Segmento
                 $qr ="SELECT * FROM tb_participacion"; 
                 $i = 0;
+                # Visualizar los datos en un COMBO BOX dinámico asignando el codigo de pais como valor de la variable  HTML
                 if ($resultado = $mysqli->query($qr)) {
                     while ($fila = $resultado->fetch_row()) {
                         echo "<option value='" .$fila[0]."''>";
@@ -135,6 +162,7 @@ body
                         echo "</option>";
                         }
                     }
+                 #Cerrar conexión
                 $mysqli->close();
                 ?>	  
 			</select>
@@ -146,16 +174,18 @@ body
 	</form>
 	</center>
 		<?php 
+			#Incluir archivo de conexion
 			include "../../php/conexion.php";
 				
-
+			# Se comprueba que las  variables posean informacion
 			if(isset($_POST['DET_PRO_ID'])){
 				
 				$DET_PRO_ID=$_POST['DET_PRO_ID'];
 			$DET_ETAPA=$_POST['DET_ETAPA']; 
 			$DET_SEG_ID=$_POST['DET_SEG_ID'];
 			$DET_PAR_ID=$_POST['DET_PAR_ID']; 		
-				if($_POST["DET_ETAPA"]!=""){					
+				if($_POST["DET_ETAPA"]!=""){	
+				# Realizar inserción del nuevo detalle de proyecto en la base de datos 				
 	     			$query = "INSERT INTO tb_detalle_proyecto (DET_PRO_ID, DET_ETAPA, DET_SEG_ID, DET_PAR_ID) VALUES ('$DET_PRO_ID', '$DET_ETAPA','$DET_SEG_ID','$DET_PAR_ID')";
 					$result = $mysqli->query($query);
 					if($result==false){
@@ -168,6 +198,7 @@ body
 		   				}
 			
 				}
+				#cerrar conexion
 			$mysqli->close();
 			
 		?>
