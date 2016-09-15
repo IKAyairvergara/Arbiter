@@ -185,7 +185,7 @@ function dependencia_estado()
 	<div style="background-image:url(filtroAvanzado_100.png); position:absolute; left:0px; top:177px; width:389px; height:490px;" title="">
 	</div>
 	<div style="background-image:url(filtroAvanzado_10.png); position:absolute; left:390px; top:177px; width:123px; height:30px;" title="">
-		<select name="ritmoVentas" id="ritmoVentas" onchange="if(this.options[1].selected) document.getElementById('hastaRitmoVentas').disabled=true; else if(this.options[3].selected) document.getElementById('hastaRitmoVentas').disabled=true; else if(this.options[4].selected) document.getElementById('hastaRitmoVentas').disabled=true;" style="left:390px; top:177px; width:123px; height:30px;  else if(this.options[2].selected) document.getElementById('hastaRitmoVentas').disabled=false;">
+		<select name="ritmoVentas" id="ritmoVentas" onChange="enabledisabletext()" style="left:390px; top:177px; width:123px; height:30px;">
 					<option>Seleccionar</option>
 					<option value=">">Mayor Que</option>
 					<option value="<>">Entre</option>
@@ -217,7 +217,7 @@ function dependencia_estado()
 	<div style="background-image:url(filtroAvanzado_18.png); position:absolute; left:695px; top:207px; width:132px; height:17px;" title="">
 	</div>
 	<div style="background-image:url(filtroAvanzado_19.png); position:absolute; left:390px; top:224px; width:123px; height:31px;" title="">
-				<select name="costoDirecto" id="costoDirecto"  onchange="if(this.options[1].selected) document.getElementById('hastaCostoDirecto').disabled=true; else if(this.options[3].selected) document.getElementById('hastaCostoDirecto').disabled=true; else if(this.options[4].selected) document.getElementById('hastaCostoDirecto').disabled=true;" style="left:390px; top:224px; width:123px; height:31px;">
+				<select name="costoDirecto" id="costoDirecto"  onChange="enabledisabletext()" style="left:390px; top:224px; width:123px; height:31px;">
 					<option>Seleccionar</option>
 					<option value=">">Mayor Que</option>
 					<option value="<>">Entre</option>
@@ -242,7 +242,7 @@ function dependencia_estado()
 	<div style="background-image:url(filtroAvanzado_24.png); position:absolute; left:695px; top:255px; width:132px; height:16px;" title="">
 	</div>
 	<div style="background-image:url(filtroAvanzado_25.png); position:absolute; left:390px; top:271px; width:123px; height:30px;" title="">
-				<select name="vendibleVentas" id="vendibleVentas"  onchange="if(this.options[1].selected) document.getElementById('hastaVendibleVentas').disabled=true; else if(this.options[3].selected) document.getElementById('hastaVendibleVentas').disabled=true; else if(this.options[4].selected) document.getElementById('hastaVendibleVentas').disabled=true;" style="left:390px; top:271px; width:123px; height:30px;">
+				<select name="vendibleVentas" id="vendibleVentas"  onChange="enabledisabletext()" style="left:390px; top:271px; width:123px; height:30px;">
 					<option>Seleccionar</option>
 					<option value=">">Mayor Que</option>
 					<option value="<>">Entre</option>
@@ -267,7 +267,7 @@ function dependencia_estado()
 	<div style="background-image:url(filtroAvanzado_30.png); position:absolute; left:695px; top:301px; width:132px; height:19px;" title="">
 	</div>
 	<div style="background-image:url(filtroAvanzado_31.png); position:absolute; left:390px; top:320px; width:123px; height:30px;" title="">
-				<select name="costoVentas" id="costoVentas"  onchange="if(this.options[1].selected) document.getElementById('hastaUnidadCostoVentas').disabled=true; else if(this.options[3].selected) document.getElementById('hastaUnidadCostoVentas').disabled=true; else if(this.options[4].selected) document.getElementById('hastaUnidadCostoVentas').disabled=true;" style="left:390px; top:320px; width:123px; height:30px;">
+				<select name="costoVentas" id="costoVentas"  onChange="enabledisabletext()" style="left:390px; top:320px; width:123px; height:30px;">
 					<option>Seleccionar</option>
 					<option value=">">Mayor Que</option>
 					<option value="<>">Entre</option>
@@ -292,7 +292,7 @@ function dependencia_estado()
 	<div style="background-image:url(filtroAvanzado_36.png); position:absolute; left:695px; top:350px; width:132px; height:14px;" title="">
 	</div>
 	<div style="background-image:url(filtroAvanzado_37.png); position:absolute; left:390px; top:364px; width:123px; height:30px;" title="">
-				<select name="costoVentas" id="costoVentas"  onchange="if(this.options[1].selected) document.getElementById('hastaCostoVentas').disabled=true; else if(this.options[3].selected) document.getElementById('hastaCostoVentas').disabled=true; else if(this.options[4].selected) document.getElementById('hastaCostoVentas').disabled=true;" style="left:390px; top:364px; width:123px; height:30px;">
+				<select name="costoVentas" id="costoVentas"  onChange="enabledisabletext()" style="left:390px; top:364px; width:123px; height:30px;">
 					<option>Seleccionar</option>
 					<option value=">">Mayor Que</option>
 					<option value="<>">Entre</option>
@@ -496,37 +496,30 @@ function dependencia_estado()
 
 <script language="javascript">
 
-function test()
-{
-	if(this.options[1].selected) document.getElementById('hastaRitmoVentas').disabled=true; 
-	else if(this.options[3].selected) document.getElementById('hastaRitmoVentas').disabled=true;" style="left:390px; top:177px; width:123px; height:30px; else if(this.options[4].selected) document.getElementById('hastaRitmoVentas').disabled=true; else if(this.options[2].selected) document.getElementById('hastaRitmoVentas').disabled=false;
-
-}
-
 	function enabledisabletext()
 	{
 		// INICIO RITMO VENTAS //
-		if(document.myform.ritmoVentas.value==">")
+		if(document.myform.ritmoVentas.value=='>')
 		{
 			document.myform.desdeRitmoVentas.disabled=false;
 			document.myform.hastaRitmoVentas.disabled=true;
 			document.myform.hastaRitmoVentas.value=0;
 		}
-		if(document.myform.ritmoVentas.value=="<")
+		if(document.myform.ritmoVentas.value=='<')
 		{
 			document.myform.desdeRitmoVentas.disabled=false;
 			document.myform.hastaRitmoVentas.disabled=true;
 			document.myform.hastaRitmoVentas.value=0;
 		}
-		if(document.myform.ritmoVentas.value=="<>")
+		if(document.myform.ritmoVentas.value=='<>')
 		{	
 			document.myform.desdeRitmoVentas.disabled=false;
 			document.myform.hastaRitmoVentas.disabled=false;
 		}
-		if(document.myform.ritmoVentas.value=="==")
+		if(document.myform.ritmoVentas.value=='==')
 		{
 			document.myform.desdeRitmoVentas.disabled=false;
-			document.myform.hastaRitmoVentas.disabled=false;
+			document.myform.hastaRitmoVentas.disabled=true;
 			document.myform.hastaRitmoVentas.value=0;
 		}
 		// FIN RITMO VENTAS //
@@ -552,7 +545,7 @@ function test()
 		if(document.myform.costoDirecto.value=='==')
 		{
 			document.myform.desdeCostoDirecto.disabled=false;
-			document.myform.hastaCostoDirecto.disabled=false;
+			document.myform.hastaCostoDirecto.disabled=true;
 			document.myform.hastaCostoDirecto.value=0;
 		}
 		// FIN VENDIBLE COSTO DIRECTO //
@@ -578,7 +571,7 @@ function test()
 		if(document.myform.vendibleVentas.value=='==')
 		{
 			document.myform.desdeVendibleVentas.disabled=false;
-			document.myform.hastaVendibleVentas.disabled=false;
+			document.myform.hastaVendibleVentas.disabled=true;
 			document.myform.hastaVendibleVentas.value=0;
 		}
 		// FIN VENDIBLE VENTAS //
@@ -601,7 +594,7 @@ function test()
 			document.myform.desdeUnidadCostoVentas.disabled=false;
 			document.myform.hastaUnidadCostoVentas.disabled=false;
 		}
-				}
+				
 		if(document.myform.unidadCostoVentas.value=='==')
 		{
 			document.myform.desdeUnidadCostoVentas.disabled=false;
