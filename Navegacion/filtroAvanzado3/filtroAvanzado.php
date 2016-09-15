@@ -267,7 +267,7 @@ function dependencia_estado()
 	<div style="background-image:url(filtroAvanzado_30.png); position:absolute; left:695px; top:301px; width:132px; height:19px;" title="">
 	</div>
 	<div style="background-image:url(filtroAvanzado_31.png); position:absolute; left:390px; top:320px; width:123px; height:30px;" title="">
-				<select name="costoVentas" id="costoVentas"  onChange="enabledisabletext()" style="left:390px; top:320px; width:123px; height:30px;">
+				<select name="unidadCostoVentas" id="unidadCostoVentas"  onChange="enabledisabletext()" style="left:390px; top:320px; width:123px; height:30px;">
 					<option>Seleccionar</option>
 					<option value=">">Mayor Que</option>
 					<option value="<>">Entre</option>
