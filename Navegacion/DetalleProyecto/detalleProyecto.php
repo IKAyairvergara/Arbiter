@@ -88,7 +88,7 @@ body
 <div style="position:absolute; left:10%; top:0px; width:1024px; height:768px;">
 	<div style="background-image:url(detalleProyecto_01.png); position:absolute; left:0px; top:0px; width:1024px; height:41px;" title="">
 	</div>
-	<div style="background-image:url(detalleProyecto_02.png); position: relative;sition:absolute; left:0px; top:41px; width:640px; height:117px;" title="">
+	<div style="background-image:url(detalleProyecto_02.png); position: relative; position:absolute; left:0px; top:41px; width:640px; height:117px;" title="">
 	</div>
 	<div id="p1" onclick="location.href='../Parametrizacion/parametrizacion.php';" style="background-image:url(detalleProyecto_03.png); cursor:pointer;" title="">
 	</div>
@@ -161,7 +161,7 @@ LEFT JOIN tb_participacion D ON D.PAR_ID=A.DET_PAR_ID";
 	</div>
 	<div style="background-image:url(detalleProyecto_13.png); position:absolute; left:37px; top:671px; width:13px; height:97px;" title="">
 	</div>
-	<div id="p2" onclick="location.href='../Editar2DetalleProyecto/editar2DetalleProyecto.php';" style="background-image:url(detalleProyecto_14.png)" title="">
+	<div id="p2" onclick="location.href='../EditarDetalleProyecto/editarDetalleProyecto.php';" style="background-image:url(detalleProyecto_14.png)" title="">
 	</div>
 	<div style="background-image:url(detalleProyecto_15.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>

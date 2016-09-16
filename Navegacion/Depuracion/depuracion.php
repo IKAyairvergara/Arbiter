@@ -92,7 +92,7 @@ body
 	</div>
 	<div style="background-image:url(depuracion_09.png); position:absolute; left:0px; top:229px; width:195px; height:539px;" title="">
 	</div>
-	<div id="p2" onClick="location.href='../DepuracionProyectos/DepuracionProyectos.php';"style="background-image:url(depuracion_10.png);" title="">
+	<div id="p2" onClick="location.href='../DepuracionProyectos/depuracionProyectos.php';" style="background-image:url(depuracion_10.png);" title="">
 	</div>
 	<div style="background-image:url(depuracion_11.png); position:absolute; left:508px; top:229px; width:132px; height:165px;" title="">
 	</div>

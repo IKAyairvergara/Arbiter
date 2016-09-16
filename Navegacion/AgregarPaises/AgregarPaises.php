@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: AgregarPaises.php
+==> TITULO DE ARCHIVO: agregarPaises.php
 
 ==> DESCRIPCION: Pantalla que permite agregar nuevos paises a la parametrización de la informacion. La informacion se guarda en la base de datos
 
@@ -101,7 +101,7 @@ body
 	<br>
 	<br>
 	<center>
-		<form id="form1" name="form1" method="post" action="AgregarPaises.php">
+		<form id="form1" name="form1" method="post" action="agregarPaises.php">
 	  <table class="tabla">
 	  <tr>
 	  	<td style="color: white; font-family:sans-serif;font-size:20;" > C&#243;digo Pa&#237;s</td>
@@ -148,7 +148,7 @@ body
 					$query = "INSERT INTO tb_pais (PAI_ID, PAI_DESCRIPCION) VALUES ('$PAIS_ID', '$PAIS_DESCRIPCION3')";
 					$result = $mysqli->query($query);
 					if($result==false){
-						print "<script>alert(\"Registro duplicado\");window.location='AgregarPaises.php';</script>";
+						print "<script>alert(\"Registro duplicado\");window.location='agregarPaises.php';</script>";
 							}
 						else{
 							print "<script>alert(\"los datos se enviaron correctamente\");window.location='../Paises/paises.php';</script>";

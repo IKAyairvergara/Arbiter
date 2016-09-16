@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: AgregarCiudades.php
+==> TITULO DE ARCHIVO: agregarProyectos.php
 
 ==> DESCRIPCION: Pantalla que permite agregar nuevas ciudades a la parametrización de la informacion. La informacion se guarda en la base de datos
 
@@ -150,7 +150,7 @@ body
 	<br>
 	<br>
 	<center>
-	<form id="form1" name="form1" method="post" action="AgregarProyectos.php">
+	<form id="form1" name="form1" method="post" action="agregarProyectos.php">
 	  <table class="tabla">
 	  <tr>
 	  	<td style="color: white; font-family:sans-serif;font-size:20;">Codigo de Proyecto:</td>
@@ -216,7 +216,7 @@ body
 		      			$query = "INSERT INTO tb_proyecto (PRO_ID, PRO_DESCRIPCION, PRO_PAI_ID,PRO_CIU_ID) VALUES ('$CIUD_ID3', '$PROY_DESCR3','$PROY_PAIS','$PROY_CIU')";
 		      			$result = $mysqli->query($query);
 						if($result==false){
-							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarProyectos.php';</script>";
+							print "<script>alert(\"los datos estan duplicados\");window.location='agregarProyectos.php';</script>";
 							}
 							else{
 							print "<script>alert(\"los datos se enviaron correctamente\");window.location='../Proyectos/proyectos.php';</script>";

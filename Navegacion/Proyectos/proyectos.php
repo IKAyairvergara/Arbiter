@@ -12,7 +12,7 @@
 
 ==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
 
-======
+=====================================================================================================================
 -->
 <?php 
     //creamos la sesion 
@@ -95,7 +95,7 @@ body
 	</div>
 	<div style="background-image:url(proyectos_04.png); position:absolute; left:802px; top:41px; width:32px; height:117px;" title="">
 	</div>
-	<div id="p" onclick="location.href='../Bienvenido/bienvenido.php';"style="background-image:url(proyectos_05.png); cursor:pointer;" title="">
+	<div id="p" onclick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(proyectos_05.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(proyectos_06.png); position:absolute; left:988px; top:41px; width:36px; height:117px;" title="">
 	</div>
@@ -157,17 +157,17 @@ body
 	</div>
 	<div style="background-image:url(proyectos_13.png); position:absolute; left:37px; top:671px; width:13px; height:97px;" title="">
 	</div>
-	<div id="p2" onclick="location.href='../Editar2Proyectos/Editar2Proyectos.php'" style="background-image:url(proyectos_14.png); cursor:pointer;" title="">
+	<div id="p2" onclick="location.href='../EditarProyectos/editarProyectos.php'" style="background-image:url(proyectos_14.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(proyectos_15.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>
-	<div id="p3" onclick="location.href='../AgregarProyectos/AgregarProyectos.php'" style="background-image:url(proyectos_16.png); cursor:pointer;" title="">
+	<div id="p3" onclick="location.href='../AgregarProyectos/agregarProyectos.php'" style="background-image:url(proyectos_16.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(proyectos_17.png); position:absolute; left:276px; top:671px; width:714px; height:1px;" title="">
 	</div>
 	<div style="background-image:url(proyectos_18.png); position:absolute; left:276px; top:672px; width:74px; height:96px;" title="">
 	</div>
-	<div id="p4" onclick="location.href='../EliminarProyectos/EliminarProyectos.php'" style="background-image:url(proyectos_19.png); cursor:pointer;" title="">
+	<div id="p4" onclick="location.href='../EliminarProyectos/eliminarProyectos.php'" style="background-image:url(proyectos_19.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(proyectos_20.png); position:absolute; left:426px; top:672px; width:564px; height:96px;" title="">
 	</div>

@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: AgregarParticipacion.php
+==> TITULO DE ARCHIVO: agregarParticipacion.php
 
 ==> DESCRIPCION: Pantalla que permite agregar una nueva participación a la parametrización de la información. La información se guarda en la base de datos
 
@@ -87,7 +87,7 @@ body
 	<center>
 	<br>
 	<br>
-	<form id="form1" name="form1" method="post" action="AgregarParticipacion.php">
+	<form id="form1" name="form1" method="post" action="agregarParticipacion.php">
 	  <table class="tabla">
 	  <tr>
 	  	<td style="color: white; font-family:sans-serif;font-size:20;" >Codigo de Participacion:</td>
@@ -137,7 +137,7 @@ body
 	     			$query = "INSERT INTO tb_participacion (PAR_ID, PAR_DESCRIPCION) VALUES ('$CIUD_ID3','$CIUD_DESCRIPCION3')";
 		      		$result = $mysqli->query($query);
 					if($result==false){
-							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarParticipacion.php';</script>";
+							print "<script>alert(\"los datos estan duplicados\");window.location='agregarParticipacion.php';</script>";
 							}
 							else{
 							print "<script>alert(\"los datos se enviaron correctamente\");window.location='../Participacion/participacion.php';</script>";

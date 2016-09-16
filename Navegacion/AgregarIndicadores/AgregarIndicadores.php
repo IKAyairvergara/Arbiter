@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: AgregarIndicadores.php
+==> TITULO DE ARCHIVO: agregarIndicadores.php
 
 ==> DESCRIPCION: Pantalla que permite agregar nuevos indicadores a la parametrización de la informacion. La informacion se guarda en la base de datos
 
@@ -85,7 +85,7 @@ body
 	<br>
 	<br>
 	<center>
-	 <form id="form1" name="form1" method="post" action="AgregarIndicadores.php">
+	 <form id="form1" name="form1" method="post" action="agregarIndicadores.php">
 	  <table class="tabla">
 	  <tr>
 	  	<td style="color: white; font-family:sans-serif;font-size:20;" >Codigo de Indicador:</td>
@@ -144,7 +144,7 @@ body
 	     			$query = "INSERT INTO tb_indicador (IND_ID, IND_DESCRIPCION,IND_FECHA,IND_VALOR) VALUES ('$CIUD_ID3', '$CIUD_DESCRIPCION3','$IND_FEC','$IND_VAL')";
 		      		$result = $mysqli->query($query);
 					if($result==false){
-							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarIndicadores.php';</script>";
+							print "<script>alert(\"los datos estan duplicados\");window.location='agregarIndicadores.php';</script>";
 							}
 							else{
 							print "<script>alert(\"los datos se enviaron correctamente\");window.location='../Indicadores/indicadores.php';</script>";

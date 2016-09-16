@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: carga.php
+==> TITULO DE ARCHIVO: cargaManual.php
 
 ==> DESCRIPCION: Pantalla que permite ingresar al apartado de carga manual o automatica.
 

@@ -106,7 +106,7 @@ body
 	<br>
 	<br>
 	<center>
-	<form method = "post" action = "EliminarSegmentos.php">
+	<form method = "post" action = "eliminarSegmentos.php">
                   <table width = "400" border = "0" cellspacing = "1" 
                      cellpadding = "2">
                      
@@ -158,7 +158,7 @@ body
 	      $query = "DELETE FROM tb_segmento WHERE SEG_ID= '$IND_ID'";
 		  $result = $mysqli->query($query);
 	       if($result==false){
-				print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarSegmentos.php';</script>";
+				print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='eliminarSegmentos.php';</script>";
 				}
 				else{
 				print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Segmentos/segmentos.php';</script>";

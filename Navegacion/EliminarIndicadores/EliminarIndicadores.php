@@ -169,7 +169,7 @@ body
 	<br>
 	<br>
 	<center>
-	<form method = "post" action = "EliminarIndicadores.php">
+	<form method = "post" action = "eliminarIndicadores.php">
                   <table width = "400" border = "0" cellspacing = "1" 
                      cellpadding = "2">
                      
@@ -229,7 +229,7 @@ body
 										print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Indicadores/indicadores.php';</script>";
 										}
 									else{
-										print "<script>alert(\"ERROR, el indicador y la fecha no coinciden\");window.location='EliminarIndicadores.php';</script>";
+										print "<script>alert(\"ERROR, el indicador y la fecha no coinciden\");window.location='eliminarIndicadores.php';</script>";
 						}
 					}
 	     		}

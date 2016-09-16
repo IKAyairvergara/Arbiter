@@ -105,7 +105,7 @@ body
 	<br>
 	<br>
 	<center>
-	<form method = "post" action = "EliminarProyectos.php">
+	<form method = "post" action = "eliminarProyectos.php">
                   <table width = "400" border = "0" cellspacing = "1" 
                      cellpadding = "2">
                      
@@ -156,7 +156,7 @@ body
 						$query = "DELETE FROM tb_proyecto WHERE PRO_ID= '$IND_ID'";
 						$result = $mysqli->query($query);
 							if($result==false){
-								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarProyectos.php';</script>";
+								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='eliminarProyectos.php';</script>";
 								}
 							else{
 								print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Proyectos/proyectos.php';</script>";

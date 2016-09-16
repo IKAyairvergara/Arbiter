@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: AgregarCiudades.php
+==> TITULO DE ARCHIVO: agregarCiudades.php
 
 ==> DESCRIPCION: Pantalla que permite agregar nuevas ciudades a la parametrización de la información. La información se guarda en la base de datos
 
@@ -77,11 +77,11 @@ body
 	</div>
 	<div style="background-image:url(agregar_02.png); position:absolute; left:0px; top:32px; width:599px; height:126px;" title="">
 	</div>
-	<div id="p1" onClick="location.href='../Ciudades/ciudades.php';"style="background-image:url(agregar_03.png); " title="">
+	<div id="p1" onClick="location.href='../Ciudades/ciudades.php';" style="background-image:url(agregar_03.png); " title="">
 	</div>
 	<div style="background-image:url(agregar_04.png); position:absolute; left:778px; top:32px; width:43px; height:126px;" title="">
 	</div>
-	<div id="p" onClick="location.href='../Bienvenido/bienvenido.php';"style="background-image:url(agregar_05.png);" title="">
+	<div id="p" onClick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(agregar_05.png);" title="">
 	</div>
 	<div style="background-image:url(agregar_06.png); position:absolute; left:988px; top:32px; width:36px; height:126px;" title="">
 	</div>
@@ -95,7 +95,7 @@ body
 	<br>
 	<br>
 	<center>
-	<form id="form1" name="form1" method="post" action="AgregarCiudades.php">
+	<form id="form1" name="form1" method="post" action="agregarCiudades.php">
 	  <table class="tabla">
 	  <tr>
 	  	<td style="color: white; font-family:sans-serif;font-size:20;" >C&#243;digo Ciudad</td>
@@ -169,14 +169,14 @@ body
 						$query = "INSERT INTO tb_ciudad (CIU_ID, CIU_DESCRIPCION,CIU_PAI_ID) VALUES ('$CIUD_ID3', '$CIUD_DESCRIPCION3','$CIUD_PAISES')";
 						$result = $mysqli->query($query);
 						if($result==false){
-							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarCiudades.php';</script>";
+							print "<script>alert(\"los datos estan duplicados\");window.location='agregarCiudades.php';</script>";
 							}
 						else{
 							print "<script>alert(\"los datos se enviaron correctamente\");window.location='../Ciudades/ciudades.php';</script>";
 							}
 					}
 					else{
-						print "<script>alert(\"porfavor llenar todos los campos\");window.location='AgregarCiudades.php';</script>";
+						print "<script>alert(\"porfavor llenar todos los campos\");window.location='agregarCiudades.php';</script>";
 							}
 			
 			}

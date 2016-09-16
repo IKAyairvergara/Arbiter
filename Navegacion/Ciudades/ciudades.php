@@ -92,7 +92,7 @@ body
 	</div>
 	<div style="background-image:url(ciudades_04.png); position:absolute; left:466px; top:32px; width:355px; height:1px;" title="">
 	</div>
-	<div id="p" onclick="location.href='../Bienvenido/bienvenido.php';"style="background-image:url(ciudades_05.png); cursor:pointer;" title="">
+	<div id="p" onclick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(ciudades_05.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(ciudades_06.png); position:absolute; left:988px; top:32px; width:36px; height:126px;" title="">
 	</div>
@@ -164,17 +164,17 @@ ORDER BY B.PAI_DESCRIPCION, A.CIU_DESCRIPCION";
 	</div>
 	<div style="background-image:url(ciudades_17.png); position:absolute; left:37px; top:671px; width:13px; height:97px;" title="">
 	</div>
-	<div id="p2" onclick="location.href='../Editar2Ciudades/Editar2Ciudades.php'" style="background-image:url(ciudades_18.png); cursor:pointer;" title="">
+	<div id="p2" onclick="location.href='../EditarCiudades/editarCiudades.php'" style="background-image:url(ciudades_18.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(ciudades_19.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>
-	<div id="p3" onclick="location.href='../AgregarCiudades/AgregarCiudades.php'"style="background-image:url(ciudades_20.png); cursor:pointer;" title="">
+	<div id="p3" onclick="location.href='../AgregarCiudades/agregarCiudades.php'" style="background-image:url(ciudades_20.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(ciudades_21.png); position:absolute; left:276px; top:671px; width:714px; height:1px;" title="">
 	</div>
 	<div style="background-image:url(ciudades_22.png); position:absolute; left:276px; top:672px; width:74px; height:96px;" title="">
 	</div>
-	<div id="p4" onclick="location.href='../EliminarCiudades/EliminarCiudades.php'" style="background-image:url(ciudades_23.png); cursor:pointer;" title="">
+	<div id="p4" onclick="location.href='../EliminarCiudades/eliminarCiudades.php'" style="background-image:url(ciudades_23.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(ciudades_24.png); position:absolute; left:426px; top:672px; width:564px; height:96px;" title="">
 	</div>

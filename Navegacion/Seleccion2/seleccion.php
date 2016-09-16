@@ -12,7 +12,7 @@
 
 ==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
 
-======
+=======================================================================================================================
 -->
 <!-- saved from url=(0091)file:///Users/yvmechanics/Library/Caches/Save%20For%20Web%20AI/Seleccion_004/Seleccion.html -->
 <html>

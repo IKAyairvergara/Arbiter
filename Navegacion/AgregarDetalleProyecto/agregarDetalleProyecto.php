@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: AgregarCiudades.php
+==> TITULO DE ARCHIVO: agregarDetalleProyecto.php
 
 ==> DESCRIPCION: Pantalla que permite agregar nuevas ciudades a la parametrización de la informacion. La informacion se guarda en la base de datos
 
@@ -70,11 +70,11 @@ body
 	</div>
 	<div style="background-image:url(agregar_02.png); position:absolute; left:0px; top:32px; width:599px; height:126px;" title="">
 	</div>
-	<div id="p1" onClick="location.href='../DetalleProyecto/detalleProyecto.php';"style="background-image:url(agregar_03.png); " title="">
+	<div id="p1" onClick="location.href='../DetalleProyecto/detalleProyecto.php';" style="background-image:url(agregar_03.png); " title="">
 	</div>
 	<div style="background-image:url(agregar_04.png); position:absolute; left:778px; top:32px; width:43px; height:126px;" title="">
 	</div>
-	<div id="p" onClick="location.href='../Bienvenido/bienvenido.php';"style="background-image:url(agregar_05.png);" title="">
+	<div id="p" onClick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(agregar_05.png);" title="">
 	</div>
 	<div style="background-image:url(agregar_06.png); position:absolute; left:988px; top:32px; width:36px; height:126px;" title="">
 	</div>

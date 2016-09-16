@@ -38,10 +38,10 @@
 			    #echo "Completo";
 
 			   if($resultados){
-				print "<script>alert(\"\Depuracion Exitosa $i Campos Borrados\");window.location='DepuracionProyectos.php';</script>";
+				print "<script>alert(\"\Depuracion Exitosa $i Campos Borrados\");window.location='depuracionProyectos.php';</script>";
 				}
 			    else{
-				print "<script>alert(\"ERROR NO HA SELECCIONADO NINGUNA CASILLA!\");window.location='DepuracionProyectos.php';</script>";
+				print "<script>alert(\"ERROR NO HA SELECCIONADO NINGUNA CASILLA!\");window.location='depuracionProyectos.php';</script>";
 				}
 			
 

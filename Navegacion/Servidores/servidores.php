@@ -12,7 +12,7 @@
 
 ==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
 
-======
+=======================================================================================================================
 -->
 <?php 
     //creamos la sesion 
@@ -132,7 +132,7 @@ body
 	</div>
 	<div style="background-image:url(servidores_12.png); position:absolute; left:36px; top:671px; width:14px; height:97px;" title="">
 	</div>
-	<div id="p2" onClick="location.href='../Editar2Servidores/editar2Servidores.php';" style="background-image:url(servidores_13.png); " title="">
+	<div id="p2" onClick="location.href='../EditarServidores/editarServidores.php';" style="background-image:url(servidores_13.png); " title="">
 	</div>
 	<div style="background-image:url(servidores_14.png); position:absolute; left:404px; top:671px; width:585px; height:97px;" title="">
 	</div>

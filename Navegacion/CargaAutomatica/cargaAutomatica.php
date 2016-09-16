@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: CargaAutomatica.php
+==> TITULO DE ARCHIVO: cargaAutomatica.php
 
 ==> DESCRIPCION: Pantalla que permite cargar arhivos XLS en conjunto. El tope máximo del monto de subida es 16 MB. El archivo escribe en cada una de las tablas
 

@@ -1,6 +1,6 @@
 <!-- 
 =======================================================================================================================
-==> TITULO DE ARCHIVO: AgregarSegmentos.php
+==> TITULO DE ARCHIVO: agregarSegmentos.php
 
 ==> DESCRIPCION: Pantalla que permite agregar nuevos segmentos a la parametrización de la información. La información se guarda en la base de datos
 
@@ -98,7 +98,7 @@ body
 	<br>
 	<br>
 	<br>
-	<form id="form1" name="form1" method="post" action="AgregarSegmentos.php">
+	<form id="form1" name="form1" method="post" action="agregarSegmentos.php">
 	  <table class="tabla">
 	  <tr>
 	  	<td style="color: white; font-family:sans-serif;font-size:20;">C&#243;digo Segmento:</td>
@@ -144,7 +144,7 @@ body
 					  $query = "INSERT INTO tb_segmento (SEG_ID, SEG_DESCRIPCION) VALUES ('$CIUD_ID3', '$SEG_DESCR3')";
 		      $result = $mysqli->query($query);
 		          		if($result==false){
-							print "<script>alert(\"los datos estan duplicados\");window.location='AgregarSegmentos.php';</script>";
+							print "<script>alert(\"los datos estan duplicados\");window.location='agregarSegmentos.php';</script>";
 							}
 							else{
 							print "<script>alert(\"los datos se enviaron correctamente\");window.location='../Segmentos/segmentos.php';</script>";

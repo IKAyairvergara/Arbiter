@@ -12,7 +12,7 @@
 
 ==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
 
-======
+======================================================================================================================
 -->
 <?php 
     //creamos la sesion 
@@ -155,17 +155,17 @@ body
 	</div>
 	<div style="background-image:url(tipoParticipacion_13.png); position:absolute; left:36px; top:671px; width:9px; height:97px;" title="">
 	</div>
-	<div id="p2" onclick="location.href='../Editar2Participacion/Editar2Participacion.php';" style="background-image:url(tipoParticipacion_14.png); cursor:pointer;" title="">
+	<div id="p2" onclick="location.href='../EditarParticipacion/editarParticipacion.php';" style="background-image:url(tipoParticipacion_14.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(tipoParticipacion_15.png); position:absolute; left:121px; top:671px; width:74px; height:97px;" title="">
 	</div>
-	<div id="p3" onclick="location.href='../AgregarParticipacion/AgregarParticipacion.php';" style="background-image:url(tipoParticipacion_16.png); cursor:pointer;" title="">
+	<div id="p3" onclick="location.href='../AgregarParticipacion/agregarParticipacion.php';" style="background-image:url(tipoParticipacion_16.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(tipoParticipacion_17.png); position:absolute; left:271px; top:671px; width:717px; height:1px;" title="">
 	</div>
 	<div  style="background-image:url(tipoParticipacion_18.png);position:absolute; left:271px; top:672px; width:75px; height:96px; " title="">
 	</div>
-	<div id="p4" onclick="location.href='../EliminarParticipacion/EliminarParticipacion.php';" style="background-image:url(tipoParticipacion_19.png); cursor:pointer;" title="">
+	<div id="p4" onclick="location.href='../EliminarParticipacion/eliminarParticipacion.php';" style="background-image:url(tipoParticipacion_19.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(tipoParticipacion_20.png); position:absolute; left:422px; top:672px; width:566px; height:96px;" title="">
 	</div>

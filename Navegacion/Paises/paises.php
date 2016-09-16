@@ -12,7 +12,7 @@
 
 ==> TECNOLOGÍA USADA: PHP 7.0 - HTML5 - CSS - JavaScript - SQL 
 
-======
+========================================================================================================================
 -->
 <?php 
     //creamos la sesion 
@@ -92,7 +92,7 @@ body
 	</div>
 	<div style="background-image:url(Untitled-1_02.png); position:absolute; left:0px; top:32px; width:621px; height:126px;" title="">
 	</div>
-	<div id="p1" onClick="location.href='../Parametrizacion/parametrizacion.php';"style="background-image:url(Untitled-1_03.png); cursor:pointer;" title="">
+	<div id="p1" onClick="location.href='../Parametrizacion/parametrizacion.php';" style="background-image:url(Untitled-1_03.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(Untitled-1_04.png); position:absolute; left:800px; top:32px; width:21px; height:126px;" title="">
 	</div>
@@ -109,7 +109,8 @@ body
 	<div style="background-image:url(Untitled-1_10.png); position:absolute; left:37px; top:158px; width:953px; height:494px;overflow: scroll;" title="">
 	
 	<?php
-		$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
+		   include "../../php/conexion.php";
+		   #$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
 
 			/* comprobar la conexión */
 

@@ -93,11 +93,11 @@ body
 	</div>
 	<div style="background-image:url(indicadores_02.png); position:absolute; left:0px; top:32px; width:621px; height:126px;" title="">
 	</div>
-	<div id="p" onclick="location.href='../Parametrizacion/parametrizacion.php';"style="background-image:url(indicadores_03.png); cursor:pointer;" title="">
+	<div id="p" onclick="location.href='../Parametrizacion/parametrizacion.php';" style="background-image:url(indicadores_03.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(indicadores_04.png); position:absolute; left:800px; top:32px; width:21px; height:126px;" title="">
 	</div>
-	<div id="p1" onclick="location.href='../Bienvenido/bienvenido.php';"style="background-image:url(indicadores_05.png); cursor:pointer;" title="">
+	<div id="p1" onclick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(indicadores_05.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(indicadores_06.png); position:absolute; left:988px; top:32px; width:36px; height:126px;" title="">
 	</div>
@@ -159,17 +159,17 @@ body
 	</div>
 	<div style="background-image:url(indicadores_13.png); position:absolute; left:37px; top:671px; width:13px; height:97px;" title="">
 	</div>
-	<div id="p2" onclick="location.href='../Editar2Indicadores/Editar2Indicadores.php'" style="background-image:url(indicadores_14.png); cursor:pointer;" title="">
+	<div id="p2" onclick="location.href='../Editar2Indicadores/editarIndicadores.php'" style="background-image:url(indicadores_14.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(indicadores_15.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>
-	<div id="p3" onclick="location.href='../AgregarIndicadores/AgregarIndicadores.php'" style="background-image:url(indicadores_16.png); cursor:pointer;" title="">
+	<div id="p3" onclick="location.href='../AgregarIndicadores/agregarIndicadores.php'" style="background-image:url(indicadores_16.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(indicadores_17.png); position:absolute; left:276px; top:671px; width:714px; height:1px;" title="">
 	</div>
 	<div style="background-image:url(indicadores_18.png); position:absolute; left:276px; top:672px; width:74px; height:96px;" title="">
 	</div>
-	<div id="p4" onclick="location.href='../EliminarIndicadores/EliminarIndicadores.php'" style="background-image:url(indicadores_19.png); cursor:pointer;" title="">
+	<div id="p4" onclick="location.href='../EliminarIndicadores/eliminarIndicadores.php'" style="background-image:url(indicadores_19.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(indicadores_20.png); position:absolute; left:426px; top:672px; width:564px; height:96px;" title="">
 	</div>

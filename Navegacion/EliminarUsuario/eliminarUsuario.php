@@ -127,7 +127,7 @@ body
 	      $query = "DELETE FROM user WHERE username= '$Usuario'";
 		  $result = $mysqli->query($query);
 	       if($result==false){
-				print "<script>alert(\"El registro no puede ser eliminado \");window.location='EliminarSegmentos.php';</script>";
+				print "<script>alert(\"El registro no puede ser eliminado \");window.location='eliminarUsuario.php';</script>";
 				}
 				else{
 				print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Administrador/administrador.php';</script>";

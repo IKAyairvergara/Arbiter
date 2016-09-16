@@ -167,7 +167,7 @@ body
 	</div>
 	<div style="background-image:url(Untitled-1_32.png); position:absolute; left:245px; top:340px; width:122px; height:100px;" title="">
 	</div>
-	<div id="p3" onclick="location.href='../cargaManual4/cargaManual.php';" style="background-image:url(Untitled-1_33.png); " title="">
+	<div id="p3" onclick="location.href='../CargaManual4/cargaManual.php';" style="background-image:url(Untitled-1_33.png); " title="">
 	</div>
 	<div style="background-image:url(Untitled-1_34.png); position:absolute; left:397px; top:476px; width:288px; height:48px;" title="">
 	</div>

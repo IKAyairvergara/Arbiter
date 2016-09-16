@@ -131,7 +131,7 @@ body
 	</div>
 	<div style="background-image:url(bienvenido_16.png); position:absolute; left:752px; top:401px; width:207px; height:33px;" title="">
 	</div>
-	<div id="p6" onclick="location.href='../informesMain/informesMain.html';" style="background-image:url(bienvenido_17.png); cursor:pointer;" title="">
+	<div id="p6" onclick="location.href='../InformesMain/informesMain.html';" style="background-image:url(bienvenido_17.png); cursor:pointer;" title="">
 	</div>
 	<div id="p5" onclick="location.href='../Consulta/consulta.php';" style="background-image:url(bienvenido_18.png); cursor:pointer;" title="">
 	</div>

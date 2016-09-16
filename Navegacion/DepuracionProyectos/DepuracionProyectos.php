@@ -95,7 +95,7 @@ body
 	</div>
 	<div style="background-image:url(proyectos_04.png); position:absolute; left:802px; top:41px; width:32px; height:117px;" title="">
 	</div>
-	<div id="p" onclick="location.href='../Bienvenido/bienvenido.php';"style="background-image:url(proyectos_05.png); cursor:pointer;" title="">
+	<div id="p" onclick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(proyectos_05.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(proyectos_06.png); position:absolute; left:988px; top:41px; width:36px; height:117px;" title="">
 	</div>

@@ -1,6 +1,6 @@
 <?php	
 		#Trae datos del arhivo	
-		require "DepuracionConsolidados.php";
+		require "depuracionConsolidados.php";
 		# Se incluye el archivo de conexion
 		include "../../php/conexion.php";	
 			
@@ -38,10 +38,10 @@
 			   
 					}
 			    if($resultados){
-				print "<script>alert(\"\Depuracion Exitosa $i Campos Borrados\");window.location='DepuracionConsolidados.php';</script>";
+				print "<script>alert(\"\Depuracion Exitosa $i Campos Borrados\");window.location='depuracionConsolidados.php';</script>";
 				}
 			    else{
-				print "<script>alert(\"ERROR NO HA SELECCIONADO NINGUNA CASILLA!\");window.location='DepuracionConsolidados.php';</script>";
+				print "<script>alert(\"ERROR NO HA SELECCIONADO NINGUNA CASILLA!\");window.location='depuracionConsolidados.php';</script>";
 				}
 			
 					

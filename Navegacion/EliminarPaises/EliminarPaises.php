@@ -105,7 +105,7 @@ body
 	<br>
 	<br>	
 	<center>
-	<form method = "post" action = "EliminarPaises.php">
+	<form method = "post" action = "eliminarPaises.php">
                   <table width = "400" border = "0" cellspacing = "1" 
                      cellpadding = "2">
                      
@@ -165,7 +165,7 @@ body
 	      $query = "DELETE FROM tb_pais WHERE PAI_ID= '$CIU_ID'";
 		  $result = $mysqli->query($query);
 	       if($result==false){
-				print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarPaises.php';</script>";
+				print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='eliminarPaises.php';</script>";
 				}
 				else{
 				print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Paises/paises.php';</script>";
