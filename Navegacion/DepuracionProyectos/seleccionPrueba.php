@@ -1,7 +1,7 @@
 <?php	
 
 		# Llamado de archivo para captura de datos
-		require "DepuracionProyectos.php";
+		require "depuracionProyectos.php";
 		#Archivo de conexin 
 		include "../../php/conexion.php";	
 			#nivel de reporte de errores

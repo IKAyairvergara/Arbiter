@@ -105,7 +105,7 @@ body
 	<br>
 	<br>	
 <center>
-<form method = "post" action = "EliminarParticipacion.php">
+<form method = "post" action = "eliminarParticipacion.php">
                   <table width = "400" border = "0" cellspacing = "1" 
                      cellpadding = "2">
                      

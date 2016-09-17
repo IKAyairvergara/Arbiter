@@ -97,7 +97,7 @@ body
         <select name='DET_PRO_ID' id='DET_PRO_ID' required>
 				<?php
 				# Se incluye el archivo de conexion
-                include "../php/conexion.php";
+                include "../../php/conexion.php";
                 #Traer datos de la tabla de proyectos
                 $qr ="SELECT * FROM tb_proyecto"; 
                 $i = 0;
@@ -126,7 +126,7 @@ body
         <select name='DET_SEG_ID' id='DET_SEG_ID' required/>
 				<?php
 				# Se incluye el archivo de conexion
-                include "../php/conexion.php";
+                include "../../php/conexion.php";
                 #Traer datos de la tabla Segmento
                 $qr ="SELECT * FROM tb_segmento";
                 $i = 0;
@@ -150,7 +150,7 @@ body
         <select name='DET_PAR_ID' id='DET_PAR_ID' required>
 				<?php
 				# Se incluye el archivo de conexion
-                include "../php/conexion.php";
+                include "../../php/conexion.php";
                 #Traer datos de la tabla Segmento
                 $qr ="SELECT * FROM tb_participacion"; 
                 $i = 0;

@@ -156,17 +156,17 @@ body
 	</div>
 	<div style="background-image:url(Untitled-1_13.png); position:absolute; left:37px; top:671px; width:13px; height:97px;" title="">
 	</div>
-	<div id="p2" onClick="location.href='../Editar2Paises/Editar2Paises.php'" style="background-image:url(Untitled-1_14.png); cursor:pointer;" title="">
+	<div id="p2" onClick="location.href='../EditarPaises/editarPaises.php'" style="background-image:url(Untitled-1_14.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(Untitled-1_15.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>
-	<div id="p3" onClick="location.href='../AgregarPaises/AgregarPaises.php'"  style="background-image:url(Untitled-1_16.png); cursor:pointer;" title="">
+	<div id="p3" onClick="location.href='../AgregarPaises/agregarPaises.php'"  style="background-image:url(Untitled-1_16.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(Untitled-1_17.png); position:absolute; left:276px; top:671px; width:714px; height:1px;" title="">
 	</div>
 	<div style="background-image:url(Untitled-1_18.png); position:absolute; left:276px; top:672px; width:74px; height:96px;" title="">
 	</div>
-	<div id="p4" onClick="location.href='../EliminarPaises/EliminarPaises.php'" style="background-image:url(Untitled-1_19.png); cursor:pointer; " title="">
+	<div id="p4" onClick="location.href='../EliminarPaises/eliminarPaises.php'" style="background-image:url(Untitled-1_19.png); cursor:pointer; " title="">
 	</div>
 	<div style="background-image:url(Untitled-1_20.png); position:absolute; left:426px; top:672px; width:564px; height:96px;" title="">
 	</div>

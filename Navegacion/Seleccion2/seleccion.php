@@ -150,7 +150,7 @@ function dependencia_ciudad()
 	 </style>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="position:absolute; left:10%; top:0px; width:1024px; height:769px;">
-<form  id="myform" name="myform" method = "post" action = "EnvioDatos.php">
+<form  id="myform" name="myform" method = "post" action = "envioDatos.php">
 
 	<div style="background-image:url(Seleccion_01.png); position:absolute; left:0px; top:0px; width:1024px; height:36px;" title="">
 	</div>

@@ -159,7 +159,7 @@ body
 	</div>
 	<div style="background-image:url(indicadores_13.png); position:absolute; left:37px; top:671px; width:13px; height:97px;" title="">
 	</div>
-	<div id="p2" onclick="location.href='../Editar2Indicadores/editarIndicadores.php'" style="background-image:url(indicadores_14.png); cursor:pointer;" title="">
+	<div id="p2" onclick="location.href='../EditarIndicadores/editarIndicadores.php'" style="background-image:url(indicadores_14.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(indicadores_15.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>

@@ -135,7 +135,7 @@ body
 	 	?>
 
 		</div>
-	<input id="p2" type="image" src='Untitled-1_14.png' name="delete" id="delete" value="Generar" style="position:absolute; left:50px; top:674px; width:184px; height:61px;" />
+	<input id="p2" type="image" src='Untitled-1_14.png' name="delete" id="delete" value="Generar" style="position:absolute; left:50px; top:674px; width:184px; height:61px;cursor:pointer;" />
 		
 	</div>
 		
