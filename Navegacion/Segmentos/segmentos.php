@@ -152,17 +152,17 @@ body
 	</div>
 	<div style="background-image:url(segmentos_13.png); position:absolute; left:37px; top:671px; width:13px; height:97px;" title="">
 	</div>
-	<div id="p2" onclick="location.href='../Editar2Segmentos/Editar2Segmentos.php'" style="background-image:url(segmentos_14.png); cursor:pointer;" title="">
+	<div id="p2" onclick="location.href='../EditarSegmentos/editarSegmentos.php'" style="background-image:url(segmentos_14.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(segmentos_15.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>
-	<div id="p3" onclick="location.href='../AgregarSegmentos/AgregarSegmentos.php'" style="background-image:url(segmentos_16.png); cursor:pointer;" title="">
+	<div id="p3" onclick="location.href='../AgregarSegmentos/agregarSegmentos.php'" style="background-image:url(segmentos_16.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(segmentos_17.png); position:absolute; left:276px; top:671px; width:714px; height:1px;" title="">
 	</div>
 	<div style="background-image:url(segmentos_18.png); position:absolute; left:276px; top:672px; width:74px; height:96px;" title="">
 	</div>
-	<div id="p4" onclick="location.href='../EliminarSegmentos/EliminarSegmentos.php'" style="background-image:url(segmentos_19.png); cursor:pointer;" title="">
+	<div id="p4" onclick="location.href='../EliminarSegmentos/eliminarSegmentos.php'" style="background-image:url(segmentos_19.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(segmentos_20.png); position:absolute; left:426px; top:672px; width:564px; height:96px;" title="">
 	</div>

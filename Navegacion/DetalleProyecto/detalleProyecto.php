@@ -165,7 +165,7 @@ LEFT JOIN tb_participacion D ON D.PAR_ID=A.DET_PAR_ID";
 	</div>
 	<div style="background-image:url(detalleProyecto_15.png); position:absolute; left:126px; top:671px; width:74px; height:97px;" title="">
 	</div>
-	<div id="p3" onclick="location.href='../AgregarDetalleProyecto/agregarDetalleProyecto.php';"style="background-image:url(detalleProyecto_16.png);" title="">
+	<div id="p3" onclick="location.href='../AgregarDetalleProyecto/agregarDetalleProyecto.php';" style="background-image:url(detalleProyecto_16.png);" title="">
 	</div>
 	<div style="background-image:url(detalleProyecto_17.png); position:absolute; left:276px; top:671px; width:714px; height:1px;" title="">
 	</div>
