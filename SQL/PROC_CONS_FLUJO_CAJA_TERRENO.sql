@@ -1,3 +1,13 @@
+-- ------------------------------------------------------------------------------------------------------------
+-- IKA CONSULTORES S.A.S                                                                                    --
+-- NOMBRE:  PROC_CONS_FLUJO_CAJA_TERRENO                                                                            --
+-- DESCRIPCION: Procedimiento almacenado para la consolidacion de modelos para el informe 'Flujo Caja Terreno'      --
+-- PROYECTO: ARBITER                                                                                        --
+-- OCTUBRE 2016                                                                                             --
+-- ------------------------------------------------------------------------------------------------------------
+DROP PROCEDURE IF EXISTS PROC_CONS_FLUJO_CAJA_TERRENO;
+CREATE PROCEDURE PROC_CONS_FLUJO_CAJA_TERRENO()
+
 BEGIN 
 
 DECLARE v_fct_c_cons_id VARCHAR(12);
