@@ -166,7 +166,7 @@ BEGIN
 FROM (
     SELECT CONS_ID
     ,OFL_C_FECHA								                                           OFL_C_FECHA
- 	,SUM(OFL_C_COSTO_CONSTRUCCION)				                                           OFL_C_C_COSTO_CONSTRUCCION
+ 	,SUM(OFL_COSTO_CONSTRUCCION)				                                           OFL_C_COSTO_CONSTRUCCION
  	,SUM(OFL_HONORARIOS_COLPATRIA)				                                           OFL_C_HONORARIOS_COLPATRIA
  	,SUM(OFL_GASTOS_OPERACION_COLPATRIA)			                                       OFL_C_GASTOS_OPERACION_COLPATRIA
  	,SUM(OFL_GO_PROMOTORA_OPERACION)			                                           OFL_C_GO_PROMOTORA_OPERACION
@@ -350,7 +350,7 @@ UNION ALL
        			     WHEN '0000-00-00' THEN OFL_C_FECHA 
        			     ELSE CONS_FEC_GEN_HAS
                              END
-  GROUP BY OFL_C_FECHA)
+  GROUP BY OFL_C_FECHA) CONS
   GROUP BY CONS.OFL_C_FECHA;
   
   -- UNION ALL END
