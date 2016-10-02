@@ -1,3 +1,5 @@
+DROP PROCEDURE IF EXISTS PROC_CONS_RESUMEN;
+DELIMITER //
 -- ------------------------------------------------------------------------------------------------------------
 -- IKA CONSULTORES S.A.S                                                                                    --
 -- NOMBRE:  PROC_CONS_RESUMEN                                                                            --
@@ -5,7 +7,6 @@
 -- PROYECTO: ARBITER                                                                                        --
 -- OCTUBRE 2016                                                                                             --
 -- ------------------------------------------------------------------------------------------------------------
-DROP PROCEDURE IF EXISTS PROC_CONS_RESUMEN;
 CREATE PROCEDURE PROC_CONS_RESUMEN()
 
 BEGIN
@@ -3375,4 +3376,5 @@ v_res_c_eje_cvg
  END LOOP obtener_c_resumen_consolidado;         
   CLOSE c_resumen_consolidado; 
  
-END
+END//
+DELIMITER ;

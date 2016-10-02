@@ -1,3 +1,5 @@
+DROP PROCEDURE IF EXISTS PROC_CONS_FLUJO_CAJA_TERRENO;
+DELIMITER //
 -- ------------------------------------------------------------------------------------------------------------
 -- IKA CONSULTORES S.A.S                                                                                    --
 -- NOMBRE:  PROC_CONS_FLUJO_CAJA_TERRENO                                                                            --
@@ -5,7 +7,6 @@
 -- PROYECTO: ARBITER                                                                                        --
 -- OCTUBRE 2016                                                                                             --
 -- ------------------------------------------------------------------------------------------------------------
-DROP PROCEDURE IF EXISTS PROC_CONS_FLUJO_CAJA_TERRENO;
 CREATE PROCEDURE PROC_CONS_FLUJO_CAJA_TERRENO()
 
 BEGIN 
@@ -402,5 +403,5 @@ VALUES (
 END LOOP obtener_c_flujo_caja_terreno;
 
 CLOSE C_FLUJO_CAJA_TERRENO;
-
-END
+END//
+DELIMITER ;
