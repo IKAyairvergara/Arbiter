@@ -123,7 +123,7 @@ body
 			<label> Nombre de Usuario a modificar <span class="req">*</span></label>
         		<select name='username' id='username' required>
         		<?php
-				    include "../../php/conexion.php";
+				    include "../php/conexion.php";
 				    $qr ="SELECT * FROM user"; 
 				        $i = 0;
 				            if ($resultado = $mysqli->query($qr)) {
@@ -162,7 +162,7 @@ body
       </form>
 
       <?php
-	include "../../php/conexion.php";
+	include "../php/conexion.php";
 
 	$Usuario=$_POST['username'];
 	$Nombre= $_POST['fullname'];

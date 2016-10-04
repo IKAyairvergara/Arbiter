@@ -6,15 +6,15 @@ class selects extends MySQL
 	
 	function cargarPaises()
 	{
-		$consulta = parent::consulta("SELECT A.PRO_DESCRIPCION, B.DET_PRO_ID FROM tb_proyecto A RIGHT JOIN tb_detalle_proyecto B ON  A.PRO_ID=B.DET_PRO_ID");
+		$consulta = parent::consulta("select a.pro_descripcion, b.det_pro_id from tb_proyecto a right join tb_detalle_proyecto b on  a.pro_id=b.det_pro_id");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
 			$paises = array();
 			while($pais = parent::fetch_assoc($consulta))
 			{
-				$code = $pais["DET_PRO_ID"];
-				$name = $pais["PRO_DESCRIPCION"];				
+				$code = $pais["det_pro_id"];
+				$name = $pais["pro_descripcion"];				
 				$paises[$code]=$name;
 			}
 			return $paises;
@@ -26,14 +26,14 @@ class selects extends MySQL
 	}
 	function cargarEstados()
 	{
-		$consulta = parent::consulta("SELECT DET_ETAPA FROM tb_detalle_proyecto WHERE DET_PRO_ID = '".$this->code."'");
+		$consulta = parent::consulta("select det_etapa from tb_detalle_proyecto where det_pro_id = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
 			$estados = array();
 			while($estado = parent::fetch_assoc($consulta))
 			{
-				$name = $estado["DET_ETAPA"];				
+				$name = $estado["det_etapa"];				
 				$estados[$name]=$name;
 			}
 			return $estados;
@@ -46,14 +46,14 @@ class selects extends MySQL
 		
 	function cargarCiudades()
 	{
-		$consulta = parent::consulta("SELECT CIU_DESCRIPCION FROM tb_ciudad WHERE CIU_PAI_ID = '".$this->code."'");
+		$consulta = parent::consulta("select ciu_descripcion from tb_ciudad where ciu_pai_id = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
 			$ciudades = array();
 			while($ciudad = parent::fetch_assoc($consulta))
 			{
-				$name = $ciudad["CIU_DESCRIPCION"];				
+				$name = $ciudad["ciu_descripcion"];				
 				$ciudades[$name]=$name;
 			}
 			return $ciudades;

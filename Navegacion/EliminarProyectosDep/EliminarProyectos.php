@@ -56,7 +56,7 @@ body
 	</div>
 	<div style="background-image:url(eliminar_04.png); position:absolute; left:419px; top:32px; width:176px; height:126px;" title="">
 	</div>
-	<div id="p1" onClick="location.href='../DepuracionProyectos/depuracionProyectos.php';" style="background-image:url(eliminar_05.png); " title="">
+	<div id="p1" onClick="location.href='../DepuracionProyectos/DepuracionProyectos.php';" style="background-image:url(eliminar_05.png); " title="">
 	</div>
 	<div style="background-image:url(eliminar_06.png); position:absolute; left:774px; top:32px; width:47px; height:126px;" title="">
 	</div>
@@ -139,7 +139,7 @@ body
 						$query = "DELETE FROM tb_proyecto WHERE PRO_ID= '$IND_ID'";
 						$result = $mysqli->query($query);
 							if($result==false){
-								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='eliminarProyectos.php';</script>";
+								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='EliminarProyectos.php';</script>";
 								}
 							else{
 								print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Proyectos/proyectos.php';</script>";

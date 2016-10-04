@@ -9,7 +9,6 @@ CREATE PROCEDURE PROC_CONS_FLUJO_CAJA()
 -- OCTUBRE 2016                                                                                             --
 -- ------------------------------------------------------------------------------------------------------------
 BEGIN
--- Declaracion de variables -- 
   DECLARE v_fcc_cons_id                                                                                  VARCHAR(12);
   DECLARE v_fcc_fecha                                                                                    date;
   DECLARE v_fcc_urbanismo_interno_materiales_mobra                                       			       DECIMAL(10,0);
@@ -108,11 +107,9 @@ BEGIN
   DECLARE v_fcc_tir_mod_em                                                                        	   DECIMAL(10,0);
   DECLARE v_finished 																				       integer default 0;
 
--- Inicio de consulta general -- 
     DECLARE c_flujo_caja_consolidado CURSOR FOR
     SELECT CONS.CONS_ID
     ,CONS.FLC_C_FECHA
-    ,SUM(CONS.FLC_C_FECHA)
     ,SUM(CONS.FLC_C_URBANISMO_INTERNO)
     ,SUM(CONS.FLC_C_UI_PRESUPUESTO)
     ,SUM(CONS.FLC_C_UI_INCREMENTOS)
@@ -205,9 +202,10 @@ BEGIN
     ,SUM(CONS.FLC_C_VPN)
     ,SUM(CONS.FLC_C_TIR_EA)
     ,SUM(CONS.FLC_C_TIR_EM)
-    ,SUM(CONS.FLC_C_TIR_MOD_EA)
+	,SUM(CONS.FLC_C_TIR_MOD_EA)
+    ,SUM(CONS.FLC_C_C_TIR_MOD_EM)
     FROM (
-		SELECT CONS_ID
+		SELECT CONS_ID 
     	,FLC_FECHA                                                                                         FLC_C_FECHA
         ,SUM(FLC_URBANISMO_INTERNO)                                                                        FLC_C_URBANISMO_INTERNO
         ,SUM(FLC_UI_PRESUPUESTO)                                                                           FLC_C_UI_PRESUPUESTO
@@ -302,7 +300,7 @@ BEGIN
         ,SUM(FLC_TIR_EA)                              											           FLC_C_TIR_EA
         ,SUM(FLC_TIR_EM)                              											           FLC_C_TIR_EM
         ,SUM(FLC_TIR_MOD_EA)                            										           FLC_C_TIR_MOD_EA
-        ,SUM(FLC_C_C_TIR_MOD_EM)                                                                           FLC_C_C_TIR_MOD_EM
+        ,SUM(FLC_TIR_MOD_EM)                                                                           FLC_C_C_TIR_MOD_EM
          FROM tb_seleccion
              ,tb_flujo_caja
              ,tb_consolidados
@@ -641,104 +639,104 @@ INSERT INTO tb_c_flujo_caja (
   FLC_C_TIR_MOD_EA, 
   FLC_C_C_TIR_MOD_EM)
 VALUES (
-  v_fcc_c_cons_id,                                                                                
-   v_fcc_c_fecha,                                                                                  
-   v_fcc_c_urbanismo_interno_materiales_mobra,                                       			   
-   v_fcc_c_urbanismo_presupuesto,                                            					   
-   v_fcc_c_urbanismo_incrementos,                                          						   
-   v_fcc_c_costo_materiales_mano_obra,                                           				   
-   v_fcc_c_costo_materiales_presupuesto,                                                     	   
-   v_fcc_c_costo_materiales_incremento,                                            				   
-   v_fcc_c_gastos_imprevistos,                                               					   
-   v_fcc_c_costos_post_ventas,                                                 					   
-   v_fcc_c_costo_directo_construccion,                                           				   
-   v_fcc_c_honorarios_construccion,                                            					   
-   v_fcc_c_honorarios_construccion_honorarios_construccion,                              		   
-   v_fcc_c_honorarios_construccion_gastos_reembolsables,                                  		   
-   v_fcc_c_honorarios_interventoria,                                							   
-   v_fcc_c_honorarios_interventoria_honorarios_interventoria,                  				   
-   v_fcc_c_honorarios_interventoria_gastos_reembolsables,                      					   
-   v_fcc_c_otros_honorarios_disenios_otros,                             						   
-   v_fcc_c_otros_honorarios_disenios_otros_otros_honorarios_disenios_otros,            			   
-   v_fcc_c_otros_honorarios_disenios_otros_gastos_reembolsables,                   				   
-   v_fcc_c_impuestos_y_derechos,                                   								   
-   v_fcc_c_costo_total_de_construccion,                                							   
-   v_fcc_c_honorarios_de_gerencia,                                 								   
-   v_fcc_c_honorarios_de_gerencia_honorarios_gerencia,                       					   
-   v_fcc_c_honorarios_de_gerencia_gastos_reembolsables ,                       					   
-   v_fcc_c_honorarios_de_ventas,                                   								   
-   v_fcc_c_honorarios_de_ventas_honorarios_ventas,                         					       
-   v_fcc_c_honorarios_de_ventas_gastos_reembolsables ,                       					   
-   v_fcc_c_costos_promocion_ventas,                                  							   
-   v_fcc_c_costos_promocion_ventas_sala_ventas_unidades_modelo,                                    
-   v_fcc_c_costos_promocion_ventas_gastos_publicidad,                                              
-   v_fcc_c_costos_promocion_ventas_gastos_sala_ventas,                       				       
-   v_fcc_c_costos_promocion_ventas_administracion_unidades_x_entregar,               			   
-   v_fcc_c_costos_promocion_ventas_comisiones_de_ventas,                       				   	   
-   v_fcc_c_gastos_legales,                                     									   
-   v_fcc_c_gastos_legales_hipotecas_credito_constructor,                       				 	   
-   v_fcc_c_gastos_legales_notariales_registro_ventas,                        					   
-   v_fcc_c_gastos_legales_impuesto_predial_inmuebles_escrr_entr,                   				   
-   v_fcc_c_gastos_legales_impuesto_ICA,                                							   
-   v_fcc_c_costo_total_antes_terreno_y_financieros,                          					   
-   v_fcc_c_valor_terreno_urbanizado,                                 							   
-   v_fcc_c_valor_terreno_urbanizado_valor_adquisicion,                       					   
-   v_fcc_c_valor_terreno_urbanizado_costos_urbanismo_otros,                      			       
-   v_fcc_c_comisiones_fiducia,                                       							   
-   v_fcc_c_comisiones_fiducia_preventas_administracion,                              			   
-   v_fcc_c_comisiones_fiducia_nuevo_hogar,                                   					   
-   v_fcc_c_gastos_financieros,                                          						   
-   v_fcc_c_gastos_financieros_intereses_credito_constructor,                                       
-   v_fcc_c_gastos_financieros_otros_costos_del_credito,                                            
-   v_fcc_c_gastos_financieros_correcion_monetaria_construccion,                                    
-   v_fcc_c_gastos_financieros_impto_transacciones_financieras,                                     
-   v_fcc_c_otros_costos_y_gastos,                                                                  
-   v_fcc_c_otros_costos_y_gastos_costos_y_gastos_1,                                                
-   v_fcc_c_otros_costos_y_gastos_costos_y_gastos_2,                                                
-   v_fcc_c_otros_costos_y_gastos_costos_y_gastos_3,                                                
-   v_fcc_c_reintegros_IVA_proyectos_vis,                                                           
-   v_fcc_c_costo_total_directos_e_indirectos,                                                      
-   v_fcc_c_total_egresos_sibn_correccion_monetaria,                                                
-   v_fcc_c_desembolsos_creditos_constructor_y_terreno,                                             
-   v_fcc_c_abonos_extraordinarios_creditos_constructor_y_terreno,                                  
-   v_fcc_c_ingresos_por_ventas,                                                                    
-   v_fcc_c_ingresos_por_ventas_abonos_a_separacion ,                                               
-   v_fcc_c_ingresos_por_ventas_cartera_cuota_inicial,                                              
-   v_fcc_c_ingresos_por_ventas_saldo_cuota_inicial_abono_esscritura,                               
-   v_fcc_c_ingresos_por_ventas_subsidio_VIS_ahorro_programado,                                     
-   v_fcc_c_ingresos_por_ventas_excedentes_credito_conpradores ,                                    
-   v_fcc_c_ingresos_por_ventas_giros_directos_creditos_otras_entidades,                            
-   v_fcc_c_ingresos_por_ventas_ingresos_por_recibir_ventas_realizadas ,                            
-   v_fcc_c_otros_ingresos_por_ventas_intereses,                                                    
-   v_fcc_c_otros_ingresos_por_ventas_intereses_intereses_subrogacion ,                             
-   v_fcc_c_otros_ingresos_por_ventas_intereses_intereses_mora_no_aplica,                           
-   v_fcc_c_otros_ingresos_por_ventas_intereses_ofertas_comerciales_y_otros_ingresos ,              
-   v_fcc_c_rendimientos_fideicomiso,                                                               
-   v_fcc_c_otros_ingresos,                                                                         
-   v_fcc_c_otros_ingresos1,                                                                        
-   v_fcc_c_otros_ingresos2,                                                                        
-   v_fcc_c_otros_ingresos3,                                                                        
-   v_fcc_c_ingresos_totales,                                                                       
-   v_fcc_c_flujo_neto_de_caja_ai_y_creditos_tesoreria,                                             
-   v_fcc_c_flujo_acumulado_de_caja1,                                                                
-   v_fcc_c_costo_creditos_de_tesoreria,                                                            
-   v_fcc_c_impuesto_de_renta,                                                                      
-   v_fcc_c_flujo_neto_de_caja,                                                                     
-   v_fcc_c_flujo_acumulado_de_caja,                                                                
-   v_fcc_c_proyeccion_ventas_unidades,                                                             
-   v_fcc_c_ventas_brutas,                                                                          
-   v_fcc_c_precio_promedio,                                                                        
-   v_fcc_c_proyeccion_entregas_unidades,                                                           
-   v_fcc_c_proyeccion_escrituras_valor,                                                           
-   v_fcc_c_escrituras_unidades,                                                                    
-   v_fcc_c_proyeccion_subrogaciones_valor,                                                         
-   v_fcc_c_vpn,							                                                           
-   v_fcc_c_tir_ea, 						                                                           
-   v_fcc_c_tir_em,                                                                    			   
-   v_fcc_c_tir_mod_ea,                                                         					   
-   v_fcc_c_tir_mod_em
+  v_fcc_cons_id                                                                 ,               
+   v_fcc_fecha                                                                   ,               
+   v_fcc_urbanismo_interno_materiales_mobra                                      ,         
+   v_fcc_urbanismo_presupuesto                                                   ,     
+   v_fcc_urbanismo_incrementos                                                   ,     
+   v_fcc_costo_materiales_mano_obra                                              ,       
+   v_fcc_costo_materiales_presupuesto                                            ,             
+   v_fcc_costo_materiales_incremento                                             ,         
+   v_fcc_gastos_imprevistos                                                      ,     
+   v_fcc_costos_post_ventas                                                      ,       
+   v_fcc_costo_directo_construccion                                              ,       
+   v_fcc_honorarios_construccion                                                 ,       
+   v_fcc_honorarios_construccion_honorarios_construccion                         ,           
+   v_fcc_honorarios_construccion_gastos_reembolsables                            ,             
+   v_fcc_honorarios_interventoria                                                , 
+   v_fcc_honorarios_interventoria_honorarios_interventoria                       ,       
+   v_fcc_honorarios_interventoria_gastos_reembolsables                           ,       
+   v_fcc_otros_honorarios_disenios_otros                                         ,   
+   v_fcc_otros_honorarios_disenios_otros_otros_honorarios_disenios_otros         ,           
+   v_fcc_otros_honorarios_disenios_otros_gastos_reembolsables                    ,         
+   v_fcc_impuestos_y_derechos                                                    , 
+   v_fcc_costo_total_de_construccion                                             ,   
+   v_fcc_honorarios_de_gerencia                                                  , 
+   v_fcc_honorarios_de_gerencia_honorarios_gerencia                              ,     
+   v_fcc_honorarios_de_gerencia_gastos_reembolsables                             ,       
+   v_fcc_honorarios_de_ventas                                                    , 
+   v_fcc_honorarios_de_ventas_honorarios_ventas                                  ,       
+   v_fcc_honorarios_de_ventas_gastos_reembolsables                               ,     
+   v_fcc_costos_promocion_ventas                                                 , 
+   v_fcc_costos_promocion_ventas_sala_ventas_unidades_modelo                     ,               
+   v_fcc_costos_promocion_ventas_gastos_publicidad                               ,               
+   v_fcc_costos_promocion_ventas_gastos_sala_ventas                              ,       
+   v_fcc_costos_promocion_ventas_administracion_unidades_x_entregar              ,         
+   v_fcc_costos_promocion_ventas_comisiones_de_ventas                            ,         
+   v_fcc_gastos_legales                                                          ,  
+   v_fcc_gastos_legales_hipotecas_credito_constructor                            ,       
+   v_fcc_gastos_legales_notariales_registro_ventas                               ,     
+   v_fcc_gastos_legales_impuesto_predial_inmuebles_escrr_entr                    ,         
+   v_fcc_gastos_legales_impuesto_ICA                                             ,   
+   v_fcc_costo_total_antes_terreno_y_financieros                                 ,     
+   v_fcc_valor_terreno_urbanizado                                                , 
+   v_fcc_valor_terreno_urbanizado_valor_adquisicion                              ,     
+   v_fcc_valor_terreno_urbanizado_costos_urbanismo_otros                         ,         
+   v_fcc_comisiones_fiducia                                                      , 
+   v_fcc_comisiones_fiducia_preventas_administracion                             ,         
+   v_fcc_comisiones_fiducia_nuevo_hogar                                          ,     
+   v_fcc_gastos_financieros                                                      ,   
+   v_fcc_gastos_financieros_intereses_credito_constructor                        ,               
+   v_fcc_gastos_financieros_otros_costos_del_credito                             ,               
+   v_fcc_gastos_financieros_correcion_monetaria_construccion                     ,               
+   v_fcc_gastos_financieros_impto_transacciones_financieras                      ,               
+   v_fcc_otros_costos_y_gastos                                                   ,               
+   v_fcc_otros_costos_y_gastos_costos_y_gastos_1                                 ,               
+   v_fcc_otros_costos_y_gastos_costos_y_gastos_2                                 ,               
+   v_fcc_otros_costos_y_gastos_costos_y_gastos_3                                 ,               
+   v_fcc_reintegros_IVA_proyectos_vis                                            ,               
+   v_fcc_costo_total_directos_e_indirectos                                       ,               
+   v_fcc_total_egresos_sibn_correccion_monetaria                                 ,               
+   v_fcc_desembolsos_creditos_constructor_y_terreno                              ,               
+   v_fcc_abonos_extraordinarios_creditos_constructor_y_terreno                   ,               
+   v_fcc_ingresos_por_ventas                                                     ,               
+   v_fcc_ingresos_por_ventas_abonos_a_separacion                                 ,               
+   v_fcc_ingresos_por_ventas_cartera_cuota_inicial                               ,               
+   v_fcc_ingresos_por_ventas_saldo_cuota_inicial_abono_esscritura                ,               
+   v_fcc_ingresos_por_ventas_subsidio_VIS_ahorro_programado                      ,               
+   v_fcc_ingresos_por_ventas_excedentes_credito_conpradores                      ,               
+   v_fcc_ingresos_por_ventas_giros_directos_creditos_otras_entidades             ,               
+   v_fcc_ingresos_por_ventas_ingresos_por_recibir_ventas_realizadas              ,               
+   v_fcc_otros_ingresos_por_ventas_intereses                                     ,               
+   v_fcc_otros_ingresos_por_ventas_intereses_intereses_subrogacion               ,               
+   v_fcc_otros_ingresos_por_ventas_intereses_intereses_mora_no_aplica            ,               
+   v_fcc_otros_ingresos_por_ventas_intereses_ofertas_comerciales_y_otros_ingresos,               
+   v_fcc_rendimientos_fideicomiso                                                ,               
+   v_fcc_otros_ingresos                                                          ,               
+   v_fcc_otros_ingresos1                                                         ,               
+   v_fcc_otros_ingresos2                                                         ,               
+   v_fcc_otros_ingresos3                                                         ,               
+   v_fcc_ingresos_totales                                                        ,               
+   v_fcc_flujo_neto_de_caja_ai_y_creditos_tesoreria                              ,               
+   v_fcc_flujo_acumulado_de_caja1                                                 ,               
+   v_fcc_costo_creditos_de_tesoreria                                             ,               
+   v_fcc_impuesto_de_renta                                                       ,               
+   v_fcc_flujo_neto_de_caja                                                      ,               
+   v_fcc_flujo_acumulado_de_caja                                                 ,               
+   v_fcc_proyeccion_ventas_unidades                                              ,               
+   v_fcc_ventas_brutas                                                           ,               
+   v_fcc_precio_promedio                                                         ,               
+   v_fcc_proyeccion_entregas_unidades                                            ,               
+   v_fcc_proyeccion_escrituras_valor                                             ,               
+   v_fcc_escrituras_unidades                                                     ,               
+   v_fcc_proyeccion_subrogaciones_valor                                          ,               
+   v_fcc_vpn							                                         ,  
+   v_fcc_tir_ea 						                                         ,
+   v_fcc_tir_em                                                                  ,
+   v_fcc_tir_mod_ea                                                              , 
+   v_fcc_tir_mod_em                                                              
 );
    END LOOP obtener_c_flujo_caja_consolidado;         
   CLOSE c_flujo_caja_consolidado; 
-END//
+END
 DELIMITER ;

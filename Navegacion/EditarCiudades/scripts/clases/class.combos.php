@@ -6,15 +6,15 @@ class selects extends MySQL
 	
 	function cargarPaises()
 	{
-		$consulta = parent::consulta("SELECT PAI_ID, PAI_DESCRIPCION FROM tb_pais ORDER BY PAI_ID ASC");
+		$consulta = parent::consulta("select pai_id, pai_descripcion from tb_pais order by pai_id asc");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
 			$paises = array();
 			while($pais = parent::fetch_assoc($consulta))
 			{
-				$code = $pais["PAI_ID"];
-				$name = $pais["PAI_DESCRIPCION"];				
+				$code = $pais["pai_id"];
+				$name = $pais["pai_descripcion"];				
 				$paises[$code]=$name;
 			}
 			return $paises;
@@ -26,14 +26,14 @@ class selects extends MySQL
 	}
 	function cargarEstados()
 	{
-		$consulta = parent::consulta("SELECT CIU_DESCRIPCION FROM tb_ciudad WHERE CIU_PAI_ID = '".$this->code."'");
+		$consulta = parent::consulta("select ciu_descripcion from tb_ciudad where ciu_pai_id = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
 			$estados = array();
 			while($estado = parent::fetch_assoc($consulta))
 			{
-				$name = $estado["CIU_DESCRIPCION"];				
+				$name = $estado["ciu_descripcion"];				
 				$estados[$name]=$name;
 			}
 			return $estados;
@@ -46,14 +46,14 @@ class selects extends MySQL
 		
 	function cargarCiudades()
 	{
-		$consulta = parent::consulta("SELECT CIU_DESCRIPCION FROM tb_ciudad WHERE CIU_PAI_ID = '".$this->code."'");
+		$consulta = parent::consulta("select ciu_descripcion from tb_ciudad where ciu_pai_id = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{
 			$ciudades = array();
 			while($ciudad = parent::fetch_assoc($consulta))
 			{
-				$name = $ciudad["CIU_DESCRIPCION"];				
+				$name = $ciudad["ciu_descripcion"];				
 				$ciudades[$name]=$name;
 			}
 			return $ciudades;

@@ -1,0 +1,4 @@
+[29-Sep-2016 20:43:03 UTC] PHP Warning:  include(../../php/ABT-T000-conexion-U.php): failed to open stream: No such file or directory in /home/ikaconsultores/public_html/arbiter/Navegacion/Paises/ABT-T041-paises-D.php on line 96
+[29-Sep-2016 20:43:03 UTC] PHP Warning:  include(): Failed opening '../../php/ABT-T000-conexion-U.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/ikaconsultores/public_html/arbiter/Navegacion/Paises/ABT-T041-paises-D.php on line 96
+[29-Sep-2016 20:43:03 UTC] PHP Notice:  Undefined variable: mysqli in /home/ikaconsultores/public_html/arbiter/Navegacion/Paises/ABT-T041-paises-D.php on line 107
+[29-Sep-2016 20:43:03 UTC] PHP Fatal error:  Call to a member function query() on null in /home/ikaconsultores/public_html/arbiter/Navegacion/Paises/ABT-T041-paises-D.php on line 107

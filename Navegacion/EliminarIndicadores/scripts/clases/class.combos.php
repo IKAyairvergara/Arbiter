@@ -46,7 +46,7 @@ class selects extends MySQL
 		
 	function cargarCiudades()
 	{
-		$consulta = parent::consulta("select ciu_descripcion from tb_ciudad where ciu_pai_id = '".$this->code."'");
+		$consulta = parent::consulta("SELECT CIU_DESCRIPCION FROM tb_ciudad WHERE CIU_PAI_ID = '".$this->code."'");
 		$num_total_registros = parent::num_rows($consulta);
 		if($num_total_registros>0)
 		{

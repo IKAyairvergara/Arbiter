@@ -35,6 +35,7 @@ DECLARE v_fct_c_gl_gastos_notariales_registro_compra_terreno DECIMAL(10,0);
 DECLARE v_fct_c_gl_impuesto_predial DECIMAL(10,0);
 DECLARE v_fct_c_gastos_financieros DECIMAL(10,0);
 DECLARE v_fct_c_gf_intereses_credito_terreno DECIMAL(10,0);
+
 DECLARE v_fct_c_gf_correcion_monetaria DECIMAL(10,0);
 DECLARE v_fct_c_gf_otros_costos_credito_terreno DECIMAL(10,0);
 DECLARE v_fct_c_gf_impuesto_transacciones_financieras DECIMAL(10,0);
@@ -165,8 +166,7 @@ SELECT CONS.CONS_ID ,
   
    FROM tb_seleccion ,tb_flujo_caja_terreno ,
    tb_consolidados
-   WHERE SEL_DET_PRO_ID IS NOT 
-   NULL
+   WHERE SEL_DET_PRO_ID IS NOT NULL
      AND SEL_DET_PRO_ID = FCT_DET_PRO_ID
      AND SEL_DET_ETAPA = FCT_DET_ETAPA
      AND SEL_MODELO = FCT_MODELO

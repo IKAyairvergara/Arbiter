@@ -1,0 +1,32 @@
+[30-Sep-2016 15:39:51 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[30-Sep-2016 18:13:01 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 06:50:23 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 06:50:43 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 06:51:38 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 13:25:18 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 13:26:00 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 13:27:19 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 13:27:35 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 63
+[02-Oct-2016 08:30:15 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T059-resumen-D.php on line 761
+[02-Oct-2016 08:30:16 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:30:16 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T059-resumen-D.php on line 761
+[02-Oct-2016 08:30:17 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:30:22 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T059-resumen-D.php on line 761
+[02-Oct-2016 08:30:23 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:30:26 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T059-resumen-D.php on line 761
+[02-Oct-2016 08:30:27 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:30:27 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T059-resumen-D.php on line 761
+[02-Oct-2016 08:30:28 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 13:30:41 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T053-flujoCajaTerrenoPDF-D.php on line 69
+[02-Oct-2016 08:30:54 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T061-resumenPDF-D.php on line 771
+[02-Oct-2016 13:34:20 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T052-flujoCajaTerrenoExcel-D.php on line 65
+[02-Oct-2016 08:39:25 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:39:28 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:39:35 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:40:12 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 08:40:14 America/Mexico_City] PHP Fatal error:  Class 'ZipArchive' not found in /home/ikaconsultores/public_html/arbiter/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php on line 227
+[02-Oct-2016 13:58:44 UTC] PHP Notice:  Trying to get property of non-object in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T053-flujoCajaTerrenoPDF-D.php on line 69
+[02-Oct-2016 08:59:32 America/Mexico_City] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/mPDF5.7/mpdf.php on line 3512
+[02-Oct-2016 09:00:21 America/Mexico_City] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/mPDF5.7/mpdf.php on line 23039
+[02-Oct-2016 09:25:19 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T059-resumen-D.php on line 761
+[02-Oct-2016 09:26:04 America/Mexico_City] PHP Warning:  Division by zero in /home/ikaconsultores/public_html/arbiter/Navegacion/Informes/ABT-T059-resumen-D.php on line 761

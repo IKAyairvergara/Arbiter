@@ -3377,4 +3377,5 @@ v_res_c_eje_cvg
   CLOSE c_resumen_consolidado; 
  
 END//
+
 DELIMITER ;

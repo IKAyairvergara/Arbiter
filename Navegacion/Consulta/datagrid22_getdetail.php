@@ -6,28 +6,30 @@
   
   $rs = mysql_query("
             SELECT 
-                          SEL_DET_PRO_ID           COD,
+                            SEL_DET_PRO_ID           COD,
                             PRO_DESCRIPCION          NOMBRE,
                             SEL_MODELO               MODELO,
                             SEL_DET_ETAPA            ETAPA      
 
-            FROM TB_SELECCION,
-                             TB_PROYECTO 
+            FROM tb_seleccion,
+                 tb_proyecto 
                         WHERE 
                              SEL_DET_PRO_ID=PRO_ID
-						AND 
+						AND
 						SEL_CONS_ID='$itemid'
                     UNION 
                       SELECT 
-                         CONS_ID                    COD,
+                           CONS_ID                    COD,
                            CONS_DESCRIPCION           NOMBRE,
                            'N/A '                     MODELO,
                            'N/A '                     ETAPA                         
-              FROM TB_SELECCION,
-                             TB_CONSOLIDADOS 
+              FROM tb_seleccion,
+                             tb_consolidados 
                         WHERE 
                             SEL_CONS_ID=CONS_ID 
-						AND SEL_CONS_ID='$itemid'                        
+						AND 
+						
+						SEL_CONS_ID='$itemid'                        
                              
                             ");
   $items = array();

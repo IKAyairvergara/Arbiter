@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 					copy($tmpEXCEL,$urlnueva);	
 					require_once '../../PHPExcel/Classes/PHPExcel/IOFactory.php';
 					$objPHPExcel = PHPExcel_IOFactory::load('../../xls/55CN-001-CTRL_09.xls');
-					include "../../php/conexion.php";	
+					include "../php/conexion.php";	
 					$tb_proyecto = "SELECT * FROM tb_proyecto WHERE PRO_ID = '$proyecto'";
 					$resultado_tb=$mysqli -> query($tb_proyecto);
 					$nom_pro;
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 							}
 
 
-							$check_overwrite_fct= "SELECT * FROM tb_flujo_caja_terreno WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
+							$check_overwrite_fct= "SELECT * FROM tb_flujo_caja_TERRENO WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
 							$check_overwrite_fc="SELECT * FROM tb_flujo_caja WHERE F_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa";
 
 							//Verificacion si el usuario indico la sobreescritura de los datos
@@ -200,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 							//Eliminacion de informacion para luego reemplazar
 							$delete_fct="DELETE  FROM tb_flujo_caja WHERE FLC_DET_PRO_ID= '$proyecto' AND FLC_DET_ETAPA=$etapa AND FLC_MODELO='$modelo' ";
-							$delete_flc="DELETE  FROM tb_flujo_caja_terreno WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa AND FCT_MODELO='$modelo'";
+							$delete_flc="DELETE  FROM tb_flujo_caja_TERRENO WHERE FCT_DET_PRO_ID= '$proyecto' AND FCT_DET_ETAPA=$etapa AND FCT_MODELO='$modelo'";
 							$delete_res="DELETE  FROM tb_resumen WHERE RES_DET_PRO_ID= '$proyecto' AND RES_DET_ETAPA=$etapa AND RES_MODELO='$modelo'";
 							$delete_ofl="DELETE  FROM tb_otros_flujos WHERE OFL_DET_PRO_ID= '$proyecto' AND OFL_DET_ETAPA=$etapa AND OFL_MODELO='$modelo'";
 							$delete_mod="DELETE  FROM tb_modelos WHERE MOD_DET_PRO_ID= '$proyecto' AND MOD_DET_ETAPA=$etapa AND MOD_MODELO='$modelo'";
@@ -680,7 +680,7 @@ echo 'Archivos exitosos '.$exito. '<br>';
 								
 								//Insercion de datos
 								
-								$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO tb_flujo_caja_terreno(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
+								$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO tb_flujo_caja_TERRENO(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
 								FCT_VALOR_ADQUISICION_PAGOS, FCT_VAP_ANTICIPO_OTROS_PAGOS, FCT_VAP_ABONOS_PACTADOS_POR_VENTAS, 
 								FCT_COSTOS_URBANISMO, FCT_CU_INCREMENTOS, FCT_CU_INVERSION_MENSUAL, 
 								FCT_COSTOS_INFRAESTRUCTURA, FCT_CI_INCREMENTOS, FCT_CI_RECUPERACION_COSTOS, 
