@@ -616,7 +616,7 @@ input[type=file]{
 							else{
 							IF($resultado_mod==TRUE){
 								
-										echo '<script type="text/javascript">alert("Se ha subido el proyecto '.$nom_pro.' y la etapa '.$etapa.' ");</script>';
+										echo '<script type="text/javascript">alert("Se ha subido el proyecto '.$nom_pro.' y la etapa '.$etapa.'");</script>';
 							}
 							
 							}
@@ -690,10 +690,10 @@ input[type=file]{
 								
 							}
 							else{
-							IF($resultado_mod==TRUE){
+								IF($resultado_mod==TRUE){
 								
-											echo '<script type="text/javascript">alert("Se ha subido el proyecto '.$nom_pro.' y la etapa '.$etapa' ");</script>';
-						}
+										// echo '<script type="text/javascript">alert("Se ha subido el proyecto '.$nom_pro.' y la etapa '.$etapa.'");</script>';
+							}
 							
 							}
 							
@@ -790,11 +790,9 @@ input[type=file]{
     						}
 
 						}
-				########## FIN -- FUNCION CONVERSION DE FECHAS -- FIN ################
-				// Fechas Resumen	
-				
-				
-				function cambiarFecha1($fecha){
+						
+						
+							function cambiarFecha1($fecha){
 							
 							list($mes,$anio) = explode("-",$fecha);
 							switch ($mes) {
@@ -853,10 +851,8 @@ input[type=file]{
     						}
 
 						}
-						
-						//Fechas resumeen
-						
-				
+				########## FIN -- FUNCION CONVERSION DE FECHAS -- FIN ################
+					
 				function FlujoCajaTerreno($objPHPExcel,$proyecto,$etapa,$modelo,$mysqli,$error_insert){
 					
 							
@@ -885,7 +881,7 @@ input[type=file]{
 								$fct_vap_anticipo_otros_pagos = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 6)->getValue();	
 								$fct_vap_abonos_pactados_por_ventas = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 7)->getValue();	
 								$fct_costos_urbanismo = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 8)->getValue();
-								$fct_cu_inversion_mensual = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 9)->getValue();
+								$fct_cu_presupuesto = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 9)->getValue();
 								$fct_cu_incrementos = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 10)->getValue();
 								$fct_costos_infraestructura = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 11)->getValue();
 								$fct_ci_inversion_mensual = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow($fct_i, 12)->getValue();
@@ -1141,7 +1137,7 @@ input[type=file]{
 								
 								$envio_Tb_Flujo_Caja_Terreno="	INSERT INTO tb_flujo_caja_terreno(FCT_DET_PRO_ID, FCT_DET_ETAPA, FCT_MODELO, FCT_FECHA, 
 								FCT_VALOR_ADQUISICION_PAGOS, FCT_VAP_ANTICIPO_OTROS_PAGOS, FCT_VAP_ABONOS_PACTADOS_POR_VENTAS, 
-								FCT_COSTOS_URBANISMO, FCT_CU_INCREMENTOS, FCT_CU_INVERSION_MENSUAL, 
+								FCT_COSTOS_URBANISMO,FCT_CU_PRESUPUESTO, FCT_CU_INCREMENTOS, 
 								FCT_COSTOS_INFRAESTRUCTURA, FCT_CI_INCREMENTOS, FCT_CI_RECUPERACION_COSTOS, 
 								FCT_CI_INVERSION_MENSUAL, FCT_GASTOS_IMPREVISTOS, FCT_COSTO_DIRECTO_URBANISMO, FCT_HONORARIOS_CONSTRUCCION, 
 								FCT_HONORARIOS_INTERVENTORIA, FCT_OTROS_HONORARIOS_TERCEROS, FCT_LICENCIA_URBANISMO_OTROS_COSTOS, FCT_GASTOS_LEGALES, 
@@ -1157,7 +1153,7 @@ input[type=file]{
 								 
 								 VALUES ( '$fct_id',$fct_det_etapa,'$fct_modelo',DATE_FORMAT('$fct_fecha','%d/%m/%y'),
 								 $fct_valor_adquisicion,$fct_vap_anticipo_otros_pagos,$fct_vap_abonos_pactados_por_ventas,
-								 $fct_costos_urbanismo,$fct_cu_incrementos,$fct_cu_inversion_mensual,
+								 $fct_costos_urbanismo,$fct_cu_presupuesto,$fct_cu_incrementos,
 								 $fct_costos_infraestructura,$fct_ci_incrementos,$fct_ci_recuperacion_costos,
 								 $fct_ci_inversion_mensual,$fct_gastos_imprevistos,$fct_costo_directo_urbanismo,$fct_honorarios_construccion,
 								 $fct_honorarios_interventoria,$fct_otros_honorarios_terceros,$fct_licencia_urbanismo_otros_costos,$fct_gastos_legales,
@@ -1685,6 +1681,7 @@ input[type=file]{
 							$res_det_etapa=$etapa;
 							$res_modelo=$modelo;
 							$res_temp= $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 3)->getValue();
+							
 							list($temp_null, $res_fecha)= explode("  ",$res_temp);
 							
 								$res_fecha2=cambiarFecha1($res_fecha);
@@ -3359,7 +3356,7 @@ input[type=file]{
 							if(!$resultado_res= $mysqli -> query($envio_Tb_Resumen)){
 								
 								$error_insert=$error_insert+1;
-							 // echo('There was an error running the query [' . $mysqli->error . '].</br>');
+							// echo('There was an error running the query [' . $mysqli->error . '].</br>');
 							}
 							
 							//----------------------------------RESUMEN---------------------
@@ -3379,13 +3376,11 @@ input[type=file]{
 									$res_det_etapa=$etapa;
 									$res_modelo=$modelo;
 									$res_temp= $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 3)->getValue();
-									
-								list($temp_null, $res_fecha)= explode("  ",$res_temp);
+									list($temp_null, $res_fecha)= explode("  ",$res_temp);
 							
 								$res_fecha2=cambiarFecha1($res_fecha);
 								
 								$res_fecha=$res_fecha2;
-								
 									$res_total_unidades = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 6)->getValue();	
 									$res_area_promedio = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 7)->getValue();	
 									$res_total_area_construida = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 8)->getValue();
@@ -5341,17 +5336,12 @@ input[type=file]{
 										
 									if(!$resultado_res= $mysqli -> query($envio_Tb_Resumen)){
 									$error_insert=$error_insert+1;
-									 // echo('There was an error running the query [' . $mysqli->error . '].</br>');
+									// echo('There was an error running the query [' . $mysqli->error . '].</br>');
 									}
 									
 						}
 					}
-		
-function checkstring($checkvar){
-	if($checkvar==null||is_string ($checkvar)){
-		$checkvar=0;}
-}
-		
+
 				function OtrosFlujos($objPHPExcel,$ofl_i,$ofl_var,$proyecto,$etapa,$modelo,$mysqli,$error_insert){
 					
 					require_once '../../PHPExcel/Classes/PHPExcel/IOFactory.php';
