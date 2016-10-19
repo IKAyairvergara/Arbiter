@@ -171,7 +171,6 @@ input[type=file]{
 								
     							if($sel== '1'){
     							    //---Paises
-									 $insert_pai_error="INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ('tb_pais','$error','NOW()')";
 									
 									
 									$PAI_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
@@ -187,14 +186,13 @@ input[type=file]{
 								$insert_pai="INSERT INTO `tb_pais`(`PAI_ID`, `PAI_DESCRIPCION`) VALUES ('$PAI_ID_CHECK','$PAI_DES_CHECK')";
 								
 								if(!$resultado_pai= $mysqli -> query($insert_pai)){
-									 $error='There was an error running the query [' . $mysqli->error . ']';
+									 $error=' ' . $mysqli->error;
 									 
 									
-									 
+									 $insert_pai_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_pais","'.$error.'","NOW()")';
 									 $resultado_pai_e= $mysqli -> query($insert_pai_error);
-									 
-									}
-								
+									
+								}
 								}
 								
 								
@@ -209,6 +207,8 @@ input[type=file]{
 									$error='No DESC';
 									
 								}
+								  $insert_pai_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_pais","$error","NOW()")';
+										
 									$resultado_pai_e= $mysqli -> query($insert_pai_error);
 									
 								}
@@ -221,8 +221,7 @@ input[type=file]{
     							if($sel== '2'){
     								 //---Ciudades
 									 
-    								$insert_ciu_error="INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ('tb_ciudad','$error','NOW()')";
-									
+    								
 									$CUI_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
 									$CUI_DES_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ch)->getValue();	
 									$CUI_PAI_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $ch)->getValue();	
@@ -238,8 +237,10 @@ input[type=file]{
 								$insert_cui="INSERT INTO `tb_ciudad`(`CIU_ID`, `CIU_DESCRIPCION`, `CIU_PAI_ID`) VALUES ('$CUI_ID_CHECK','$CUI_DES_CHECK','$CUI_PAI_CHECK')";
 								
 								if(!$resultado_pai= $mysqli -> query($insert_cui)){
-									 $error=$mysqli->error;
-									 
+									$error=' ' . $mysqli->error;
+									
+									$insert_ciu_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_ciudad","'.$error.'","NOW()")';
+									
 									 $resultado_cui_e= $mysqli -> query($insert_ciu_error);
 									 
 									}
@@ -260,6 +261,8 @@ input[type=file]{
 									$error='No ID Pais';
 									
 								}
+								$insert_ciu_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_ciudad","'.$error.'","NOW()")';
+									
 									 $resultado_cui_e= $mysqli -> query($insert_ciu_error);
 									
 								}
@@ -271,8 +274,7 @@ input[type=file]{
 								
     							if($sel== '3'){
     								 //---Segmentos
-    								$insert_seg_error="INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ('tb_segmento','$error','NOW()')";
-									
+    								
 									
 									$SEG_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
 									$SEG_DES_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ch)->getValue();	
@@ -289,6 +291,8 @@ input[type=file]{
 								if(!$resultado_pai= $mysqli -> query($insert_seg)){
 									 $error=$mysqli->error;
 									 
+									 $insert_seg_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_segmento","'.$error.'","NOW()")';
+									
 									 $resultado_seg_e= $mysqli -> query($insert_seg_error);
 									 
 									}
@@ -307,6 +311,8 @@ input[type=file]{
 									$error='No DESC';
 									
 								}
+								 $insert_seg_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_segmento","'.$error.'","NOW()")';
+									
 									$resultado_seg_e= $mysqli -> query($insert_seg_error);
 									
 								}
@@ -319,7 +325,6 @@ input[type=file]{
 								
     							if($sel== '4'){
     								 //---Tipo Participacion
-									$insert_par_error="INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ('tb_participacion','$error','NOW()')";
 									
 									
 									$PAR_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
@@ -336,6 +341,9 @@ input[type=file]{
 								
 								if(!$resultado_pai= $mysqli -> query($insert_par)){
 									 $error=$mysqli->error;
+									 
+									  $insert_par_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_participacion","'.$error.'","NOW()")';
+									
 									 
 									 $resultado_par_e= $mysqli -> query($insert_par_error);
 									 
@@ -355,6 +363,8 @@ input[type=file]{
 									$error='No DESC';
 									
 								}
+								 $insert_par_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_participacion","'.$error.'","NOW()")';
+									
 									$resultado_par_e= $mysqli -> query($insert_par_error);
 									
 								}
@@ -368,7 +378,6 @@ input[type=file]{
     								 //---Proyectos
 									 
 									 
-									 	$insert_pro_error="INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ('tb_proyecto','$error','NOW()')";
 									
 									$PRO_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
 									$PRO_DES_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ch)->getValue();	
@@ -389,6 +398,8 @@ input[type=file]{
 								if(!$resultado_pai= $mysqli -> query($insert_pro)){
 									 $error=$mysqli->error;
 									 
+									  $insert_pro_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_proyecto","'.$error.'","NOW()")';
+									
 									 $resultado_cui_e= $mysqli -> query($insert_pro_error);
 									 
 									}
@@ -413,6 +424,9 @@ input[type=file]{
 									$error='No ID Ciudad';
 									
 								}
+								
+								 $insert_pro_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_proyecto","'.$error.'","NOW()")';
+									
 									 $resultado_cui_e= $mysqli -> query($insert_pro_error);
 									
 								}
@@ -427,7 +441,6 @@ input[type=file]{
 								
     							 //---Detalle Proyectos.
 								
-								$insert_det_pro_error="INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ('tb_detalle_proyecto`','$error','NOW()')";
 									
 									$DES_PRO_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
 									$DES_PRO_DES_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ch)->getValue();	
@@ -447,6 +460,8 @@ input[type=file]{
 								
 								if(!$resultado_pai= $mysqli -> query($insert_det_pro)){
 									 $error=$mysqli->error;
+									  $insert_det_pro_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_detalle_proyecto","'.$error.'","NOW()")';
+									
 									 
 									 $resultado_cui_e= $mysqli -> query($insert_det_pro_error);
 									 
@@ -472,6 +487,8 @@ input[type=file]{
 									$error='No ID Participacion';
 									
 								}
+								  $insert_det_pro_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_detalle_proyecto","'.$error.'","NOW()")';
+									
 									 $resultado_cui_e= $mysqli -> query($insert_det_pro_error);
 									
 								}
@@ -484,8 +501,7 @@ input[type=file]{
     								
     							if($sel== '7'){
     								 //---Indicadores
-								 	$insert_ind_error="INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ('tb_indicador``','$error','NOW()')";
-									
+								 	
 									$IND_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
 									$IND_DES_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ch)->getValue();	
 									$IND_SEG_ID = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $ch)->getValue();	
@@ -504,7 +520,8 @@ input[type=file]{
 								
 								if(!$resultado_pai= $mysqli -> query($insert_cui)){
 									 $error=$mysqli->error;
-									 
+									   $insert_ind_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_indicador","'.$error.'","NOW()")';
+									
 									 $resultado_cui_e= $mysqli -> query($insert_ind_error);
 									 
 									}
@@ -529,6 +546,8 @@ input[type=file]{
 									$error='No ID Participacion';
 									
 								}
+								 $insert_ind_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_indicador","'.$error.'","NOW()")';
+									
 									 $resultado_cui_e= $mysqli -> query($insert_ind_error);
 									
 								}
@@ -557,6 +576,9 @@ input[type=file]{
 								$insert_ser="INSERT INTO `tb_servidor`(`SER_PAI_CODIGO`, `SER_RUTA`) VALUES ('$SER_ID_CHECK','$SER_RUTA_CHECK')";
 								
 								if(!$resultado_pai= $mysqli -> query($insert_ser)){
+									
+									 $insert_ser_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_servidor","'.$error.'","NOW()")';
+									
 									 $error=$mysqli->error;
 									 
 									 $resultado_pai_e= $mysqli -> query($insert_ser_error);
@@ -577,6 +599,8 @@ input[type=file]{
 									$error='No Ruta';
 									
 								}
+								$insert_ser_error='INSERT INTO `tb_log`(`LOG_TABLA`, `LOG_ERROR`, `LOG_FECHA`) VALUES ("tb_servidor","'.$error.'","NOW()")';
+									
 									$resultado_pai_e= $mysqli -> query($insert_ser_error);
 									
 								}
@@ -591,6 +615,9 @@ input[type=file]{
 								echo '<script type="text/javascript">alert("Se ha subido satisfactoriamente los datos");</script>';
 								}
 				}
+				
+					echo '<script type="text/javascript">alert("Error en el tipo de archivo");</script>';
+							
 				
 				}
 				
