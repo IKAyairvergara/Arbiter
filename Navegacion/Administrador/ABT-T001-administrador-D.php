@@ -121,7 +121,7 @@
 	</div>
 	<div style="background-image:url(usuariosActivos_15.png); position:absolute; left:124px; top:660px; width:231px; height:1px;" title="">
 	</div>
-	<div id="p3" style="background-image:url(usuariosActivos_16.png); " onclick="location.href='../EditarUsuario/ABT-T028-editarUsuario-U';" title="">
+	<div id="p3" style="background-image:url(usuariosActivos_16.png); " onclick="location.href='../EditarUsuario/ABT-T028-editarUsuario-U.php';" title="">
 	
 	</div>
 	<div style="background-image:url(usuariosActivos_17.png); position:absolute; left:431px; top:660px; width:557px; height:108px;" title="">

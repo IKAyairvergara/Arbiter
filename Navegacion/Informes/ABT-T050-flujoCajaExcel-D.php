@@ -3,7 +3,7 @@
 	
 	$Example=$_GET['dato']; 
 	
-	    $consulta = "SELECT FLC_C_CONS_ID,
+	    $consulta = "SELECT DATE_FORMAT(FLC_C_FECHA,'%m/%Y'),
 	     DATE_FORMAT(FLC_C_FECHA, '%b/%y'),
 	     CASE WHEN FLC_C_URBANISMO_INTERNO = 0 THEN '' ELSE FLC_C_URBANISMO_INTERNO END FLC_C_URBANISMO_INTERNO,
 	     CASE WHEN FLC_C_UI_PRESUPUESTO = 0 THEN '' ELSE FLC_C_UI_PRESUPUESTO END FLC_C_UI_PRESUPUESTO,
@@ -101,6 +101,10 @@
 	     CASE WHEN FLC_C_C_TIR_MOD_EM = 0 THEN '' ELSE FLC_C_C_TIR_MOD_EM END FLC_C_C_TIR_MOD_EM
 	     FROM tb_c_flujo_caja
  	     WHERE FLC_C_CONS_ID = '$Example'";
+		 
+		 
+		 $cons="SELECT RES_C_VENTAS_BRUTAS,RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO FROM tb_c_resumen WHERE RES_C_CONS_ID = '$Example'"; 
+
 
 	$resultado = $conexion->query($consulta);
 	if($resultado->num_rows > 0 ){
@@ -352,113 +356,183 @@
 		
 		$objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setName('Arial');
 		$objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(10);
+		
+		// CALCULOS TIR Y VPN
+		#VPN: WACC  (ultimo, indicadores ) VPN: VNA(WACC; FLUJO NETO CAJA)
+					 #Calculo VPN
+					 $wacc = "SELECT IND_VALOR FROM tb_indicador ORDER BY IND_FECHA";
+					 $datos= $mysqli->query($wacc);
+					 
+					 if ($datos) {
+						  while ($fila = $datos->fetch_row()) {  
+							  $indicador = $fila[0];
+						  }
+					 }
+					else{
+						 $indicador = 0;
+					 }
+					#TIR Efeciva Mensual
+					 #C52 / CONS_PER (Mensual, 12, Bimensal, 6, Trimestral, 4, Anual, 1, Quinquenio, 
+					 $periodo = "SELECT CONS_PER,CONS_IND_VALOR_REE FROM tb_consolidados WHERE CONS_ID ='$Example'";
+					 $consulta= $mysqli->query($periodo);
+$moneda=1;					 
+				     if ($consulta) {
+						  while ($fila = $consulta->fetch_row()) {  
+							  $periodicidad = $fila[0];
+							  $moneda=$fila[1];
+						  }
+					 }
+					else{
+						 $periodicidad = 0;
+					 }
+					 if($moneda==0){
+						 $moneda=1;
+					 }
+					 
+					 switch ($periodicidad) {
+						case 'Mensual':
+							$periodo = 12;
+							break;
+						case 'Bimensual':
+							$periodo = 6;
+							break;
+						case 'Trimestral':
+							$periodo = 4;
+							break;
+						case 'Anual':
+							$periodo = 1;
+							break;
+						case 'Quinquenio':
+							$periodo = 5;
+							break;
+							
+					}
+					
+					
+					// RESUMEN
+		
+				 $consulta1= $mysqli->query($cons); 
+				     if ($consulta1) {
+						  while ($fila1 = $consulta1->fetch_row()) {  
+							  $ven_bru = $fila1[0];
+							  $util_ter= $fila1[1];
+						  }
+					 }
+					else{
+						 $ven_bru = 0;
+					 }
+		
+		
+		// FIN CALCULOS TIR Y VPN
+		
 		while ($fila = $resultado->fetch_array()) {
 			$objPHPExcel->setActiveSheetIndex(0) 
+					 ->setCellValue($columnas[$c].'2',  '1/'.$fila["DATE_FORMAT(FLC_C_FECHA,'%m/%Y')"])
 				     ->setCellValue($columnas[$c].'3',   $fila["DATE_FORMAT(FLC_C_FECHA, '%b/%y')"])	
-					 ->setCellValue($columnas[$c].'5',   $fila['FLC_C_URBANISMO_INTERNO'])
-					 ->setCellValue($columnas[$c].'6',   $fila['FLC_C_UI_PRESUPUESTO'])
-					 ->setCellValue($columnas[$c].'7',   $fila['FLC_C_UI_INCREMENTOS'])
-					 ->setCellValue($columnas[$c].'8',   $fila['FLC_C_COSTOS_MATERIALES_MANO_OBRA'])
-					 ->setCellValue($columnas[$c].'9',   $fila['FLC_C_CM_PRESUPUESTO'])
-					 ->setCellValue($columnas[$c].'10',  $fila['FLC_C_CM_INCREMENTOS'])
-					 ->setCellValue($columnas[$c].'11',  $fila['FLC_C_GASTOS_IMPREVISTOS'])
-					 ->setCellValue($columnas[$c].'12',  $fila['FLC_C_COSTOS_POSTVENTA'])
-					 ->setCellValue($columnas[$c].'13',  $fila['FLC_C_COSTO_DIRECTO_CONSTRUCCION'])
-					 ->setCellValue($columnas[$c].'14',  $fila['FLC_C_HONORARIOS_CONSTRUCCION'])
-					 ->setCellValue($columnas[$c].'15',  $fila['FLC_C_HC_HONORARIOS_CONSTRUCCION'])
-					 ->setCellValue($columnas[$c].'16',  $fila['FLC_C_HC_GASTOS_REEMBOLSABLES'])
-					 ->setCellValue($columnas[$c].'17',  $fila['FLC_C_HONORARIOS_INTERVENTORIA'])
-					 ->setCellValue($columnas[$c].'18',  $fila['FLC_C_HI_HONORARIOS_INTERVENTORIA'])
-					 ->setCellValue($columnas[$c].'19',  $fila['FLC_C_HI_GASTOS_REEMBOSABLES'])
-					 ->setCellValue($columnas[$c].'20',  $fila['FLC_C_OTROS_HONORARIOS'])
-					 ->setCellValue($columnas[$c].'21',  $fila['FLC_C_OH_OTROS_HONORARIOS'])
-					 ->setCellValue($columnas[$c].'22',  $fila['FLC_C_OH_GASTOS_REEMBOLSABLES'])
-					 ->setCellValue($columnas[$c].'23',  $fila['FLC_C_IMPUESTOS_Y_DERECHOS'])
-					 ->setCellValue($columnas[$c].'24',  $fila['FLC_C_COSTO_TOTAL_CONSTRUCCION'])
-					 ->setCellValue($columnas[$c].'25',  $fila['FLC_C_HONORARIOS_GERENCIA'])
-					 ->setCellValue($columnas[$c].'26',  $fila['FLC_C_HG_HONORARIOS_GERENCIA'])
-					 ->setCellValue($columnas[$c].'27',  $fila['FLC_C_HG_GASTOS_REEMBOLSABLES'])
-					 ->setCellValue($columnas[$c].'28',  $fila['FLC_C_HONORARIOS_VENTAS'])
-					 ->setCellValue($columnas[$c].'29',  $fila['FLC_C_HV_HONORARIOS_VENTAS'])
-					 ->setCellValue($columnas[$c].'30',  $fila['FLC_C_HV_GASTOS_REEMBOLSABLES'])
-					 ->setCellValue($columnas[$c].'31',  $fila['FLC_C_COSTOS_PROMOCION_Y_VENTAS'])
-					 ->setCellValue($columnas[$c].'32',  $fila['FLC_C_CP_SALA_DE_VENTAS_UNIDADES_MODELO'])
-					 ->setCellValue($columnas[$c].'33',  $fila['FLC_C_CP_GASTOS_PUBLICIDAD'])
-					 ->setCellValue($columnas[$c].'34',  $fila['FLC_C_CP_GASTOS_SALA_DE_VENTAS'])
-					 ->setCellValue($columnas[$c].'35',  $fila['FLC_C_CP_ADMINISTRACION_UNIDADES_POR_ENTREGAR'])
-					 ->setCellValue($columnas[$c].'36',  $fila['FLC_C_CP_COMISIONES_VENTAS'])
-					 ->setCellValue($columnas[$c].'37',  $fila['FLC_C_GASTOS_LEGALES'])
-					 ->setCellValue($columnas[$c].'38',  $fila['FLC_C_GL_HIPOTECAS_CREDITO_CONSTRUCTOR'])
-					 ->setCellValue($columnas[$c].'39',  $fila['FLC_C_GL_NOTARIALES_REGISTRO_DE_VENTAS'])
-					 ->setCellValue($columnas[$c].'40',  $fila['FLC_C_GL_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURA'])
-					 ->setCellValue($columnas[$c].'41',  $fila['FLC_C_GL_IMPUESTO_ICA'])
-					 ->setCellValue($columnas[$c].'42',  $fila['FLC_C_COSTO_TOTAL_ANTES_TERRENO_Y_FINANCIEROS'])
-					 ->setCellValue($columnas[$c].'43',  $fila['FLC_C_VALOR_TERRENO_URBANIZADO'])
-					 ->setCellValue($columnas[$c].'44',  $fila['FLC_C_VT_VALOR_ADQUISICION'])
-					 ->setCellValue($columnas[$c].'45',  $fila['FLC_C_VT_COSTOS_URBANISMO_Y_OTROS'])
-					 ->setCellValue($columnas[$c].'46',  $fila['FLC_C_COMISIONES_FIDUCIA'])
-					 ->setCellValue($columnas[$c].'47',  $fila['FLC_C_CF_PREVENTAS_Y_ADMINISTRACION'])
-					 ->setCellValue($columnas[$c].'48',  $fila['FLC_C_CF_NUEVOGAR'])
-					 ->setCellValue($columnas[$c].'49',  $fila['FLC_C_GASTOS_FINANCIEROS'])
-					 ->setCellValue($columnas[$c].'50',  $fila['FLC_C_GF_INTERESES_CREDITOS_CONSTRUCTOR'])
-					 ->setCellValue($columnas[$c].'51',  $fila['FLC_C_GF_OTROS_COSTOS_CREDITO'])
-					 ->setCellValue($columnas[$c].'52',  $fila['FLC_C_GF_CORRECCION_MONETARIA_CONSTRUCCION'])
-					 ->setCellValue($columnas[$c].'53',  $fila['FLC_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF'])
-					 ->setCellValue($columnas[$c].'54',  $fila['FLC_C_OTROS_COSTOS_Y_GASTOS'])
-					 ->setCellValue($columnas[$c].'55',  $fila['FLC_C_OC_COSTOS_GASTOS1'])
-					 ->setCellValue($columnas[$c].'56',  $fila['FLC_C_OC_COSTOS_GASTOS2'])
-					 ->setCellValue($columnas[$c].'57',  $fila['FLC_C_OC_COSTOS_GASTOS3'])
-					 ->setCellValue($columnas[$c].'58',  $fila['FLC_C_REINTEGROS_IVA_PROYECTOS_VIS'])
-					 ->setCellValue($columnas[$c].'59',  $fila['FLC_C_COSTO_TOTAL_DIRECTOS_E_INDIRECTOS'])
-					 ->setCellValue($columnas[$c].'60',  $fila['FLC_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA'])
-					 ->setCellValue($columnas[$c].'61',  $fila['FLC_C_DESEMBOLSOS_CREDITOS_CONSTRUCTOR_Y_TERRENO'])
-					 ->setCellValue($columnas[$c].'62',  $fila['FLC_C_ABONOS_EXTRAORDINARIOS_CREDITOS_CONSTRUCTOR_Y_TERRENO'])
-					 ->setCellValue($columnas[$c].'63',  $fila['FLC_C_INGRESOS_POR_VENTAS'])
-					 ->setCellValue($columnas[$c].'64',  $fila['FLC_C_IV_ABONOS_SEPARACION'])
-					 ->setCellValue($columnas[$c].'65',  $fila['FLC_C_IV_CARTERA_CUOTA_INICIAL'])
-					 ->setCellValue($columnas[$c].'66',  $fila['FLC_C_IV_SALDO_CUOTA_INICIAL_Y_ABONO_ESCRITURA'])
-					 ->setCellValue($columnas[$c].'67',  $fila['FLC_C_IV_SUBSIDIO_VIS_Y_AHORRO_PROGRAMADO'])
-					 ->setCellValue($columnas[$c].'68',  $fila['FLC_C_IV_EXCEDENTES_CREDITO_COMPRADORES'])
-					 ->setCellValue($columnas[$c].'69',  $fila['FLC_C_IV_GIROS_DIRECTOS_CREDITOS_OTRAS_ENTIDADES'])
-					 ->setCellValue($columnas[$c].'70',  $fila['FLC_C_IV_INGRESOS_POR_RECIBIR_VENTAS_REALIZADAS'])
-					 ->setCellValue($columnas[$c].'71',  $fila['FLC_C_OTROS_INGRESOS_VENTAS_INTERESES'])
-					 ->setCellValue($columnas[$c].'72',  $fila['FLC_C_OI_INTERESES_SUBROGACION'])
-					 ->setCellValue($columnas[$c].'73',  $fila['FLC_C_OI_INTERESES_MORA'])
-					 ->setCellValue($columnas[$c].'74',  $fila['FLC_C_OI_OFERTAS_COMERCIALES_OTROS_INGRESOS'])
-					 ->setCellValue($columnas[$c].'75',  $fila['FLC_C_RENDIMIENTOS_FIDEICOMISO'])
-					 ->setCellValue($columnas[$c].'76',  $fila['FLC_C_OTROS_INGRESOS'])
-					 ->setCellValue($columnas[$c].'77',  $fila['FLC_C_OI_INGRESOS1'])
-					 ->setCellValue($columnas[$c].'78',  $fila['FLC_C_OI_INGRESOS2'])
-					 ->setCellValue($columnas[$c].'79',  $fila['FLC_C_OI_INGRESOS3'])
-					 ->setCellValue($columnas[$c].'80',  $fila['FLC_C_INGRESOS_TOTALES'])
-					 ->setCellValue($columnas[$c].'81',  $fila['FLC_C_FLUJO_NETO_CAJA_CT'])
-					 ->setCellValue($columnas[$c].'82',  $fila['FLC_C_FLUJO_ACUMULADO_CAJA_CT'])
-					 ->setCellValue($columnas[$c].'83',  $fila['FLC_C_COSTO_CREDITOS_TESORERIA'])
-					 ->setCellValue($columnas[$c].'84',  $fila['FLC_C_IMPUESTO_DE_RENTA'])
-					 ->setCellValue($columnas[$c].'85',  $fila['FLC_C_FLUJO_NETO_CAJA'])
-					 ->setCellValue($columnas[$c].'86',  $fila['FLC_C_FLUJO_ACUMULADO_CAJA'])
-					 ->setCellValue($columnas[$c].'91',  $fila['FLC_C_PROYECCION_VENTAS_UNIDADES'])
-					 ->setCellValue($columnas[$c].'92',  $fila['FLC_C_VENTAS_BRUTAS'])
-					 ->setCellValue($columnas[$c].'93',  $fila['FLC_C_PRECIO_PROMEDIO'])
-					 ->setCellValue($columnas[$c].'94',  $fila['FLC_C_PROYECCION_ENTREGAS_UNIDADES'])
-					 ->setCellValue($columnas[$c].'95',  $fila['FLC_C_PROYECCION_ESCRITURAS_VALOR'])
-					 ->setCellValue($columnas[$c].'96',  $fila['FLC_C_PROYECCION_ESCRITURAS_UNIDADES'])
-					 ->setCellValue($columnas[$c].'97',  $fila['FLC_C_PROYECCION_SUBROGACIONES_VALOR'])
+					 ->setCellValue($columnas[$c].'5',   $fila['FLC_C_URBANISMO_INTERNO']/$moneda)
+					 ->setCellValue($columnas[$c].'6',   $fila['FLC_C_UI_PRESUPUESTO']/$moneda)
+					 ->setCellValue($columnas[$c].'7',   $fila['FLC_C_UI_INCREMENTOS']/$moneda)
+					 ->setCellValue($columnas[$c].'8',   $fila['FLC_C_COSTOS_MATERIALES_MANO_OBRA']/$moneda)
+					 ->setCellValue($columnas[$c].'9',   $fila['FLC_C_CM_PRESUPUESTO']/$moneda)
+					 ->setCellValue($columnas[$c].'10',  $fila['FLC_C_CM_INCREMENTOS']/$moneda)
+					 ->setCellValue($columnas[$c].'11',  $fila['FLC_C_GASTOS_IMPREVISTOS']/$moneda)
+					 ->setCellValue($columnas[$c].'12',  $fila['FLC_C_COSTOS_POSTVENTA']/$moneda)
+					 ->setCellValue($columnas[$c].'13',  $fila['FLC_C_COSTO_DIRECTO_CONSTRUCCION']/$moneda)
+					 ->setCellValue($columnas[$c].'14',  $fila['FLC_C_HONORARIOS_CONSTRUCCION']/$moneda)
+					 ->setCellValue($columnas[$c].'15',  $fila['FLC_C_HC_HONORARIOS_CONSTRUCCION']/$moneda)
+					 ->setCellValue($columnas[$c].'16',  $fila['FLC_C_HC_GASTOS_REEMBOLSABLES']/$moneda)
+					 ->setCellValue($columnas[$c].'17',  $fila['FLC_C_HONORARIOS_INTERVENTORIA']/$moneda)
+					 ->setCellValue($columnas[$c].'18',  $fila['FLC_C_HI_HONORARIOS_INTERVENTORIA']/$moneda)
+					 ->setCellValue($columnas[$c].'19',  $fila['FLC_C_HI_GASTOS_REEMBOSABLES']/$moneda)
+					 ->setCellValue($columnas[$c].'20',  $fila['FLC_C_OTROS_HONORARIOS']/$moneda)
+					 ->setCellValue($columnas[$c].'21',  $fila['FLC_C_OH_OTROS_HONORARIOS']/$moneda)
+					 ->setCellValue($columnas[$c].'22',  $fila['FLC_C_OH_GASTOS_REEMBOLSABLES']/$moneda)
+					 ->setCellValue($columnas[$c].'23',  $fila['FLC_C_IMPUESTOS_Y_DERECHOS']/$moneda)
+					 ->setCellValue($columnas[$c].'24',  $fila['FLC_C_COSTO_TOTAL_CONSTRUCCION']/$moneda)
+					 ->setCellValue($columnas[$c].'25',  $fila['FLC_C_HONORARIOS_GERENCIA']/$moneda)
+					 ->setCellValue($columnas[$c].'26',  $fila['FLC_C_HG_HONORARIOS_GERENCIA']/$moneda)
+					 ->setCellValue($columnas[$c].'27',  $fila['FLC_C_HG_GASTOS_REEMBOLSABLES']/$moneda)
+					 ->setCellValue($columnas[$c].'28',  $fila['FLC_C_HONORARIOS_VENTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'29',  $fila['FLC_C_HV_HONORARIOS_VENTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'30',  $fila['FLC_C_HV_GASTOS_REEMBOLSABLES']/$moneda)
+					 ->setCellValue($columnas[$c].'31',  $fila['FLC_C_COSTOS_PROMOCION_Y_VENTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'32',  $fila['FLC_C_CP_SALA_DE_VENTAS_UNIDADES_MODELO']/$moneda)
+					 ->setCellValue($columnas[$c].'33',  $fila['FLC_C_CP_GASTOS_PUBLICIDAD']/$moneda)
+					 ->setCellValue($columnas[$c].'34',  $fila['FLC_C_CP_GASTOS_SALA_DE_VENTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'35',  $fila['FLC_C_CP_ADMINISTRACION_UNIDADES_POR_ENTREGAR']/$moneda)
+					 ->setCellValue($columnas[$c].'36',  $fila['FLC_C_CP_COMISIONES_VENTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'37',  $fila['FLC_C_GASTOS_LEGALES']/$moneda)
+					 ->setCellValue($columnas[$c].'38',  $fila['FLC_C_GL_HIPOTECAS_CREDITO_CONSTRUCTOR']/$moneda)
+					 ->setCellValue($columnas[$c].'39',  $fila['FLC_C_GL_NOTARIALES_REGISTRO_DE_VENTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'40',  $fila['FLC_C_GL_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURA']/$moneda)
+					 ->setCellValue($columnas[$c].'41',  $fila['FLC_C_GL_IMPUESTO_ICA']/$moneda)
+					 ->setCellValue($columnas[$c].'42',  $fila['FLC_C_COSTO_TOTAL_ANTES_TERRENO_Y_FINANCIEROS']/$moneda)
+					 ->setCellValue($columnas[$c].'43',  $fila['FLC_C_VALOR_TERRENO_URBANIZADO']/$moneda)
+					 ->setCellValue($columnas[$c].'44',  $fila['FLC_C_VT_VALOR_ADQUISICION']/$moneda)
+					 ->setCellValue($columnas[$c].'45',  $fila['FLC_C_VT_COSTOS_URBANISMO_Y_OTROS']/$moneda)
+					 ->setCellValue($columnas[$c].'46',  $fila['FLC_C_COMISIONES_FIDUCIA']/$moneda)
+					 ->setCellValue($columnas[$c].'47',  $fila['FLC_C_CF_PREVENTAS_Y_ADMINISTRACION']/$moneda)
+					 ->setCellValue($columnas[$c].'48',  $fila['FLC_C_CF_NUEVOGAR']/$moneda)
+					 ->setCellValue($columnas[$c].'49',  $fila['FLC_C_GASTOS_FINANCIEROS']/$moneda)
+					 ->setCellValue($columnas[$c].'50',  $fila['FLC_C_GF_INTERESES_CREDITOS_CONSTRUCTOR']/$moneda)
+					 ->setCellValue($columnas[$c].'51',  $fila['FLC_C_GF_OTROS_COSTOS_CREDITO']/$moneda)
+					 ->setCellValue($columnas[$c].'52',  $fila['FLC_C_GF_CORRECCION_MONETARIA_CONSTRUCCION']/$moneda)
+					 ->setCellValue($columnas[$c].'53',  $fila['FLC_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF']/$moneda)
+					 ->setCellValue($columnas[$c].'54',  $fila['FLC_C_OTROS_COSTOS_Y_GASTOS']/$moneda)
+					 ->setCellValue($columnas[$c].'55',  $fila['FLC_C_OC_COSTOS_GASTOS1']/$moneda)
+					 ->setCellValue($columnas[$c].'56',  $fila['FLC_C_OC_COSTOS_GASTOS2']/$moneda)
+					 ->setCellValue($columnas[$c].'57',  $fila['FLC_C_OC_COSTOS_GASTOS3']/$moneda)
+					 ->setCellValue($columnas[$c].'58',  $fila['FLC_C_REINTEGROS_IVA_PROYECTOS_VIS']/$moneda)
+					 ->setCellValue($columnas[$c].'59',  $fila['FLC_C_COSTO_TOTAL_DIRECTOS_E_INDIRECTOS']/$moneda)
+					 ->setCellValue($columnas[$c].'60',  $fila['FLC_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA']/$moneda)
+					 ->setCellValue($columnas[$c].'61',  $fila['FLC_C_DESEMBOLSOS_CREDITOS_CONSTRUCTOR_Y_TERRENO']/$moneda)
+					 ->setCellValue($columnas[$c].'62',  $fila['FLC_C_ABONOS_EXTRAORDINARIOS_CREDITOS_CONSTRUCTOR_Y_TERRENO']/$moneda)
+					 ->setCellValue($columnas[$c].'63',  $fila['FLC_C_INGRESOS_POR_VENTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'64',  $fila['FLC_C_IV_ABONOS_SEPARACION']/$moneda)
+					 ->setCellValue($columnas[$c].'65',  $fila['FLC_C_IV_CARTERA_CUOTA_INICIAL']/$moneda)
+					 ->setCellValue($columnas[$c].'66',  $fila['FLC_C_IV_SALDO_CUOTA_INICIAL_Y_ABONO_ESCRITURA']/$moneda)
+					 ->setCellValue($columnas[$c].'67',  $fila['FLC_C_IV_SUBSIDIO_VIS_Y_AHORRO_PROGRAMADO']/$moneda)
+					 ->setCellValue($columnas[$c].'68',  $fila['FLC_C_IV_EXCEDENTES_CREDITO_COMPRADORES']/$moneda)
+					 ->setCellValue($columnas[$c].'69',  $fila['FLC_C_IV_GIROS_DIRECTOS_CREDITOS_OTRAS_ENTIDADES']/$moneda)
+					 ->setCellValue($columnas[$c].'70',  $fila['FLC_C_IV_INGRESOS_POR_RECIBIR_VENTAS_REALIZADAS']/$moneda)
+					 ->setCellValue($columnas[$c].'71',  $fila['FLC_C_OTROS_INGRESOS_VENTAS_INTERESES']/$moneda)
+					 ->setCellValue($columnas[$c].'72',  $fila['FLC_C_OI_INTERESES_SUBROGACION']/$moneda)
+					 ->setCellValue($columnas[$c].'73',  $fila['FLC_C_OI_INTERESES_MORA']/$moneda)
+					 ->setCellValue($columnas[$c].'74',  $fila['FLC_C_OI_OFERTAS_COMERCIALES_OTROS_INGRESOS']/$moneda)
+					 ->setCellValue($columnas[$c].'75',  $fila['FLC_C_RENDIMIENTOS_FIDEICOMISO']/$moneda)
+					 ->setCellValue($columnas[$c].'76',  $fila['FLC_C_OTROS_INGRESOS']/$moneda)
+					 ->setCellValue($columnas[$c].'77',  $fila['FLC_C_OI_INGRESOS1']/$moneda)
+					 ->setCellValue($columnas[$c].'78',  $fila['FLC_C_OI_INGRESOS2']/$moneda)
+					 ->setCellValue($columnas[$c].'79',  $fila['FLC_C_OI_INGRESOS3']/$moneda)
+					 ->setCellValue($columnas[$c].'80',  $fila['FLC_C_INGRESOS_TOTALES']/$moneda)
+					 ->setCellValue($columnas[$c].'81',  $fila['FLC_C_FLUJO_NETO_CAJA_CT']/$moneda)
+					 ->setCellValue($columnas[$c].'82',  $fila['FLC_C_FLUJO_ACUMULADO_CAJA_CT']/$moneda)
+					 ->setCellValue($columnas[$c].'83',  $fila['FLC_C_COSTO_CREDITOS_TESORERIA']/$moneda)
+					 ->setCellValue($columnas[$c].'84',  $fila['FLC_C_IMPUESTO_DE_RENTA']/$moneda)
+					 ->setCellValue($columnas[$c].'85',  $fila['FLC_C_FLUJO_NETO_CAJA']/$moneda)
+					 ->setCellValue($columnas[$c].'86',  $fila['FLC_C_FLUJO_ACUMULADO_CAJA']/$moneda)
+					 ->setCellValue($columnas[$c].'91',  $fila['FLC_C_PROYECCION_VENTAS_UNIDADES']/$moneda)
+					 ->setCellValue($columnas[$c].'92',  $fila['FLC_C_VENTAS_BRUTAS']/$moneda)
+					 ->setCellValue($columnas[$c].'93',  $fila['FLC_C_PRECIO_PROMEDIO']/$moneda)
+					 ->setCellValue($columnas[$c].'94',  $fila['FLC_C_PROYECCION_ENTREGAS_UNIDADES']/$moneda)
+					 ->setCellValue($columnas[$c].'95',  $fila['FLC_C_PROYECCION_ESCRITURAS_VALOR']/$moneda)
+					 ->setCellValue($columnas[$c].'96',  $fila['FLC_C_PROYECCION_ESCRITURAS_UNIDADES']/$moneda)
+					 ->setCellValue($columnas[$c].'97',  $fila['FLC_C_PROYECCION_SUBROGACIONES_VALOR']/$moneda)
 					 
 					 ->setCellValue('B88',  'VPN (1054%  ea)')
-					 ->setCellValue('B89',  $fila['FLC_C_VPN'])
+					 ->setCellValue('B89', '=NPV('.$indicador.'%,E86:XFD86,E2:XFD2)')
 					 
 					 ->setCellValue('C88',  'TIR  (ea)')
-					 ->setCellValue('C89',  $fila['FLC_C_TIR_EA'])
+					->setCellValue('C89', '=XIRR(E85:XFD85,E2:XFD2)')
 					 
 					 ->setCellValue('D88',  'TIR (em)')
-					 ->setCellValue('D89',  $fila['FLC_C_TIR_EM'])
+					 ->setCellValue('D89',  '=C89/'.$periodo)
 					 
 					 ->setCellValue('E88',  'TIR mod (ea)')
-					 ->setCellValue('E89',  $fila['FLC_C_TIR_MOD_EA'])
-					 
+					 ->setCellValue('E89', '=MIRR(E85:XFD85,'.$indicador.'%,0)')
+					
 					 ->setCellValue('F88',  'TIR mod (em)')			 
-					 ->setCellValue('F89',  $fila['FLC_C_C_TIR_MOD_EM'])
+					 ->setCellValue('F89',  '=E89/'.$periodo)
 					 ;
 				
 					$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3')->applyFromArray(
@@ -523,6 +597,10 @@
 					$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3')
 					->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_MYMINUS);
 			
+			
+			$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'2')
+					->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+			
 					 $i++;
 					 $c++;
 					 
@@ -585,7 +663,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 					 ->setCellValue('B47', '=SUM(E47:'.$columnas[$c].'47)')
 					 ->setCellValue('B48', '=SUM(E48:'.$columnas[$c].'48)')
 					 ->setCellValue('B49', '=SUM(E49:'.$columnas[$c].'49)')
-					  ->setCellValue('B50', '=SUM(E50:'.$columnas[$c].'50)')
+					 ->setCellValue('B50', '=SUM(E50:'.$columnas[$c].'50)')
 					 ->setCellValue('B51', '=SUM(E51:'.$columnas[$c].'51)')
 					 ->setCellValue('B52', '=SUM(E52:'.$columnas[$c].'52)')
 					 ->setCellValue('B53', '=SUM(E53:'.$columnas[$c].'53)')
@@ -629,13 +707,107 @@ $objPHPExcel->setActiveSheetIndex(0)
 					 ->setCellValue('B94', '=SUM(E94:'.$columnas[$c].'94)')
 					 ->setCellValue('B95', '=SUM(E95:'.$columnas[$c].'95)')
 					 ->setCellValue('B96', '=SUM(E96:'.$columnas[$c].'96)')
-					 ->setCellValue('B97', '=SUM(E97:'.$columnas[$c].'97)') ;
+					 ->setCellValue('B97', '=SUM(E97:'.$columnas[$c].'97)') 
+					 
+					 ->setCellValue('C5', '=B5/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C6', '=B6/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C7', '=B7/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C8', '=B8/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C9', '=B9/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C10', '=B10/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C11', '=B11/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C12', '=B12/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C13', '=B13/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C14', '=B14/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C15', '=B15/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C16', '=B16/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C17', '=B17/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C18', '=B18/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C19', '=B19/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C20', '=B20/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C21', '=B21/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C22', '=B22/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C23', '=B23/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C24', '=B24/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C25', '=B25/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C26', '=B26/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C27', '=B27/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C28', '=B28/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C29', '=B29/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C30', '=B30/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C31', '=B31/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C32', '=B32/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C33', '=B33/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C34', '=B34/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C35', '=B35/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C36', '=B36/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C37', '=B37/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C38', '=B38/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C39', '=B39/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C40', '=B40/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C41', '=B41/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C42', '=B42/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C43', '=B43/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C44', '=B44/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C45', '=B45/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C46', '=B46/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C47', '=B47/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C48', '=B48/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C49', '=B49/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C50', '=B50/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C51', '=B51/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C52', '=B52/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C53', '=B53/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C54', '=B54/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C55', '=B55/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C56', '=B56/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C57', '=B57/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C58', '=B58/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C59', '=B59/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C60', '=B60/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C61', '=B61/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C62', '=B62/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C63', '=B63/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C64', '=B64/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C65', '=B65/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C66', '=B66/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C67', '=B67/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C68', '=B68/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C69', '=B69/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C70', '=B70/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C71', '=B71/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C72', '=B72/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C73', '=B73/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C74', '=B74/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C75', '=B75/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C76', '=B76/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C77', '=B77/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C78', '=B78/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C79', '=B79/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C80', '=B80/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C81', '=B81/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C82', '=B82/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C83', '=B83/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C84', '=B84/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C85', '=B85/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C86', '=B86/'.$ven_bru.'*'.$moneda)
+					 
+					 ->setCellValue('C91', '=B91/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C92', '=B92/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C93', '=B93/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C94', '=B94/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C95', '=B95/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C96', '=B96/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C97', '=B97/'.$ven_bru.'*'.$moneda);
 	
 	//Formato miles Con separador.
 	
 	
 	$objPHPExcel->getActiveSheet()->getStyle('B5:B97')
     ->getNumberFormat()->setFormatCode('#,##0');
+	
+	$objPHPExcel->getActiveSheet()->getStyle('C5:C97')
+				 ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
 	
 		
 	
@@ -761,6 +933,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 
 	
 	//--------Blanco
+	
+	// $objPHPExcel->getActiveSheet()->getStyle('E2:PXD2')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+	
 	
 	$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
 	
@@ -1004,7 +1179,9 @@ $objPHPExcel->setActiveSheetIndex(0)
         		    ->mergeCells('B3:B4');
 								
 			
-		
+		$objPHPExcel->getActiveSheet()->getStyle('C89:G89')
+				 ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+	
 		
 		
 		PHPExcel_Shared_Font::setAutoSizeMethod(PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);		

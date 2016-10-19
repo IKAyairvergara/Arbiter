@@ -824,16 +824,16 @@ $rendererLibraryPath = dirname(__FILE__).'/' . $rendererLibrary;
 					 ->setCellValue('B89',  $fila['FLC_C_VPN'])
 					 
 					 ->setCellValue('C88',  'TIR  (ea)')
-					 ->setCellValue('C89',  $fila['FLC_C_TIR_EA'])
+					 ->setCellValue('C89',  '=TIR.NO.PER(E85:'.$columnas[$c].'85;E5:'.$columnas[$c].'5)')
 					 
 					 ->setCellValue('D88',  'TIR (em)')
-					 ->setCellValue('D89',  $fila['FLC_C_TIR_EM'])
+					 ->setCellValue('D89',  '=TIR.NO.PER(E85:'.$columnas[$c].'85;E5:'.$columnas[$c].'5)')
 					 
 					 ->setCellValue('E88',  'TIR mod (ea)')
-					 ->setCellValue('E89',  $fila['FLC_C_TIR_MOD_EA'])
+					 ->setCellValue('E89',  '=TIR.NO.PER(E85:'.$columnas[$c].'85;E5:'.$columnas[$c].'5)')
 					 
 					 ->setCellValue('F88',  'TIR mod (em)')			 
-					 ->setCellValue('F89',  $fila['FLC_C_C_TIR_MOD_EM'])
+					 ->setCellValue('F89',  '=TIR.NO.PER(E85:'.$columnas[$c].'85;E5:'.$columnas[$c].'5)')
 					 
 					 ->setCellValue('A1',  'MODELO C')
 					 ->setCellValue('B3',  'TOTALES')

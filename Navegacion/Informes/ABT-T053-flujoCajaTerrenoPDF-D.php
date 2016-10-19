@@ -267,6 +267,54 @@ $rendererLibraryPath = dirname(__FILE__).'/' . $rendererLibrary;
 		$objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setName('Arial');
 		$objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(10);
 		
+		// CALCULOS TIR Y VPN
+		#VPN: WACC  (ultimo, indicadores ) VPN: VNA(WACC; FLUJO NETO CAJA)
+					 #Calculo VPN
+					 $wacc = "SELECT IND_VALOR FROM tb_indicador ORDER BY IND_FECHA";
+					 $datos= $mysqli->query($wacc);
+					 
+					 if ($datos) {
+						  while ($fila = $datos->fetch_row()) {  
+							  $indicador = $fila[0];
+						  }
+					 }
+					else{
+						 $indicador = 0;
+					 }
+					#TIR Efeciva Mensual
+					 #C52 / CONS_PER (Mensual, 12, Bimensal, 6, Trimestral, 4, Anual, 1, Quinquenio, 
+					 $periodo = "SELECT CONS_PER FROM tb_consolidados WHERE CONS_ID ='$Example'";
+					 $consulta= $mysqli->query($periodo); 
+				     if ($consulta) {
+						  while ($fila = $consulta->fetch_row()) {  
+							  $periodicidad = $fila[0];
+						  }
+					 }
+					else{
+						 $periodicidad = 0;
+					 }
+					 
+					 switch ($periodicidad) {
+						case 'Mensual':
+							$periodo = 12;
+							break;
+						case 'Bimensual':
+							$periodo = 6;
+							break;
+						case 'Trimestral':
+							$periodo = 4;
+							break;
+						case 'Anual':
+							$periodo = 1;
+							break;
+						case 'Quinquenio':
+							$periodo = 5;
+							break;
+							
+					}
+		
+		
+		// FIN CALCULOS TIR Y VPN
 		
 		while ($fila = $resultado->fetch_array()) {
 				$objPHPExcel->setActiveSheetIndex($i) 
@@ -423,15 +471,16 @@ $rendererLibraryPath = dirname(__FILE__).'/' . $rendererLibrary;
 					 ->setCellValue($columnas[$c].'48',  $fila['FCT_C_FLUJO_NETO_CAJA'])
 					 ->setCellValue($columnas[$c].'49',  $fila['FCT_C_FLUJO_ACUMULADO'])
 					 ->setCellValue('B51', 'VPN')
-					 ->setCellValue('B52',  $fila['FCT_C_VPN'])
+					 ->setCellValue('B52', '=NPV('.$indicador.',G48:XFD48,G2:XFD2)')
 					 ->setCellValue('C51', 'TIR (ea)')
-					 ->setCellValue('C52',  $fila['FCT_C_TIR_EA'])
+					 ->setCellValue('C52', '=(IFERROR(XIRR(G48:XFD48,G2:XFD2),0))')
 					 ->setCellValue('D51', 'TIR(em)')
-					 ->setCellValue('D52',  $fila['FCT_C_TIR_EM'])
+					 ->setCellValue('D52',  '=C52/'.$periodo)
 					 ->setCellValue('E51', 'TIR mod(ea)')
-					 ->setCellValue('E52',  $fila['FCT_C_TIR_MOD_EA'])
+					 ->setCellValue('E52', '=MIRR(G48:XFD48,B12,0)')
 					 ->setCellValue('G51', 'TIR mod(em)')
-					 ->setCellValue('G52',  $fila['FCT_C_TIR_MOD_EM']) ;
+					 ->setCellValue('G52', '=E52/'.$periodo)
+					 ;
 					
 					
 					//Color Gris

@@ -31,11 +31,7 @@
       return false;
     }
     re = /^\w+$/;
-    if(!re.test(form.username.value)) {
-      alert("Error: El nombre de usuario solo debe contener letras, numeros y guion bajo!");
-      form.username.focus();
-      return false;
-    }
+   
 
     if(form.password.value != "" && form.password.value == form.confirm_password.value) {
       if(form.password.value.length < 6) {
@@ -122,7 +118,7 @@ body
 	</div>
 	<div style="background-image:url(editar_04.png); position:absolute; left:352px; top:32px; width:244px; height:126px;" title="">
 	</div>
-	<div id="p1" style="background-image:url(editar_05.png);" onclick="location.href='../Administrador/administrador.php'" title="">
+	<div id="p1" style="background-image:url(editar_05.png);" onclick="location.href='../Administrador/ABT-T001-administrador-D.php'" title="">
 	</div>
 	<div style="background-image:url(editar_06.png); position:absolute; left:775px; top:32px; width:46px; height:126px;" title="">
 	</div>
@@ -146,7 +142,7 @@ body
 	</div>
 	<div style="background-image:url(editar_16.png); position:absolute; left:41px; top:396px; width:951px; height:112px;" title="">
 		<center>
-		<form role="form" name="registro" onSubmit="return checkForm(this)" action="editarUsuario.php" method="post">
+		<form role="form" name="registro" onSubmit="return checkForm(this)" action="ABT-T028-editarUsuario-U.php" method="post">
           <div class="form-group">
             <label style="color: white; font-family:sans-serif;font-size:20;" for="username">Nombre de usuario</label>
 			
@@ -190,8 +186,8 @@ body
           <input id="p2" type="image" src='editar_22.png' name="aceptar"  value="aceptar"/>
       </form>
       <?php
-	include "../php/conexion.php";
-
+  include "../../php/ABT-T000-conexion-U.php";
+				  
 	
 
 
@@ -207,10 +203,10 @@ body
 		$update = "update user set fullname ='$Nombre' , email = '$Correo', password = '$Contrasenia', rol = '$rol'  where username ='$Usuario'";
 		$resultado = $mysqli -> query($update);
 		if($result==true){
-			print "<script>alert(\"No se ha podido realizar el cambio\");window.location='editarUsuario.php';</script>";
+			print "<script>alert(\"No se ha podido realizar el cambio\");window.location='ABT-T028-editarUsuario-U.php';</script>";
 			}
 		else{
-			print "<script>alert(\"\Cambio realizado con exito\");window.location='../Administrador/administrador.php';</script>";
+			print "<script>alert(\"\Cambio realizado con exito\");window.location='../Administrador/ABT-T001-administrador-D.php';</script>";
 			}
 		}
 	$mysqli->close();

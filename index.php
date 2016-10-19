@@ -20,7 +20,7 @@
           <h1>Bienvenido de Nuevo</h1>
           
 		  
-          		<form role="form" name="login" action="php/login1.php" method="post">
+          <form role="form" name="login" action="php/login1.php" method="post">
 				
 		 
 		

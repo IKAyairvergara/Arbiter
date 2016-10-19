@@ -1,0 +1,12 @@
+<?php
+$wacc = "SELECT IND_VALOR FROM tb_indicador ORDER BY IND_FECHA";
+					 $datos= $mysqli->query($wacc);
+					 
+					 if ($resultado = $mysqli->query($consulta)) {
+						  while ($fila = $resultado->fetch_row()) {
+							  echo $fila[0];
+						  }
+						 
+					 }
+					 
+?>

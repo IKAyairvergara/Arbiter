@@ -5341,7 +5341,12 @@ input[type=file]{
 									
 						}
 					}
-
+		
+function checkstring($checkvar){
+	if($checkvar==null||is_string ($checkvar)){
+		$checkvar=0;}
+}
+		
 				function OtrosFlujos($objPHPExcel,$ofl_i,$ofl_var,$proyecto,$etapa,$modelo,$mysqli,$error_insert){
 					
 					require_once '../../PHPExcel/Classes/PHPExcel/IOFactory.php';

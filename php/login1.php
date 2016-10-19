@@ -10,13 +10,9 @@ if(!empty($_POST)){
 			$usuario = $_POST['username'];
 			$contrasenia = $_POST['password'];
 
-			if ($usuario =="administrador" && $contrasenia == ".4dm1n1$7r4d0r,123456.") {
-				session_start();
-				$_SESSION["user_id"]=$user_id;
-				print "<script>window.location='../Navegacion/Administrador/administrador.php';</script>";
-			}
+			
 			####FINN####
-			else {
+			
 
 			$user_id=null;
 			$sql1= "select * from user where (username=\"$_POST[username]\" or email=\"$_POST[username]\") and password=\"$_POST[password]\" ";
@@ -30,7 +26,11 @@ if(!empty($_POST)){
 			}else{
 				session_start();
 				$_SESSION["user_id"]=$user_id;
-				print "<script>window.location='../Navegacion/Bienvenido/bienvenido.php';</script>";				
+				if($usuario =="administrador"){
+				print "<script>window.location='../Navegacion/Administrador/ABT-T001-administrador-D.php';</script>";
+				}
+				else{
+				print "<script>window.location='../Navegacion/Bienvenido/ABT-T010-bienvenido.php';</script>";				
 			}
 
 			}

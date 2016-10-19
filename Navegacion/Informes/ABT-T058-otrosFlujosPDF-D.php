@@ -565,16 +565,16 @@ $rendererLibraryPath = dirname(__FILE__).'/' . $rendererLibrary;
 					->setCellValue('B42',$fila['OFL_C_VPN'])
 					
 					->setCellValue('C41','TIR(ea)')
-					->setCellValue('C42',$fila['OFL_C_TIR_EA'])
+					->setCellValue('C42','=TIR.NO.PER(E38:'.$columnas[$c].'38;E6:'.$columnas[$c].'6)')
 					
 					->setCellValue('D41','TIR(em)')
-					->setCellValue('D42',$fila['OFL_C_TIR_EM'])
+					->setCellValue('D42','=TIR.NO.PER(E38:'.$columnas[$c].'38;E6:'.$columnas[$c].'6)')
 					
 					->setCellValue('E41','TIRmod(ea)')
-					->setCellValue('E42',$fila['OFL_C_TIR_MOD_EA'])
+					->setCellValue('E42','=TIR.NO.PER(E38:'.$columnas[$c].'38;E6:'.$columnas[$c].'6)')
 					
 					->setCellValue('F41','TIRmod(em)')
-					->setCellValue('F42',$fila['OFL_C_TIR_MOD_EM'])
+					->setCellValue('F42','=TIR.NO.PER(E38:'.$columnas[$c].'38;E6:'.$columnas[$c].'6)')
 					
 					
 					

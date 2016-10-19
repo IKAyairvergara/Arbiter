@@ -5,7 +5,8 @@ session_start();
 	
 	$Example=$_SESSION['VAR']; 
 	
-	    $consulta = "SELECT OFL_C_CONS_ID,
+	    $consulta = "SELECT 
+		DATE_FORMAT(OFL_C_FECHA,'%m/%Y'),
 			 DATE_FORMAT(OFL_C_FECHA,'%b/%y'),
 			 CASE WHEN OFL_C_COSTO_CONSTRUCCION = 0 THEN '' ELSE OFL_C_COSTO_CONSTRUCCION END OFL_C_COSTO_CONSTRUCCION,
 			 CASE WHEN OFL_C_HONORARIOS_COLPATRIA = 0 THEN '' ELSE OFL_C_HONORARIOS_COLPATRIA END OFL_C_HONORARIOS_COLPATRIA,
@@ -81,6 +82,9 @@ session_start();
 			 CASE WHEN OFL_C_FLUJO_ACUMULADO_FIDUCIARIA = 0 THEN '' ELSE OFL_C_FLUJO_ACUMULADO_FIDUCIARIA END OFL_C_FLUJO_ACUMULADO_FIDUCIARIA    
 			 FROM tb_c_otros_flujos
 			 WHERE OFL_C_CONS_ID = '$Example'";
+			 
+			 	$cons="SELECT RES_C_VENTAS_BRUTAS,RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO FROM tb_c_resumen WHERE RES_C_CONS_ID = '$Example'"; 
+
 
 	$resultado = $conexion->query($consulta);
 	if($resultado->num_rows > 0 ){
@@ -186,6 +190,75 @@ $colorLetra = array(
         'color' => array('rgb' => '918080'),
         
     ));	
+	
+	// CALCULOS TIR Y VPN
+		#VPN: WACC  (ultimo, indicadores ) VPN: VNA(WACC; FLUJO NETO CAJA)
+					 #Calculo VPN
+					 $wacc = "SELECT IND_VALOR FROM tb_indicador ORDER BY IND_FECHA";
+					 $datos= $mysqli->query($wacc);
+					 
+					 if ($datos) {
+						  while ($fila = $datos->fetch_row()) {  
+							  $indicador = $fila[0];
+						  }
+					 }
+					else{
+						 $indicador = 0;
+					 }
+					#TIR Efeciva Mensual
+					 #C52 / CONS_PER (Mensual, 12, Bimensal, 6, Trimestral, 4, Anual, 1, Quinquenio, 
+						 $periodo = "SELECT CONS_PER,CONS_IND_VALOR_REE FROM tb_consolidados WHERE CONS_ID ='$Example'";
+					 $consulta= $mysqli->query($periodo);
+					 $moneda=1;					 
+				     if ($consulta) {
+						  while ($fila = $consulta->fetch_row()) {  
+							  $periodicidad = $fila[0];
+							  $moneda=$fila[1];
+						  }
+					 }
+					else{
+						 $periodicidad = 0;
+					 }
+					 if($moneda==0){
+						 $moneda=1;
+					 }
+					 
+					 switch ($periodicidad) {
+						case 'Mensual':
+							$periodo = 12;
+							break;
+						case 'Bimensual':
+							$periodo = 6;
+							break;
+						case 'Trimestral':
+							$periodo = 4;
+							break;
+						case 'Anual':
+							$periodo = 1;
+							break;
+						case 'Quinquenio':
+							$periodo = 5;
+							break;
+							
+					}
+		
+		
+		// FIN CALCULOS TIR Y VPN
+	
+	
+	// RESUMEN
+		
+				 $consulta1= $mysqli->query($cons); 
+				     if ($consulta1) {
+						  while ($fila1 = $consulta1->fetch_row()) {  
+							  $ven_bru = $fila1[0];
+							  $util_ter= $fila1[1];
+						  }
+					 }
+					else{
+						 $ven_bru = 0;
+					 }
+					 
 						
 		// Se agregan los titulos del reporte
 		$objPHPExcel->setActiveSheetIndex(0)
@@ -281,89 +354,100 @@ $colorLetra = array(
 		$objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(10);
 		while ($fila = $resultado->fetch_array()) {
 			$objPHPExcel->setActiveSheetIndex(0) 
+			
+			
+			 // ->setCellValue($columnas[$c].'2',  '1/'.$fila["DATE_FORMAT(OFL_C_FECHA,'%m/%Y')"])
+					
 				     ->setCellValue($columnas[$c].'3',   $fila["DATE_FORMAT(OFL_C_FECHA,'%b/%y')"])	
 		
-					 ->setCellValue($columnas[$c].'7',$fila['OFL_C_COSTO_CONSTRUCCION'])
-					->setCellValue($columnas[$c].'8',$fila['OFL_C_HONORARIOS_COLPATRIA'])
-					->setCellValue($columnas[$c].'9',$fila['OFL_C_GASTOS_OPERACION_COLPATRIA'])
-					->setCellValue($columnas[$c].'10',$fila['OFL_C_GO_PROMOTORA_OPERACION'])
-					->setCellValue($columnas[$c].'11',$fila['OFL_C_GO_PROMOTORA_OVERHEAD'])
-					->setCellValue($columnas[$c].'12',$fila['OFL_C_GO_CONSTRUCTORA_OPERACION'])
-					->setCellValue($columnas[$c].'13',$fila['OFL_C_GO_CONSTRUCTORA_OVERHEAD'])
-					->setCellValue($columnas[$c].'14',$fila['OFL_C_GO_TRANSACCIONES_INMOBILIARIAS_OPERACION'])
-					->setCellValue($columnas[$c].'15',$fila['OFL_C_GO_TRANSACCIONES_INMOBLIARIAS_OVERHEAD'])
-					->setCellValue($columnas[$c].'16',$fila['OFL_C_OTROS_PAGOS_EFECTUADOS_POR_FIDUCIA'])
-					->setCellValue($columnas[$c].'17',$fila['OFL_C_VALOR_TERRENO'])
-					->setCellValue($columnas[$c].'18',$fila['OFL_C_EGRESOS_CREDITO_CONSTRUCTOR'])
-					->setCellValue($columnas[$c].'19',$fila['OFL_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_COLPATRIA'])
-					->setCellValue($columnas[$c].'20',$fila['OFL_C_COMISION_FIDUCIARIA_NUEVOGAR_SIN_FIDUCIARIA'])
-					->setCellValue($columnas[$c].'21',$fila['OFL_C_OTROS_COSTOS_Y_GASTOS'])
-					->setCellValue($columnas[$c].'22',$fila['OFL_C_APORTES_EFECTIVO_COLPATRIA_FIDEICOMISOS'])
-					->setCellValue($columnas[$c].'23',$fila['OFL_C_REINTEGROS_IVA'])
-					->setCellValue($columnas[$c].'24',$fila['OFL_C_SUBTOTAL_EGRESOS_COLPATRIA'])
-					->setCellValue($columnas[$c].'25',$fila['OFL_C_TRASLADOS_FIDUCIAS_E_INGRESOS_TOTALES'])
-					->setCellValue($columnas[$c].'26',$fila['OFL_C_INGRESOS_VENTAS_COLPATRIA'])
-					->setCellValue($columnas[$c].'27',$fila['OFL_C_DESEMBOLSOS_CREDITO_CONSTRUCTOR_TERRENO'])
-					->setCellValue($columnas[$c].'28',$fila['OFL_C_TRASLADOS_LIQUIDACIONES_FIDEICOMISOS'])
-					->setCellValue($columnas[$c].'29',$fila['OFL_C_OTROS_INGRESOS'])
-					->setCellValue($columnas[$c].'30',$fila['OFL_C_APORTES_DE_SOCIOS'])
-					->setCellValue($columnas[$c].'31',$fila['OFL_C_SUBTOTAL_INGRESOS'])
-					->setCellValue($columnas[$c].'32',$fila['OFL_C_FLUJO_CAJA_ANTES_DE_REINTEGRO_SOCIOS'])
-					->setCellValue($columnas[$c].'33',$fila['OFL_C_REINTEGRO_APORTES_UTILIDADES_SOCIOS'])
-					->setCellValue($columnas[$c].'34',$fila['OFL_C_FLUJO_NETO_CAJA_CT'])
-					->setCellValue($columnas[$c].'35',$fila['OFL_C_FLUJO_ACUMULADO'])
-					->setCellValue($columnas[$c].'36',$fila['OFL_C_COSTO_CREDITO_TESORERIA'])
-					->setCellValue($columnas[$c].'37',$fila['OFL_C_IMPUESTO_RENTA'])
-					->setCellValue($columnas[$c].'38',$fila['OFL_C_FLUJO_NETO_CAJA'])
-					->setCellValue($columnas[$c].'39',$fila['OFL_C_FLUJO_ACUMULADO_CAJA'])
-					->setCellValue($columnas[$c].'47',$fila['OFL_C_PAGOS_EFECTUADOS_FIDUCIA_ADMON'])
-					->setCellValue($columnas[$c].'48',$fila['OFL_C_PE_INTERESES_CREDITO_CONSTRUCTOR'])
-					->setCellValue($columnas[$c].'49',$fila['OFL_C_PE_HONORARIOS_VISITAS_OBRA_OTROS'])
-					->setCellValue($columnas[$c].'50',$fila['OFL_C_PE_ABONOS_EXTRAORDINARIOS_CREDITO'])
-					->setCellValue($columnas[$c].'51',$fila['OFL_C_PE_PAGOS_TERRENO_EFECTUADOS_FIDUCIA'])
-					->setCellValue($columnas[$c].'52',$fila['OFL_C_PE_OTROS_PAGOS_EFECTUADOS_FIDUCIA'])
-					->setCellValue($columnas[$c].'53',$fila['OFL_C_TRASLADOS_FONDOS_FIDUCIA_CONSTRUCTORA'])
-					->setCellValue($columnas[$c].'54',$fila['OFL_C_COMISION_FIDUCIARIA_PRREVENTAS_ADMON'])
-					->setCellValue($columnas[$c].'55',$fila['OFL_C_COMISION_FIDUCIARIA_NUEVOGAR'])
-					->setCellValue($columnas[$c].'56',$fila['OFL_C_IMPUESTO_TRANSACCIONES_FINANCIERAS'])
-					->setCellValue($columnas[$c].'57',$fila['OFL_C_SUBTOTAL_EGRESOS'])
-					->setCellValue($columnas[$c].'58',$fila['OFL_C_DESEMBOLSOS_CREDITO_CONSTRUCTOR'])
-					->setCellValue($columnas[$c].'59',$fila['OFL_C_INGRESOS_VENTAS'])
-					->setCellValue($columnas[$c].'60',$fila['OFL_C_IV_ABONOS_SEPARACION'])
-					->setCellValue($columnas[$c].'61',$fila['OFL_C_IV_CARTERA_CUOTA_INICIAL'])
-					->setCellValue($columnas[$c].'62',$fila['OFL_C_IV_SALDO_CUOTA_INICIAL_ABONO_ESCRITURA'])
-					->setCellValue($columnas[$c].'63',$fila['OFL_C_IV_SUBSIDIO_VIS_Y_AHORRO_PROGRAMADO'])
-					->setCellValue($columnas[$c].'64',$fila['OFL_C_IV_EXCEDENTES_CREDITO_COMPRADORES'])
-					->setCellValue($columnas[$c].'65',$fila['OFL_C_IV_GIROS_DIRECTOS_CREDITOS_OTRAS_ENTIDADES'])
-					->setCellValue($columnas[$c].'66',$fila['OFL_C_IV_INGRESOS_POR_RECIBIR_VENTAS_REALIZADAS'])
-					->setCellValue($columnas[$c].'67',$fila['OFL_C_OTROS_INGRESOS_POR_VENTAS'])
-					->setCellValue($columnas[$c].'68',$fila['OFL_C_OI_INTERESES_SUBROGACION'])
-					->setCellValue($columnas[$c].'69',$fila['OFL_C_OI_INTERESES_MORA'])
-					->setCellValue($columnas[$c].'70',$fila['OFL_C_OI_OFERTAS_COMERCIALES_Y_OTROS_INGRESOS'])
-					->setCellValue($columnas[$c].'71',$fila['OFL_C_APORTES_EFECTIVO_COLPATRIA_FIDEICOMISO'])
-					->setCellValue($columnas[$c].'72',$fila['OFL_C_APORTES_OTROS_SOCIOS_INVERSIONISTAS'])
-					->setCellValue($columnas[$c].'73',$fila['OFL_C_RENDIMIENTOS_FIDEICOMISO_CAPITALIZACION'])
-					->setCellValue($columnas[$c].'74',$fila['OFL_C_SUBTOTAL_INGRESOS_ANTES_RENDIMIENTOS'])
-					->setCellValue($columnas[$c].'75',$fila['OFL_C_FLUJO_NETO_SIN_RENDIMIENTOS'])
-					->setCellValue($columnas[$c].'76',$fila['OFL_C_RENDIMIENTOS_FIDEICOMISO'])
-					->setCellValue($columnas[$c].'77',$fila['OFL_C_FLUJO_NETO_FIDUCIARIA'])
-					->setCellValue($columnas[$c].'78',$fila['OFL_C_TRASLADO_SALDO_FINAL_FIDUCIA_LIQUIDACION'])
-					->setCellValue($columnas[$c].'79',$fila['OFL_C_FLUJO_ACUMULADO_FIDUCIARIA'])
+					 ->setCellValue($columnas[$c].'7',$fila['OFL_C_COSTO_CONSTRUCCION']/$moneda)
+					->setCellValue($columnas[$c].'8',$fila['OFL_C_HONORARIOS_COLPATRIA']/$moneda)
+					->setCellValue($columnas[$c].'9',$fila['OFL_C_GASTOS_OPERACION_COLPATRIA']/$moneda)
+					->setCellValue($columnas[$c].'10',$fila['OFL_C_GO_PROMOTORA_OPERACION']/$moneda)
+					->setCellValue($columnas[$c].'11',$fila['OFL_C_GO_PROMOTORA_OVERHEAD']/$moneda)
+					->setCellValue($columnas[$c].'12',$fila['OFL_C_GO_CONSTRUCTORA_OPERACION']/$moneda)
+					->setCellValue($columnas[$c].'13',$fila['OFL_C_GO_CONSTRUCTORA_OVERHEAD']/$moneda)
+					->setCellValue($columnas[$c].'14',$fila['OFL_C_GO_TRANSACCIONES_INMOBILIARIAS_OPERACION']/$moneda)
+					->setCellValue($columnas[$c].'15',$fila['OFL_C_GO_TRANSACCIONES_INMOBLIARIAS_OVERHEAD']/$moneda)
+					->setCellValue($columnas[$c].'16',$fila['OFL_C_OTROS_PAGOS_EFECTUADOS_POR_FIDUCIA']/$moneda)
+					->setCellValue($columnas[$c].'17',$fila['OFL_C_VALOR_TERRENO']/$moneda)
+					->setCellValue($columnas[$c].'18',$fila['OFL_C_EGRESOS_CREDITO_CONSTRUCTOR']/$moneda)
+					->setCellValue($columnas[$c].'19',$fila['OFL_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_COLPATRIA']/$moneda)
+					->setCellValue($columnas[$c].'20',$fila['OFL_C_COMISION_FIDUCIARIA_NUEVOGAR_SIN_FIDUCIARIA']/$moneda)
+					->setCellValue($columnas[$c].'21',$fila['OFL_C_OTROS_COSTOS_Y_GASTOS']/$moneda)
+					->setCellValue($columnas[$c].'22',$fila['OFL_C_APORTES_EFECTIVO_COLPATRIA_FIDEICOMISOS']/$moneda)
+					->setCellValue($columnas[$c].'23',$fila['OFL_C_REINTEGROS_IVA']/$moneda)
+					->setCellValue($columnas[$c].'24',$fila['OFL_C_SUBTOTAL_EGRESOS_COLPATRIA']/$moneda)
+					->setCellValue($columnas[$c].'25',$fila['OFL_C_TRASLADOS_FIDUCIAS_E_INGRESOS_TOTALES']/$moneda)
+					->setCellValue($columnas[$c].'26',$fila['OFL_C_INGRESOS_VENTAS_COLPATRIA']/$moneda)
+					->setCellValue($columnas[$c].'27',$fila['OFL_C_DESEMBOLSOS_CREDITO_CONSTRUCTOR_TERRENO']/$moneda)
+					->setCellValue($columnas[$c].'28',$fila['OFL_C_TRASLADOS_LIQUIDACIONES_FIDEICOMISOS']/$moneda)
+					->setCellValue($columnas[$c].'29',$fila['OFL_C_OTROS_INGRESOS']/$moneda)
+					->setCellValue($columnas[$c].'30',$fila['OFL_C_APORTES_DE_SOCIOS']/$moneda)
+					->setCellValue($columnas[$c].'31',$fila['OFL_C_SUBTOTAL_INGRESOS']/$moneda)
+					->setCellValue($columnas[$c].'32',$fila['OFL_C_FLUJO_CAJA_ANTES_DE_REINTEGRO_SOCIOS']/$moneda)
+					->setCellValue($columnas[$c].'33',$fila['OFL_C_REINTEGRO_APORTES_UTILIDADES_SOCIOS']/$moneda)
+					->setCellValue($columnas[$c].'34',$fila['OFL_C_FLUJO_NETO_CAJA_CT']/$moneda)
+					->setCellValue($columnas[$c].'35',$fila['OFL_C_FLUJO_ACUMULADO']/$moneda)
+					->setCellValue($columnas[$c].'36',$fila['OFL_C_COSTO_CREDITO_TESORERIA']/$moneda)
+					->setCellValue($columnas[$c].'37',$fila['OFL_C_IMPUESTO_RENTA']/$moneda)
+					->setCellValue($columnas[$c].'38',$fila['OFL_C_FLUJO_NETO_CAJA']/$moneda)
+					->setCellValue($columnas[$c].'39',$fila['OFL_C_FLUJO_ACUMULADO_CAJA']/$moneda)
+					->setCellValue($columnas[$c].'47',$fila['OFL_C_PAGOS_EFECTUADOS_FIDUCIA_ADMON']/$moneda)
+					->setCellValue($columnas[$c].'48',$fila['OFL_C_PE_INTERESES_CREDITO_CONSTRUCTOR']/$moneda)
+					->setCellValue($columnas[$c].'49',$fila['OFL_C_PE_HONORARIOS_VISITAS_OBRA_OTROS']/$moneda)
+					->setCellValue($columnas[$c].'50',$fila['OFL_C_PE_ABONOS_EXTRAORDINARIOS_CREDITO']/$moneda)
+					->setCellValue($columnas[$c].'51',$fila['OFL_C_PE_PAGOS_TERRENO_EFECTUADOS_FIDUCIA']/$moneda)
+					->setCellValue($columnas[$c].'52',$fila['OFL_C_PE_OTROS_PAGOS_EFECTUADOS_FIDUCIA']/$moneda)
+					->setCellValue($columnas[$c].'53',$fila['OFL_C_TRASLADOS_FONDOS_FIDUCIA_CONSTRUCTORA']/$moneda)
+					->setCellValue($columnas[$c].'54',$fila['OFL_C_COMISION_FIDUCIARIA_PRREVENTAS_ADMON']/$moneda)
+					->setCellValue($columnas[$c].'55',$fila['OFL_C_COMISION_FIDUCIARIA_NUEVOGAR']/$moneda)
+					->setCellValue($columnas[$c].'56',$fila['OFL_C_IMPUESTO_TRANSACCIONES_FINANCIERAS']/$moneda)
+					->setCellValue($columnas[$c].'57',$fila['OFL_C_SUBTOTAL_EGRESOS']/$moneda)
+					->setCellValue($columnas[$c].'58',$fila['OFL_C_DESEMBOLSOS_CREDITO_CONSTRUCTOR']/$moneda)
+					->setCellValue($columnas[$c].'59',$fila['OFL_C_INGRESOS_VENTAS']/$moneda)
+					->setCellValue($columnas[$c].'60',$fila['OFL_C_IV_ABONOS_SEPARACION']/$moneda)
+					->setCellValue($columnas[$c].'61',$fila['OFL_C_IV_CARTERA_CUOTA_INICIAL']/$moneda)
+					->setCellValue($columnas[$c].'62',$fila['OFL_C_IV_SALDO_CUOTA_INICIAL_ABONO_ESCRITURA']/$moneda)
+					->setCellValue($columnas[$c].'63',$fila['OFL_C_IV_SUBSIDIO_VIS_Y_AHORRO_PROGRAMADO']/$moneda)
+					->setCellValue($columnas[$c].'64',$fila['OFL_C_IV_EXCEDENTES_CREDITO_COMPRADORES']/$moneda)
+					->setCellValue($columnas[$c].'65',$fila['OFL_C_IV_GIROS_DIRECTOS_CREDITOS_OTRAS_ENTIDADES']/$moneda)
+					->setCellValue($columnas[$c].'66',$fila['OFL_C_IV_INGRESOS_POR_RECIBIR_VENTAS_REALIZADAS']/$moneda)
+					->setCellValue($columnas[$c].'67',$fila['OFL_C_OTROS_INGRESOS_POR_VENTAS']/$moneda)
+					->setCellValue($columnas[$c].'68',$fila['OFL_C_OI_INTERESES_SUBROGACION']/$moneda)
+					->setCellValue($columnas[$c].'69',$fila['OFL_C_OI_INTERESES_MORA']/$moneda)
+					->setCellValue($columnas[$c].'70',$fila['OFL_C_OI_OFERTAS_COMERCIALES_Y_OTROS_INGRESOS']/$moneda)
+					->setCellValue($columnas[$c].'71',$fila['OFL_C_APORTES_EFECTIVO_COLPATRIA_FIDEICOMISO']/$moneda)
+					->setCellValue($columnas[$c].'72',$fila['OFL_C_APORTES_OTROS_SOCIOS_INVERSIONISTAS']/$moneda)
+					->setCellValue($columnas[$c].'73',$fila['OFL_C_RENDIMIENTOS_FIDEICOMISO_CAPITALIZACION']/$moneda)
+					->setCellValue($columnas[$c].'74',$fila['OFL_C_SUBTOTAL_INGRESOS_ANTES_RENDIMIENTOS']/$moneda)
+					->setCellValue($columnas[$c].'75',$fila['OFL_C_FLUJO_NETO_SIN_RENDIMIENTOS']/$moneda)
+					->setCellValue($columnas[$c].'76',$fila['OFL_C_RENDIMIENTOS_FIDEICOMISO']/$moneda)
+					->setCellValue($columnas[$c].'77',$fila['OFL_C_FLUJO_NETO_FIDUCIARIA']/$moneda)
+					->setCellValue($columnas[$c].'78',$fila['OFL_C_TRASLADO_SALDO_FINAL_FIDUCIA_LIQUIDACION']/$moneda)
+					->setCellValue($columnas[$c].'79',$fila['OFL_C_FLUJO_ACUMULADO_FIDUCIARIA']/$moneda)
 					
 					->setCellValue('B41','VPN(10.54%ea)')
-					->setCellValue('B42',$fila['OFL_C_VPN'])
+					->setCellValue('B42','=NPV('.$indicador.'%,E38:XFD38)')
 					
 					->setCellValue('C41','TIR(ea)')
-					->setCellValue('C42',$fila['OFL_C_TIR_EA'])
+					->setCellValue('C42', '=(IFERROR(XIRR(E38:XFD38,E2:EFD2),0))')
 					
 					->setCellValue('D41','TIR(em)')
-					->setCellValue('D42',$fila['OFL_C_TIR_EM'])
+					// ->setCellValue('D42', $periodo)
+					->setCellValue('D42','=C42/'.$periodo)
 					
 					->setCellValue('E41','TIRmod(ea)')
-					->setCellValue('E42',$fila['OFL_C_TIR_MOD_EA'])
+					#->setCellValue('E42','=MIRR(G48:XFD38,B12,0)')
+					->setCellValue('E42', '=MIRR(E38:XFD38,'.$indicador.'%,0)')
+					 
 					
 					->setCellValue('F41','TIRmod(em)')
-					->setCellValue('F42',$fila['OFL_C_TIR_MOD_EM']);
+						
+					
+					
+					 ->setCellValue('F42', '=E42/'.$periodo)
+					;
 					
 					$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3')->applyFromArray(
 					array(
@@ -380,7 +464,12 @@ $colorLetra = array(
 				  $objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'97')
 					 ->getNumberFormat()->setFormatCode('#,##0');
 					 
-					 
+					$objPHPExcel->getActiveSheet()->getStyle('C42:H42')
+				 ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+			
+ 	$objPHPExcel->getActiveSheet()->getStyle('C7:C79')
+				 ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+			
 					
 					 
 				$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'4')->applyFromArray($BStyle);
@@ -487,6 +576,76 @@ $objPHPExcel->setActiveSheetIndex(0)
 					 ->setCellValue('B77', '=SUM(E77:'.$columnas[$c].'77)')
 					 ->setCellValue('B78', '=SUM(E78:'.$columnas[$c].'78)')
 					 ->setCellValue('B79', '=SUM(E79:'.$columnas[$c].'79)')
+					 
+					 ->setCellValue('C7', '=B7/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C8', '=B8/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C9', '=B9/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C10', '=B10/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C11', '=B11/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C12', '=B12/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C13', '=B13/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C14', '=B14/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C15', '=B15/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C16', '=B16/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C17', '=B17/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C18', '=B18/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C19', '=B19/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C20', '=B20/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C21', '=B21/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C22', '=B22/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C23', '=B23/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C24', '=B24/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C25', '=B25/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C26', '=B26/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C27', '=B27/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C28', '=B28/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C29', '=B29/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C30', '=B30/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C31', '=B31/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C32', '=B32/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C33', '=B33/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C34', '=B34/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C35', '=B35/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C36', '=B36/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C37', '=B37/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C38', '=B38/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C39', '=B39/'.$ven_bru.'*'.$moneda)
+					 
+					 ->setCellValue('C47', '=B47/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C48', '=B48/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C49', '=B49/'.$ven_bru.'*'.$moneda)
+					 
+					 ->setCellValue('C50', '=B50/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C51', '=B51/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C52', '=B52/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C53', '=B53/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C54', '=B54/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C55', '=B55/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C56', '=B56/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C57', '=B57/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C58', '=B58/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C59', '=B59/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C60', '=B60/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C61', '=B61/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C62', '=B62/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C63', '=B63/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C64', '=B64/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C65', '=B65/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C66', '=B66/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C67', '=B67/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C68', '=B68/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C69', '=B69/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C70', '=B70/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C71', '=B71/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C72', '=B72/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C73', '=B73/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C74', '=B74/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C75', '=B75/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C76', '=B76/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C77', '=B77/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C78', '=B78/'.$ven_bru.'*'.$moneda)
+					 ->setCellValue('C79', '=B79/'.$ven_bru.'*'.$moneda)
+					 				 
 									 
 				 ;
 	
@@ -597,6 +756,8 @@ $objPHPExcel->setActiveSheetIndex(0)
 	
 	
 	//--------Blanco
+	// $objPHPExcel->getActiveSheet()->getStyle('E2:PPP2')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+	
 	
 	$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
 	

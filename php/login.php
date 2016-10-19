@@ -17,7 +17,7 @@ if(!empty($_POST)){
 			}else{
 				session_start();
 				$_SESSION["user_id"]=$user_id;
-				print "<script>window.location='../Navegacion/Bienvenido/bienvenido.php';</script>";				
+				print "<script>window.location='../Navegacion/Bienvenido/ABT-T010-bienvenido.php';</script>";				
 			}
 		}
 	}

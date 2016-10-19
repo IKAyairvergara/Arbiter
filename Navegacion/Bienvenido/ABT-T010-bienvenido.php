@@ -105,7 +105,7 @@ body
 	</div>
 	<div style="background-image:url(bienvenido_11.png); position:absolute; left:0px; top:149px; width:63px; height:619px;" title="">
 	</div>
-	<div id="p1" onclick="location.href='../Parametrizacion/ABT-T042-parametrizacion-D.php';" style="background-image:url(bienvenido_12.png); cursor:pointer;" title="">
+	<div id="p1" onclick="location.href='../ParametrizacionManAut/ABT-T051-ParametrizacionManAut-D.php';" style="background-image:url(bienvenido_12.png); cursor:pointer;" title="">
 	</div>
 	<div style="background-image:url(bienvenido_13.png); position:absolute; left:272px; top:149px; width:144px; height:619px;" title="">
 	</div>

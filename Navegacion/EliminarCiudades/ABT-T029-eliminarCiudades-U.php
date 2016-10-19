@@ -222,8 +222,8 @@ body
 					  $query = "delete from tb_ciudad where ciu_descripcion = '$CIUDAD' and CIU_PAI_ID= '$PAIS' ";
 					  $result = $mysqli->query($query);
 						   if($result==false){
-								#print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='ABT-T029-eliminarCiudades-U.php';</script>";
-						   		printf("Errormessage: %s\n", $mysqli->error);
+								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='ABT-T029-eliminarCiudades-U.php';</script>";
+						   		// printf("Errormessage: %s\n", $mysqli->error);
 								}
 							else{
 								print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Ciudades/ABT-T014-ciudades-D.php';</script>";
