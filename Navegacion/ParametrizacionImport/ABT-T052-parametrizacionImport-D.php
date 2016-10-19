@@ -615,9 +615,9 @@ input[type=file]{
 								echo '<script type="text/javascript">alert("Se ha subido satisfactoriamente los datos");</script>';
 								}
 				}
-				
+				else{
 					echo '<script type="text/javascript">alert("Error en el tipo de archivo");</script>';
-							
+				}	
 				
 				}
 				
