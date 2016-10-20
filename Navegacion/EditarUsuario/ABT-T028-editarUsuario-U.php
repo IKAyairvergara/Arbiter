@@ -88,26 +88,14 @@ body
      background-size: 100% 300%;
      background-repeat: no-repeat;
  }
- #p1{
-		position:absolute; left:596px; top:32px; width:179px; height:76px;cursor: pointer;
-	}
-#p1:hover
-	{
-		opacity: 1.0;
-		filter: alpha(opacity=100);
-		transform: scale(1.12);
-		transition-duration: 0.4s;
-	}
- #p2{
-   
-  }
-#p2:hover
-  {
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-    transform: scale(1.12);
-    transition-duration: 0.4s;
-  }
+
+	  #p:hover
+{
+	opacity: 1.0;
+	filter: alpha(opacity=100);
+	transform: scale(1.12);
+	transition-duration: 0.4s;
+}
 </style>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="position:absolute; left:10%; top:0px; width:1024px; height:769px;">
@@ -115,11 +103,11 @@ body
 	</div>
 	<div style="background-image:url(importExport_02.png); position:absolute; left:0px; top:33px; width:642px; height:217px;" title="">
 	</div>
-	<div style="background-image:url(importExport_03.png); position:absolute; left:642px; top:33px; width:162px; height:76px;" title="">
+	<div id="p" onclick="location.href='../Administrador/ABT-T001-administrador-D.php';" style="background-image:url(importExport_03.png); position:absolute; left:642px; top:33px; width:162px; height:76px;" title="">
 	</div>
 	<div style="background-image:url(importExport_04.png); position:absolute; left:804px; top:33px; width:32px; height:735px;" title="">
 	</div>
-	<div style="background-image:url(importExport_05.png); position:absolute; left:836px; top:33px; width:154px; height:76px;" title="">
+	<div  id="p" onclick="location.href='../Administrador/ABT-T001-administrador-D.php';" style="background-image:url(importExport_05.png); position:absolute; left:836px; top:33px; width:154px; height:76px;" title="">
 	</div>
 	<div style="background-image:url(importExport_06.png); position:absolute; left:990px; top:33px; width:34px; height:735px;" title="">
 	</div>

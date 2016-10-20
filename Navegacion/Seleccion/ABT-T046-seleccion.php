@@ -186,9 +186,9 @@ function dependencia_ciudad()
 	</div>
 	<div style="background-image:url(Seleccion_17.png); position:absolute; left:771px; top:230px; width:210px; height:30px;" title="">
 			<select name="unidadpresentacion" style="left:771px; top:230px; width:210px; height:30px;" required>
-						  <option value="miles">Miles</option>
-						  <option value="cientos">Cientos</option>
-						  <option value="millones">Millones</option>
+						  <option value="1">Miles</option>
+						  <option value="1000">Pesos</option>
+						  <option value="0.001">Millones</option>
 			</select>
 	</div>
 	<div style="background-image:url(Seleccion_18.png); position:absolute; left:771px; top:260px; width:210px; height:9px;" title="">
