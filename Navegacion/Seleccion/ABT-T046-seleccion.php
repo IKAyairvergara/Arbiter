@@ -172,12 +172,12 @@ function dependencia_ciudad()
 	</div>
 	<div style="background-image:url(Seleccion_14.png); position:absolute; left:771px; top:190px; width:210px; height:31px;" title="">
 			<select name="periodicidad" style="left:771px; top:190px; width:210px; height:31px;" required>
-						  <option value="Mensual">Mensual</option>
-						  <option value="Bimensual">Bimensual</option>
-						  <option value="Trimestral">Trimestral</option>
-						  <option value="Semestral">Semestral</option>
-						  <option value="Anual">Anual</option>
-						  <option value="Quinquenio">Quinquenio</option>  
+						  <option value="1">Mensual</option>
+						  <option value="2">Bimensual</option>
+						  <option value="3">Trimestral</option>
+						  <option value="6">Semestral</option>
+						  <option value="12">Anual</option>
+						  <option value="60">Quinquenio</option>  
 			</select>
 	</div>
 	<div style="background-image:url(Seleccion_15.png); position:absolute; left:981px; top:190px; width:6px; height:579px;" title="">

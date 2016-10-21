@@ -263,16 +263,19 @@ $moneda=1;
 					 }
 					 
 					 switch ($periodicidad) {
-						case 'Mensual':
+						case '1':
 							$periodo = 12;
 							break;
-						case 'Bimensual':
+						case '2':
 							$periodo = 6;
 							break;
-						case 'Trimestral':
+						case '3':
 							$periodo = 4;
 							break;
-						case 'Anual':
+						case '6':
+							$periodo = 2;
+							break;	
+						case '12':
 							$periodo = 1;
 							break;
 						case 'Quinquenio':
