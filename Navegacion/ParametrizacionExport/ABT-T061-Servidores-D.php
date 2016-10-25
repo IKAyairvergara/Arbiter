@@ -27,7 +27,7 @@
 	if($resultado->num_rows > 0 ){
 		
 		$objPHPExcel->setActiveSheetIndex(0)
-					->setCellValue('A1','EXPORT SERVIDORES')
+					->setCellValue('A1','SERVIDORES')
 					->setCellValue('A2','ID SERVIDOR')
 					->setCellValue('B2','RUTA SERVIDOR');
 	

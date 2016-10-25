@@ -25,7 +25,7 @@
 	if($resultado->num_rows > 0 ){
 		
 		$objPHPExcel->setActiveSheetIndex(0)
-					->setCellValue('A1','EXPORT INDICADORES')
+					->setCellValue('A1','INDICADORES')
 					->setCellValue('A2','ID INDICADOR`')
 					->setCellValue('B2','DESCRIPCION INDICADOR')
 					->setCellValue('C2','FECHA')

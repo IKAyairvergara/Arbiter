@@ -119,17 +119,17 @@
 									$query1 = "CALL PROC_MODELO_C('$CodigoID')";
 									$result1 = $mysqli->query($query1);
 									
-									$fct="SELECT FCT_C_CONS_ID FROM tb_c_flujo_caja_terreno WHERE FCT_C_CONS_ID='$CodigoID' ";
-									$flc="SELECT FLC_C_CONS_ID FROM tb_c_flujo_caja WHERE FLC_C_CONS_ID='$CodigoID' ";
-									$ofl="SELECT OFL_C_CONS_ID FROM tb_c_otros_flujos WHERE OFL_C_CONS_ID='$CodigoID' ";
-									$res="SELECT RES_C_CONS_ID FROM tb_c_resumen WHERE RES_C_CONS_ID='$CodigoID'";
+									$fct="SELECT * FROM tb_c_flujo_caja_terreno WHERE FCT_C_CONS_ID='$CodigoID' ";
+									$flc="SELECT * FROM tb_c_flujo_caja WHERE FLC_C_CONS_ID='$CodigoID' ";
+									$ofl="SELECT * FROM tb_c_otros_flujos WHERE OFL_C_CONS_ID='$CodigoID' ";
+									$res="SELECT * FROM tb_c_resumen WHERE RES_C_CONS_ID='$CodigoID'";
 									
 									$res_fct= $mysqli->query($fct);
 									$res_flc= $mysqli->query($flc);
 									$res_ofl= $mysqli->query($ofl);
 									$res_res= $mysqli->query($res);
 									
-								if(($res_fct->num_rows > 0) || ($res_flc->num_rows > 0)|| ($res_ofl->num_rows > 0)|| ($res_res->num_rows > 0) ){
+								if(($res_fct->num_rows == 0) || ($res_flc->num_rows == 0)|| ($res_ofl->num_rows == 0)|| ($res_res->num_rows == 0) ){
 									
 									$del_fct="DELETE FROM tb_c_flujo_caja_terreno WHERE FCT_C_CONS_ID='$CodigoID' ";
 									$del_flc="DELETE FROM tb_c_flujo_caja WHERE FLC_C_CONS_ID='$CodigoID' ";

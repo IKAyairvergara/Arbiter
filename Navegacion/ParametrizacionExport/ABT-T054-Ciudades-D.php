@@ -25,7 +25,7 @@
 	if($resultado->num_rows > 0 ){
 		
 		$objPHPExcel->setActiveSheetIndex(0)
-					->setCellValue('A1','EXPORT CIUDADES')
+					->setCellValue('A1','CIUDADES')
 					->setCellValue('A2','ID CIUDADES')
 					->setCellValue('B2','DESCRIPCION CIUDADES')
 					->setCellValue('C2','ID PAIS');
