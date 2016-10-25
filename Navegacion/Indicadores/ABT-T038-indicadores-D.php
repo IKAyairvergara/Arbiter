@@ -100,7 +100,7 @@ body
 			    exit();
 			}
 
-			$consulta = "select ind_id, ind_descripcion, ind_fecha,ind_valor  from tb_indicador";
+			$consulta = "select ind_id, ind_descripcion, ind_fecha, FORMAT(ind_valor,2) from tb_indicador";
 
 			if ($resultado = $mysqli->query($consulta)) {
 
