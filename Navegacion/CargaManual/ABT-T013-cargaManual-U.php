@@ -692,7 +692,7 @@ input[type=file]{
 							else{
 								IF($resultado_mod==TRUE){
 								
-										// echo '<script type="text/javascript">alert("Se ha subido el proyecto '.$nom_pro.' y la etapa '.$etapa.'");</script>';
+										echo '<script type="text/javascript">alert("Se ha subido el proyecto '.$nom_pro.' y la etapa '.$etapa.'");</script>';
 							}
 							
 							}

@@ -17,19 +17,7 @@
                              SEL_DET_PRO_ID=PRO_ID
 						AND
 						SEL_CONS_ID='$itemid'
-                    UNION 
-                      SELECT 
-                           CONS_ID                    COD,
-                           CONS_DESCRIPCION           NOMBRE,
-                           'N/A '                     MODELO,
-                           'N/A '                     ETAPA                         
-              FROM tb_seleccion,
-                             tb_consolidados 
-                        WHERE 
-                            SEL_CONS_ID=CONS_ID 
-						AND 
-						
-						SEL_CONS_ID='$itemid'                        
+                      
                              
                             ");
   $items = array();
