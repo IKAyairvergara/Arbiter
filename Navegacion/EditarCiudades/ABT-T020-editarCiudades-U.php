@@ -179,7 +179,7 @@ body
 			</tr>     
     <td style="color: white; font-family:sans-serif;font-size:20;" >Descripci&#243;n Ciudad modificar:</td>
     <td><label for="CIUD_DESCRIPCION"></label> 
-    <input type="text" name="CIUD_DESCRIPCION" id="CIUD_DESCRIPCION" onkeyup="javascript:this.value=this.value.toUpperCase();" id="PAIS_DESCRIPCION" maxlength="30" required /></td>
+    <input type="text" name="CIUD_DESCRIPCION" id="CIUD_DESCRIPCION" onkeyup="javascript:this.value=this.value.toUpperCase();" id="PAIS_DESCRIPCION" maxlength="30"  /></td>
   </tr>
   	
 
@@ -228,9 +228,20 @@ body
 	$CIUD_PAISES=$_POST['pais'];
 	$CIUD_PAISES_EDIT=$_POST['CIUD_PAISES_EDIT'];
 	
-					$update = "update tb_ciudad set ciu_descripcion='$CIUD_DESCRIPCION' , ciu_pai_id='$CIUD_PAISES_EDIT' where ciu_descripcion='$CIU_ID' and ciu_pai_id='$CIUD_PAISES'";
-					$resultado = $mysqli -> query($update);
-					if($result==true){
+					if($CIUD_DESCRIPCION==''){
+						$update= "update tb_ciudad set ciu_pai_id='$CIUD_PAISES_EDIT' where ciu_descripcion='$CIU_ID' and ciu_pai_id='$CIUD_PAISES'";
+					
+					}
+					else{
+						$update= "update tb_ciudad set ciu_descripcion='$CIUD_DESCRIPCION' , ciu_pai_id='$CIUD_PAISES_EDIT' where ciu_descripcion='$CIU_ID' and ciu_pai_id='$CIUD_PAISES'";
+					
+					}
+					
+					
+					
+					
+					
+					if(!$resultado = $mysqli -> query($update)){
 						print "<script>alert(\"No se ha podido realizar el cambio\");window.location='ABT-T020-editarCiudades-U.php';</script>";
 						}
 					else{
