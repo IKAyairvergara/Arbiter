@@ -321,7 +321,7 @@ input[type=file]{
 									$SEG_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
 									$SEG_DES_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ch)->getValue();	
 								
-								if ($PAI_ID_CHECK!=null&&$SEG_DES_CHECK!=null) {
+								if ($SEG_ID_CHECK!=null&&$SEG_DES_CHECK!=null) {
 									
 								$insert_seg="INSERT INTO `tb_segmento`(`SEG_ID`, `SEG_DESCRIPCION`) VALUES  ('$SEG_ID_CHECK','$SEG_DES_CHECK')";
 								
@@ -384,7 +384,7 @@ input[type=file]{
 									$PAR_ID_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(0, $ch)->getValue();	
 									$PAR_DES_CHECK = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(1, $ch)->getValue();	
 								
-								if ($PAR_ID_CHECK!=null&&$SEG_DES_CHECK!=null) {
+								if ($PAR_ID_CHECK!=null&&$PAR_DES_CHECK!=null) {
 									
 									
 								$insert_par="INSERT INTO `tb_participacion`(`PAR_ID`, `PAR_DESCRIPCION`) VALUES  ('$PAR_ID_CHECK','$PAR_DES_CHECK')";
@@ -527,11 +527,12 @@ input[type=file]{
 									$DES_PRO_SEG_ID = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $ch)->getValue();	
 									$DES_PRO_PAR_ID = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $ch)->getValue();	
 									
-								if ($PRO_ID_CHECK!=null&&$PRO_DES_CHECK!=null&&$PRO_PAI_ID!=null&&$PRO_CIU_ID!=null) {
+								if ($DES_PRO_ID_CHECK!=null&&$DES_PRO_DES_CHECK!=null&&$DES_PRO_SEG_ID!=null&&$DES_PRO_PAR_ID!=null) {
 									
 									
 									
-								$insert_det_pro="INSERT INTO `tb_detalle_proyecto`(`DET_PRO_ID`, `DET_ETAPA`, `DET_SEG_ID`, `DET_PAR_ID`) VALUES ('$DES_PRO_ID_CHECK','$DES_PRO_DES_CHECK','$DES_PRO_SEG_ID','$DES_PRO_PAR_ID')";
+								$insert_det_pro="INSERT INTO `tb_detalle_proyecto`(`DET_PRO_ID`, `DET_ETAPA`, `DET_SEG_ID`, `DET_PAR_ID`) 
+								VALUES ('$DES_PRO_ID_CHECK','$DES_PRO_DES_CHECK','$DES_PRO_SEG_ID','$DES_PRO_PAR_ID')";
 								
 								if(!$resultado_pai= $mysqli -> query($insert_det_pro)){
 									
@@ -602,11 +603,11 @@ input[type=file]{
 									$IND_SEG_ID = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, $ch)->getValue();	
 									$IND_PAR_ID = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(3, $ch)->getValue();	
 								
-								if ($PRO_ID_CHECK!=null&&$PRO_DES_CHECK!=null&&$PRO_PAI_ID!=null&&$PRO_CIU_ID!=null) {
+								if ($IND_ID_CHECK!=null&&$IND_DES_CHECK!=null&&$IND_SEG_ID!=null&&$IND_PAR_ID!=null) {
 									
 								$insert_ind="INSERT INTO `tb_indicador`(`IND_ID`, `IND_DESCRIPCION`, `IND_FECHA`, `IND_VALOR`) VALUES('$IND_ID_CHECK','$IND_DES_CHECK','$IND_SEG_ID','$IND_PAR_ID')";
 								
-								if(!$resultado_pai= $mysqli -> query($insert_cui)){
+								if(!$resultado_pai= $mysqli -> query($insert_ind)){
 									
 									
 									
@@ -723,7 +724,7 @@ input[type=file]{
     							
 								$insert_dato=$insert_dato-1;
 								
-								echo '<script type="text/javascript">alert("Se ha subido satisfactoriamente los datos en la tabla '.$insert_sel.' y </br> se han insertado '.$insert.' datos y con una cantidad de errores por falta de informacion '.$insert_dato.' y duplicados de '.$insert_dupli.'");</script>';
+								echo '<script type="text/javascript">alert("Se ha subido satisfactoriamente los datos en la tabla '.$insert_sel.' y  se han insertado '.$insert.' datos y con una cantidad de errores por falta de informacion '.$insert_dato.' y duplicados de '.$insert_dupli.'");</script>';
 								}
 				}
 				else{

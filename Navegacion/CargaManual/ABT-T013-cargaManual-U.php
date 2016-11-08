@@ -1680,9 +1680,9 @@ input[type=file]{
 							$res_id=$proyecto;		
 							$res_det_etapa=$etapa;
 							$res_modelo=$modelo;
-							$res_temp= $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 3)->getValue();
+							$res_temp= $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 1)->getValue();
 							
-							list($temp_null, $res_fecha)= explode("  ",$res_temp);
+							list($temp_null, $res_fecha)= explode(" ",$res_temp);
 							
 								$res_fecha2=cambiarFecha1($res_fecha);
 								

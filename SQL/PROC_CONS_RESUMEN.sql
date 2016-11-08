@@ -1452,7 +1452,7 @@ DECLARE v_res_c_porc_vent_ci_vb  DECIMAL (10,0);
           ELSE CONS_FEC_GEN_HAS
                             END
 							
-							GROUP BY RES_FECHA
+							
 							
 							UNION ALL
 							
@@ -1945,8 +1945,8 @@ DECLARE v_res_c_porc_vent_ci_vb  DECIMAL (10,0);
           ELSE CONS_FEC_GEN_HAS
                             END
 							
-							GROUP BY RES_C_FECHA) CONS
-							GROUP BY CONS.RES_C_FECHA;
+							) CONS
+							;
  
  DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
 

@@ -135,11 +135,13 @@
 									$del_flc="DELETE FROM tb_c_flujo_caja WHERE FLC_C_CONS_ID='$CodigoID' ";
 									$del_ofl="DELETE FROM tb_c_otros_flujos WHERE OFL_C_CONS_ID='$CodigoID' ";
 									$del_res="DELETE FROM tb_c_resumen WHERE RES_C_CONS_ID='$CodigoID'";
+									$del_cons="DELETE FROM tb_consolidados WHERE CONS_ID='$CodigoID'";
 									
 									$d_fct= $mysqli->query($del_fct);
 									$d_flc= $mysqli->query($del_flc);
 									$d_ofl= $mysqli->query($del_ofl);
 									$d_res= $mysqli->query($del_res);
+									$d_con= $mysqli->query($del_cons);
 									
 									print "<script>alert(\"Lo sentimos pero el rango de fechas indicado no tiene datos disponibles\");window.location='ABT-T046-seleccion.php';</script>";
 								}

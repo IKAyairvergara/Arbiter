@@ -18,6 +18,7 @@
 						$delete_flc="DELETE  FROM tb_c_flujo_caja_TERRENO WHERE FCT_C_CONS_ID= '$proyecto' ";
 						$delete_res="DELETE  FROM tb_c_resumen WHERE RES_C_CONS_ID= '$proyecto' ";
 						$delete_ofl="DELETE  FROM tb_c_otros_flujos WHERE OFL_C_CONS_ID= '$proyecto' ";
+						$delete_ofl="DELETE  FROM tb_seleccion WHERE SEL_CONS_ID= '$proyecto' ";
 							
 			            $resultados = $mysqli->query($query);  
 
