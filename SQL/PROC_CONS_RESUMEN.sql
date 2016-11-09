@@ -487,8 +487,8 @@ DECLARE v_res_c_porc_vent_ci_vb  DECIMAL (10,0);
 
   DECLARE c_resumen_consolidado CURSOR FOR
   
-  SELECT CONS.CONS_ID
-,CONS.RES_C_FECHA
+ SELECT CONS.CONS_ID
+ ,CONS.RES_C_FECHA
  ,SUM(CONS.RES_C_TOTAL_UNIDADES)
  ,SUM(CONS.RES_C_AREA_PROMEDIO_UNIDAD)
  ,SUM(CONS.RES_C_TOTAL_AREA_CONSTRUIDA)
@@ -961,7 +961,8 @@ DECLARE v_res_c_porc_vent_ci_vb  DECIMAL (10,0);
   
   
   
-  FROM(SELECT CONS_ID
+FROM (
+    SELECT CONS_ID
     ,RES_FECHA              RES_C_FECHA
  ,SUM(RES_TOTAL_UNIDADES)                             				 RES_C_TOTAL_UNIDADES          
  ,SUM(RES_AREA_PROMEDIO_UNIDAD)                                    	 RES_C_AREA_PROMEDIO_UNIDAD   
@@ -1452,12 +1453,12 @@ DECLARE v_res_c_porc_vent_ci_vb  DECIMAL (10,0);
           ELSE CONS_FEC_GEN_HAS
                             END
 							
-							
+							GROUP BY CONS_ID
 							
 							UNION ALL
 							
 							
-	SELECT CONS_ID
+	 SELECT CONS_ID
 ,RES_C_FECHA
  ,SUM(RES_C_TOTAL_UNIDADES)
  ,SUM(RES_C_AREA_PROMEDIO_UNIDAD)
@@ -1944,10 +1945,13 @@ DECLARE v_res_c_porc_vent_ci_vb  DECIMAL (10,0);
           WHEN '0000-00-00' THEN RES_C_FECHA 
           ELSE CONS_FEC_GEN_HAS
                             END
+    
+    GROUP BY CONS_ID
 							
 							) CONS
+                            GROUP BY CONS.CONS_ID
 							;
- 
+							
  DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
 
    OPEN c_resumen_consolidado;
