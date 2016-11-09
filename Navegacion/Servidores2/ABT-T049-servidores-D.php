@@ -111,23 +111,16 @@ body
 			/* cerrar la conexión */
 			$mysqli->close();
 	 	?>
-		</div>
+	</div>
 	<div style="background-image:url(servidores_11.png); position:absolute; left:36px; top:652px; width:953px; height:19px;" title="">
 	</div>
 	<div style="background-image:url(servidores_12.png); position:absolute; left:36px; top:671px; width:14px; height:97px;" title="">
 	</div>
-	<div style="background-image:url(servidores_13.png); position:absolute; left:50px; top:671px; width:354px; height:76px;" title="">
+	<div id="p2" onClick="location.href='../EditarServidores/ABT-T027-editarServidores-U.php';" style="background-image:url(servidores_13.png); " title="">
 	</div>
-	
 	<div style="background-image:url(servidores_14.png); position:absolute; left:404px; top:671px; width:585px; height:97px;" title="">
 	</div>
 	<div style="background-image:url(servidores_15.png); position:absolute; left:50px; top:747px; width:354px; height:21px;" title="">
-	</div>
-	<div id="p2" onClick="location.href='../EditarServidores/ABT-T027-editarServidores-U.php';" style="background-image:url(Untitled-1_14.png); position:absolute; left:50px; top:671px; width:76px; height:76px;" title="">
-	</div>
-	<div id="p2" onClick="location.href='../AgregarServidores/ABT-T005-agregarServidores-U.php';" style="background-image:url(Untitled-1_16.png); position:absolute; left:200px; top:671px; width:76px; height:76px;" title="">
-	</div>
-	<div id="p2" onClick="location.href='../EliminarServidores/ABT-T032-eliminarServidores-U.php';" style="background-image:url(Untitled-1_19.png); position:absolute; left:350px; top:672px; width:76px; height:76px;" title="">
 	</div>
 </div>
 </body>

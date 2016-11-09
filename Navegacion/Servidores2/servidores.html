@@ -1,14 +1,3 @@
-﻿<?php 
-    //creamos la sesion 
-    session_start(); 
-    //validamos si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
-?>	
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
@@ -55,11 +44,11 @@ body
 	</div>
 	<div style="background-image:url(servidores_02.png); position:absolute; left:0px; top:35px; width:640px; height:123px;" title="">
 	</div>
-	<div id="p" onClick="location.href='../Parametrizacion/ABT-T042-parametrizacion-D.php';"  style="background-image:url(servidores_03.png); " title="">
+	<div id="p" onClick="location.href='../Parametrizacion/parametrizacion.php';"  style="background-image:url(servidores_03.png); " title="">
 	</div>
 	<div style="background-image:url(servidores_04.png); position:absolute; left:802px; top:35px; width:19px; height:123px;" title="">
 	</div>
-	<div id="p1" onClick="location.href='../Bienvenido/ABT-T010-bienvenido.php';" style="background-image:url(servidores_05.png); " title="">
+	<div id="p1" onClick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(servidores_05.png); " title="">
 	</div>
 	<div style="background-image:url(servidores_06.png); position:absolute; left:989px; top:35px; width:35px; height:733px;" title="">
 	</div>
@@ -71,18 +60,20 @@ body
 	</div>
 	<div style="background-image:url(servidores_10.png); position:absolute; left:36px; top:158px; width:953px; height:494px;" title="">
 	<?php
-	include "../../php/ABT-T000-conexion-U.php";
+	include "../../php/conexion1.php";
 
-      
+        $mysqli=conexion();
 
-		
+
+			//$mysqli = new mysqli("mysql.hostinger.co", "u517611460_ika", "Colombia2016*", "u517611460_model");
+
 			/* comprobar la conexión */
 			if (mysqli_connect_errno()) {
 			    printf("Falló la conexión: %s\n", mysqli_connect_error());
 			    exit();
 			}
 
-			$consulta = "select ser_pai_codigo, ser_ruta  from tb_servidor ";
+			$consulta = "SELECT SER_PAI_CODIGO, SER_RUTA  FROM TB_SERVIDOR ";
 
 			if ($resultado = $mysqli->query($consulta)) {
 
@@ -111,23 +102,16 @@ body
 			/* cerrar la conexión */
 			$mysqli->close();
 	 	?>
-		</div>
+	</div>
 	<div style="background-image:url(servidores_11.png); position:absolute; left:36px; top:652px; width:953px; height:19px;" title="">
 	</div>
 	<div style="background-image:url(servidores_12.png); position:absolute; left:36px; top:671px; width:14px; height:97px;" title="">
 	</div>
-	<div style="background-image:url(servidores_13.png); position:absolute; left:50px; top:671px; width:354px; height:76px;" title="">
+	<div id="p2" onClick="location.href='../Bienvenido/bienvenido.php';" style="background-image:url(servidores_13.png); " title="">
 	</div>
-	
 	<div style="background-image:url(servidores_14.png); position:absolute; left:404px; top:671px; width:585px; height:97px;" title="">
 	</div>
 	<div style="background-image:url(servidores_15.png); position:absolute; left:50px; top:747px; width:354px; height:21px;" title="">
-	</div>
-	<div id="p2" onClick="location.href='../EditarServidores/ABT-T027-editarServidores-U.php';" style="background-image:url(Untitled-1_14.png); position:absolute; left:50px; top:671px; width:76px; height:76px;" title="">
-	</div>
-	<div id="p2" onClick="location.href='../AgregarServidores/ABT-T005-agregarServidores-U.php';" style="background-image:url(Untitled-1_16.png); position:absolute; left:200px; top:671px; width:76px; height:76px;" title="">
-	</div>
-	<div id="p2" onClick="location.href='../EliminarServidores/ABT-T032-eliminarServidores-U.php';" style="background-image:url(Untitled-1_19.png); position:absolute; left:350px; top:672px; width:76px; height:76px;" title="">
 	</div>
 </div>
 </body>
