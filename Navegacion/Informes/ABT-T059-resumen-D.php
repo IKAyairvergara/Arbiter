@@ -788,7 +788,7 @@ $moneda=1;
 							 	->setCellValue('B18',  $fila['CONS_RIT_VEN'])
 							 	->setCellValue('B19',  ' ')
 							 	->setCellValue('B20',  ' ')
-							 	->setCellValue('B21',  $fila['CONS_POR_VTA_NHO'])
+							 	->setCellValue('B21',  $fila['CONS_POR_VTA_NHO'].'%')
 							 	->setCellValue('B22',  $fct_fecha)
 							 	->setCellValue('B23',  ' ')
 							 	

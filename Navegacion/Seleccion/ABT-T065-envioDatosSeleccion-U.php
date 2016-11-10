@@ -12,6 +12,7 @@
 							if(isset($_POST['proyecto'])){
 							
 									// Variables Formulario
+									$Bandera=0;
 									
 										// ---------------- Generacion
 										$Genedesde = $_POST['genedesde'];
@@ -91,6 +92,20 @@
 										$Nuevohogar = $_POST['nuevohogar'];
 										}
 										
+										if($Monedare!='0'&&$Fecha=='0000-00-00'){
+										$Bandera=1;
+										print "<script>alert(\"Ha seleccionado una Moneda de reexpresion pero no una fecha\");window.location='ABT-T046-seleccion.php';</script>";
+								
+										}
+										
+										if($Fecha!='0000-00-00'&&$Valor=='0'){
+											$Bandera=1;
+											print "<script>alert(\"Ha seleccionado una fecha pero no un valor\");window.location='ABT-T046-seleccion.php';</script>";
+								
+											
+										}
+										
+										
 										$Proyecto = $_POST['proyecto'];
 										
 										$Version = $_POST['version'];
@@ -109,7 +124,7 @@
 									  '$Prepdesde1','$Prephasta1','$Periodicidad','$Unidadpre',
 									  '$Monedare','$Fecha','$Valor','$Ritmo','$Nuevohogar',
 									  '$Version','N');";
-									    
+									if($Bandera==0){    
 
 								      $result = $mysqli->query($query);
 
@@ -172,10 +187,11 @@
 										#}
 
 							
-						    }							
+						    }
+							}							
 						}
 					    else{
 							print "<script>alert(\"No ha Seleccionado Proyectos y/o Modelos\");</script>";
 						}
-
+						
 					?>
