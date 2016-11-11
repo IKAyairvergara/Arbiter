@@ -3,8 +3,11 @@
 	
 	$Example=$_GET['dato']; 
 	
-	    $consulta = "SELECT MAX(DATE_FORMAT(FLC_C_FECHA,'%m/%Y')),
-	    MAX(DATE_FORMAT(FLC_C_FECHA, '%b/%y')),
+	    $consulta = "SELECT 
+		DATE_FORMAT(MAX(FLC_C_FECHA),'%m/%Y'),
+		DATE_FORMAT(MAX(FLC_C_FECHA),'%b/%y'),
+		FLC_C_PERIODICIDAD,
+		
 		 CASE WHEN (SUM(FLC_C_URBANISMO_INTERNO)*  CONS_UNI_PRE) = 0 THEN '' ELSE (SUM(FLC_C_URBANISMO_INTERNO)*  CONS_UNI_PRE) END FLC_C_URBANISMO_INTERNO,
 	     CASE WHEN (SUM(FLC_C_UI_PRESUPUESTO)*  CONS_UNI_PRE) = 0 THEN '' ELSE (SUM(FLC_C_UI_PRESUPUESTO)*  CONS_UNI_PRE) END FLC_C_UI_PRESUPUESTO,
 	     CASE WHEN (SUM(FLC_C_UI_INCREMENTOS)*  CONS_UNI_PRE) = 0 THEN '' ELSE (SUM(FLC_C_UI_INCREMENTOS)*  CONS_UNI_PRE) END FLC_C_UI_INCREMENTOS,
@@ -433,8 +436,8 @@ $moneda=1;
 		
 		while ($fila = $resultado->fetch_array()) {
 			$objPHPExcel->setActiveSheetIndex(0) 
-					 ->setCellValue($columnas[$c].'2',  '1/'.$fila["MAX(DATE_FORMAT(FLC_C_FECHA,'%m/%Y'))"])
-				     ->setCellValue($columnas[$c].'3',   $fila["MAX(DATE_FORMAT(FLC_C_FECHA, '%b/%y'))"])	
+					 ->setCellValue($columnas[$c].'2',  '1/'.$fila["DATE_FORMAT(MAX(FLC_C_FECHA),'%m/%Y')"])
+				     ->setCellValue($columnas[$c].'3',   $fila["DATE_FORMAT(MAX(FLC_C_FECHA),'%b/%y')"])	
 					 ->setCellValue($columnas[$c].'5',   $fila['FLC_C_URBANISMO_INTERNO']/$moneda)
 					 ->setCellValue($columnas[$c].'6',   $fila['FLC_C_UI_PRESUPUESTO']/$moneda)
 					 ->setCellValue($columnas[$c].'7',   $fila['FLC_C_UI_INCREMENTOS']/$moneda)
