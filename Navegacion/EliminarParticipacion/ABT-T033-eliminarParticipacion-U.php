@@ -1,50 +1,50 @@
 <?php 
     //creamos la sesion 
-    session_start(); 
+session_start(); 
     //validamos si se ha hecho o no el inicio de sesion correctamente 
     //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
+if(!isset($_SESSION['user_id']))  
+{ 
+	header('Location: ../../index.php');  
+	exit(); 
+}  
 ?>
 <html>
 <head>
-<title>Eliminar</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Eliminar</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <link rel="shortcut icon" href="favicon.png">
 <style type="text/css">
-body
- {
-     background-image: url(blue.jpg);
-     background-size: 100% 300%;
-     background-repeat: no-repeat;
- }
-  #p{position:absolute; left:821px; top:32px; width:167px; height:76px;cursor:pointer}
-  #p:hover
- {
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);	
-	transition-duration: 0.4s;
- } 
- #p1{position:absolute; left:595px; top:32px; width:179px; height:76px;cursor:pointer}
- #p1:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#ok:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
+	body
+	{
+		background-image: url(blue.jpg);
+		background-size: 100% 300%;
+		background-repeat: no-repeat;
+	}
+	#p{position:absolute; left:821px; top:32px; width:167px; height:76px;cursor:pointer}
+	#p:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);	
+		transition-duration: 0.4s;
+	} 
+	#p1{position:absolute; left:595px; top:32px; width:179px; height:76px;cursor:pointer}
+	#p1:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#ok:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
 </style>
 <div style="position:absolute; left:10%; top:0px; width:1024px; height:768px;">
 	<div style="background-image:url(eliminar_01.png); position:absolute; left:0px; top:0px; width:1024px; height:32px;" title="">
@@ -73,97 +73,97 @@ body
 	</div>
 	<div style="background-image:url(eliminar_13.png); position:absolute; left:36px; top:158px; width:954px; height:494px;" title="">
 		
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>	
-<center>
-<form method = "post" action = "ABT-T033-eliminarParticipacion-U.php">
-                  <table width = "400" border = "0" cellspacing = "1" 
-                     cellpadding = "2">
-                     
-                     <tr>
-                        <td style="color: white; font-family:sans-serif;font-size:20;" width = "100">Codigo de Participacion</td>
-    					<td><label for="PAR_ID" request></label> 
-  						 <select name='PAR_ID' id='PAR_ID' required>
-								<?php
-				                include "../../php/ABT-T000-conexion-U.php";
-				                $qr ="SELECT * FROM tb_participacion"; 
-				                $i = 0;
-				                if ($resultado = $mysqli->query($qr)) {
-				                    while ($fila = $resultado->fetch_row()) {
-				                        echo "<option value='" .$fila[0]."''>";
-				                        echo $fila[1];  
-				                        echo "</option>";
-				                        }
-				                    }
-				                $mysqli->close();
-				                ?>	  
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>	
+		<center>
+			<form method = "post" action = "ABT-T033-eliminarParticipacion-U.php">
+				<table width = "400" border = "0" cellspacing = "1" 
+				cellpadding = "2">
+				
+				<tr>
+					<td style="color: white; font-family:sans-serif;font-size:20;" width = "100">Codigo de Participacion</td>
+					<td><label for="PAR_ID" request></label> 
+						<select name='PAR_ID' id='PAR_ID' required>
+							<?php
+							include "../../php/ABT-T000-conexion-U.php";
+							$qr ="SELECT * FROM tb_participacion"; 
+							$i = 0;
+							if ($resultado = $mysqli->query($qr)) {
+								while ($fila = $resultado->fetch_row()) {
+									echo "<option value='" .$fila[0]."''>";
+									echo $fila[1];  
+									echo "</option>";
+								}
+							}
+							$mysqli->close();
+							?>	  
 						</select>
 
 
-                       </td>
-                     </tr>
-                     
-                     <tr>
-                        <td width = "100"> </td>
-                        <td> </td>
-                     </tr>
-                     
-                     <tr>
-                        <td width = "100"> </td>
-                        <td>
+					</td>
+				</tr>
+				
+				<tr>
+					<td width = "100"> </td>
+					<td> </td>
+				</tr>
+				
+				<tr>
+					<td width = "100"> </td>
+					<td>
 						<input id="ok" type="image" src='eliminar_17.png' name="delete" id="delete" value="delete" style="position:absolute; left:14px; top:513px; width:208px; height:76px;" />
-                        </td>
-                     </tr>
-                     
-                  </table>
-               </form>
-               
-                <?php
-			   	include "../../php/ABT-T000-conexion-U.php";
+					</td>
+				</tr>
 				
-				
-				if(isset($_POST['PAR_ID'])){
-					$PAR_ID= $_POST['PAR_ID'];
-					if($_POST["PAR_ID"]!=""){
-						$query = "DELETE FROM tb_participacion WHERE PAR_ID= '$PAR_ID'";
-						$result = $mysqli->query($query);
-							if($result==false){
-								print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='ABT-T033-eliminarParticipacion-U.php';</script>";
-								}
-							else{
-								print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Participacion/ABT-T043-participacion-D.php';</script>";
-								}
-							}
-						}
-					$mysqli->close();
-				?>
+			</table>
+		</form>
+		
+		<?php
+		include "../../php/ABT-T000-conexion-U.php";
+		
+		
+		if(isset($_POST['PAR_ID'])){
+			$PAR_ID= $_POST['PAR_ID'];
+			if($_POST["PAR_ID"]!=""){
+				$query = "DELETE FROM tb_participacion WHERE PAR_ID= '$PAR_ID'";
+				$result = $mysqli->query($query);
+				if($result==false){
+					print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='ABT-T033-eliminarParticipacion-U.php';</script>";
+				}
+				else{
+					print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../Participacion/ABT-T043-participacion-D.php';</script>";
+				}
+			}
+		}
+		$mysqli->close();
+		?>
 	</center>
-      
-	</div>
-	<div style="background-image:url(eliminar_14.png); position:absolute; left:990px; top:158px; width:34px; height:610px;" title="">
-	</div>
-	<div style="background-image:url(eliminar_15.png); position:absolute; left:36px; top:652px; width:954px; height:19px;" title="">
-	</div>
-	<div style="background-image:url(eliminar_16.png); position:absolute; left:36px; top:671px; width:13px; height:97px;" title="">
-	</div>
+	
+</div>
+<div style="background-image:url(eliminar_14.png); position:absolute; left:990px; top:158px; width:34px; height:610px;" title="">
+</div>
+<div style="background-image:url(eliminar_15.png); position:absolute; left:36px; top:652px; width:954px; height:19px;" title="">
+</div>
+<div style="background-image:url(eliminar_16.png); position:absolute; left:36px; top:671px; width:13px; height:97px;" title="">
+</div>
 	<!--<div style="background-image:url(eliminar_17.png); position:absolute; left:49px; top:671px; width:209px; height:76px;" title="">
-	</div>-->
-	<div style="background-image:url(eliminar_18.png); position:absolute; left:258px; top:671px; width:732px; height:97px;" title="">
-	</div>
-	<div style="background-image:url(eliminar_19.png); position:absolute; left:49px; top:747px; width:209px; height:21px;" title="">
-	</div>
+</div>-->
+<div style="background-image:url(eliminar_18.png); position:absolute; left:258px; top:671px; width:732px; height:97px;" title="">
+</div>
+<div style="background-image:url(eliminar_19.png); position:absolute; left:49px; top:747px; width:209px; height:21px;" title="">
+</div>
 </div>
 </body>
 </html>

@@ -1,71 +1,71 @@
 ﻿<?php 
     //creamos la sesion 
-    session_start(); 
+session_start(); 
     //validamos si se ha hecho o no el inicio de sesion correctamente 
     //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
+if(!isset($_SESSION['user_id']))  
+{ 
+	header('Location: ../../index.php');  
+	exit(); 
+}  
 ?>
 <html>
 <head>
-<title>Detalle Proyecto</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Detalle Proyecto</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <link rel="shortcut icon" href="favicon.png">
 <link href="../../bootstrap/css/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript" src="../../bootstrap/js/tablecloth.js"></script>
 <style type="text/css">
-body
- {
-     background-image: url(blue.jpg);
-     background-size: 100% 300%;
-     background-repeat: no-repeat;
- }
- #p{position:absolute; left:834px; top:41px; width:154px; height:76px;cursor:pointer}
-  #p:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p1{position:absolute; left:640px; top:41px; width:162px; height:76px;cursor:pointer}
-  #p1:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p2{position:absolute; left:50px; top:671px; width:76px; height:76px;cursor:pointer;}
-  #p2:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p3{position:absolute; left:200px; top:671px; width:76px; height:76px;cursor:pointer}
-  #p3:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p4{position:absolute; left:350px; top:672px; width:76px; height:76px;cursor: pointer;}
-  #p4:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p5{}
- #p6{}
+	body
+	{
+		background-image: url(blue.jpg);
+		background-size: 100% 300%;
+		background-repeat: no-repeat;
+	}
+	#p{position:absolute; left:834px; top:41px; width:154px; height:76px;cursor:pointer}
+	#p:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p1{position:absolute; left:640px; top:41px; width:162px; height:76px;cursor:pointer}
+	#p1:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p2{position:absolute; left:50px; top:671px; width:76px; height:76px;cursor:pointer;}
+	#p2:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p3{position:absolute; left:200px; top:671px; width:76px; height:76px;cursor:pointer}
+	#p3:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p4{position:absolute; left:350px; top:672px; width:76px; height:76px;cursor: pointer;}
+	#p4:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p5{}
+	#p6{}
 
 </style>
 <div style="position:absolute; left:10%; top:0px; width:1024px; height:768px;">
@@ -91,50 +91,50 @@ body
 		<?php
 		include "../../php/ABT-T000-conexion-U.php";
 
-			/* comprobar la conexión */
-			if (mysqli_connect_errno()) {
-			    printf("Falló la conexión: %s\n", mysqli_connect_error());
-			    exit();
-			}
+		/* comprobar la conexión */
+		if (mysqli_connect_errno()) {
+			printf("Falló la conexión: %s\n", mysqli_connect_error());
+			exit();
+		}
 
-			$consulta = "select a.det_pro_id,b.pro_descripcion ,a.det_etapa,c.seg_descripcion ,d.par_descripcion from  tb_detalle_proyecto a
-left join tb_proyecto b on b.pro_id= a.det_pro_id
-left join tb_segmento c on c.seg_id=a.det_seg_id
-left join tb_participacion d on d.par_id=a.det_par_id";
+		$consulta = "select a.det_pro_id,b.pro_descripcion ,a.det_etapa,c.seg_descripcion ,d.par_descripcion from  tb_detalle_proyecto a
+		left join tb_proyecto b on b.pro_id= a.det_pro_id
+		left join tb_segmento c on c.seg_id=a.det_seg_id
+		left join tb_participacion d on d.par_id=a.det_par_id";
 
-			if ($resultado = $mysqli->query($consulta)) {
+		if ($resultado = $mysqli->query($consulta)) {
 
-			    /* obtener el array de objetos */
-			    echo "<center>";
-			    echo "<table border = '1' cellspacing='0' cellpadding='0' top>";
-	            echo "<tr align='center'>";
-				echo "<th>COD";
-				echo "<th>PROYECTO";
-				echo "<th>ETAPA";
-				echo "<th>SEGMENTO";
-				echo "<th>P / S";
-				echo "</tr>";
+			/* obtener el array de objetos */
+			echo "<center>";
+			echo "<table border = '1' cellspacing='0' cellpadding='0' top>";
+			echo "<tr align='center'>";
+			echo "<th>COD";
+			echo "<th>PROYECTO";
+			echo "<th>ETAPA";
+			echo "<th>SEGMENTO";
+			echo "<th>P / S";
+			echo "</tr>";
 
-			    while ($fila = $resultado->fetch_row()) {
+			while ($fila = $resultado->fetch_row()) {
 			       //printf ("%s (%s)\n", $fila[0], $fila[1], $fila[2]);
-			        echo "<tr align='center'>";
-				    echo "<td>$fila[0]";
-				    echo "<td>$fila[1]";
-				    echo "<td>$fila[2]";
-				    echo "<td>$fila[3]";
-				    echo "<td>$fila[4]";
-				    echo "</tr>";
-			    }
-			    echo "</table>";
-			    echo "</center>";
-
-			    /* liberar el conjunto de resultados */
-			    $resultado->close();
+				echo "<tr align='center'>";
+				echo "<td>$fila[0]";
+				echo "<td>$fila[1]";
+				echo "<td>$fila[2]";
+				echo "<td>$fila[3]";
+				echo "<td>$fila[4]";
+				echo "</tr>";
 			}
+			echo "</table>";
+			echo "</center>";
 
-			/* cerrar la conexión */
-			$mysqli->close();
-	 	?>
+			/* liberar el conjunto de resultados */
+			$resultado->close();
+		}
+
+		/* cerrar la conexión */
+		$mysqli->close();
+		?>
 
 	</div>
 	<div style="background-image:url(detalleProyecto_11.png); position:absolute; left:990px; top:158px; width:34px; height:610px;" title="">

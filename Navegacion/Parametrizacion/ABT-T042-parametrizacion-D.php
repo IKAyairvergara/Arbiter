@@ -1,108 +1,108 @@
 <?php 
     //creamos la sesion 
-    session_start(); 
+session_start(); 
     //validamos si se ha hecho o no el inicio de sesion correctamente 
     //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
+if(!isset($_SESSION['user_id']))  
+{ 
+	header('Location: ../../index.php');  
+	exit(); 
+} 
 ?>
 <html>
 <head>
-<title>Parametrizacion</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Parametrizacion</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <link rel="shortcut icon" href="favicon.png">
 <style type="text/css">
-body
- {
-     background-image: url(blue.jpg);
-     background-size: 100% 300%;
-     background-repeat: no-repeat;
- }
+	body
+	{
+		background-image: url(blue.jpg);
+		background-size: 100% 300%;
+		background-repeat: no-repeat;
+	}
 
- #p{position:absolute; left:817px; top:36px; width:168px; height:76px;cursor: pointer;}
- #p:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p1{position:absolute; left:606px; top:37px; width:179px; height:76px;cursor: pointer;}
- #p1:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p2{position:absolute; left:87px; top:165px; width:136px; height:192px;cursor: pointer;}
- #p2:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p3{position:absolute; left:321px; top:164px; width:136px; height:193px;cursor: pointer;}
- #p3:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p4{ position:absolute; left:540px; top:164px; width:166px; height:199px;cursor: pointer;}
- #p4:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p5{position:absolute; left:766px; top:164px; width:182px; height:239px;cursor: pointer;}
- #p5:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p6{position:absolute; left:84px; top:451px; width:142px; height:198px;cursor: pointer;}
- #p6:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p7{position:absolute; left:321px; top:450px; width:136px; height:239px;cursor: pointer;}
- #p7:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p8{position:absolute; left:541px; top:450px; width:164px; height:192px;cursor: pointer;}
- #p8:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#p9 {position:absolute; left:781px; top:450px; width:153px; height:192px; cursor:pointer;}
- #p9:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
+	#p{position:absolute; left:817px; top:36px; width:168px; height:76px;cursor: pointer;}
+	#p:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p1{position:absolute; left:606px; top:37px; width:179px; height:76px;cursor: pointer;}
+	#p1:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p2{position:absolute; left:87px; top:165px; width:136px; height:192px;cursor: pointer;}
+	#p2:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p3{position:absolute; left:321px; top:164px; width:136px; height:193px;cursor: pointer;}
+	#p3:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p4{ position:absolute; left:540px; top:164px; width:166px; height:199px;cursor: pointer;}
+	#p4:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p5{position:absolute; left:766px; top:164px; width:182px; height:239px;cursor: pointer;}
+	#p5:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p6{position:absolute; left:84px; top:451px; width:142px; height:198px;cursor: pointer;}
+	#p6:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p7{position:absolute; left:321px; top:450px; width:136px; height:239px;cursor: pointer;}
+	#p7:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p8{position:absolute; left:541px; top:450px; width:164px; height:192px;cursor: pointer;}
+	#p8:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p9 {position:absolute; left:781px; top:450px; width:153px; height:192px; cursor:pointer;}
+	#p9:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
 
 
 </style>

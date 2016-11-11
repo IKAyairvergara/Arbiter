@@ -1,5 +1,16 @@
 
 <!-- saved from url=(0105)file:///C:/Users/MainNode/AppData/Local/Temp/Save%20For%20Web%20AI/importExport_006.tmp/importExport.html -->
+<?php 
+    //creamos la sesion 
+session_start(); 
+    //validamos si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion nos regresará a login.php 
+if(!isset($_SESSION['user_id']))  
+{ 
+	header('Location: ../../index.php');  
+	exit(); 
+} 
+?>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Parametrizacion</title>
 

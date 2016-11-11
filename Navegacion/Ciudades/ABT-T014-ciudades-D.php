@@ -1,70 +1,70 @@
 ﻿<?php 
     //creamos la sesion 
-    session_start(); 
+session_start(); 
     //validamos si se ha hecho o no el inicio de sesion correctamente 
     //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
+if(!isset($_SESSION['user_id']))  
+{ 
+	header('Location: ../../index.php');  
+	exit(); 
+}  
 ?>
 <html>
 <head>
-<title>Ciudades</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Ciudades</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <link href="../../bootstrap/css/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript" src="../../bootstrap/js/tablecloth.js"></script>
 <link rel="shortcut icon" href="favicon.png">
 <style type="text/css">
-body
- {
-     background-image: url(blue.jpg);
-     background-size: 100% 300%;
-     background-repeat: no-repeat;
- }
- #p{position:absolute; left:821px; top:32px; width:167px; height:76px;}
-  #p:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p1{position:absolute; left:609px; top:33px; width:179px; height:76px;}
-  #p1:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p2{position:absolute; left:50px; top:671px; width:76px; height:77px;}
-  #p2:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p3{position:absolute; left:200px; top:671px; width:76px; height:77px;}
-  #p3:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- #p4{position:absolute; left:350px; top:672px; width:76px; height:77px;}
-  #p4:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
- 
+	body
+	{
+		background-image: url(blue.jpg);
+		background-size: 100% 300%;
+		background-repeat: no-repeat;
+	}
+	#p{position:absolute; left:821px; top:32px; width:167px; height:76px;}
+	#p:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p1{position:absolute; left:609px; top:33px; width:179px; height:76px;}
+	#p1:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p2{position:absolute; left:50px; top:671px; width:76px; height:77px;}
+	#p2:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p3{position:absolute; left:200px; top:671px; width:76px; height:77px;}
+	#p3:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p4{position:absolute; left:350px; top:672px; width:76px; height:77px;}
+	#p4:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	
 </style>
 <div style="position:absolute; left:10%; top:0px; width:1024px; height:768px;">
 	<div style="background-image:url(ciudades_01.png); position:absolute; left:0px; top:0px; width:1024px; height:32px;" title="">
@@ -94,49 +94,49 @@ body
 	<div style="background-image:url(ciudades_13.png); position:absolute; left:0px; top:158px; width:37px; height:610px;" title="">
 	</div>
 	<div style="background-image:url(ciudades_14.png); position:absolute; left:37px; top:158px; width:953px; height:494px; overflow:scroll;" title="">
-	<?php
+		<?php
 		include "../../php/ABT-T000-conexion-U.php";
 
-			/* comprobar la conexión */
-			if (mysqli_connect_errno()) {
-			    printf("Falló la conexión: %s\n", mysqli_connect_error());
-			    exit();
-			}
+		/* comprobar la conexión */
+		if (mysqli_connect_errno()) {
+			printf("Falló la conexión: %s\n", mysqli_connect_error());
+			exit();
+		}
 
-			$consulta = "select a.ciu_pai_id, b.pai_descripcion, a.ciu_id, a.ciu_descripcion  from tb_ciudad a left join tb_pais b on a.ciu_pai_id=b.pai_id
-order by b.pai_descripcion, a.ciu_descripcion";
+		$consulta = "select a.ciu_pai_id, b.pai_descripcion, a.ciu_id, a.ciu_descripcion  from tb_ciudad a left join tb_pais b on a.ciu_pai_id=b.pai_id
+		order by b.pai_descripcion, a.ciu_descripcion";
 
-			if ($resultado = $mysqli->query($consulta)) {
+		if ($resultado = $mysqli->query($consulta)) {
 
-			    /* obtener el array de objetos */
-			    echo "<center>";
-			    echo "<table border = '1' cellspacing='0' cellpadding='0' >";  
-	            echo "<tr align='center'>";  
-				echo "<th>COD PAÍS";  
-				echo "<th>PAÍS";
-				echo "<th>COD CIUDAD";   
-				echo "<th>CIUDAD";
-				echo "</tr>"; 
+			/* obtener el array de objetos */
+			echo "<center>";
+			echo "<table border = '1' cellspacing='0' cellpadding='0' >";  
+			echo "<tr align='center'>";  
+			echo "<th>COD PAÍS";  
+			echo "<th>PAÍS";
+			echo "<th>COD CIUDAD";   
+			echo "<th>CIUDAD";
+			echo "</tr>"; 
 
-			    while ($fila = $resultado->fetch_row()) {
+			while ($fila = $resultado->fetch_row()) {
 			       //printf ("%s (%s)\n", $fila[0], $fila[1], $fila[2]);
-			        echo "<tr align='center'>";  
-				    echo "<td>$fila[0]";  
-				    echo "<td>$fila[1]";
-				    echo "<td>$fila[2]";
-				    echo "<td>$fila[3]";
-				    echo "</tr>";
-			    }
-			    echo "</table>";
-			    echo "</center>";  
-
-			    /* liberar el conjunto de resultados */
-			    $resultado->close();
+				echo "<tr align='center'>";  
+				echo "<td>$fila[0]";  
+				echo "<td>$fila[1]";
+				echo "<td>$fila[2]";
+				echo "<td>$fila[3]";
+				echo "</tr>";
 			}
+			echo "</table>";
+			echo "</center>";  
 
-			/* cerrar la conexión */
-			$mysqli->close();
-	 	?>
+			/* liberar el conjunto de resultados */
+			$resultado->close();
+		}
+
+		/* cerrar la conexión */
+		$mysqli->close();
+		?>
 
 	</div>
 	<div style="background-image:url(ciudades_15.png); position:absolute; left:990px; top:158px; width:34px; height:610px;" title="">

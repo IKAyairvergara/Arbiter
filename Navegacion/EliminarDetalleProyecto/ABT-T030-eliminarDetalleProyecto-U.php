@@ -1,36 +1,36 @@
 <?php 
     //creamos la sesion 
-    session_start(); 
+session_start(); 
     //validamos si se ha hecho o no el inicio de sesion correctamente 
     //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
+if(!isset($_SESSION['user_id']))  
+{ 
+	header('Location: ../../index.php');  
+	exit(); 
+}  
 ?>
 <html>
 <HEAD>
-<title>Eliminar</title>
- <meta charset="utf-8">
+	<title>Eliminar</title>
+	<meta charset="utf-8">
 </HEAD>
 
 <link rel="shortcut icon" href="favicon.png">
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	cargar_paises();
-	$("#pais").change(function(){dependencia_estado();});
-	$("#estado").change(function(){dependencia_ciudad();});
-	$("#estado").attr("disabled",true);
-	$("#ciudad").attr("disabled",true);
-});
+	$(document).ready(function(){
+		cargar_paises();
+		$("#pais").change(function(){dependencia_estado();});
+		$("#estado").change(function(){dependencia_ciudad();});
+		$("#estado").attr("disabled",true);
+		$("#ciudad").attr("disabled",true);
+	});
 
-function cargar_paises()
-{
-	$.get("scripts/cargar-paises.php", function(resultado){
-		if(resultado == false)
-		{
+	function cargar_paises()
+	{
+		$.get("scripts/cargar-paises.php", function(resultado){
+			if(resultado == false)
+			{
 			//alert("Error");
 			
 		}
@@ -39,15 +39,15 @@ function cargar_paises()
 			$('#pais').append(resultado);			
 		}
 	});	
-}
-function dependencia_estado()
-{
-	var code = $("#pais").val();
-	$.get("scripts/dependencia-estado.php", { code: code },
-		function(resultado)
-		{
-			if(resultado == false)
+	}
+	function dependencia_estado()
+	{
+		var code = $("#pais").val();
+		$.get("scripts/dependencia-estado.php", { code: code },
+			function(resultado)
 			{
+				if(resultado == false)
+				{
 				//alert("Error");
 				$("#estado").attr("disabled",true);
 				document.getElementById("estado").options.length=1;
@@ -62,15 +62,15 @@ function dependencia_estado()
 			}
 		}
 
-	);
-}
+		);
+	}
 
-function dependencia_ciudad()
-{
-	var code = $("#estado").val();
-	$.get("scripts/dependencia-ciudades.php?", { code: code }, function(resultado){
-		if(resultado == false)
-		{
+	function dependencia_ciudad()
+	{
+		var code = $("#estado").val();
+		$.get("scripts/dependencia-ciudades.php?", { code: code }, function(resultado){
+			if(resultado == false)
+			{
 			//alert("Error");
 			$("#ciudad").attr("disabled",true);
 		}
@@ -81,41 +81,41 @@ function dependencia_ciudad()
 			$('#ciudad').append(resultado);			
 		}
 	});	
-	
-}
+		
+	}
 
 </script>
 <style type="text/css">
-body
- {
-     background-image: url(blue.jpg);
-     background-size: 100% 300%;
-     background-repeat: no-repeat;
- }
+	body
+	{
+		background-image: url(blue.jpg);
+		background-size: 100% 300%;
+		background-repeat: no-repeat;
+	}
 
-  #p{position:absolute; left:821px; top:32px; width:167px; height:76px;cursor:pointer}
-  #p:hover
- {
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);	
-	transition-duration: 0.4s;
- } 
- #p1{position:absolute; left:595px; top:32px; width:179px; height:76px;cursor:pointer}
- #p1:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#ok:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
+	#p{position:absolute; left:821px; top:32px; width:167px; height:76px;cursor:pointer}
+	#p:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);	
+		transition-duration: 0.4s;
+	} 
+	#p1{position:absolute; left:595px; top:32px; width:179px; height:76px;cursor:pointer}
+	#p1:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#ok:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
 
 </style>
 <div style="position:absolute; left:10%; top:0px; width:1024px; height:768px;">
@@ -145,94 +145,94 @@ body
 	</div>
 	<div style="background-image:url(eliminar_13.png); position:absolute; left:36px; top:158px; width:954px; height:494px;" title="">
 		
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<center>
-	<form method = "post" action = "ABT-T030-eliminarDetalleProyecto-U.php">
-                  <table width = "400" border = "0" cellspacing = "1" 
-                     cellpadding = "2">
-                     
-					<tr>
-					  	<td style="color: white; font-family:sans-serif;font-size:20;" >Proyecto:</td>
-						<td>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<center>
+			<form method = "post" action = "ABT-T030-eliminarDetalleProyecto-U.php">
+				<table width = "400" border = "0" cellspacing = "1" 
+				cellpadding = "2">
+				
+				<tr>
+					<td style="color: white; font-family:sans-serif;font-size:20;" >Proyecto:</td>
+					<td>
 						<label for="pais"></label>
-					        <select id="pais" name="pais">
-					            <option value="0">Selecciona Uno...</option>
-					        </select>
-					   </td>
-					  </tr>
-					  <tr>
-					    <td style="color: white; font-family:sans-serif;font-size:20;" >Etapa:</td>
-					    <td>
-					    <label for="ETA"></label> 
-					    <!--<input type="text" name="ETA" id="ETA" maxlength="2" onKeyUp="javascript:this.value=this.value.toUpperCase();" required/>-->
-					        <select id="estado" name="estado">
-					            <option value="0">Selecciona Uno...</option>
-					        </select>
-					    </td>
-					  </tr>                   
-                     <tr>
-                        <td width = "100"> </td>
-                        <td>
-                           
-						  <input id="ok" type="image" src='eliminar_17.png' name="delete" id="delete" value="delete" style="position:absolute; left:14px; top:513px; width:208px; height:76px;" />
-                         
-                        </td>
-                     </tr>
-                     
-                  </table>
-               </form>
-               </center>
+						<select id="pais" name="pais">
+							<option value="0">Selecciona Uno...</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="color: white; font-family:sans-serif;font-size:20;" >Etapa:</td>
+					<td>
+						<label for="ETA"></label> 
+						<!--<input type="text" name="ETA" id="ETA" maxlength="2" onKeyUp="javascript:this.value=this.value.toUpperCase();" required/>-->
+						<select id="estado" name="estado">
+							<option value="0">Selecciona Uno...</option>
+						</select>
+					</td>
+				</tr>                   
+				<tr>
+					<td width = "100"> </td>
+					<td>
+						
+						<input id="ok" type="image" src='eliminar_17.png' name="delete" id="delete" value="delete" style="position:absolute; left:14px; top:513px; width:208px; height:76px;" />
+						
+					</td>
+				</tr>
+				
+			</table>
+		</form>
+	</center>
 
-      
+	
 	<?php 
-		include "../../php/ABT-T000-conexion-U.php";
-			
-			
+	include "../../php/ABT-T000-conexion-U.php";
+	
+	
 
-	     if(isset($_POST['pais'])){
-			 $PROY_ID= $_POST['pais'];
-			$ETAPA= $_POST['estado'];
-			if($_POST["pais"]!=""){
-			  $query = "DELETE FROM tb_detalle_proyecto WHERE DET_PRO_ID = '$PROY_ID' AND DET_ETAPA= '$ETAPA'";
-			  $result = $mysqli->query($query);
-				   if($result==false){
-						print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='ABT-T030-eliminarDetalleProyecto-U.php';</script>";
-						}
-					else{
-						print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../DetalleProyecto/ABT-T019-detalleProyecto-D.php';</script>";
-						}
-					}
-	     		}
+	if(isset($_POST['pais'])){
+		$PROY_ID= $_POST['pais'];
+		$ETAPA= $_POST['estado'];
+		if($_POST["pais"]!=""){
+			$query = "DELETE FROM tb_detalle_proyecto WHERE DET_PRO_ID = '$PROY_ID' AND DET_ETAPA= '$ETAPA'";
+			$result = $mysqli->query($query);
+			if($result==false){
+				print "<script>alert(\"El registro no puede ser eliminado ya que contiene dependencias\");window.location='ABT-T030-eliminarDetalleProyecto-U.php';</script>";
+			}
+			else{
+				print "<script>alert(\"Se ha Eliminado correctamente\");window.location='../DetalleProyecto/ABT-T019-detalleProyecto-D.php';</script>";
+			}
+		}
+	}
 
-    	$mysqli->close();
+	$mysqli->close();
 	?>
 
-	</div>
-	<div style="background-image:url(eliminar_14.png); position:absolute; left:990px; top:158px; width:34px; height:610px;" title="">
-	</div>
-	<div style="background-image:url(eliminar_15.png); position:absolute; left:36px; top:652px; width:954px; height:19px;" title="">
-	</div>
-	<div style="background-image:url(eliminar_16.png); position:absolute; left:36px; top:671px; width:13px; height:97px;" title="">
-	</div>
+</div>
+<div style="background-image:url(eliminar_14.png); position:absolute; left:990px; top:158px; width:34px; height:610px;" title="">
+</div>
+<div style="background-image:url(eliminar_15.png); position:absolute; left:36px; top:652px; width:954px; height:19px;" title="">
+</div>
+<div style="background-image:url(eliminar_16.png); position:absolute; left:36px; top:671px; width:13px; height:97px;" title="">
+</div>
 	<!--<div style="background-image:url(eliminar_17.png); position:absolute; left:49px; top:671px; width:209px; height:76px;" title="">
-	</div>-->
-	<div style="background-image:url(eliminar_18.png); position:absolute; left:258px; top:671px; width:732px; height:97px;" title="">
-	</div>
-	<div style="background-image:url(eliminar_19.png); position:absolute; left:49px; top:747px; width:209px; height:21px;" title="">
-	</div>
+</div>-->
+<div style="background-image:url(eliminar_18.png); position:absolute; left:258px; top:671px; width:732px; height:97px;" title="">
+</div>
+<div style="background-image:url(eliminar_19.png); position:absolute; left:49px; top:747px; width:209px; height:21px;" title="">
+</div>
 </div>
 </body>
 </html>

@@ -1,83 +1,83 @@
 <?php 
     //creamos la sesion 
-    session_start(); 
+session_start(); 
     //validamos si se ha hecho o no el inicio de sesion correctamente 
     //si no se ha hecho la sesion nos regresará a login.php 
-    if(!isset($_SESSION['user_id']))  
-    { 
-        header('Location: ../../index.php');  
-        exit(); 
-    } 
+if(!isset($_SESSION['user_id']))  
+{ 
+	header('Location: ../../index.php');  
+	exit(); 
+}  
 ?>
 <html>
 <head>
-<title>Bienvenido</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Bienvenido</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <link rel="shortcut icon" href="favicon.png">
 <style type="text/css">
-body
- {
-     background-image: url(blue.jpg);
-     background-size: 100% 300%;
-     background-repeat: no-repeat;
- }
-#p{position:absolute; left:691px; top:29px; width:271px; height:76px;}
-#p:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#p1{position:absolute; left:63px; top:149px; width:209px; height:244px;}
-#p1:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#p2{position:absolute; left:416px; top:147px; width:207px; height:248px;}
-#p2:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#p3{position:absolute; left:752px; top:147px; width:207px; height:254px;}
-#p3:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#p4{position:absolute; left:64px; top:437px; width:207px; height:249px;}
-#p4:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#p5{position:absolute; left:416px; top:435px; width:207px; height:247px;}
-#p5:hover
-{
-	opacity: 1.0;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
-#p6{ position:absolute; left:752px; top:434px; width:207px; height:248px;}
-#p6:hover
-{
-	opacity: 1.0 ;
-	filter: alpha(opacity=100);
-	transform: scale(1.12);
-	transition-duration: 0.4s;
-}
+	body
+	{
+		background-image: url(blue.jpg);
+		background-size: 100% 300%;
+		background-repeat: no-repeat;
+	}
+	#p{position:absolute; left:691px; top:29px; width:271px; height:76px;}
+	#p:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p1{position:absolute; left:63px; top:149px; width:209px; height:244px;}
+	#p1:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p2{position:absolute; left:416px; top:147px; width:207px; height:248px;}
+	#p2:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p3{position:absolute; left:752px; top:147px; width:207px; height:254px;}
+	#p3:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p4{position:absolute; left:64px; top:437px; width:207px; height:249px;}
+	#p4:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p5{position:absolute; left:416px; top:435px; width:207px; height:247px;}
+	#p5:hover
+	{
+		opacity: 1.0;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
+	#p6{ position:absolute; left:752px; top:434px; width:207px; height:248px;}
+	#p6:hover
+	{
+		opacity: 1.0 ;
+		filter: alpha(opacity=100);
+		transform: scale(1.12);
+		transition-duration: 0.4s;
+	}
 
 
 

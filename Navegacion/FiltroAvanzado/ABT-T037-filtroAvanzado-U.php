@@ -16,10 +16,10 @@
 -->
 
 <?php 
-    //Se crea la sesion  
+    //creamos la sesion 
 session_start(); 
-    //Se valida si se ha hecho o no el inicio de sesion correctamente 
-    //si no se ha hecho la sesion regresará a login.php
+    //validamos si se ha hecho o no el inicio de sesion correctamente 
+    //si no se ha hecho la sesion nos regresará a login.php 
 if(!isset($_SESSION['user_id']))  
 { 
 	header('Location: ../../index.php');  
@@ -321,7 +321,7 @@ if(!isset($_SESSION['user_id']))
 			<div style="background-image:url(filtroAvanzado_44.png); position:absolute; left:389px; top:422px; width:123px; height:30px;" title="">
 				
 				<select id="pais" name="pais" style="left:389px; top:442px; width:123px; height:30px;">
-				<option value="*">TODOS</option>
+					<option value="*">TODOS</option>
 				</select>
 			</div>
 			<div style="background-image:url(filtroAvanzado_45.png); position:absolute; left:512px; top:422px; width:1px; height:346px;" title="">
@@ -343,7 +343,7 @@ if(!isset($_SESSION['user_id']))
 					include "../../php/ABT-T000-conexion-U.php";
 					$qr ="SELECT * FROM tb_segmento"; 
 					$i = 0;
-				echo '<option value="*">TODOS</option>';
+					echo '<option value="*">TODOS</option>';
 					if ($resultado = $mysqli->query($qr)) {
 						while ($fila = $resultado->fetch_row()) {
 							echo "<option value='" .$fila[0]."''>";
@@ -439,7 +439,7 @@ if(isset($_POST['pais'])){
 		$costoDirecto=' ';
 		
 		$costoDirecto=casos($Valor_Ve_CostoDirecto_CBX,$Valor_Ve_CostoDirecto_Desde,$Valor_Ve_CostoDirecto_Hasta,$RES_C_VR_M_VEN_CD);
-			
+		
 		// ---3
 		$Valor_Vend_Ventas_CBX= $_POST['vendibleVentas'];
 		$Valor_Vend_Ventas_Desde= $_POST['desdeVendibleVentas'];
@@ -454,7 +454,7 @@ if(isset($_POST['pais'])){
 		$vendibleVentas=' ';
 		
 		$vendibleVentas=casos($Valor_Vend_Ventas_CBX,$Valor_Vend_Ventas_Desde,$Valor_Vend_Ventas_Hasta,$RES_C_VR_M_VEN_CI_VB);
-	
+		
 			// ---4
 		$Valor_Un_Costo_Ventas_CBX= $_POST['unidadCostoVentas'];
 		$Valor_Un_Costo_Ventas_Desde= $_POST['desdeUnidadCostoVentas'];
@@ -471,7 +471,7 @@ if(isset($_POST['pais'])){
 		$unidadCostoVentas=' ';
 		
 		$unidadCostoVentas=casos($Valor_Un_Costo_Ventas_CBX,$Valor_Un_Costo_Ventas_Desde,$Valor_Un_Costo_Ventas_Hasta,$RES_C_TOT_CI_VB);
-	
+		
 		
 		// ---5
 		$Costo_Ventas_CBX= $_POST['costoVentas'];
@@ -487,7 +487,7 @@ if(isset($_POST['pais'])){
 		$costoVentas=' ';
 		
 		$costoVentas=casos($Costo_Ventas_CBX,$Costo_Ventas_Desde,$Costo_Ventas_Hasta,$RES_C_PORC_VENT_CV);
-	
+		
 		
 		$Pais= $_POST['pais'];
 		$Estado= $_POST['estado'];
@@ -589,36 +589,36 @@ if(isset($_POST['pais'])){
 		$a='';
 		$result = $mysqli->query($sel);
 		if($result->num_rows > 0 ){
-		while ($fila = $result->fetch_array()) {
-			 $id=$fila['RES_DET_PRO_ID'];
-			 $et=$fila['RES_DET_ETAPA'];
-			 $mod=$fila['RES_MODELO'];
-			 $a=$fila['RES_DET_PRO_ID'];
-			
-			 $ins="INSERT INTO tb_seleccion(SEL_DET_PRO_ID,SEL_DET_ETAPA,SEL_MODELO,SEL_CONS_ID) VALUES('$id','$et','$mod','N')";
-							
-			
-			$ins1 = $mysqli->query($ins);
-			
-			
-		}
+			while ($fila = $result->fetch_array()) {
+				$id=$fila['RES_DET_PRO_ID'];
+				$et=$fila['RES_DET_ETAPA'];
+				$mod=$fila['RES_MODELO'];
+				$a=$fila['RES_DET_PRO_ID'];
+				
+				$ins="INSERT INTO tb_seleccion(SEL_DET_PRO_ID,SEL_DET_ETAPA,SEL_MODELO,SEL_CONS_ID) VALUES('$id','$et','$mod','N')";
+				
+				
+				$ins1 = $mysqli->query($ins);
+				
+				
+			}
 
 
 
-		
-		if($ins1){
-			print "<script>alert(\"\Seleccion Exitosa\");window.location='../Seleccion/ABT-T046-seleccion.php';</script>";
 			
-		}
+			if($ins1){
+				print "<script>alert(\"\Seleccion Exitosa\");window.location='../Seleccion/ABT-T046-seleccion.php';</script>";
+				
+			}
 		// else{
 			// print "<script>alert(\"There was an error running the query [' . $mysqli->error . '].</br>\");</script>";
 			// echo('There was an error running the query [' . $mysqli->error . '].</br>');
 		// }
-	}
-else{
-	print "<script>alert('No se encontraron resultados con los parametos insertados');</script>";
-	
-}
+		}
+		else{
+			print "<script>alert('No se encontraron resultados con los parametos insertados');</script>";
+			
+		}
 	}
 	/*
 							if($result){
