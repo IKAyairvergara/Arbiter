@@ -8,7 +8,8 @@
         header('Location: ../../index.php');  
         exit(); 
     } 
-?><html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+?>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Usuarios Activos</title>
 
 </head>
