@@ -8,8 +8,9 @@
 	
 	
     $consulta = "SELECT
-		MAX(DATE_FORMAT(FCT_C_FECHA,'%m/%Y')),
-		MAX(DATE_FORMAT(FCT_C_FECHA,'%b/%y')),
+		DATE_FORMAT(MAX(FCT_C_FECHA),'%m/%Y'),
+		DATE_FORMAT(MAX(FCT_C_FECHA),'%b/%y'),
+		FCT_C_PERIODICIDAD,
 		CASE WHEN SUM(FCT_C_VALOR_ADQUISICION_PAGOS )  = 0 THEN '' ELSE (SUM(FCT_C_VALOR_ADQUISICION_PAGOS) *  CONS_UNI_PRE) END FCT_C_VALOR_ADQUISICION_PAGOS,
 		CASE WHEN SUM(FCT_C_VAP_ANTICIPO_OTROS_PAGOS )  = 0 THEN '' ELSE (SUM(FCT_C_VAP_ANTICIPO_OTROS_PAGOS) *  CONS_UNI_PRE) END FCT_C_VAP_ANTICIPO_OTROS_PAGOS,
 		CASE WHEN SUM(FCT_C_VAP_ABONOS_PACTADOS_POR_VENTAS )  = 0 THEN '' ELSE (SUM(FCT_C_VAP_ABONOS_PACTADOS_POR_VENTAS) *  CONS_UNI_PRE) END FCT_C_VAP_ABONOS_PACTADOS_POR_VENTAS,
@@ -59,8 +60,7 @@
 		CASE WHEN SUM(FCT_C_TIR_EA )  = 0 THEN '' ELSE (SUM(FCT_C_TIR_EA) *  CONS_UNI_PRE) END FCT_C_TIR_EA,
 		CASE WHEN SUM(FCT_C_TIR_EM )  = 0 THEN '' ELSE (SUM(FCT_C_TIR_EM) *  CONS_UNI_PRE) END FCT_C_TIR_EM,
 		CASE WHEN SUM(FCT_C_TIR_MOD_EA )  = 0 THEN '' ELSE (SUM(FCT_C_TIR_MOD_EA) *  CONS_UNI_PRE) END FCT_C_TIR_MOD_EA,
-		CASE WHEN SUM(FCT_C_TIR_MOD_EM )  = 0 THEN '' ELSE (SUM(FCT_C_TIR_MOD_EM) *  CONS_UNI_PRE) END FCT_C_TIR_MOD_EM
-		
+		CASE WHEN SUM(FCT_C_TIR_MOD_EM )  = 0 THEN '' ELSE (SUM(FCT_C_TIR_MOD_EM) *  CONS_UNI_PRE) END FCT_C_TIR_MOD_EM		
 		FROM 	tb_c_flujo_caja_terreno,tb_consolidados
 		WHERE  FCT_C_CONS_ID = CONS_ID
 		AND		FCT_C_CONS_ID='$Example'
@@ -312,8 +312,8 @@ $moneda=1;
 		$objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(10);
 		while ($fila = $resultado->fetch_array()) {
 			$objPHPExcel->setActiveSheetIndex(0) 
-					 ->setCellValue($columnas[$c].'2',  '1/'.$fila["MAX(DATE_FORMAT(FCT_C_FECHA,'%m/%Y'))"])
-					 ->setCellValue($columnas[$c].'3',  $fila["MAX(DATE_FORMAT(FCT_C_FECHA,'%b/%y'))"])			
+					 ->setCellValue($columnas[$c].'2',  '1/'.$fila["DATE_FORMAT(MAX(FCT_C_FECHA),'%m/%Y')"])
+					 ->setCellValue($columnas[$c].'3',  $fila["DATE_FORMAT(MAX(FCT_C_FECHA),'%b/%y')"])			
 				     ->setCellValue($columnas[$c].'5',  $fila['FCT_C_VALOR_ADQUISICION_PAGOS']/$moneda)
 					 ->setCellValue($columnas[$c].'6',  $fila['FCT_C_VAP_ANTICIPO_OTROS_PAGOS']/$moneda)
 					 ->setCellValue($columnas[$c].'7',  $fila['FCT_C_VAP_ABONOS_PACTADOS_POR_VENTAS']/$moneda)

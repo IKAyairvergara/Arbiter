@@ -6,8 +6,13 @@ session_start();
 	$Example=$_SESSION['VAR']; 
 	
 	    $consulta = "SELECT 
-		MAX(DATE_FORMAT(OFL_C_FECHA,'%m/%Y')),
-			MAX(DATE_FORMAT(OFL_C_FECHA,'%b/%y')),
+		
+		DATE_FORMAT(MAX(OFL_C_FECHA),'%m/%Y'),
+		DATE_FORMAT(MAX(OFL_C_FECHA),'%b/%y'),
+		OFL_C_PERIODICIDAD,
+		
+		
+		
 			 CASE WHEN (SUM(OFL_C_COSTO_CONSTRUCCION))  = 0 THEN '' ELSE (SUM(OFL_C_COSTO_CONSTRUCCION) *  CONS_UNI_PRE) END OFL_C_COSTO_CONSTRUCCION,
 			 CASE WHEN SUM(OFL_C_HONORARIOS_COLPATRIA)  = 0 THEN '' ELSE (SUM(OFL_C_HONORARIOS_COLPATRIA) *  CONS_UNI_PRE) END OFL_C_HONORARIOS_COLPATRIA,
 			 CASE WHEN SUM(OFL_C_GASTOS_OPERACION_COLPATRIA)  = 0 THEN '' ELSE (SUM(OFL_C_GASTOS_OPERACION_COLPATRIA) *  CONS_UNI_PRE) END OFL_C_GASTOS_OPERACION_COLPATRIA,
@@ -361,9 +366,9 @@ $colorLetra = array(
 			$objPHPExcel->setActiveSheetIndex(0) 
 			
 			
-			 ->setCellValue($columnas[$c].'2',  '1/'.$fila["MAX(DATE_FORMAT(OFL_C_FECHA,'%m/%Y'))"])
+			 ->setCellValue($columnas[$c].'2',  '1/'.$fila["DATE_FORMAT(MAX(OFL_C_FECHA),'%m/%Y')"])
 					
-				     ->setCellValue($columnas[$c].'3',   $fila["MAX(DATE_FORMAT(OFL_C_FECHA,'%b/%y'))"])	
+				     ->setCellValue($columnas[$c].'3',   $fila["DATE_FORMAT(MAX(OFL_C_FECHA),'%b/%y')"])	
 		
 					 ->setCellValue($columnas[$c].'7',$fila['OFL_C_COSTO_CONSTRUCCION']/$moneda)
 					->setCellValue($columnas[$c].'8',$fila['OFL_C_HONORARIOS_COLPATRIA']/$moneda)
