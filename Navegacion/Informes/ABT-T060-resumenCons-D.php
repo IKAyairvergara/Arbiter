@@ -1048,7 +1048,7 @@ CONS_RIT_VEN
 	
 	
 FROM tb_seleccion,tb_c_resumen,tb_consolidados
-WHERE CONS_ID = 'CC6-CONS-01'
+WHERE CONS_ID = '$Example'
 AND  SEL_CONS_ID = CONS_ID
 AND SEL_C_CONS_ID = RES_C_CONS_ID
 
@@ -1619,7 +1619,7 @@ SEL_DET_ETAPA
 FROM tb_consolidados, tb_seleccion, tb_proyecto, tb_resumen
 WHERE CONS_ID = '$Example'
 AND CONS_ID = SEL_CONS_ID
-AND SEL_DET_PRO_ID = PRO_ID
+AND SEL_DET_PRO_ID = PRO_ID 
 AND SEL_DET_ETAPA = RES_DET_ETAPA
 AND SEL_MODELO = RES_MODELO
 AND PRO_ID = RES_DET_PRO_ID";

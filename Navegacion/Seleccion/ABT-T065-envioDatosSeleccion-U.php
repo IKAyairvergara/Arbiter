@@ -15,7 +15,7 @@
 									$Bandera=0;
 									
 										// ---------------- Generacion
-										$Genedesde = $_POST['genedesde'];
+										$Genedesde = $_POST['genedesde']; 
 										$Genedesde1='0000-00-00';
 										if($Genedesde!=''){
 										$Genedesde1 =$Genedesde."-01";
@@ -94,13 +94,13 @@
 										
 										if($Monedare!='0'&&$Fecha=='0000-00-00'){
 										$Bandera=1;
-										print "<script>alert(\"Ha seleccionado una Moneda de reexpresion pero no una fecha\");window.location='ABT-T046-seleccion.php';</script>";
+										print "<script>alert(\"Error no ha seleccionado valor\");window.location='ABT-T046-seleccion.php';</script>";
 								
 										}
 										
 										if($Fecha!='0000-00-00'&&$Valor=='0'){
 											$Bandera=1;
-											print "<script>alert(\"Ha seleccionado una fecha pero no un valor\");window.location='ABT-T046-seleccion.php';</script>";
+											print "<script>alert(\"Error no ha seleccionado valor\");window.location='ABT-T046-seleccion.php';</script>";
 								
 											
 										}
