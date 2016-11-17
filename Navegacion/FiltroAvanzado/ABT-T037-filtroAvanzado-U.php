@@ -420,7 +420,6 @@ if(isset($_POST['pais'])){
 		if($Ritmo_Hasta==null){
 			$Ritmo_Hasta=0;
 		}
-		
 		$ritmoVentas=' ';
 		
 		$ritmoVentas=casos($Ritmo_CBX,$Ritmo_Desde,$Ritmo_Hasta,$RES_RITMO_VENTAS_MENSUAL_PROMEDIO);
@@ -483,6 +482,8 @@ if(isset($_POST['pais'])){
 		if($Valor_Ve_CostoDirecto_Hasta==null){
 			$Valor_Ve_CostoDirecto_Hasta=0;
 		}
+		
+		
 		
 		$costoVentas=' ';
 		
@@ -567,6 +568,29 @@ if(isset($_POST['pais'])){
 			$sel_segmento=" ";
 		}
 		
+		$Insert_FA="INSERT INTO tb_filtro_avanzado
+		(FA_RITMO_VENTAS_CBX, FA_RITMO_VENTAS_DESDE, FA_RITMO_VENTAS_HASTA, 
+		FA_VLVND_COSTO_DIRECTO_CBX, FA_VLVND_COSTO_DIRECTO_DESDE, FA_VLVND_COSTO_DIRECTO_HASTA, 
+		FA_VLVND_VENTAS_CBX, FA_VLVND_VENTAS_DESDE, FA_VLVND_VENTAS_HASTA, 
+		FA_VL_UN_COSTO_VENTAS_CBX, FA_VL_UN_COSTO_VENTAS_DESDE, FA_VL_UN_COSTO_VENTAS_HASTA, 
+		FA_COSTO_VENTAS_CBX, FA_COSTO_VENTAS_DESDE, FA_COSTO_VENTAS_HASTA, 
+		FA_PAIS, 
+		FA_CIUDAD, 
+		FA_SEGMENTO, 
+		FA_PARTICIPACION,
+		FA_CONS) 
+		VALUES 
+		('$Ritmo_CBX','$Ritmo_Desde','$Ritmo_Hasta',
+		'$Valor_Ve_CostoDirecto_CBX','$Valor_Ve_CostoDirecto_Desde','$Valor_Ve_CostoDirecto_Hasta',
+		'$Valor_Vend_Ventas_CBX','$Valor_Vend_Ventas_Desde','$Valor_Vend_Ventas_Hasta',
+		'$Valor_Un_Costo_Ventas_CBX','$Valor_Un_Costo_Ventas_Desde','$Valor_Un_Costo_Ventas_Hasta',
+		'$Costo_Ventas_CBX','$Costo_Ventas_Desde','$Costo_Ventas_Hasta',
+		'$Pais',
+		'$Estado',
+		'$Segmento',
+		'$Participacion',
+		'N')";
+		
 		$sel = "SELECT RES_DET_PRO_ID,RES_DET_ETAPA,RES_MODELO
 		FROM tb_resumen
 		,tb_proyecto
@@ -607,6 +631,7 @@ if(isset($_POST['pais'])){
 
 			
 			if($ins1){
+				$mysqli->query($Insert_FA);
 				print "<script>alert(\"\Seleccion Exitosa\");window.location='../Seleccion/ABT-T046-seleccion.php';</script>";
 				
 			}

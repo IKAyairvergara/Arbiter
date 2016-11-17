@@ -13,12 +13,8 @@
 	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="table/js/jquery.tablesorter.js"></script> 
-	<script type="text/javascript" src="stupidtable.js"></script>
-	<script type="text/javascript" src="stupidtable.min.js"></script>
 	
-	<script type="text/javascript">
-		$("#dg").stupidtable();
-	</script>
+	
 	
 	
 	
@@ -137,20 +133,31 @@ body
 			sortable="true"
 			sortname="CONS_ID"
 			pagination="true"
+			
+		
 			>
 		<thead>
 			<tr>
-				<th field="CONS_ID"          sortable="true" width="70" >CONSOLIDADO</th>
-				<th field="CONS_DESCRIPCION" sortable="true" width="100">NOMBRE</th>
-				<th field="CONS_FEC_GEN_DES" sortable="true" align="left" width="110">F.GEN DESDE</th>
-				<th field="CONS_FEC_GEN_HAS" sortable="true" align="left" width="110">F.GEN HASTA</th>
-				<th field="CONS_PER"         sortable="true" width="70">PERIODICIDAD</th>
-				<th field="CONS_UNI_PRE"     sortable="true" width="100" align="left">UNIDAD PRESENTACION</th>
-				<th field="CONS_RIT_VEN"     sortable="true" width="100" align="left">RITMO VENT</th>
-				<th field="CONS_POR_VTA_NHO"     sortable="true" width="100" align="left">PORC VTA NHO</th>
-				<th field="CONS_IND_ID_REE"     sortable="true" width="100" align="left">MONEDA REEXP</th>
-				<th field="CONS_IND_FECHA_REE"     sortable="true" width="100" align="left">F. REEXP</th>
-				<th field="CONS_IND_VALOR_REE"     sortable="true" width="100" align="left">VALOR REEXP</th>
+				<th field="CONS_ID"          		 width="10%" align="left" >CONSOLIDADO</th>
+				<th field="CONS_DESCRIPCION" 		 width="10%" align="left">NOMBRE</th>
+				<th field="FEC_GEN" 		 		 width="20%" align="left" >F.GEN DESDE</th>
+				<th field="CONS_PER"         		 width="10%">PERIODICIDAD</th>
+				<th field="CONS_UNI_PRE"     		 width="10%" align="left">UNIDAD PRESENTACION</th>
+				<th field="CONS_RIT_VEN"     		 width="10%" align="left">RITMO VENT</th>
+				<th field="CONS_POR_VTA_NHO"    	 width="10%" align="left">PORC VTA NHO</th>
+				<th field="CONS_IND_ID_REE"     	 width="10%" align="left">MONEDA REEXP</th>
+				<th field="CONS_IND_FECHA_REE"     	 width="10%" align="left">F. REEXP</th>
+				<th field="CONS_IND_VALOR_REE"     	 width="10%" align="left">VALOR REEXP</th>
+				<th field="RIT_VEN"     		 	 width="10%" align="left">FA_RIT_VEN</th>
+				<th field="COS_DIR"     		 	 width="10%" align="left">COS_DIR</th>
+				<th field="VAL_VENT"     			 width="10%" align="left">VAL_VENT</th>
+				<th field="VL_COS_VENT"     		 width="10%" align="left">VL_COS_VENT</th>
+				<th field="COS_VEN"     			 width="10%" align="left">COS_VEN</th>
+				<th field="FA_PAIS"     		 	 width="10%" align="left">FA_PAIS</th>
+				<th field="FA_CIUDAD"     		 	 width="10%" align="left">FA_CIUDAD</th>
+				<th field="FA_SEGMENTO"     		 width="10%" align="left">FA_SEGMENTO</th>
+				<th field="FA_PARTICIPACION"     	 width="10%" align="left">FA_PARTICIPACION</th>
+				
 				
 			</tr>
 		</thead>

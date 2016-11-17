@@ -1,0 +1,2 @@
+ALTER TABLE tb_filtro_avanzado
+ADD FA_CONS VARCHAR(12)
