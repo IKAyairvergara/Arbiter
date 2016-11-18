@@ -6,6 +6,6 @@ $estados->code = $_GET["code"];
 $estados = $estados->cargarEstados();
 foreach($estados as $key=>$value)
 {
-		echo "<option value=\"$key\">$value</option>";
+		echo "<option value=\"$value\">$value</option>";
 }
 ?>

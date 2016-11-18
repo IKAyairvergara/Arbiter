@@ -549,6 +549,20 @@ if(isset($_POST['pais'])){
 		if($Pais=='*'){
 			$sel_pais=" ";
 		}
+		$Pai='*';
+		if($Pais!='*'){
+			
+		$ch_pai="SELECT PAI_DESCRIPCION FROM tb_pais WHERE PAI_ID='$Pais'";
+		
+		$result_pai = $mysqli->query($ch_pai);
+
+		
+		while ($fila = $result_pai->fetch_array()) {
+			$Pai=$fila['PAI_DESCRIPCION'];
+			
+		}
+			
+		}
 		
 		$sel_ciudad="AND PRO_CIU_ID = '$Ciudad' ";
 		
@@ -562,10 +576,40 @@ if(isset($_POST['pais'])){
 			$sel_parti=" ";
 		}
 		
+		$Part='*';
+		if($Participacion!='*'){
+			
+		$ch_part="SELECT PAR_DESCRIPCION FROM tb_participacion WHERE PAR_ID='$Participacion'";
+		
+		$result_par = $mysqli->query($ch_part);
+
+		
+		while ($fila = $result_par->fetch_array()) {
+			$Part=$fila['PAR_DESCRIPCION'];
+			
+		}
+			
+		}
+		
 		$sel_segmento="AND DET_SEG_ID = '$Segmento' ";
 		
 		if($Segmento=='*'){
 			$sel_segmento=" ";
+		}
+		
+		$Segm='*';
+		if($Segmento!='*'){
+			
+		$ch_seg="SELECT SEG_DESCRIPCION FROM tb_segmento WHERE SEG_ID='$Segmento'";
+		
+		$result_seg = $mysqli->query($ch_seg);
+
+		
+		while ($fila = $result_seg->fetch_array()) {
+			$Segm=$fila['SEG_DESCRIPCION'];
+			
+		}
+			
 		}
 		
 		$Insert_FA="INSERT INTO tb_filtro_avanzado
@@ -585,10 +629,10 @@ if(isset($_POST['pais'])){
 		'$Valor_Vend_Ventas_CBX','$Valor_Vend_Ventas_Desde','$Valor_Vend_Ventas_Hasta',
 		'$Valor_Un_Costo_Ventas_CBX','$Valor_Un_Costo_Ventas_Desde','$Valor_Un_Costo_Ventas_Hasta',
 		'$Costo_Ventas_CBX','$Costo_Ventas_Desde','$Costo_Ventas_Hasta',
-		'$Pais',
+		'$Pai',
 		'$Estado',
-		'$Segmento',
-		'$Participacion',
+		'$Segm',
+		'$Part',
 		'N')";
 		
 		$sel = "SELECT RES_DET_PRO_ID,RES_DET_ETAPA,RES_MODELO
