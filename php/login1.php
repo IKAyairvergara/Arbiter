@@ -27,11 +27,11 @@ if(!empty($_POST)){
 				session_start();
 				$_SESSION["user_id"]=$user_id;
 				if($usuario =="administrador"){
-				print "<script>window.location='../Navegacion/Administrador/ABT-T001-administrador-D.php';</script>";
+					print "<script>window.location='../Navegacion/Administrador/ABT-T001-administrador-D.php';</script>";
 				}
 				else{
-				print "<script>window.location='../Navegacion/Bienvenido/ABT-T010-bienvenido.php';</script>";				
-			}
+					print "<script>window.location='../Navegacion/Bienvenido/ABT-T010-bienvenido.php';</script>";				
+				}
 
 			}
 		}

@@ -18,7 +18,7 @@
                         AND 
                         SEL_CONS_ID='$itemid'
                    
-				   UNION
+				   UNION ALL
 					
                       SELECT 
                          SEL_C_CONS_ID              COD,

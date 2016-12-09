@@ -77,7 +77,7 @@
 										$Fecha = $_POST['estado'];
 										}
 										
-										$Valor='0';
+										$Valor='1';
 										if($_POST['ciudad']!=''){
 										$Valor = $_POST['ciudad'];
 										}
@@ -92,13 +92,13 @@
 										$Nuevohogar = $_POST['nuevohogar'];
 										}
 										
-										if($Monedare!='0'&&$Fecha=='0000-00-00'){
+										if($Monedare!='1'&&$Fecha=='0000-00-00'){
 										$Bandera=1;
 										print "<script>alert(\"Error no ha seleccionado valor\");window.location='ABT-T046-seleccion.php';</script>";
 								
 										}
 										
-										if($Fecha!='0000-00-00'&&$Valor=='0'){
+										if($Fecha!='0000-00-00'&&$Valor=='1'){
 											$Bandera=1;
 											print "<script>alert(\"Error no ha seleccionado valor\");window.location='ABT-T046-seleccion.php';</script>";
 								
