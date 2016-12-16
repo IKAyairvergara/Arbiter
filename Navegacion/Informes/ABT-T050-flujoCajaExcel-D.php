@@ -485,7 +485,7 @@ if($resultado->num_rows > 0){
 							 	->setCellValue('B89', '=NPV('.$fila['CONS_IND_VALOR_REE'].'%,E86:XFD86,E2:XFD2)')
 
 							 	->setCellValue('C88',  'TIR  (ea)')
-							 	->setCellValue('C89', '=(IFERROR(XIRR(E85:XFD85,E2:XFD2))')
+							 	//->setCellValue('C89', '=(IFERROR(XIRR(E85:XFD85,E2:XFD2))')
 
 							 	->setCellValue('D88',  'TIR (em)')
 							 	->setCellValue('D89',  '=C89/'.$fila['CONS_PER'])

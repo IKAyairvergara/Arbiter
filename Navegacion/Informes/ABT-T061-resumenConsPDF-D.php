@@ -19,7 +19,7 @@ CASE WHEN RES_C_FECHA_INICIO_Y_TERMINACION_CONSTRUCCION = 0 THEN '' ELSE ((RES_C
 CASE WHEN RES_C_RITMO_VENTAS_MENSUAL_PROMEDIO = 0 THEN '' ELSE ((RES_C_RITMO_VENTAS_MENSUAL_PROMEDIO * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_RITMO_VENTAS_MENSUAL_PROMEDIO,
 CASE WHEN RES_C_PUNTO_EQUILIBRIO_UNIDADES = 0 THEN '' ELSE ((RES_C_PUNTO_EQUILIBRIO_UNIDADES * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_PUNTO_EQUILIBRIO_UNIDADES,
 CASE WHEN RES_C_TASA_PROMEDIO_INCREMENTO_PRECIOS = 0 THEN '' ELSE ((RES_C_TASA_PROMEDIO_INCREMENTO_PRECIOS * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_TASA_PROMEDIO_INCREMENTO_PRECIOS,
-CASE WHEN RES_C_PORCENTAJE_VENTAS_NUEVOGAR = 0 THEN '0' ELSE ((RES_C_PORCENTAJE_VENTAS_NUEVOGAR * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_PORCENTAJE_VENTAS_NUEVOGAR,
+CASE WHEN RES_C_PORCENTAJE_VENTAS_NUEVOGAR = 0 THEN '' ELSE RES_C_PORCENTAJE_VENTAS_NUEVOGAR+'%' END RES_C_PORCENTAJE_VENTAS_NUEVOGAR,
 CASE WHEN RES_C_FECHA_PRESUPUESTO = 0 THEN '' ELSE ((RES_C_FECHA_PRESUPUESTO * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_FECHA_PRESUPUESTO,
 CASE WHEN RES_C_TASA_PROMEDIO_INCREMENTO_PRESUPUESTO = 0 THEN '' ELSE ((RES_C_TASA_PROMEDIO_INCREMENTO_PRESUPUESTO * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_TASA_PROMEDIO_INCREMENTO_PRESUPUESTO,
 CASE WHEN RES_C_RESULTADOS = 0 THEN '' ELSE ((RES_C_RESULTADOS * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_RESULTADOS,
@@ -510,6 +510,7 @@ CASE WHEN RES_C_EJE_CV = 0 THEN '' ELSE ((RES_C_EJE_CV * CONS_UNI_PRE)/CONS_IND_
 CASE WHEN RES_C_EJE_VT = 0 THEN '' ELSE ((RES_C_EJE_VT * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_EJE_VT,
 CASE WHEN RES_C_EJE_CVG = 0 THEN '' ELSE ((RES_C_EJE_CVG * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_EJE_CVG,
 CASE WHEN RES_C_EJE_UIP = 0 THEN '' ELSE ((RES_C_EJE_UIP * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_EJE_UIP,
+CASE WHEN CONS_POR_VTA_NHO = 0 THEN '' ELSE CONCAT(CONS_POR_VTA_NHO,'%') END CONS_POR_VTA_NHO,
 CONS_FEC_GEN_DES,
 CONS_FEC_GEN_HAS,
 CONS_FEC_VEN_DES,
@@ -518,7 +519,8 @@ CONS_FEC_CON_DES,
 CONS_FEC_CON_HAS,
 CONS_FEC_PRE_DES,
 (DATE_FORMAT(CONS_FEC_PRE_HAS,'%b-%d')),
-CONS_RIT_VEN
+CONS_RIT_VEN,
+CONS_DESCRIPCION
 
 
 
@@ -544,7 +546,7 @@ CASE WHEN RES_C_FECHA_INICIO_Y_TERMINACION_CONSTRUCCION = 0 THEN '' ELSE ((RES_C
 CASE WHEN RES_C_RITMO_VENTAS_MENSUAL_PROMEDIO = 0 THEN '' ELSE ((RES_C_RITMO_VENTAS_MENSUAL_PROMEDIO * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_RITMO_VENTAS_MENSUAL_PROMEDIO,
 CASE WHEN RES_C_PUNTO_EQUILIBRIO_UNIDADES = 0 THEN '' ELSE ((RES_C_PUNTO_EQUILIBRIO_UNIDADES * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_PUNTO_EQUILIBRIO_UNIDADES,
 CASE WHEN RES_C_TASA_PROMEDIO_INCREMENTO_PRECIOS = 0 THEN '' ELSE ((RES_C_TASA_PROMEDIO_INCREMENTO_PRECIOS * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_TASA_PROMEDIO_INCREMENTO_PRECIOS,
-CASE WHEN RES_C_PORCENTAJE_VENTAS_NUEVOGAR = 0 THEN '0' ELSE ((RES_C_PORCENTAJE_VENTAS_NUEVOGAR * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_PORCENTAJE_VENTAS_NUEVOGAR,
+CASE WHEN RES_C_PORCENTAJE_VENTAS_NUEVOGAR = 0 THEN '' ELSE ((RES_C_PORCENTAJE_VENTAS_NUEVOGAR)) END RES_C_PORCENTAJE_VENTAS_NUEVOGAR,
 CASE WHEN RES_C_FECHA_PRESUPUESTO = 0 THEN '' ELSE ((RES_C_FECHA_PRESUPUESTO * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_FECHA_PRESUPUESTO,
 CASE WHEN RES_C_TASA_PROMEDIO_INCREMENTO_PRESUPUESTO = 0 THEN '' ELSE ((RES_C_TASA_PROMEDIO_INCREMENTO_PRESUPUESTO * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_TASA_PROMEDIO_INCREMENTO_PRESUPUESTO,
 CASE WHEN RES_C_RESULTADOS = 0 THEN '' ELSE ((RES_C_RESULTADOS * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_RESULTADOS,
@@ -1043,7 +1045,8 @@ CONS_FEC_CON_DES,
 CONS_FEC_CON_HAS,
 CONS_FEC_PRE_DES,
 (DATE_FORMAT(CONS_FEC_PRE_HAS,'%b-%d')),
-CONS_RIT_VEN
+CONS_RIT_VEN,
+CONS_DESCRIPCION
 
 
 
@@ -1650,10 +1653,7 @@ while ($fila = $res->fetch_array()) {
 	$sum=$sum+1;
 }
 
-
-$resultado = $conexion->query($consulta);
-$resultado1 = $conexion->query($consulta1);
-if($resultado->num_rows > 0 ){
+if($resultado1->num_rows > 0 ){
 
 	date_default_timezone_set('America/Mexico_City');
 
@@ -1743,7 +1743,7 @@ if($resultado->num_rows > 0 ){
 							 	->setCellValue($columnas[$e].'25','Vr/M2')
 							 	->setCellValue($columnas[$e].'26','Vendible')
 							 	->setCellValue($columnas[$f].'25','Valor/Unidad')
-
+							
 
 							 	->setCellValue('A5','INFORMACION GENERAL')
 							 	->setCellValue('A6','Total Unidades')
@@ -1861,7 +1861,7 @@ if($resultado->num_rows > 0 ){
 
 							 
 							 	$objPHPExcel->setActiveSheetIndex(0) 
-							 	->setCellValue('A1',  'RESUMEN')
+							 	->setCellValue('A1',  'RESUMEN - '.$fila['CONS_DESCRIPCION'])
 							 	->setCellValue('B5',  'INFORMACION GENERAL')
 							 	->setCellValue('B6',   $fila['RES_C_TOTAL_UNIDADES'])
 							 	->setCellValue('B7',   div($fila['RES_C_TOTAL_AREA_VENDIBLE'],$fila['RES_C_TOTAL_UNIDADES']))
@@ -1879,7 +1879,7 @@ if($resultado->num_rows > 0 ){
 							 	->setCellValue('B18',  $fila['CONS_RIT_VEN'])
 							 	->setCellValue('B19',  ' ')
 							 	->setCellValue('B20',  ' ')
-							 	->setCellValue('B21',  $fila['RES_C_PORCENTAJE_VENTAS_NUEVOGAR'])
+							 	->setCellValue('B21',  $fila['CONS_POR_VTA_NHO'])
 							 	->setCellValue('B22',  $fct_fecha)
 							 	->setCellValue('B23',  ' ')
 							 	
@@ -3035,7 +3035,7 @@ if($resultado->num_rows > 0 ){
 							 	->setCellValue($columnas[$e].'26','Vendible')
 							 	->setCellValue($columnas[$f].'25','Valor/Unidad')
 
-
+		
 							 	->setCellValue('A5','INFORMACION GENERAL')
 							 	->setCellValue('A6','Total Unidades')
 							 	->setCellValue('A7','Area Promedio / Unidad  (aplica en vivienda)')
@@ -4231,6 +4231,1076 @@ if($resultado->num_rows > 0 ){
 							 	$objWorkSheet = $objPHPExcel->createSheet($i);
 
 							 }
+							 
+							 		 
+							 while ($fila = $resultado2->fetch_array()) {
+							 	$fct_fecha=$fila["CONS_FEC_PRE_DES"];
+							 	$fct_fecha2=cambiarFecha1($fct_fecha);
+							 	
+							 	$ven_des=$fila["CONS_FEC_VEN_DES"];
+							 	$ven_des=cambiarFecha1($ven_des);
+							 	
+							 	$ven_has=$fila["CONS_FEC_VEN_HAS"];
+							 	$ven_has=cambiarFecha1($ven_has);
+							 	
+							 	$con_des=$fila["CONS_FEC_CON_DES"];
+							 	$con_des=cambiarFecha1($con_des);
+							 	
+							 	$con_has=$fila["CONS_FEC_CON_HAS"];
+							 	$con_has=cambiarFecha1($con_has);
+							 	
+							 	$fct_fecha=$fct_fecha2;
+							 	$venta=$ven_des.' A '.$ven_has;
+							 	if($venta==' A '){
+							 		$venta=' ';
+							 	}
+							 	$cons=$con_des.' A '.$con_has;
+							 	if($cons==' A '){
+							 		$cons=' ';
+							 	}
+							 	$objPHPExcel->setActiveSheetIndex(0) 
+							 	->setCellValue($columnas[$a].'1',  'RESUMEN - '.$fila['CONS_DESCRIPCION'])
+							 	->setCellValue($columnas[$b].'5',  'INFORMACION GENERAL')
+							 	->setCellValue($columnas[$b].'6',   $fila['RES_C_TOTAL_UNIDADES'])
+							 	->setCellValue($columnas[$b].'7',   div($fila['RES_C_TOTAL_AREA_VENDIBLE'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$b].'8',   $fila['RES_C_TOTAL_AREA_CONSTRUIDA'])
+							 	->setCellValue($columnas[$b].'9',   $fila['RES_C_TOTAL_AREA_VENDIBLE']) 
+							 	->setCellValue($columnas[$b].'10',  $fila['RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO'])
+							 	->setCellValue($columnas[$b].'11',  (($fila['RES_C_TOTAL_UNIDADES']*10000)/$fila['RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO']))
+							 	->setCellValue($columnas[$b].'12',  ($fila['RES_C_VALOR_TERENO_URBANIZADO']/$fila['RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO']))
+							 	->setCellValue($columnas[$b].'13',  $fila['RES_C_NUMERO_PARQUEOS'])
+							 	->setCellValue($columnas[$b].'14',  $fila['RES_C_NUMERO_PARQUEOS']/$fila['RES_C_NUMERO_PARQUEOS'])
+							 	->setCellValue($columnas[$b].'15',  $fila['RES_C_NUMERO_DEPOSITOS'])
+							 	
+							 	->setCellValue($columnas[$b].'16',  $venta)
+							 	->setCellValue($columnas[$b].'17',  $cons)
+							 	->setCellValue($columnas[$b].'18',  $fila['CONS_RIT_VEN'])
+							 	->setCellValue($columnas[$b].'19',  ' ')
+							 	->setCellValue($columnas[$b].'20',  ' ')
+							 	->setCellValue($columnas[$b].'21',  $fila['RES_C_PORCENTAJE_VENTAS_NUEVOGAR'])
+							 	->setCellValue($columnas[$b].'22',  $fct_fecha)
+							 	->setCellValue($columnas[$b].'23',  ' ')
+							 	
+							 	->setCellValue($columnas[$b].'27',  $fila['RES_C_URBANISMO_INTERNO_COSTO_MATERIALES_MANO_OBRA'])
+							 	->setCellValue($columnas[$b].'28',  $fila['RES_C_PRESUPUESTO'])
+							 	->setCellValue($columnas[$b].'29',  $fila['RES_C_INCREMENTOS'])
+							 	->setCellValue($columnas[$b].'30',  $fila['RES_C_COSTO_MATERIALES_MANO_OBRA'])
+							 	->setCellValue($columnas[$b].'31',  $fila['RES_C_PRESUPUESTO2'])
+							 	->setCellValue($columnas[$b].'32',  $fila['RES_C_INCREMENTOS2'])
+							 	->setCellValue($columnas[$b].'33',  $fila['RES_C_GASTOS_IMPREVISTOS'])
+							 	->setCellValue($columnas[$b].'34',  $fila['RES_C_COSTOS_POST_VENTAS'])
+							 	->setCellValue($columnas[$b].'35',  $fila['RES_C_COSTO_DIRECTO_CONSTRUCCION'])
+							 	->setCellValue($columnas[$b].'36',  $fila['RES_C_HONORARIOS_CONSTRUCCION'])
+							 	->setCellValue($columnas[$b].'37',  $fila['RES_C_HONORARIOS_CONSTRUCCION2'])
+							 	->setCellValue($columnas[$b].'38',  $fila['RES_C_GASTOS_REEMBOLSABLES'])
+							 	->setCellValue($columnas[$b].'39',  $fila['RES_C_HONORARIOS_INTERVENTORIA'])
+							 	->setCellValue($columnas[$b].'40',  $fila['RES_C_HONORARIOS_INTERVENTORIA2'])
+							 	->setCellValue($columnas[$b].'41',  $fila['RES_C_GASTOS_REEMBOLSABLES2'])
+							 	->setCellValue($columnas[$b].'42',  $fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS'])
+							 	->setCellValue($columnas[$b].'43',  $fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS2'])
+							 	->setCellValue($columnas[$b].'44',  $fila['RES_C_GASTOS_REEMBOLSABLES3'])
+							 	->setCellValue($columnas[$b].'45',  $fila['RES_C_IMPUESTOS_DERECHOS_LICENCIAS_CONSTRUCCION'])
+							 	->setCellValue($columnas[$b].'46',  $fila['RES_C_COSTO_TOTAL_CONSTRUCCION'])
+							 	->setCellValue($columnas[$b].'47',  $fila['RES_C_HONORARIOS_GERENCIA'])
+							 	->setCellValue($columnas[$b].'48',  $fila['RES_C_HONORARIOS_GERENCIA2'])
+							 	->setCellValue($columnas[$b].'49',  $fila['RES_C_GASTOS_REEMBOLSABLES4'])
+							 	->setCellValue($columnas[$b].'50',  $fila['RES_C_HONORARIOS_VENTAS'])
+							 	->setCellValue($columnas[$b].'51',  $fila['RES_C_HONORARIOS_VENTAS2'])
+							 	->setCellValue($columnas[$b].'52',  $fila['RES_C_GASTOS_REEMBOLSABLES5'])
+							 	->setCellValue($columnas[$b].'53',  $fila['RES_C_COSTOS_PROMOCION_Y_VENTAS'])
+							 	->setCellValue($columnas[$b].'54',  $fila['RES_C_SALA_VENTAS_Y_UNIDADES_MODELO_CONSTRUCCION'])
+							 	->setCellValue($columnas[$b].'55',  $fila['RES_C_GASTOS_PUBLICIDAD'])
+							 	->setCellValue($columnas[$b].'56',  $fila['RES_C_GASTOS_SALA_VENTAS'])
+							 	->setCellValue($columnas[$b].'57',  $fila['RES_C_ADMON_UNIDADES_POR_ENTREGAR'])
+							 	->setCellValue($columnas[$b].'58',  $fila['RES_C_COMISIONES_VENTAS'])
+							 	->setCellValue($columnas[$b].'59',  $fila['RES_C_GASTOS_LEGALES'])
+							 	->setCellValue($columnas[$b].'60',  $fila['RES_C_HIPOTECAS_CREDITO_CONSTRUCTOR'])
+							 	->setCellValue($columnas[$b].'61',  $fila['RES_C_NOTARIALES_REGISTRO_DE_VENTAS'])
+							 	->setCellValue($columnas[$b].'62',  $fila['RES_C_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURAR'])
+							 	->setCellValue($columnas[$b].'63',  $fila['RES_C_IMPUESTO_ICA'])
+							 	->setCellValue($columnas[$b].'64',  $fila['RES_C_COSTO_TOTAL_ANTES_TERRENO_FINANCIEROS'])
+							 	->setCellValue($columnas[$b].'65',  $fila['RES_C_VALOR_TERENO_URBANIZADO'])
+							 	->setCellValue($columnas[$b].'66',  $fila['RES_C_PAGOS_PORCENTAJE_VENTAS_NETO_ANTICIPO'])
+							 	->setCellValue($columnas[$b].'67',  $fila['RES_C_OTROS_PAGOS_COSTOS_MAS_VALORIZACION'])
+							 	->setCellValue($columnas[$b].'68',  $fila['RES_C_COMISIONES_FIDUCIA'])
+							 	->setCellValue($columnas[$b].'69',  $fila['RES_C_PREVENTAS_Y_ADMON'])
+							 	->setCellValue($columnas[$b].'70',  $fila['RES_C_NUEVOGAR'])
+							 	->setCellValue($columnas[$b].'71',  $fila['RES_C_GASTOS_FINANCIEROS'])
+							 	->setCellValue($columnas[$b].'72',  $fila['RES_C_INTERESES_CREDITO_CONSTRUCTOR'])
+							 	->setCellValue($columnas[$b].'73',  $fila['RES_C_OTROS_COSTOS_CREDITO'])
+							 	->setCellValue($columnas[$b].'74',  $fila['RES_C_CORRECCION_MONETARIA'])
+							 	->setCellValue($columnas[$b].'75',  $fila['RES_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF'])
+							 	->setCellValue($columnas[$b].'76',  $fila['RES_C_OTROS_COSTOS_Y_GASTOS'])
+							 	->setCellValue($columnas[$b].'77',  $fila['RES_C_GASTO1'])
+							 	->setCellValue($columnas[$b].'78',  $fila['RES_C_GASTO2'])
+							 	->setCellValue($columnas[$b].'79',  $fila['RES_C_GASTO3'])
+							 	->setCellValue($columnas[$b].'80',  $fila['RES_C_REINTEGROS_IVA_PROYECTOS_VIS'])
+							 	->setCellValue($columnas[$b].'81',  $fila['RES_C_COSTO_TOTAL_DIRECTOS_INDIRECTOS'])
+							 	->setCellValue($columnas[$b].'82',  $fila['RES_C_VENTAS_BRUTAS'])
+							 	->setCellValue($columnas[$b].'83',  $fila['RES_C_OTROS_INGRESOS_VENTAS'])
+							 	->setCellValue($columnas[$b].'84',  $fila['RES_C_INTERESES_SUBROGACION'])
+							 	->setCellValue($columnas[$b].'85',  $fila['RES_C_INTERESES_MORA'])
+							 	->setCellValue($columnas[$b].'86',  $fila['RES_C_OFERTAS_COMERCIALES_OTROS_INGRESOS'])
+							 	->setCellValue($columnas[$b].'87',  $fila['RES_C_RENDIMIENTOS_FIDEICOMISO'])
+							 	->setCellValue($columnas[$b].'88',  $fila['RES_C_OTROS_INGRESOS'])
+							 	->setCellValue($columnas[$b].'89',  $fila['RES_C_INGRESOS1'])
+							 	->setCellValue($columnas[$b].'90',  $fila['RES_C_INGRESOS2'])
+							 	->setCellValue($columnas[$b].'91',  $fila['RES_C_INGRESOS3'])
+							 	->setCellValue($columnas[$b].'92',  $fila['RES_C_INGRESOS_TOTALES'])
+							 	->setCellValue($columnas[$b].'93',  $fila['RES_C_UTILIDAD_PROYECTO'])
+							 	->setCellValue($columnas[$b].'94',  $fila['RES_C_COSTO_CREDITO_TESORERIA'])
+							 	->setCellValue($columnas[$b].'95',  $fila['RES_C_IMPUESTO_RENTA'])
+							 	->setCellValue($columnas[$b].'96',  $fila['RES_C_UTILIDAD_PROYECTO2'])
+
+							 	->setCellValue($columnas[$b].'98',  $fila['RES_C_COSTO_VENTAS_GESTION'])
+							 	->setCellValue($columnas[$b].'99',  $fila['RES_C_VALOR_TERRENO_LIBROS'])
+							 	->setCellValue($columnas[$b].'100',  $fila['RES_C_COSTO_VENTAS_GESTION_SIN_INTERESES'])
+							 	
+							 	
+							 	->setCellValue($columnas[$b].'102',  $fila['RES_C_TIR_EM'])
+							 	->setCellValue($columnas[$b].'103',  $fila['RES_C_VPN_TASA_DESCUENTO'])
+							 	
+							 	->setCellValue($columnas[$b].'105',  $fila['RES_C_UTILIDAD_COLPATRIA'])
+							 	->setCellValue($columnas[$b].'106',  $fila['RES_C_CONSTRUCTORA'])
+							 	->setCellValue($columnas[$b].'107',  $fila['RES_C_TRANSACCIONES_INMOBILIARIAS'])
+							 	->setCellValue($columnas[$b].'108',  $fila['RES_C_PROMOTORA'])
+							 	
+							 	->setCellValue($columnas[$b].'110',  $fila['RES_C_TIR_COLPATRIA_EM'])
+							 	->setCellValue($columnas[$b].'111',  $fila['RES_C_VPN_COLPATRIA_TASA_DESCUENTO'])
+							 	
+							 	->setCellValue($columnas[$c].'27', div($fila['RES_C_URBANISMO_INTERNO_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'28', div($fila['RES_C_PRESUPUESTO'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'29', div($fila['RES_C_INCREMENTOS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'30', div($fila['RES_C_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'31', div($fila['RES_C_PRESUPUESTO2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'32', div($fila['RES_C_INCREMENTOS2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'33', div($fila['RES_C_GASTOS_IMPREVISTOS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'34', div($fila['RES_C_COSTOS_POST_VENTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'35', div($fila['RES_C_COSTO_DIRECTO_CONSTRUCCION'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'36', div($fila['RES_C_HONORARIOS_CONSTRUCCION'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'37', div($fila['RES_C_HONORARIOS_CONSTRUCCION2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'38', div($fila['RES_C_GASTOS_REEMBOLSABLES'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'39', div($fila['RES_C_HONORARIOS_INTERVENTORIA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'40', div($fila['RES_C_HONORARIOS_INTERVENTORIA2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'41', div($fila['RES_C_GASTOS_REEMBOLSABLES2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'42', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'43', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'44', div($fila['RES_C_GASTOS_REEMBOLSABLES3'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'45', div($fila['RES_C_IMPUESTOS_DERECHOS_LICENCIAS_CONSTRUCCION'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'46', div($fila['RES_C_COSTO_TOTAL_CONSTRUCCION'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'47', div($fila['RES_C_HONORARIOS_GERENCIA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'48', div($fila['RES_C_HONORARIOS_GERENCIA2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'49', div($fila['RES_C_GASTOS_REEMBOLSABLES4'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'50', div($fila['RES_C_HONORARIOS_VENTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'51', div($fila['RES_C_HONORARIOS_VENTAS2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'52', div($fila['RES_C_GASTOS_REEMBOLSABLES5'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'53', div($fila['RES_C_COSTOS_PROMOCION_Y_VENTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'54', div($fila['RES_C_SALA_VENTAS_Y_UNIDADES_MODELO_CONSTRUCCION'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'55', div($fila['RES_C_GASTOS_PUBLICIDAD'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'56', div($fila['RES_C_GASTOS_SALA_VENTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'57', div($fila['RES_C_ADMON_UNIDADES_POR_ENTREGAR'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'58', div($fila['RES_C_COMISIONES_VENTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'59', div($fila['RES_C_GASTOS_LEGALES'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'60', div($fila['RES_C_HIPOTECAS_CREDITO_CONSTRUCTOR'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'61', div($fila['RES_C_NOTARIALES_REGISTRO_DE_VENTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'62', div($fila['RES_C_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURAR'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'63', div($fila['RES_C_IMPUESTO_ICA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'64', div($fila['RES_C_COSTO_TOTAL_ANTES_TERRENO_FINANCIEROS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'65', div($fila['RES_C_VALOR_TERENO_URBANIZADO'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'66', div($fila['RES_C_PAGOS_PORCENTAJE_VENTAS_NETO_ANTICIPO'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'67', div($fila['RES_C_OTROS_PAGOS_COSTOS_MAS_VALORIZACION'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'68', div($fila['RES_C_COMISIONES_FIDUCIA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'69', div($fila['RES_C_PREVENTAS_Y_ADMON'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'70', div($fila['RES_C_NUEVOGAR'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'71', div($fila['RES_C_GASTOS_FINANCIEROS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'72', div($fila['RES_C_INTERESES_CREDITO_CONSTRUCTOR'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'73', div($fila['RES_C_OTROS_COSTOS_CREDITO'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'74', div($fila['RES_C_CORRECCION_MONETARIA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'75', div($fila['RES_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'76', div($fila['RES_C_OTROS_COSTOS_Y_GASTOS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'77', div($fila['RES_C_GASTO1'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'78', div($fila['RES_C_GASTO2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'79', div($fila['RES_C_GASTO3'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'80', div($fila['RES_C_REINTEGROS_IVA_PROYECTOS_VIS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'81', div($fila['RES_C_COSTO_TOTAL_DIRECTOS_INDIRECTOS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'82', div($fila['RES_C_VENTAS_BRUTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'83', div($fila['RES_C_OTROS_INGRESOS_VENTAS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'84', div($fila['RES_C_INTERESES_SUBROGACION'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'85', div($fila['RES_C_INTERESES_MORA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'86', div($fila['RES_C_OFERTAS_COMERCIALES_OTROS_INGRESOS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'87', div($fila['RES_C_RENDIMIENTOS_FIDEICOMISO'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'88', div($fila['RES_C_OTROS_INGRESOS'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'89', div($fila['RES_C_INGRESOS1'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'90', div($fila['RES_C_INGRESOS2'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'91', div($fila['RES_C_INGRESOS3'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'92', div($fila['RES_C_INGRESOS_TOTALES'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'93', div($fila['RES_C_UTILIDAD_PROYECTO'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'94', div($fila['RES_C_COSTO_CREDITO_TESORERIA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'95', div($fila['RES_C_IMPUESTO_RENTA'],$fila['RES_C_VENTAS_BRUTAS']) )
+							 	->setCellValue($columnas[$c].'96', div($fila['RES_C_UTILIDAD_PROYECTO2'],$fila['RES_C_VENTAS_BRUTAS']) )
+
+							 	->setCellValue($columnas[$c].'98', div($fila['RES_C_COSTO_VENTAS_GESTION'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'99',  div($fila['RES_C_VALOR_TERRENO_LIBROS'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'100',  div($fila['RES_C_COSTO_VENTAS_GESTION_SIN_INTERESES'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	
+							 	
+							 	->setCellValue($columnas[$c].'102',  div($fila['RES_C_TIR_EM'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'103',  div($fila['RES_C_VPN_TASA_DESCUENTO'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'105', div($fila['RES_C_UTILIDAD_COLPATRIA'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'106',  div($fila['RES_C_CONSTRUCTORA'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'107',  div($fila['RES_C_TRANSACCIONES_INMOBILIARIAS'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	
+							 	->setCellValue($columnas[$c].'108',  div($fila['RES_C_PROMOTORA'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'110',  div($fila['RES_C_TIR_COLPATRIA_EM'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$c].'111',  div($fila['RES_C_VPN_COLPATRIA_TASA_DESCUENTO'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	
+							 	
+							 	
+							 	->setCellValue($columnas[$d].'27', div($fila['RES_C_URBANISMO_INTERNO_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'28', div($fila['RES_C_PRESUPUESTO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'29', div($fila['RES_C_INCREMENTOS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'30', div($fila['RES_C_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'31', div($fila['RES_C_PRESUPUESTO2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'32', div($fila['RES_C_INCREMENTOS2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'33', div($fila['RES_C_GASTOS_IMPREVISTOS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'34', div($fila['RES_C_COSTOS_POST_VENTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'35', div($fila['RES_C_COSTO_DIRECTO_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'36', div($fila['RES_C_HONORARIOS_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'37', div($fila['RES_C_HONORARIOS_CONSTRUCCION2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'38', div($fila['RES_C_GASTOS_REEMBOLSABLES'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'39', div($fila['RES_C_HONORARIOS_INTERVENTORIA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'40', div($fila['RES_C_HONORARIOS_INTERVENTORIA2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'41', div($fila['RES_C_GASTOS_REEMBOLSABLES2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'42', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'43', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'44', div($fila['RES_C_GASTOS_REEMBOLSABLES3'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'45', div($fila['RES_C_IMPUESTOS_DERECHOS_LICENCIAS_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'46', div($fila['RES_C_COSTO_TOTAL_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'47', div($fila['RES_C_HONORARIOS_GERENCIA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'48', div($fila['RES_C_HONORARIOS_GERENCIA2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'49', div($fila['RES_C_GASTOS_REEMBOLSABLES4'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'50', div($fila['RES_C_HONORARIOS_VENTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'51', div($fila['RES_C_HONORARIOS_VENTAS2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'52', div($fila['RES_C_GASTOS_REEMBOLSABLES5'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'53', div($fila['RES_C_COSTOS_PROMOCION_Y_VENTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'54', div($fila['RES_C_SALA_VENTAS_Y_UNIDADES_MODELO_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'55', div($fila['RES_C_GASTOS_PUBLICIDAD'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'56', div($fila['RES_C_GASTOS_SALA_VENTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'57', div($fila['RES_C_ADMON_UNIDADES_POR_ENTREGAR'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'58', div($fila['RES_C_COMISIONES_VENTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'59', div($fila['RES_C_GASTOS_LEGALES'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'60', div($fila['RES_C_HIPOTECAS_CREDITO_CONSTRUCTOR'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'61', div($fila['RES_C_NOTARIALES_REGISTRO_DE_VENTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'62', div($fila['RES_C_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURAR'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'63', div($fila['RES_C_IMPUESTO_ICA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'64', div($fila['RES_C_COSTO_TOTAL_ANTES_TERRENO_FINANCIEROS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'65', div($fila['RES_C_VALOR_TERENO_URBANIZADO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'66', div($fila['RES_C_PAGOS_PORCENTAJE_VENTAS_NETO_ANTICIPO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'67', div($fila['RES_C_OTROS_PAGOS_COSTOS_MAS_VALORIZACION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'68', div($fila['RES_C_COMISIONES_FIDUCIA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'69', div($fila['RES_C_PREVENTAS_Y_ADMON'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'70', div($fila['RES_C_NUEVOGAR'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'71', div($fila['RES_C_GASTOS_FINANCIEROS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'72', div($fila['RES_C_INTERESES_CREDITO_CONSTRUCTOR'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'73', div($fila['RES_C_OTROS_COSTOS_CREDITO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'74', div($fila['RES_C_CORRECCION_MONETARIA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'75', div($fila['RES_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'76', div($fila['RES_C_OTROS_COSTOS_Y_GASTOS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'77', div($fila['RES_C_GASTO1'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'78', div($fila['RES_C_GASTO2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'79', div($fila['RES_C_GASTO3'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'80', div($fila['RES_C_REINTEGROS_IVA_PROYECTOS_VIS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'81', div($fila['RES_C_COSTO_TOTAL_DIRECTOS_INDIRECTOS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'82', div($fila['RES_C_VENTAS_BRUTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'83', div($fila['RES_C_OTROS_INGRESOS_VENTAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'84', div($fila['RES_C_INTERESES_SUBROGACION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'85', div($fila['RES_C_INTERESES_MORA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'86', div($fila['RES_C_OFERTAS_COMERCIALES_OTROS_INGRESOS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'87', div($fila['RES_C_RENDIMIENTOS_FIDEICOMISO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'88', div($fila['RES_C_OTROS_INGRESOS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'89', div($fila['RES_C_INGRESOS1'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'90', div($fila['RES_C_INGRESOS2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'91', div($fila['RES_C_INGRESOS3'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'92', div($fila['RES_C_INGRESOS_TOTALES'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'93', div($fila['RES_C_UTILIDAD_PROYECTO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'94', div($fila['RES_C_COSTO_CREDITO_TESORERIA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'95', div($fila['RES_C_IMPUESTO_RENTA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+							 	->setCellValue($columnas[$d].'96', div($fila['RES_C_UTILIDAD_PROYECTO2'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']) )
+
+							 	->setCellValue($columnas[$d].'98', div($fila['RES_C_COSTO_VENTAS_GESTION'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'99',  div($fila['RES_C_VALOR_TERRENO_LIBROS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'100',  div($fila['RES_C_COSTO_VENTAS_GESTION_SIN_INTERESES'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	
+							 	
+							 	->setCellValue($columnas[$d].'102',  div($fila['RES_C_TIR_EM'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'103',  div($fila['RES_C_VPN_TASA_DESCUENTO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'105', div($fila['RES_C_UTILIDAD_COLPATRIA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'106',  div($fila['RES_C_CONSTRUCTORA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'107',  div($fila['RES_C_TRANSACCIONES_INMOBILIARIAS'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	
+							 	->setCellValue($columnas[$d].'108',  div($fila['RES_C_PROMOTORA'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'110',  div($fila['RES_C_TIR_COLPATRIA_EM'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	->setCellValue($columnas[$d].'111',  div($fila['RES_C_VPN_COLPATRIA_TASA_DESCUENTO'],$fila['RES_C_TOTAL_AREA_CONSTRUIDA']))
+							 	
+							 	
+							 	->setCellValue($columnas[$e].'27', div($fila['RES_C_URBANISMO_INTERNO_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'28', div($fila['RES_C_PRESUPUESTO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'29', div($fila['RES_C_INCREMENTOS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'30', div($fila['RES_C_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'31', div($fila['RES_C_PRESUPUESTO2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'32', div($fila['RES_C_INCREMENTOS2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'33', div($fila['RES_C_GASTOS_IMPREVISTOS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'34', div($fila['RES_C_COSTOS_POST_VENTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'35', div($fila['RES_C_COSTO_DIRECTO_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'36', div($fila['RES_C_HONORARIOS_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'37', div($fila['RES_C_HONORARIOS_CONSTRUCCION2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'38', div($fila['RES_C_GASTOS_REEMBOLSABLES'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'39', div($fila['RES_C_HONORARIOS_INTERVENTORIA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'40', div($fila['RES_C_HONORARIOS_INTERVENTORIA2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'41', div($fila['RES_C_GASTOS_REEMBOLSABLES2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'42', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'43', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'44', div($fila['RES_C_GASTOS_REEMBOLSABLES3'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'45', div($fila['RES_C_IMPUESTOS_DERECHOS_LICENCIAS_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'46', div($fila['RES_C_COSTO_TOTAL_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'47', div($fila['RES_C_HONORARIOS_GERENCIA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'48', div($fila['RES_C_HONORARIOS_GERENCIA2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'49', div($fila['RES_C_GASTOS_REEMBOLSABLES4'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'50', div($fila['RES_C_HONORARIOS_VENTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'51', div($fila['RES_C_HONORARIOS_VENTAS2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'52', div($fila['RES_C_GASTOS_REEMBOLSABLES5'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'53', div($fila['RES_C_COSTOS_PROMOCION_Y_VENTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'54', div($fila['RES_C_SALA_VENTAS_Y_UNIDADES_MODELO_CONSTRUCCION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'55', div($fila['RES_C_GASTOS_PUBLICIDAD'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'56', div($fila['RES_C_GASTOS_SALA_VENTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'57', div($fila['RES_C_ADMON_UNIDADES_POR_ENTREGAR'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'58', div($fila['RES_C_COMISIONES_VENTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'59', div($fila['RES_C_GASTOS_LEGALES'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'60', div($fila['RES_C_HIPOTECAS_CREDITO_CONSTRUCTOR'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'61', div($fila['RES_C_NOTARIALES_REGISTRO_DE_VENTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'62', div($fila['RES_C_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURAR'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'63', div($fila['RES_C_IMPUESTO_ICA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'64', div($fila['RES_C_COSTO_TOTAL_ANTES_TERRENO_FINANCIEROS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'65', div($fila['RES_C_VALOR_TERENO_URBANIZADO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'66', div($fila['RES_C_PAGOS_PORCENTAJE_VENTAS_NETO_ANTICIPO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'67', div($fila['RES_C_OTROS_PAGOS_COSTOS_MAS_VALORIZACION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'68', div($fila['RES_C_COMISIONES_FIDUCIA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'69', div($fila['RES_C_PREVENTAS_Y_ADMON'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'70', div($fila['RES_C_NUEVOGAR'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'71', div($fila['RES_C_GASTOS_FINANCIEROS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'72', div($fila['RES_C_INTERESES_CREDITO_CONSTRUCTOR'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'73', div($fila['RES_C_OTROS_COSTOS_CREDITO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'74', div($fila['RES_C_CORRECCION_MONETARIA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'75', div($fila['RES_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'76', div($fila['RES_C_OTROS_COSTOS_Y_GASTOS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'77', div($fila['RES_C_GASTO1'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'78', div($fila['RES_C_GASTO2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'79', div($fila['RES_C_GASTO3'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'80', div($fila['RES_C_REINTEGROS_IVA_PROYECTOS_VIS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'81', div($fila['RES_C_COSTO_TOTAL_DIRECTOS_INDIRECTOS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'82', div($fila['RES_C_VENTAS_BRUTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'83', div($fila['RES_C_OTROS_INGRESOS_VENTAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'84', div($fila['RES_C_INTERESES_SUBROGACION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'85', div($fila['RES_C_INTERESES_MORA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'86', div($fila['RES_C_OFERTAS_COMERCIALES_OTROS_INGRESOS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'87', div($fila['RES_C_RENDIMIENTOS_FIDEICOMISO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'88', div($fila['RES_C_OTROS_INGRESOS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'89', div($fila['RES_C_INGRESOS1'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'90', div($fila['RES_C_INGRESOS2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'91', div($fila['RES_C_INGRESOS3'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'92', div($fila['RES_C_INGRESOS_TOTALES'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'93', div($fila['RES_C_UTILIDAD_PROYECTO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'94', div($fila['RES_C_COSTO_CREDITO_TESORERIA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'95', div($fila['RES_C_IMPUESTO_RENTA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+							 	->setCellValue($columnas[$e].'96', div($fila['RES_C_UTILIDAD_PROYECTO2'],$fila['RES_C_TOTAL_AREA_VENDIBLE']) )
+
+							 	->setCellValue($columnas[$e].'98', div($fila['RES_C_COSTO_VENTAS_GESTION'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'99',  div($fila['RES_C_VALOR_TERRENO_LIBROS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'100',  div($fila['RES_C_COSTO_VENTAS_GESTION_SIN_INTERESES'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	
+							 	
+							 	->setCellValue($columnas[$e].'102',  div($fila['RES_C_TIR_EM'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'103',  div($fila['RES_C_VPN_TASA_DESCUENTO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'105', div($fila['RES_C_UTILIDAD_COLPATRIA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'106',  div($fila['RES_C_CONSTRUCTORA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'107',  div($fila['RES_C_TRANSACCIONES_INMOBILIARIAS'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	
+							 	->setCellValue($columnas[$e].'108',  div($fila['RES_C_PROMOTORA'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'110',  div($fila['RES_C_TIR_COLPATRIA_EM'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	->setCellValue($columnas[$e].'111',  div($fila['RES_C_VPN_COLPATRIA_TASA_DESCUENTO'],$fila['RES_C_TOTAL_AREA_VENDIBLE']))
+							 	
+
+							 	
+							 	->setCellValue($columnas[$f].'27', div($fila['RES_C_URBANISMO_INTERNO_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'28', div($fila['RES_C_PRESUPUESTO'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'29', div($fila['RES_C_INCREMENTOS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'30', div($fila['RES_C_COSTO_MATERIALES_MANO_OBRA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'31', div($fila['RES_C_PRESUPUESTO2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'32', div($fila['RES_C_INCREMENTOS2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'33', div($fila['RES_C_GASTOS_IMPREVISTOS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'34', div($fila['RES_C_COSTOS_POST_VENTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'35', div($fila['RES_C_COSTO_DIRECTO_CONSTRUCCION'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'36', div($fila['RES_C_HONORARIOS_CONSTRUCCION'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'37', div($fila['RES_C_HONORARIOS_CONSTRUCCION2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'38', div($fila['RES_C_GASTOS_REEMBOLSABLES'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'39', div($fila['RES_C_HONORARIOS_INTERVENTORIA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'40', div($fila['RES_C_HONORARIOS_INTERVENTORIA2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'41', div($fila['RES_C_GASTOS_REEMBOLSABLES2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'42', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'43', div($fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'44', div($fila['RES_C_GASTOS_REEMBOLSABLES3'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'45', div($fila['RES_C_IMPUESTOS_DERECHOS_LICENCIAS_CONSTRUCCION'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'46', div($fila['RES_C_COSTO_TOTAL_CONSTRUCCION'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'47', div($fila['RES_C_HONORARIOS_GERENCIA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'48', div($fila['RES_C_HONORARIOS_GERENCIA2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'49', div($fila['RES_C_GASTOS_REEMBOLSABLES4'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'50', div($fila['RES_C_HONORARIOS_VENTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'51', div($fila['RES_C_HONORARIOS_VENTAS2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'52', div($fila['RES_C_GASTOS_REEMBOLSABLES5'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'53', div($fila['RES_C_COSTOS_PROMOCION_Y_VENTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'54', div($fila['RES_C_SALA_VENTAS_Y_UNIDADES_MODELO_CONSTRUCCION'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'55', div($fila['RES_C_GASTOS_PUBLICIDAD'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'56', div($fila['RES_C_GASTOS_SALA_VENTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'57', div($fila['RES_C_ADMON_UNIDADES_POR_ENTREGAR'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'58', div($fila['RES_C_COMISIONES_VENTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'59', div($fila['RES_C_GASTOS_LEGALES'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'60', div($fila['RES_C_HIPOTECAS_CREDITO_CONSTRUCTOR'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'61', div($fila['RES_C_NOTARIALES_REGISTRO_DE_VENTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'62', div($fila['RES_C_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURAR'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'63', div($fila['RES_C_IMPUESTO_ICA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'64', div($fila['RES_C_COSTO_TOTAL_ANTES_TERRENO_FINANCIEROS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'65', div($fila['RES_C_VALOR_TERENO_URBANIZADO'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'66', div($fila['RES_C_PAGOS_PORCENTAJE_VENTAS_NETO_ANTICIPO'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'67', div($fila['RES_C_OTROS_PAGOS_COSTOS_MAS_VALORIZACION'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'68', div($fila['RES_C_COMISIONES_FIDUCIA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'69', div($fila['RES_C_PREVENTAS_Y_ADMON'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'70', div($fila['RES_C_NUEVOGAR'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'71', div($fila['RES_C_GASTOS_FINANCIEROS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'72', div($fila['RES_C_INTERESES_CREDITO_CONSTRUCTOR'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'73', div($fila['RES_C_OTROS_COSTOS_CREDITO'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'74', div($fila['RES_C_CORRECCION_MONETARIA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'75', div($fila['RES_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'76', div($fila['RES_C_OTROS_COSTOS_Y_GASTOS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'77', div($fila['RES_C_GASTO1'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'78', div($fila['RES_C_GASTO2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'79', div($fila['RES_C_GASTO3'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'80', div($fila['RES_C_REINTEGROS_IVA_PROYECTOS_VIS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'81', div($fila['RES_C_COSTO_TOTAL_DIRECTOS_INDIRECTOS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'82', div($fila['RES_C_VENTAS_BRUTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'83', div($fila['RES_C_OTROS_INGRESOS_VENTAS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'84', div($fila['RES_C_INTERESES_SUBROGACION'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'85', div($fila['RES_C_INTERESES_MORA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'86', div($fila['RES_C_OFERTAS_COMERCIALES_OTROS_INGRESOS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'87', div($fila['RES_C_RENDIMIENTOS_FIDEICOMISO'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'88', div($fila['RES_C_OTROS_INGRESOS'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'89', div($fila['RES_C_INGRESOS1'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'90', div($fila['RES_C_INGRESOS2'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'91', div($fila['RES_C_INGRESOS3'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'92', div($fila['RES_C_INGRESOS_TOTALES'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'93', div($fila['RES_C_UTILIDAD_PROYECTO'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'94', div($fila['RES_C_COSTO_CREDITO_TESORERIA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'95', div($fila['RES_C_IMPUESTO_RENTA'],$fila['RES_C_TOTAL_UNIDADES']) )
+							 	->setCellValue($columnas[$f].'96', div($fila['RES_C_UTILIDAD_PROYECTO2'],$fila['RES_C_TOTAL_UNIDADES']) )
+
+							 	->setCellValue($columnas[$f].'98', div($fila['RES_C_COSTO_VENTAS_GESTION'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'99',  div($fila['RES_C_VALOR_TERRENO_LIBROS'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'100',  div($fila['RES_C_COSTO_VENTAS_GESTION_SIN_INTERESES'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	
+							 	
+							 	->setCellValue($columnas[$f].'102',  div($fila['RES_C_TIR_EM'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'103',  div($fila['RES_C_VPN_TASA_DESCUENTO'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'105', div($fila['RES_C_UTILIDAD_COLPATRIA'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'106',  div($fila['RES_C_CONSTRUCTORA'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'107',  div($fila['RES_C_TRANSACCIONES_INMOBILIARIAS'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	
+							 	->setCellValue($columnas[$f].'108',  div($fila['RES_C_PROMOTORA'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'110',  div($fila['RES_C_TIR_COLPATRIA_EM'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	->setCellValue($columnas[$f].'111',  div($fila['RES_C_VPN_COLPATRIA_TASA_DESCUENTO'],$fila['RES_C_TOTAL_UNIDADES']))
+							 	
+							 	
+							 	
+							 	->setCellValue($columnas[$g].'27',  $fila['RES_C_EJE_UI'])
+							 	->setCellValue($columnas[$g].'28',  $fila['RES_C_EJE_UIP'])
+							 	->setCellValue($columnas[$g].'29',  $fila['RES_C_EJE_UII'])
+							 	->setCellValue($columnas[$g].'30',  $fila['RES_C_EJE_CM'])
+							 	->setCellValue($columnas[$g].'31',  $fila['RES_C_EJE_CMP'])
+							 	->setCellValue($columnas[$g].'32',  $fila['RES_C_EJE_CMI'])
+							 	->setCellValue($columnas[$g].'33',  $fila['RES_C_EJE_GI'])
+							 	->setCellValue($columnas[$g].'34',  $fila['RES_C_EJE_CP'])
+							 	->setCellValue($columnas[$g].'35',  $fila['RES_C_EJE_CD'])
+							 	->setCellValue($columnas[$g].'36',  $fila['RES_C_EJE_CD_HC'])
+							 	->setCellValue($columnas[$g].'37',  $fila['RES_C_EJE_CD_HC_HC'])
+							 	->setCellValue($columnas[$g].'38',  $fila['RES_C_EJE_CD_HC_GR'])
+							 	->setCellValue($columnas[$g].'39',  $fila['RES_C_EJE_CD_HI'])
+							 	->setCellValue($columnas[$g].'40',  $fila['RES_C_EJE_CD_HI_HI'])
+							 	->setCellValue($columnas[$g].'41',  $fila['RES_C_EJE_CD_HI_GR'])
+							 	->setCellValue($columnas[$g].'42',  $fila['RES_C_EJE_CD_OH'])
+							 	->setCellValue($columnas[$g].'43',  $fila['RES_C_EJE_CD_OH_OH'])
+							 	->setCellValue($columnas[$g].'44',  $fila['RES_C_EJE_CD_OH_GR'])
+							 	->setCellValue($columnas[$g].'45',  $fila['RES_C_EJE_CD_ID'])
+							 	->setCellValue($columnas[$g].'46',  $fila['RES_C_EJE_CT'])
+							 	->setCellValue($columnas[$g].'47',  $fila['RES_C_EJE_CT_HG'])
+							 	->setCellValue($columnas[$g].'48',  $fila['RES_C_EJE_CT_HG_HG'])
+							 	->setCellValue($columnas[$g].'49',  $fila['RES_C_EJE_CT_HG_GR'])
+							 	->setCellValue($columnas[$g].'50',  $fila['RES_C_EJE_CT_HV'])
+							 	->setCellValue($columnas[$g].'51',  $fila['RES_C_EJE_CT_HV_HV'])
+							 	->setCellValue($columnas[$g].'52',  $fila['RES_C_EJE_CT_HV_GR'])
+							 	->setCellValue($columnas[$g].'53',  $fila['RES_C_EJE_CT_CP'])
+							 	->setCellValue($columnas[$g].'54',  $fila['RES_C_EJE_CT_CP_SV'])
+							 	->setCellValue($columnas[$g].'55',  $fila['RES_C_EJE_CT_CP_GP'])
+							 	->setCellValue($columnas[$g].'56',  $fila['RES_C_EJE_CT_CP_GS'])
+							 	->setCellValue($columnas[$g].'57',  $fila['RES_C_EJE_CT_CP_AU'])
+							 	->setCellValue($columnas[$g].'58',  $fila['RES_C_EJE_CT_CP_CV'])
+							 	->setCellValue($columnas[$g].'59',  $fila['RES_C_EJE_CT_GL'])
+							 	->setCellValue($columnas[$g].'60',  $fila['RES_C_EJE_CT_GL_HC'])
+							 	->setCellValue($columnas[$g].'61',  $fila['RES_C_EJE_CT_GL_NR'])
+							 	->setCellValue($columnas[$g].'62',  $fila['RES_C_EJE_CT_GL_IP'])
+							 	->setCellValue($columnas[$g].'63',  $fila['RES_C_EJE_CT_GL_IC'])
+							 	->setCellValue($columnas[$g].'64',  $fila['RES_C_EJE_CA'])
+							 	->setCellValue($columnas[$g].'65',  $fila['RES_C_EJE_CA_VT'])
+							 	->setCellValue($columnas[$g].'66',  $fila['RES_C_EJE_CA_VT_PV'])
+							 	->setCellValue($columnas[$g].'67',  $fila['RES_C_EJE_CA_VT_OP'])
+							 	->setCellValue($columnas[$g].'68',  $fila['RES_C_EJE_CA_CF'])
+							 	->setCellValue($columnas[$g].'69',  $fila['RES_C_EJE_CA_CF_PA'])
+							 	->setCellValue($columnas[$g].'70',  $fila['RES_C_EJE_CA_CF_NH'])
+							 	->setCellValue($columnas[$g].'71',  $fila['RES_C_EJE_CA_GF'])
+							 	->setCellValue($columnas[$g].'72',  $fila['RES_C_EJE_CA_GF_IC'])
+							 	->setCellValue($columnas[$g].'73',  $fila['RES_C_EJE_CA_GF_OC'])
+							 	->setCellValue($columnas[$g].'74',  $fila['RES_C_EJE_CA_GF_CM'])
+							 	->setCellValue($columnas[$g].'75',  $fila['RES_C_EJE_CA_GF_IT'])
+							 	->setCellValue($columnas[$g].'76',  $fila['RES_C_EJE_CA_OC'])
+							 	->setCellValue($columnas[$g].'77',  $fila['RES_C_EJE_CA_OC_OC1'])
+							 	->setCellValue($columnas[$g].'78',  $fila['RES_C_EJE_CA_OC_OC2'])
+							 	->setCellValue($columnas[$g].'79',  $fila['RES_C_EJE_CA_OC_OC3'])
+							 	->setCellValue($columnas[$g].'80',  $fila['RES_C_EJE_CA_RI'])
+							 	->setCellValue($columnas[$g].'81',  $fila['RES_C_EJE_CI'])
+							 	->setCellValue($columnas[$g].'82',  $fila['RES_C_EJE_CI_VB'])
+							 	->setCellValue($columnas[$g].'83',  $fila['RES_C_EJE_CI_OV'])
+							 	->setCellValue($columnas[$g].'84',  $fila['RES_C_EJE_CI_OV_IS'])
+							 	->setCellValue($columnas[$g].'85',  $fila['RES_C_EJE_CI_OV_IM'])
+							 	->setCellValue($columnas[$g].'86',  $fila['RES_C_EJE_CI_OV_OC'])
+							 	->setCellValue($columnas[$g].'87',  $fila['RES_C_EJE_CI_RF'])
+							 	->setCellValue($columnas[$g].'88',  $fila['RES_C_EJE_CI_OI'])
+							 	->setCellValue($columnas[$g].'89',  $fila['RES_C_EJE_CI_OI_OI1'])
+							 	->setCellValue($columnas[$g].'90',  $fila['RES_C_EJE_CI_OI_OI2'])
+							 	->setCellValue($columnas[$g].'91',  $fila['RES_C_EJE_CI_OI_OI3'])
+							 	->setCellValue($columnas[$g].'92',  $fila['RES_C_EJE_IT'])
+							 	->setCellValue($columnas[$g].'93',  $fila['RES_C_EJE_UP'])
+							 	->setCellValue($columnas[$g].'94',  $fila['RES_C_EJE_UP_CC'])
+							 	->setCellValue($columnas[$g].'95',  $fila['RES_C_EJE_UP_IR'])
+							 	->setCellValue($columnas[$g].'96',  $fila['RES_C_EJE_UP2'])
+
+							 	->setCellValue($columnas[$g].'98',  $fila['RES_C_EJE_CV'])
+							 	->setCellValue($columnas[$g].'99',  $fila['RES_C_EJE_VT'])
+							 	->setCellValue($columnas[$g].'100',  $fila['RES_C_EJE_CVG'])
+							 	
+							 	
+							 	->setCellValue($columnas[$h].'27',div($fila['RES_C_EJE_UI'],$fila['RES_C_URBANISMO_INTERNO_COSTO_MATERIALES_MANO_OBRA']))
+							 	->setCellValue($columnas[$h].'28',div($fila['RES_C_EJE_UIP'],$fila['RES_C_PRESUPUESTO']))
+							 	->setCellValue($columnas[$h].'29',div($fila['RES_C_EJE_UII'],$fila['RES_C_INCREMENTOS']))
+							 	->setCellValue($columnas[$h].'30',div($fila['RES_C_EJE_CM'],$fila['RES_C_COSTO_MATERIALES_MANO_OBRA']))
+							 	->setCellValue($columnas[$h].'31',div($fila['RES_C_EJE_CMP'],$fila['RES_C_PRESUPUESTO2']))
+							 	->setCellValue($columnas[$h].'32',div($fila['RES_C_EJE_CMI'],$fila['RES_C_INCREMENTOS2']))
+							 	->setCellValue($columnas[$h].'33',div($fila['RES_C_EJE_GI'],$fila['RES_C_GASTOS_IMPREVISTOS']))
+							 	->setCellValue($columnas[$h].'34',div($fila['RES_C_EJE_CP'],$fila['RES_C_COSTOS_POST_VENTAS']))
+							 	->setCellValue($columnas[$h].'35',div($fila['RES_C_EJE_CD'],$fila['RES_C_COSTO_DIRECTO_CONSTRUCCION']))
+							 	->setCellValue($columnas[$h].'36',div($fila['RES_C_EJE_CD_HC'],$fila['RES_C_HONORARIOS_CONSTRUCCION']))
+							 	->setCellValue($columnas[$h].'37',div($fila['RES_C_EJE_CD_HC_HC'],$fila['RES_C_HONORARIOS_CONSTRUCCION2']))
+							 	->setCellValue($columnas[$h].'38',div($fila['RES_C_EJE_CD_HC_GR'],$fila['RES_C_GASTOS_REEMBOLSABLES']))
+							 	->setCellValue($columnas[$h].'39',div($fila['RES_C_EJE_CD_HI'],$fila['RES_C_HONORARIOS_INTERVENTORIA']))
+							 	->setCellValue($columnas[$h].'40',div($fila['RES_C_EJE_CD_HI_HI'],$fila['RES_C_HONORARIOS_INTERVENTORIA2']))
+							 	->setCellValue($columnas[$h].'41',div($fila['RES_C_EJE_CD_HI_GR'],$fila['RES_C_GASTOS_REEMBOLSABLES2']))
+							 	->setCellValue($columnas[$h].'42',div($fila['RES_C_EJE_CD_OH'],$fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS']))
+							 	->setCellValue($columnas[$h].'43',div($fila['RES_C_EJE_CD_OH_OH'],$fila['RES_C_OTROS_HONORARIOS_DISENOS_OTROS2']))
+							 	->setCellValue($columnas[$h].'44',div($fila['RES_C_EJE_CD_OH_GR'],$fila['RES_C_GASTOS_REEMBOLSABLES3']))
+							 	->setCellValue($columnas[$h].'45',div($fila['RES_C_EJE_CD_ID'],$fila['RES_C_IMPUESTOS_DERECHOS_LICENCIAS_CONSTRUCCION']))
+							 	->setCellValue($columnas[$h].'46',div($fila['RES_C_EJE_CT'],$fila['RES_C_COSTO_TOTAL_CONSTRUCCION']))
+							 	->setCellValue($columnas[$h].'47',div($fila['RES_C_EJE_CT_HG'],$fila['RES_C_HONORARIOS_GERENCIA']))
+							 	->setCellValue($columnas[$h].'48',div($fila['RES_C_EJE_CT_HG_HG'],$fila['RES_C_HONORARIOS_GERENCIA2']))
+							 	->setCellValue($columnas[$h].'49',div($fila['RES_C_EJE_CT_HG_GR'],$fila['RES_C_GASTOS_REEMBOLSABLES4']))
+							 	->setCellValue($columnas[$h].'50',div($fila['RES_C_EJE_CT_HV'],$fila['RES_C_HONORARIOS_VENTAS']))
+							 	->setCellValue($columnas[$h].'51',div($fila['RES_C_EJE_CT_HV_HV'],$fila['RES_C_HONORARIOS_VENTAS2']))
+							 	->setCellValue($columnas[$h].'52',div($fila['RES_C_EJE_CT_HV_GR'],$fila['RES_C_GASTOS_REEMBOLSABLES5']))
+							 	->setCellValue($columnas[$h].'53',div($fila['RES_C_EJE_CT_CP'],$fila['RES_C_COSTOS_PROMOCION_Y_VENTAS']))
+							 	->setCellValue($columnas[$h].'54',div($fila['RES_C_EJE_CT_CP_SV'],$fila['RES_C_SALA_VENTAS_Y_UNIDADES_MODELO_CONSTRUCCION']))
+							 	->setCellValue($columnas[$h].'55',div($fila['RES_C_EJE_CT_CP_GP'],$fila['RES_C_GASTOS_PUBLICIDAD']))
+							 	->setCellValue($columnas[$h].'56',div($fila['RES_C_EJE_CT_CP_GS'],$fila['RES_C_GASTOS_SALA_VENTAS']))
+							 	->setCellValue($columnas[$h].'57',div($fila['RES_C_EJE_CT_CP_AU'],$fila['RES_C_ADMON_UNIDADES_POR_ENTREGAR']))
+							 	->setCellValue($columnas[$h].'58',div($fila['RES_C_EJE_CT_CP_CV'],$fila['RES_C_COMISIONES_VENTAS']))
+							 	->setCellValue($columnas[$h].'59',div($fila['RES_C_EJE_CT_GL'],$fila['RES_C_GASTOS_LEGALES']))
+							 	->setCellValue($columnas[$h].'60',div($fila['RES_C_EJE_CT_GL_HC'],$fila['RES_C_HIPOTECAS_CREDITO_CONSTRUCTOR']))
+							 	->setCellValue($columnas[$h].'61',div($fila['RES_C_EJE_CT_GL_NR'],$fila['RES_C_NOTARIALES_REGISTRO_DE_VENTAS']))
+							 	->setCellValue($columnas[$h].'62',div($fila['RES_C_EJE_CT_GL_IP'],$fila['RES_C_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURAR']))
+							 	->setCellValue($columnas[$h].'63',div($fila['RES_C_EJE_CT_GL_IC'],$fila['RES_C_IMPUESTO_ICA']))
+							 	->setCellValue($columnas[$h].'64',div($fila['RES_C_EJE_CA'],$fila['RES_C_COSTO_TOTAL_ANTES_TERRENO_FINANCIEROS']))
+							 	->setCellValue($columnas[$h].'65',div($fila['RES_C_EJE_CA_VT'],$fila['RES_C_VALOR_TERENO_URBANIZADO']))
+							 	->setCellValue($columnas[$h].'66',div($fila['RES_C_EJE_CA_VT_PV'],$fila['RES_C_PAGOS_PORCENTAJE_VENTAS_NETO_ANTICIPO']))
+							 	->setCellValue($columnas[$h].'67',div($fila['RES_C_EJE_CA_VT_OP'],$fila['RES_C_OTROS_PAGOS_COSTOS_MAS_VALORIZACION']))
+							 	->setCellValue($columnas[$h].'68',div($fila['RES_C_EJE_CA_CF'],$fila['RES_C_COMISIONES_FIDUCIA']))
+							 	->setCellValue($columnas[$h].'69',div($fila['RES_C_EJE_CA_CF_PA'],$fila['RES_C_PREVENTAS_Y_ADMON']))
+							 	->setCellValue($columnas[$h].'70',div($fila['RES_C_EJE_CA_CF_NH'],$fila['RES_C_NUEVOGAR']))
+							 	->setCellValue($columnas[$h].'71',div($fila['RES_C_EJE_CA_GF'],$fila['RES_C_GASTOS_FINANCIEROS']))
+							 	->setCellValue($columnas[$h].'72',div($fila['RES_C_EJE_CA_GF_IC'],$fila['RES_C_INTERESES_CREDITO_CONSTRUCTOR']))
+							 	->setCellValue($columnas[$h].'73',div($fila['RES_C_EJE_CA_GF_OC'],$fila['RES_C_OTROS_COSTOS_CREDITO']))
+							 	->setCellValue($columnas[$h].'74',div($fila['RES_C_EJE_CA_GF_CM'],$fila['RES_C_CORRECCION_MONETARIA']))
+							 	->setCellValue($columnas[$h].'75',div($fila['RES_C_EJE_CA_GF_IT'],$fila['RES_C_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF']))
+							 	->setCellValue($columnas[$h].'76',div($fila['RES_C_EJE_CA_OC'],$fila['RES_C_OTROS_COSTOS_Y_GASTOS']))
+							 	->setCellValue($columnas[$h].'77',div($fila['RES_C_EJE_CA_OC_OC1'],$fila['RES_C_GASTO1']))
+							 	->setCellValue($columnas[$h].'78',div($fila['RES_C_EJE_CA_OC_OC2'],$fila['RES_C_GASTO2']))
+							 	->setCellValue($columnas[$h].'79',div($fila['RES_C_EJE_CA_OC_OC3'],$fila['RES_C_GASTO3']))
+							 	->setCellValue($columnas[$h].'80',div($fila['RES_C_EJE_CA_RI'],$fila['RES_C_REINTEGROS_IVA_PROYECTOS_VIS']))
+							 	->setCellValue($columnas[$h].'81',div($fila['RES_C_EJE_CI'],$fila['RES_C_COSTO_TOTAL_DIRECTOS_INDIRECTOS']))
+							 	->setCellValue($columnas[$h].'82',div($fila['RES_C_EJE_CI_VB'],$fila['RES_C_VENTAS_BRUTAS']))
+							 	->setCellValue($columnas[$h].'83',div($fila['RES_C_EJE_CI_OV'],$fila['RES_C_OTROS_INGRESOS_VENTAS']))
+							 	->setCellValue($columnas[$h].'84',div($fila['RES_C_EJE_CI_OV_IS'],$fila['RES_C_INTERESES_SUBROGACION']))
+							 	->setCellValue($columnas[$h].'85',div($fila['RES_C_EJE_CI_OV_IM'],$fila['RES_C_INTERESES_MORA']))
+							 	->setCellValue($columnas[$h].'86',div($fila['RES_C_EJE_CI_OV_OC'],$fila['RES_C_OFERTAS_COMERCIALES_OTROS_INGRESOS']))
+							 	->setCellValue($columnas[$h].'87',div($fila['RES_C_EJE_CI_RF'],$fila['RES_C_RENDIMIENTOS_FIDEICOMISO']))
+							 	->setCellValue($columnas[$h].'88',div($fila['RES_C_EJE_CI_OI'],$fila['RES_C_OTROS_INGRESOS']))
+							 	->setCellValue($columnas[$h].'89',div($fila['RES_C_EJE_CI_OI_OI1'],$fila['RES_C_INGRESOS1']))
+							 	->setCellValue($columnas[$h].'90',div($fila['RES_C_EJE_CI_OI_OI2'],$fila['RES_C_INGRESOS2']))
+							 	->setCellValue($columnas[$h].'91',div($fila['RES_C_EJE_CI_OI_OI3'],$fila['RES_C_INGRESOS3']))
+							 	->setCellValue($columnas[$h].'92',div($fila['RES_C_EJE_IT'],$fila['RES_C_INGRESOS_TOTALES']))
+							 	->setCellValue($columnas[$h].'93',div($fila['RES_C_EJE_UP'],$fila['RES_C_UTILIDAD_PROYECTO']))
+							 	->setCellValue($columnas[$h].'94',div($fila['RES_C_EJE_UP_CC'],$fila['RES_C_COSTO_CREDITO_TESORERIA']))
+							 	->setCellValue($columnas[$h].'95',div($fila['RES_C_EJE_UP_IR'],$fila['RES_C_IMPUESTO_RENTA']))
+							 	->setCellValue($columnas[$h].'96',div($fila['RES_C_EJE_UP2'],$fila['RES_C_UTILIDAD_PROYECTO2']))
+							 	->setCellValue($columnas[$b].'25','TOTALES')
+							 	->setCellValue($columnas[$c].'25','%')
+							 	->setCellValue($columnas[$c].'26','Ventas')
+							 	->setCellValue($columnas[$d].'25','Vr/M2')
+							 	->setCellValue($columnas[$d].'26','Construido')
+							 	->setCellValue($columnas[$e].'25','Vr/M2')
+							 	->setCellValue($columnas[$e].'26','Vendible')
+							 	->setCellValue($columnas[$f].'25','Valor/Unidad')
+							 	->setCellValue($columnas[$g].'25','Ejecución Al corte')
+							 	->setCellValue($columnas[$h].'25','% Total')		
+
+							 	->setCellValue($columnas[$k].'25','TOTALES')
+							 	->setCellValue($columnas[$l].'25','%')
+							 	->setCellValue($columnas[$l].'26','Ventas')
+							 	->setCellValue($columnas[$m].'25','Vr/M2')
+							 	->setCellValue($columnas[$m].'26','Construido')
+							 	->setCellValue($columnas[$n].'25','Vr/M2')
+							 	->setCellValue($columnas[$n].'26','Vendible')
+							 	->setCellValue($columnas[$o].'25','Valor/Unidad')
+							 	->setCellValue($columnas[$p].'25','Ejecución Al corte')
+							 	
+							 	->setCellValue($columnas[$q].'25','% Total')
+
+							 	->setCellValue('B5',  'INFORMACION GENERAL')
+
+							 	->setCellValue('A5',  'INFORMACION GENERAL')	;
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'3:'.$columnas[$b].'111')
+							 	->getNumberFormat()->setFormatCode('#,##0');
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'22')
+							 	->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_MYMINUS);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3:'.$columnas[$c].'111')
+							 	->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'3:'.$columnas[$d].'111')
+							 	->getNumberFormat()->setFormatCode('#,##0');
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'3:'.$columnas[$e].'111')
+							 	->getNumberFormat()->setFormatCode('#,##0');
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'3:'.$columnas[$f].'111')
+							 	->getNumberFormat()->setFormatCode('#,##0');
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'3:'.$columnas[$g].'111')
+							 	->getNumberFormat()->setFormatCode('#,##0');
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'3:'.$columnas[$h].'111')
+							 	->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'5:'.$columnas[$b].'97')
+							 	->getNumberFormat()->setFormatCode('#,##0');
+							 	
+							 	
+							 	
+							 	
+							 	
+	//---
+		//Alrededor
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'6:'.$columnas[$a].'9')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'10:'.$columnas[$a].'12')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'13:'.$columnas[$a].'15')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'16:'.$columnas[$a].'21')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'22:'.$columnas[$a].'23')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'27:'.$columnas[$a].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'36:'.$columnas[$a].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'47:'.$columnas[$a].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'65:'.$columnas[$a].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'82:'.$columnas[$a].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'94:'.$columnas[$a].'95')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'106:'.$columnas[$a].'108')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'6:'.$columnas[$b].'9')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'10:'.$columnas[$b].'12')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'13:'.$columnas[$b].'15')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'16:'.$columnas[$b].'21')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'22:'.$columnas[$b].'23')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'27:'.$columnas[$b].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'36:'.$columnas[$b].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'47:'.$columnas[$b].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'65:'.$columnas[$b].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'82:'.$columnas[$b].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'94:'.$columnas[$b].'95')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'106:'.$columnas[$b].'108')->applyFromArray($BStyle);
+
+
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'27:'.$columnas[$c].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'36:'.$columnas[$c].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'47:'.$columnas[$c].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'65:'.$columnas[$c].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'82:'.$columnas[$c].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'94:'.$columnas[$c].'95')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'106:'.$columnas[$c].'108')->applyFromArray($BStyle);
+
+
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'27:'.$columnas[$d].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'36:'.$columnas[$d].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'47:'.$columnas[$d].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'65:'.$columnas[$d].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'82:'.$columnas[$d].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'94:'.$columnas[$d].'95')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'106:'.$columnas[$d].'108')->applyFromArray($BStyle);
+
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'27:'.$columnas[$e].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'36:'.$columnas[$e].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'47:'.$columnas[$e].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'65:'.$columnas[$e].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'82:'.$columnas[$e].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'94:'.$columnas[$e].'95')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'106:'.$columnas[$e].'108')->applyFromArray($BStyle);
+
+
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'27:'.$columnas[$f].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'36:'.$columnas[$f].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'47:'.$columnas[$f].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'65:'.$columnas[$f].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'82:'.$columnas[$f].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'94:'.$columnas[$f].'95')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'106:'.$columnas[$f].'108')->applyFromArray($BStyle);
+
+
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'27:'.$columnas[$g].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'36:'.$columnas[$g].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'47:'.$columnas[$g].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'65:'.$columnas[$g].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'82:'.$columnas[$g].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'94:'.$columnas[$g].'95')->applyFromArray($BStyle);
+
+
+
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'27:'.$columnas[$h].'34')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'36:'.$columnas[$h].'45')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'47:'.$columnas[$h].'63')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'65:'.$columnas[$h].'80')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'82:'.$columnas[$h].'91')->applyFromArray($BStyle);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'94:'.$columnas[$h].'95')->applyFromArray($BStyle);
+
+
+	//LINEA CONTINUA
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'25:'.$columnas[$h].'25')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'26:'.$columnas[$h].'26')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'35:'.$columnas[$h].'35')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'46:'.$columnas[$h].'46')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'64:'.$columnas[$h].'64')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'81:'.$columnas[$h].'81')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'92:'.$columnas[$h].'92')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'93:'.$columnas[$h].'93')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'96:'.$columnas[$h].'96')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'98:'.$columnas[$h].'98')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'99:'.$columnas[$h].'99')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'100:'.$columnas[$h].'100')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'102:'.$columnas[$c].'102')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'103:'.$columnas[$c].'103')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'105:'.$columnas[$f].'105')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'110:'.$columnas[$f].'110')->applyFromArray($styleArray);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'111:'.$columnas[$f].'111')->applyFromArray($styleArray);
+
+
+
+							 	
+							 	
+	//--------Blanco
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$j].'1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$j].'5')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+							 	
+							 	
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'5')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+							 	
+							 	
+							 	
+							 	
+							 	
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'6:'.$columnas[$b].'23')->applyFromArray($celdaGris);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'25:'.$columnas[$b].'108')->applyFromArray($celdaGris);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'110:'.$columnas[$b].'111')->applyFromArray($celdaGris);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'25:'.$columnas[$c].'108')->applyFromArray($celdaGris);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'110:'.$columnas[$c].'111')->applyFromArray($celdaGris);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'25:'.$columnas[$d].'108')->applyFromArray($celdaGris);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$d].'110:'.$columnas[$d].'111')->applyFromArray($celdaGris);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'25:'.$columnas[$e].'108')->applyFromArray($celdaGris);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$e].'110:'.$columnas[$e].'111')->applyFromArray($celdaGris);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'25:'.$columnas[$f].'108')->applyFromArray($celdaGris);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$f].'110:'.$columnas[$f].'111')->applyFromArray($celdaGris);
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$g].'25:'.$columnas[$g].'100')->applyFromArray($celdaGris);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$h].'25:'.$columnas[$h].'100')->applyFromArray($celdaGris);					
+							 	
+							 	
+							 	
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A25:A26')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A35')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A46')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A64')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A81')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A92:A93')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A96')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A102:A103')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A105')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A110:A111')->applyFromArray($celdaAzulClaro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'5:'.$columnas[$b].'23')->applyFromArray(
+							 		array(
+							 			'fill' => array(
+							 				'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 				'color' => array('rgb' => 'DCE6F1'))));
+
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'25:'.$columnas[$b].'108')->applyFromArray(
+							 		array(
+							 			'fill' => array(
+							 				'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 				'color' => array('rgb' => 'DCE6F1'))));
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$b].'110:'.$columnas[$b].'111')->applyFromArray(
+							 		array(
+							 			'fill' => array(
+							 				'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 				'color' => array('rgb' => 'DCE6F1'))));
+							 	
+							 	
+							 	$negrilla = array(
+							 		'font' => array(
+							 			'bold' => true
+							 			)
+							 		);	
+		//Negrilla
+							 	$objPHPExcel->getActiveSheet()->getStyle('A35:'.$columnas[$h].'35')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A46:'.$columnas[$h].'46')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A64:'.$columnas[$h].'64')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A81:'.$columnas[$h].'81')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A92:'.$columnas[$h].'92')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A93:'.$columnas[$h].'93')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A96:'.$columnas[$h].'96')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A102:'.$columnas[$h].'102')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A103:'.$columnas[$h].'103')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A105:'.$columnas[$h].'105')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A110:'.$columnas[$h].'110')->applyFromArray($negrilla);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('A111:'.$columnas[$h].'111')->applyFromArray($negrilla);
+
+							 	
+		//Combinar Celdas
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells('A25:A26');
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells('A1:B1');
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells('A5:B5');					
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$k].'25:'.$columnas[$k].'26');
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$o].'25:'.$columnas[$o].'26');					
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$p].'25:'.$columnas[$p].'26');	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$q].'25:'.$columnas[$q].'26');	
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$b].'25:'.$columnas[$b].'26');
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$f].'25:'.$columnas[$f].'26');					
+							 	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$g].'25:'.$columnas[$g].'26');	
+							 	$objPHPExcel->setActiveSheetIndex(0)
+							 	->mergeCells($columnas[$h].'25:'.$columnas[$h].'26');					
+							 	PHPExcel_Shared_Font::setAutoSizeMethod(PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);	
+
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($a)->setAutoSize(true);   
+							 	
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($b)->setAutoSize(true);
+
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($c)->setWidth(16);
+
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($d)->setWidth(16);
+
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($e)->setWidth(16);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($f)->setWidth(16);
+
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($g)->setWidth(16);
+							 	
+							 	$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($h)->setWidth(16);		
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'1')->applyFromArray($celdaAzulOscuro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$a].'5')->applyFromArray($celdaAzulOscuro);		
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$j].'1')->applyFromArray($celdaAzulOscuro);			
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$j].'5')->applyFromArray($celdaAzulOscuro);		
+							 	
+							 	$objPHPExcel->getActiveSheet()->getStyle('B22')
+							 	->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_MYMINUS);
+							 	
+							 
+							 	$i++;
+							 	$objWorkSheet = $objPHPExcel->createSheet($i);
+							 }
+					
 
 
 			// Se asigna el nombre a la hoja

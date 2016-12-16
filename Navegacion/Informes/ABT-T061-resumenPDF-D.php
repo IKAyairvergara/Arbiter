@@ -511,7 +511,7 @@ CASE WHEN RES_C_EJE_CV = 0 THEN '' ELSE ((RES_C_EJE_CV * CONS_UNI_PRE)/CONS_IND_
 CASE WHEN RES_C_EJE_VT = 0 THEN '' ELSE ((RES_C_EJE_VT * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_EJE_VT,
 CASE WHEN RES_C_EJE_CVG = 0 THEN '' ELSE ((RES_C_EJE_CVG * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_EJE_CVG,
 CASE WHEN RES_C_EJE_UIP = 0 THEN '' ELSE ((RES_C_EJE_UIP * CONS_UNI_PRE)/CONS_IND_VALOR_REE) END RES_C_EJE_UIP,
-CONS_POR_VTA_NHO,
+CASE WHEN CONS_POR_VTA_NHO = 0 THEN '' ELSE CONCAT(CONS_POR_VTA_NHO,'%') END CONS_POR_VTA_NHO,
 CONS_FEC_GEN_DES,
 CONS_FEC_GEN_HAS,
 CONS_FEC_VEN_DES,
@@ -559,6 +559,7 @@ $resultado = $conexion->query($su);
 	 $sum=$sum+1;
  }
 if($resultado1->num_rows > 0 ){
+	
 	
 	date_default_timezone_set('America/Mexico_City');
 
@@ -787,7 +788,7 @@ $rendererLibraryPath = dirname(__FILE__).'/' . $rendererLibrary;
 							 	->setCellValue('B18',  $fila['CONS_RIT_VEN'])
 							 	->setCellValue('B19',  ' ')
 							 	->setCellValue('B20',  ' ')
-							 	->setCellValue('B21',  $fila['RES_C_PORCENTAJE_VENTAS_NUEVOGAR'])
+							 	->setCellValue('B21',  $fila['CONS_POR_VTA_NHO'])
 							 	->setCellValue('B22',  $fct_fecha)
 							 	->setCellValue('B23',  ' ')
 							 	
