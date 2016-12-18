@@ -3,76 +3,13 @@ include "../../php/ABT-T000-conexion-U.php";
 
 
 
-$Example=$_GET['dato']; 
-
-
-
-$consulta = "SELECT
-DATE_FORMAT(MAX(FCT_C_FECHA),'%m/%Y'),
-DATE_FORMAT(MAX(FCT_C_FECHA),'%b/%y'),
-FCT_C_PERIODICIDAD,
-CASE WHEN SUM(FCT_C_VALOR_ADQUISICION_PAGOS )  = 0 THEN '' ELSE ((SUM(FCT_C_VALOR_ADQUISICION_PAGOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_VALOR_ADQUISICION_PAGOS,
-CASE WHEN SUM(FCT_C_VAP_ANTICIPO_OTROS_PAGOS )  = 0 THEN '' ELSE ((SUM(FCT_C_VAP_ANTICIPO_OTROS_PAGOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_VAP_ANTICIPO_OTROS_PAGOS,
-CASE WHEN SUM(FCT_C_VAP_ABONOS_PACTADOS_POR_VENTAS )  = 0 THEN '' ELSE ((SUM(FCT_C_VAP_ABONOS_PACTADOS_POR_VENTAS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_VAP_ABONOS_PACTADOS_POR_VENTAS,
-CASE WHEN SUM(FCT_C_COSTOS_URBANISMO )  = 0 THEN '' ELSE ((SUM(FCT_C_COSTOS_URBANISMO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_COSTOS_URBANISMO,
-CASE WHEN SUM(FCT_C_CU_PRESUPUESTO )  = 0 THEN '' ELSE ((SUM(FCT_C_CU_PRESUPUESTO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_CU_PRESUPUESTO,
-CASE WHEN SUM(FCT_C_CU_INCREMENTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_CU_INCREMENTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_CU_INCREMENTOS,
-CASE WHEN SUM(FCT_C_COSTOS_INFRAESTRUCTURA )  = 0 THEN '' ELSE ((SUM(FCT_C_COSTOS_INFRAESTRUCTURA) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_COSTOS_INFRAESTRUCTURA,
-CASE WHEN SUM(FCT_C_CI_PRESUPUESTO )  = 0 THEN '' ELSE ((SUM(FCT_C_CI_PRESUPUESTO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_CI_PRESUPUESTO,
-CASE WHEN SUM(FCT_C_CI_INCREMENTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_CI_INCREMENTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_CI_INCREMENTOS,
-CASE WHEN SUM(FCT_C_CI_RECUPERACION_COSTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_CI_RECUPERACION_COSTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_CI_RECUPERACION_COSTOS,
-CASE WHEN SUM(FCT_C_GASTOS_IMPREVISTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_GASTOS_IMPREVISTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GASTOS_IMPREVISTOS,
-CASE WHEN SUM(FCT_C_COSTO_DIRECTO_URBANISMO )  = 0 THEN '' ELSE ((SUM(FCT_C_COSTO_DIRECTO_URBANISMO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_COSTO_DIRECTO_URBANISMO,
-CASE WHEN SUM(FCT_C_HONORARIOS_CONSTRUCCION )  = 0 THEN '' ELSE ((SUM(FCT_C_HONORARIOS_CONSTRUCCION) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_HONORARIOS_CONSTRUCCION,
-CASE WHEN SUM(FCT_C_HONORARIOS_INTERVENTORIA )  = 0 THEN '' ELSE ((SUM(FCT_C_HONORARIOS_INTERVENTORIA) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_HONORARIOS_INTERVENTORIA,
-CASE WHEN SUM(FCT_C_OTROS_HONORARIOS_TERCEROS )  = 0 THEN '' ELSE ((SUM(FCT_C_OTROS_HONORARIOS_TERCEROS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OTROS_HONORARIOS_TERCEROS,
-CASE WHEN SUM(FCT_C_LICENCIA_URBANISMO_OTROS_COSTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_LICENCIA_URBANISMO_OTROS_COSTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_LICENCIA_URBANISMO_OTROS_COSTOS,
-CASE WHEN SUM(FCT_C_GASTOS_LEGALES )  = 0 THEN '' ELSE ((SUM(FCT_C_GASTOS_LEGALES) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GASTOS_LEGALES,
-CASE WHEN SUM(FCT_C_GL_HIPOTECA_CREDITO_COMPRA_TERRENO )  = 0 THEN '' ELSE ((SUM(FCT_C_GL_HIPOTECA_CREDITO_COMPRA_TERRENO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GL_HIPOTECA_CREDITO_COMPRA_TERRENO,
-CASE WHEN SUM(FCT_C_GL_GASTOS_NOTARIALES_REGISTRO_COMPRA_TERRENO )  = 0 THEN '' ELSE ((SUM(FCT_C_GL_GASTOS_NOTARIALES_REGISTRO_COMPRA_TERRENO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GL_GASTOS_NOTARIALES_REGISTRO_COMPRA_TERRENO,
-CASE WHEN SUM(FCT_C_GL_IMPUESTO_PREDIAL )  = 0 THEN '' ELSE ((SUM(FCT_C_GL_IMPUESTO_PREDIAL) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GL_IMPUESTO_PREDIAL,
-CASE WHEN SUM(FCT_C_GASTOS_FINANCIEROS )  = 0 THEN '' ELSE ((SUM(FCT_C_GASTOS_FINANCIEROS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GASTOS_FINANCIEROS,
-CASE WHEN SUM(FCT_C_GF_INTERESES_CREDITO_TERRENO )  = 0 THEN '' ELSE ((SUM(FCT_C_GF_INTERESES_CREDITO_TERRENO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GF_INTERESES_CREDITO_TERRENO,
-CASE WHEN SUM(FCT_C_GF_CORRECION_MONETARIA )  = 0 THEN '' ELSE ((SUM(FCT_C_GF_CORRECION_MONETARIA) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GF_CORRECION_MONETARIA,
-CASE WHEN SUM(FCT_C_GF_OTROS_COSTOS_CREDITO_TERRENO )  = 0 THEN '' ELSE ((SUM(FCT_C_GF_OTROS_COSTOS_CREDITO_TERRENO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GF_OTROS_COSTOS_CREDITO_TERRENO,
-CASE WHEN SUM(FCT_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS )  = 0 THEN '' ELSE ((SUM(FCT_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS,
-CASE WHEN SUM(FCT_C_OTROS_COSTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_OTROS_COSTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OTROS_COSTOS,
-CASE WHEN SUM(FCT_C_OC_COSTOS1 )  = 0 THEN '' ELSE ((SUM(FCT_C_OC_COSTOS1) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OC_COSTOS1,
-CASE WHEN SUM(FCT_C_OC_COSTOS2 )  = 0 THEN '' ELSE ((SUM(FCT_C_OC_COSTOS2) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OC_COSTOS2,
-CASE WHEN SUM(FCT_C_VALOR_TERRENO_URBANIZADO )  = 0 THEN '' ELSE ((SUM(FCT_C_VALOR_TERRENO_URBANIZADO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_VALOR_TERRENO_URBANIZADO,
-CASE WHEN SUM(FCT_C_OTROS_GASTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_OTROS_GASTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OTROS_GASTOS,
-CASE WHEN SUM(FCT_C_OG_OTROS_GASTOS1 )  = 0 THEN '' ELSE ((SUM(FCT_C_OG_OTROS_GASTOS1) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OG_OTROS_GASTOS1,
-CASE WHEN SUM(FCT_C_OG_OTROS_GASTOS2 )  = 0 THEN '' ELSE ((SUM(FCT_C_OG_OTROS_GASTOS2) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OG_OTROS_GASTOS2,
-CASE WHEN SUM(FCT_C_VALOR_TOTAL_TERRENO )  = 0 THEN '' ELSE ((SUM(FCT_C_VALOR_TOTAL_TERRENO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_VALOR_TOTAL_TERRENO,
-CASE WHEN SUM(FCT_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA )  = 0 THEN '' ELSE ((SUM(FCT_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA,
-CASE WHEN SUM(FCT_C_DESEMBOLSOS_CREDITO_TERRENO )  = 0 THEN '' ELSE ((SUM(FCT_C_DESEMBOLSOS_CREDITO_TERRENO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_DESEMBOLSOS_CREDITO_TERRENO,
-CASE WHEN SUM(FCT_C_ABONOS_AL_CREDITO )  = 0 THEN '' ELSE ((SUM(FCT_C_ABONOS_AL_CREDITO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_ABONOS_AL_CREDITO,
-CASE WHEN SUM(FCT_C_AAL_ABONOS_PROGRAMADOS_CREDITO_TERRENO )  = 0 THEN '' ELSE ((SUM(FCT_C_AAL_ABONOS_PROGRAMADOS_CREDITO_TERRENO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_AAL_ABONOS_PROGRAMADOS_CREDITO_TERRENO,
-CASE WHEN SUM(FCT_C_AAL_ABONOS_DISPONIBILIDAD_CAJA_Y_CANCELACION )  = 0 THEN '' ELSE ((SUM(FCT_C_AAL_ABONOS_DISPONIBILIDAD_CAJA_Y_CANCELACION) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_AAL_ABONOS_DISPONIBILIDAD_CAJA_Y_CANCELACION,
-CASE WHEN SUM(FCT_C_OTROS_INGRESOS )  = 0 THEN '' ELSE ((SUM(FCT_C_OTROS_INGRESOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OTROS_INGRESOS,
-CASE WHEN SUM(FCT_C_OI_OTROS_INGRESOS1 )  = 0 THEN '' ELSE ((SUM(FCT_C_OI_OTROS_INGRESOS1) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OI_OTROS_INGRESOS1,
-CASE WHEN SUM(FCT_C_OI_OTROS_INGRESOS2 )  = 0 THEN '' ELSE ((SUM(FCT_C_OI_OTROS_INGRESOS2) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_OI_OTROS_INGRESOS2,
-CASE WHEN SUM(FCT_C_TRASLADO_TERRENO_A_SUBPROYECTOS )  = 0 THEN '' ELSE ((SUM(FCT_C_TRASLADO_TERRENO_A_SUBPROYECTOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_TRASLADO_TERRENO_A_SUBPROYECTOS,
-CASE WHEN SUM(FCT_C_TOTAL_INGRESOS )  = 0 THEN '' ELSE ((SUM(FCT_C_TOTAL_INGRESOS) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_TOTAL_INGRESOS,
-CASE WHEN SUM(FCT_C_FLUJO_NETO_CAJA )  = 0 THEN '' ELSE ((SUM(FCT_C_FLUJO_NETO_CAJA) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_FLUJO_NETO_CAJA,
-CASE WHEN SUM(FCT_C_FLUJO_ACUMULADO )  = 0 THEN '' ELSE ((SUM(FCT_C_FLUJO_ACUMULADO) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_FLUJO_ACUMULADO,
-CASE WHEN SUM(FCT_C_VPN )  = 0 THEN '' ELSE ((SUM(FCT_C_VPN) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_VPN,
-CASE WHEN SUM(FCT_C_TIR_EA )  = 0 THEN '' ELSE ((SUM(FCT_C_TIR_EA) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_TIR_EA,
-CASE WHEN SUM(FCT_C_TIR_EM )  = 0 THEN '' ELSE ((SUM(FCT_C_TIR_EM) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_TIR_EM,
-CASE WHEN SUM(FCT_C_TIR_MOD_EA )  = 0 THEN '' ELSE ((SUM(FCT_C_TIR_MOD_EA) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_TIR_MOD_EA,
-CASE WHEN SUM(FCT_C_TIR_MOD_EM )  = 0 THEN '' ELSE ((SUM(FCT_C_TIR_MOD_EM) *  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FCT_C_TIR_MOD_EM,
-12/CONS_PER AS CONS_PER,
-CONS_IND_VALOR_REE		
-FROM 	tb_c_flujo_caja_terreno,tb_consolidados
-WHERE  FCT_C_CONS_ID = CONS_ID
-AND		FCT_C_CONS_ID='$Example'
-GROUP BY FCT_C_PERIODICIDAD";
+include "ABT-T063-selects-D.php";
 
 $cons="SELECT RES_C_VENTAS_BRUTAS,RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO FROM tb_c_resumen WHERE RES_C_CONS_ID = '$Example'"; 
 
 
 
-$resultado = $conexion->query($consulta);
+$resultado = $conexion->query($consulta_flujo_caja_terreno);
 
 
 if($resultado->num_rows > 0){
@@ -233,7 +170,7 @@ if($resultado->num_rows > 0){
         		    	'LA','LB','LC','LD','LE','LF','LG','LH','LI','LJ','LK','LL','LM','LN','LO','LP','LQ','LR','LS','LT','LU','LV','LW','LX','LY','LZ');		
         		    $c=6;
         		    
-		
+                          
         		    
 		// RESUMEN
         		    
@@ -355,173 +292,173 @@ if($resultado->num_rows > 0){
         		    	$c++;
 
         		    	$objPHPExcel->setActiveSheetIndex(0) 
-        		    ->setCellValue('A1',  'MODELO C')
-        		    ->setCellValue('B3',  'TOTALES')
-        		    
-        		    ->setCellValue('D5',  'Vr/M2 Util Terreno')
-        		    ->setCellValue('D5',  'Vr/M2 Util Terreno')
-        		    ->setCellValue('E5', '=B5/'.$util_ter)
-        		    
-        		    
-        		    ->setCellValue('D8',  'Vr/M2 Util urbanismo')
-        		    ->setCellValue('E8', '=B8/'.$util_ter)
-        		    
-        		    ->setCellValue('D33',  'Vr/M2 Util Terreno Urbanizado')
-        		    ->setCellValue('E33', '=B33/'.$util_ter)
-        		    
-        		    ->setCellValue('C3',  '%')
-        		    ->setCellValue('C4',  'Ventas')
-        		    ->setCellValue('D3',  'Indicadores y P Relevante')
-        		    ->setCellValue('D4',  'Descripcion')
-        		    ->setCellValue('E4',  'Valor')
+                              ->setCellValue('A1',  'MODELO C')
+                              ->setCellValue('B3',  'TOTALES')
+                              
+                              ->setCellValue('D5',  'Vr/M2 Util Terreno')
+                              ->setCellValue('D5',  'Vr/M2 Util Terreno')
+                              ->setCellValue('E5', '=B5/'.$util_ter)
+                              
+                              
+                              ->setCellValue('D8',  'Vr/M2 Util urbanismo')
+                              ->setCellValue('E8', '=B8/'.$util_ter)
+                              
+                              ->setCellValue('D33',  'Vr/M2 Util Terreno Urbanizado')
+                              ->setCellValue('E33', '=B33/'.$util_ter)
+                              
+                              ->setCellValue('C3',  '%')
+                              ->setCellValue('C4',  'Ventas')
+                              ->setCellValue('D3',  'Indicadores y P Relevante')
+                              ->setCellValue('D4',  'Descripcion')
+                              ->setCellValue('E4',  'Valor')
 					 // ->setCellValue('E1',  $Example)
-        		    ->setCellValue('B51', 'VPN')
-        		    ->setCellValue('B52', '=NPV('.$fila['CONS_IND_VALOR_REE'].'%,G48:PXD48,G2:PXD2)')
-        		    ->setCellValue('C51', 'TIR (ea)')
-        		    ->setCellValue('C52', '=XIRR(G48:PXD48,G2:PXD2)')
-        		    ->setCellValue('D51', 'TIR(em)')
-        		    
-        		    ->setCellValue('D52', '=C52/'.$fila['CONS_PER'])
+                              ->setCellValue('B51', 'VPN')
+                              ->setCellValue('B52', '=NPV('.$fila['CONS_IND_VALOR_REE'].'%,G48:PXD48,G2:PXD2)')
+                              ->setCellValue('C51', 'TIR (ea)')
+                              ->setCellValue('C52', '=XIRR(G48:PXD48,G2:PXD2)')
+                              ->setCellValue('D51', 'TIR(em)')
+                              
+                              ->setCellValue('D52', '=C52/'.$fila['CONS_PER'])
 					 // ->setCellValue('C53', '=C52/'.$periodo)
-        		    ->setCellValue('E51', 'TIR mod(ea)') 
-        		    ->setCellValue('E52', '=MIRR(E48:XFD48,'.$fila['CONS_IND_VALOR_REE'].'%,0)')
-        		   
-        		    ->setCellValue('G51', 'TIR mod(em)')
-        		    ->setCellValue('G52', '=E52/'.$fila['CONS_PER'])
-        		    ;
-        		    	
-        		    }
-        		    
-        		    
-        		    
-        		    
-        		    
+                              ->setCellValue('E51', 'TIR mod(ea)') 
+                              ->setCellValue('E52', '=MIRR(E48:XFD48,'.$fila['CONS_IND_VALOR_REE'].'%,0)')
+                              
+                              ->setCellValue('G51', 'TIR mod(em)')
+                              ->setCellValue('G52', '=E52/'.$fila['CONS_PER'])
+                              ;
+                              
+                      }
+                      
+                      
+                      
+                      
+                      
 				// $fct=$objPHPExcel->getActiveSheet()->getCell(C52)->getValue();
-        		    
+                      
 				// $valt=$fct/12;
-        		    
+                      
 			// $objPHPExcel->setActiveSheetIndex(0) 
 					 // ->setCellValue('D52',  $valt);
-        		    
-        		    
-        		    $objPHPExcel->setActiveSheetIndex(0) 
-        		    
-        		    ->setCellValue('B5', '=SUM(F5:'.$columnas[$c].'5)')
-        		    ->setCellValue('B6', '=SUM(F6:'.$columnas[$c].'6)')
-        		    ->setCellValue('B7', '=SUM(F7:'.$columnas[$c].'7)')
-        		    ->setCellValue('B8', '=SUM(F8:'.$columnas[$c].'8)')
-        		    ->setCellValue('B9', '=SUM(F9:'.$columnas[$c].'9)')
-        		    ->setCellValue('B10', '=SUM(F10:'.$columnas[$c].'10)')
-        		    ->setCellValue('B11', '=SUM(F11:'.$columnas[$c].'11)')
-        		    ->setCellValue('B12', '=SUM(F12:'.$columnas[$c].'12)')
-        		    ->setCellValue('B13', '=SUM(F13:'.$columnas[$c].'13)')
-        		    ->setCellValue('B14', '=SUM(F14:'.$columnas[$c].'14)')
-        		    ->setCellValue('B15', '=SUM(F15:'.$columnas[$c].'15)')
-        		    ->setCellValue('B16', '=SUM(F16:'.$columnas[$c].'16)')
-        		    ->setCellValue('B17', '=SUM(F17:'.$columnas[$c].'17)')
-        		    ->setCellValue('B18', '=SUM(F18:'.$columnas[$c].'18)')
-        		    ->setCellValue('B19', '=SUM(F19:'.$columnas[$c].'19)')
-        		    ->setCellValue('B20', '=SUM(F20:'.$columnas[$c].'20)')
-        		    ->setCellValue('B21', '=SUM(F21:'.$columnas[$c].'21)')
-        		    ->setCellValue('B22', '=SUM(F22:'.$columnas[$c].'22)')
-        		    ->setCellValue('B23', '=SUM(F23:'.$columnas[$c].'23)')
-        		    ->setCellValue('B24', '=SUM(F24:'.$columnas[$c].'24)')
-        		    ->setCellValue('B25', '=SUM(F25:'.$columnas[$c].'25)')
-        		    ->setCellValue('B26', '=SUM(F26:'.$columnas[$c].'26)')
-        		    ->setCellValue('B27', '=SUM(F27:'.$columnas[$c].'27)')
-        		    ->setCellValue('B28', '=SUM(F28:'.$columnas[$c].'28)')
-        		    ->setCellValue('B29', '=SUM(F29:'.$columnas[$c].'29)')
-        		    ->setCellValue('B30', '=SUM(F30:'.$columnas[$c].'30)')
-        		    ->setCellValue('B31', '=SUM(F31:'.$columnas[$c].'31)')
-        		    ->setCellValue('B32', '=SUM(F32:'.$columnas[$c].'32)')
-        		    ->setCellValue('B33', '=SUM(F33:'.$columnas[$c].'33)')
-        		    ->setCellValue('B34', '=SUM(F34:'.$columnas[$c].'34)')
-        		    ->setCellValue('B35', '=SUM(F35:'.$columnas[$c].'35)')
-        		    ->setCellValue('B36', '=SUM(F36:'.$columnas[$c].'36)')
-        		    ->setCellValue('B37', '=SUM(F37:'.$columnas[$c].'37)')
-        		    ->setCellValue('B38', '=SUM(F38:'.$columnas[$c].'38)')
-        		    ->setCellValue('B39', '=SUM(F39:'.$columnas[$c].'39)')
-        		    ->setCellValue('B40', '=SUM(F40:'.$columnas[$c].'40)')
-        		    ->setCellValue('B41', '=SUM(F41:'.$columnas[$c].'41)')
-        		    ->setCellValue('B42', '=SUM(F42:'.$columnas[$c].'42)')
-        		    ->setCellValue('B43', '=SUM(F43:'.$columnas[$c].'43)')
-        		    ->setCellValue('B44', '=SUM(F44:'.$columnas[$c].'44)')
-        		    ->setCellValue('B45', '=SUM(F45:'.$columnas[$c].'45)')
-        		    ->setCellValue('B46', '=SUM(F46:'.$columnas[$c].'46)')
-        		    ->setCellValue('B47', '=SUM(F47:'.$columnas[$c].'47)')
-        		    ->setCellValue('B48', '=SUM(F48:'.$columnas[$c].'48)')
-        		    ->setCellValue('B49', '=SUM(F49:'.$columnas[$c].'49)')
-        		    
-        		    
-        		    ->setCellValue('C5', '=B5/'.$ven_bru)
-        		    ->setCellValue('C6', '=B6/'.$ven_bru)
-        		    ->setCellValue('C7', '=B7/'.$ven_bru)
-        		    ->setCellValue('C8', '=B8/'.$ven_bru)
-        		    ->setCellValue('C9', '=B9/'.$ven_bru)
-        		    ->setCellValue('C10', '=B10/'.$ven_bru)
-        		    ->setCellValue('C11', '=B11/'.$ven_bru)
-        		    ->setCellValue('C12', '=B12/'.$ven_bru)
-        		    ->setCellValue('C13', '=B13/'.$ven_bru)
-        		    ->setCellValue('C14', '=B14/'.$ven_bru)
-        		    ->setCellValue('C15', '=B15/'.$ven_bru)
-        		    ->setCellValue('C16', '=B16/'.$ven_bru)
-        		    ->setCellValue('C17', '=B17/'.$ven_bru)
-        		    ->setCellValue('C18', '=B18/'.$ven_bru)
-        		    ->setCellValue('C19', '=B19/'.$ven_bru)
-        		    ->setCellValue('C20', '=B20/'.$ven_bru)
-        		    ->setCellValue('C21', '=B21/'.$ven_bru)
-        		    ->setCellValue('C22', '=B22/'.$ven_bru)
-        		    ->setCellValue('C23', '=B23/'.$ven_bru)
-        		    ->setCellValue('C24', '=B24/'.$ven_bru)
-        		    ->setCellValue('C25', '=B25/'.$ven_bru)
-        		    ->setCellValue('C26', '=B26/'.$ven_bru)
-        		    ->setCellValue('C27', '=B27/'.$ven_bru)
-        		    ->setCellValue('C28', '=B28/'.$ven_bru)
-        		    ->setCellValue('C29', '=B29/'.$ven_bru)
-        		    ->setCellValue('C30', '=B30/'.$ven_bru)
-        		    ->setCellValue('C31', '=B31/'.$ven_bru)
-        		    ->setCellValue('C32', '=B32/'.$ven_bru)
-        		    ->setCellValue('C33', '=B33/'.$ven_bru)
-        		    ->setCellValue('C34', '=B34/'.$ven_bru)
-        		    ->setCellValue('C35', '=B35/'.$ven_bru)
-        		    ->setCellValue('C36', '=B36/'.$ven_bru)
-        		    ->setCellValue('C37', '=B37/'.$ven_bru)
-        		    ->setCellValue('C38', '=B38/'.$ven_bru)
-        		    ->setCellValue('C39', '=B39/'.$ven_bru)
-        		    ->setCellValue('C40', '=B40/'.$ven_bru)
-        		    ->setCellValue('C41', '=B41/'.$ven_bru)
-        		    ->setCellValue('C42', '=B42/'.$ven_bru)
-        		    ->setCellValue('C43', '=B43/'.$ven_bru)
-        		    ->setCellValue('C44', '=B44/'.$ven_bru)
-        		    ->setCellValue('C45', '=B45/'.$ven_bru)
-        		    ->setCellValue('C46', '=B46/'.$ven_bru)
-        		    ->setCellValue('C47', '=B47/'.$ven_bru)
-        		    ->setCellValue('C48', '=B48/'.$ven_bru)
-        		    ->setCellValue('C49', '=B49/'.$ven_bru);
-        		    
-        		    
-        		    
-        		    
+                      
+                      
+                      $objPHPExcel->setActiveSheetIndex(0) 
+                      
+                      ->setCellValue('B5', '=SUM(F5:'.$columnas[$c].'5)')
+                      ->setCellValue('B6', '=SUM(F6:'.$columnas[$c].'6)')
+                      ->setCellValue('B7', '=SUM(F7:'.$columnas[$c].'7)')
+                      ->setCellValue('B8', '=SUM(F8:'.$columnas[$c].'8)')
+                      ->setCellValue('B9', '=SUM(F9:'.$columnas[$c].'9)')
+                      ->setCellValue('B10', '=SUM(F10:'.$columnas[$c].'10)')
+                      ->setCellValue('B11', '=SUM(F11:'.$columnas[$c].'11)')
+                      ->setCellValue('B12', '=SUM(F12:'.$columnas[$c].'12)')
+                      ->setCellValue('B13', '=SUM(F13:'.$columnas[$c].'13)')
+                      ->setCellValue('B14', '=SUM(F14:'.$columnas[$c].'14)')
+                      ->setCellValue('B15', '=SUM(F15:'.$columnas[$c].'15)')
+                      ->setCellValue('B16', '=SUM(F16:'.$columnas[$c].'16)')
+                      ->setCellValue('B17', '=SUM(F17:'.$columnas[$c].'17)')
+                      ->setCellValue('B18', '=SUM(F18:'.$columnas[$c].'18)')
+                      ->setCellValue('B19', '=SUM(F19:'.$columnas[$c].'19)')
+                      ->setCellValue('B20', '=SUM(F20:'.$columnas[$c].'20)')
+                      ->setCellValue('B21', '=SUM(F21:'.$columnas[$c].'21)')
+                      ->setCellValue('B22', '=SUM(F22:'.$columnas[$c].'22)')
+                      ->setCellValue('B23', '=SUM(F23:'.$columnas[$c].'23)')
+                      ->setCellValue('B24', '=SUM(F24:'.$columnas[$c].'24)')
+                      ->setCellValue('B25', '=SUM(F25:'.$columnas[$c].'25)')
+                      ->setCellValue('B26', '=SUM(F26:'.$columnas[$c].'26)')
+                      ->setCellValue('B27', '=SUM(F27:'.$columnas[$c].'27)')
+                      ->setCellValue('B28', '=SUM(F28:'.$columnas[$c].'28)')
+                      ->setCellValue('B29', '=SUM(F29:'.$columnas[$c].'29)')
+                      ->setCellValue('B30', '=SUM(F30:'.$columnas[$c].'30)')
+                      ->setCellValue('B31', '=SUM(F31:'.$columnas[$c].'31)')
+                      ->setCellValue('B32', '=SUM(F32:'.$columnas[$c].'32)')
+                      ->setCellValue('B33', '=SUM(F33:'.$columnas[$c].'33)')
+                      ->setCellValue('B34', '=SUM(F34:'.$columnas[$c].'34)')
+                      ->setCellValue('B35', '=SUM(F35:'.$columnas[$c].'35)')
+                      ->setCellValue('B36', '=SUM(F36:'.$columnas[$c].'36)')
+                      ->setCellValue('B37', '=SUM(F37:'.$columnas[$c].'37)')
+                      ->setCellValue('B38', '=SUM(F38:'.$columnas[$c].'38)')
+                      ->setCellValue('B39', '=SUM(F39:'.$columnas[$c].'39)')
+                      ->setCellValue('B40', '=SUM(F40:'.$columnas[$c].'40)')
+                      ->setCellValue('B41', '=SUM(F41:'.$columnas[$c].'41)')
+                      ->setCellValue('B42', '=SUM(F42:'.$columnas[$c].'42)')
+                      ->setCellValue('B43', '=SUM(F43:'.$columnas[$c].'43)')
+                      ->setCellValue('B44', '=SUM(F44:'.$columnas[$c].'44)')
+                      ->setCellValue('B45', '=SUM(F45:'.$columnas[$c].'45)')
+                      ->setCellValue('B46', '=SUM(F46:'.$columnas[$c].'46)')
+                      ->setCellValue('B47', '=SUM(F47:'.$columnas[$c].'47)')
+                      ->setCellValue('B48', '=SUM(F48:'.$columnas[$c].'48)')
+                      ->setCellValue('B49', '=SUM(F49:'.$columnas[$c].'49)')
+                      
+                      
+                      ->setCellValue('C5', '=B5/'.$ven_bru)
+                      ->setCellValue('C6', '=B6/'.$ven_bru)
+                      ->setCellValue('C7', '=B7/'.$ven_bru)
+                      ->setCellValue('C8', '=B8/'.$ven_bru)
+                      ->setCellValue('C9', '=B9/'.$ven_bru)
+                      ->setCellValue('C10', '=B10/'.$ven_bru)
+                      ->setCellValue('C11', '=B11/'.$ven_bru)
+                      ->setCellValue('C12', '=B12/'.$ven_bru)
+                      ->setCellValue('C13', '=B13/'.$ven_bru)
+                      ->setCellValue('C14', '=B14/'.$ven_bru)
+                      ->setCellValue('C15', '=B15/'.$ven_bru)
+                      ->setCellValue('C16', '=B16/'.$ven_bru)
+                      ->setCellValue('C17', '=B17/'.$ven_bru)
+                      ->setCellValue('C18', '=B18/'.$ven_bru)
+                      ->setCellValue('C19', '=B19/'.$ven_bru)
+                      ->setCellValue('C20', '=B20/'.$ven_bru)
+                      ->setCellValue('C21', '=B21/'.$ven_bru)
+                      ->setCellValue('C22', '=B22/'.$ven_bru)
+                      ->setCellValue('C23', '=B23/'.$ven_bru)
+                      ->setCellValue('C24', '=B24/'.$ven_bru)
+                      ->setCellValue('C25', '=B25/'.$ven_bru)
+                      ->setCellValue('C26', '=B26/'.$ven_bru)
+                      ->setCellValue('C27', '=B27/'.$ven_bru)
+                      ->setCellValue('C28', '=B28/'.$ven_bru)
+                      ->setCellValue('C29', '=B29/'.$ven_bru)
+                      ->setCellValue('C30', '=B30/'.$ven_bru)
+                      ->setCellValue('C31', '=B31/'.$ven_bru)
+                      ->setCellValue('C32', '=B32/'.$ven_bru)
+                      ->setCellValue('C33', '=B33/'.$ven_bru)
+                      ->setCellValue('C34', '=B34/'.$ven_bru)
+                      ->setCellValue('C35', '=B35/'.$ven_bru)
+                      ->setCellValue('C36', '=B36/'.$ven_bru)
+                      ->setCellValue('C37', '=B37/'.$ven_bru)
+                      ->setCellValue('C38', '=B38/'.$ven_bru)
+                      ->setCellValue('C39', '=B39/'.$ven_bru)
+                      ->setCellValue('C40', '=B40/'.$ven_bru)
+                      ->setCellValue('C41', '=B41/'.$ven_bru)
+                      ->setCellValue('C42', '=B42/'.$ven_bru)
+                      ->setCellValue('C43', '=B43/'.$ven_bru)
+                      ->setCellValue('C44', '=B44/'.$ven_bru)
+                      ->setCellValue('C45', '=B45/'.$ven_bru)
+                      ->setCellValue('C46', '=B46/'.$ven_bru)
+                      ->setCellValue('C47', '=B47/'.$ven_bru)
+                      ->setCellValue('C48', '=B48/'.$ven_bru)
+                      ->setCellValue('C49', '=B49/'.$ven_bru);
+                      
+                      
+                      
+                      
 	//Formato miles Con separador.
-        		    
-        		    
-        		    $objPHPExcel->getActiveSheet()->getStyle('B5:B52')
-        		    ->getNumberFormat()->setFormatCode('#,##0');
-        		    
-        		    $objPHPExcel->getActiveSheet()->getStyle('E5:E49')
-        		    ->getNumberFormat()->setFormatCode('#,##0');
-        		    
-        		    $objPHPExcel->getActiveSheet()->getStyle('C5:C52')
-        		    ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
-        		    
-        		    $objPHPExcel->getActiveSheet()->getStyle('C52:H52')
-        		    ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
-        		    
-        		    
-        		    
-        		    
+                      
+                      
+                      $objPHPExcel->getActiveSheet()->getStyle('B5:B52')
+                      ->getNumberFormat()->setFormatCode('#,##0');
+                      
+                      $objPHPExcel->getActiveSheet()->getStyle('E5:E49')
+                      ->getNumberFormat()->setFormatCode('#,##0');
+                      
+                      $objPHPExcel->getActiveSheet()->getStyle('C5:C52')
+                      ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+                      
+                      $objPHPExcel->getActiveSheet()->getStyle('C52:H52')
+                      ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+                      
+                      
+                      
+                      
 	//Dimension de columnas
-        		    
+                      
 	$nCols = 500; //set the number of columns
 
 	foreach (range(3, $nCols) as $col) {

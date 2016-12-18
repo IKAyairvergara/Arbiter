@@ -22,7 +22,7 @@
 			header('Location: ABT-T058-otrosFlujosPDF-D.php?dato='.$variable);
 		}
 		if($envio=="Resumen"){
-			header('Location: ABT-T061-resumenPDF-D.php?dato='.$variable);
+			header('Location: ABT-T060-resumenPDF-D.php?dato='.$variable);
 		}
 		if($envio=="ResumenCons"){
 			header('Location: ABT-T061-resumenConsPDF-D.php?dato='.$variable);

@@ -30,7 +30,7 @@
 			header('Location: ABT-T059-resumen-D.php?dato='.$variable);
 		}
 		if($envio=="ResumenCons"){
-			header('Location: ABT-T060-resumenCons-D.php?dato='.$variable);
+			header('Location: ABT-T061-resumenCons-D.php?dato='.$variable);
 		}
 	?>
 <html>

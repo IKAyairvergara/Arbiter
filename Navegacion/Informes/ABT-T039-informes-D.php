@@ -1,10 +1,11 @@
 	<?php
 	//Verificacion 
-	
+
 	if(isset($_POST['INF_ID'])){
 	$envio=$_POST['INF_ID'];}
 	if(isset($_POST['CONS_ID'])){
 	$variable=$_POST['CONS_ID'];
+
 	}
 	else{
 		$variable=" ";

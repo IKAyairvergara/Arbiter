@@ -88,7 +88,7 @@ body
 			    exit();
 			}
 
-			$consulta = "Select CONS_ID, CONS_DESCRIPCION FROM tb_consolidados";
+			$consulta = "SELECT CONS_ID, CONS_DESCRIPCION FROM tb_consolidados WHERE CONS_ID NOT IN (SELECT CONS_ID FROM tb_seleccion WHERE SEL_CONS_ID = 'N' AND CONS_ID = SEL_C_CONS_ID)";
 
 			if ($resultado = $mysqli->query($consulta)) {
 

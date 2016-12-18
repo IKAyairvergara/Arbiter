@@ -1,122 +1,12 @@
 <?php
 include "../../php/ABT-T000-conexion-U.php";
 
-$Example=$_GET['dato']; 
-
-$consulta = "SELECT 
-DATE_FORMAT(MAX(FLC_C_FECHA),'%m/%Y'),
-DATE_FORMAT(MAX(FLC_C_FECHA),'%b/%y'),
-FLC_C_PERIODICIDAD,
-
-CASE WHEN ((SUM(FLC_C_URBANISMO_INTERNO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_URBANISMO_INTERNO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_URBANISMO_INTERNO,
-CASE WHEN ((SUM(FLC_C_UI_PRESUPUESTO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_UI_PRESUPUESTO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_UI_PRESUPUESTO,
-CASE WHEN ((SUM(FLC_C_UI_INCREMENTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_UI_INCREMENTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_UI_INCREMENTOS,
-CASE WHEN ((SUM(FLC_C_COSTOS_MATERIALES_MANO_OBRA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTOS_MATERIALES_MANO_OBRA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTOS_MATERIALES_MANO_OBRA,
-CASE WHEN ((SUM(FLC_C_CM_PRESUPUESTO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CM_PRESUPUESTO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CM_PRESUPUESTO,
-CASE WHEN ((SUM(FLC_C_CM_INCREMENTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CM_INCREMENTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CM_INCREMENTOS,
-CASE WHEN ((SUM(FLC_C_GASTOS_IMPREVISTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GASTOS_IMPREVISTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GASTOS_IMPREVISTOS,
-CASE WHEN ((SUM(FLC_C_COSTOS_POSTVENTA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTOS_POSTVENTA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTOS_POSTVENTA,
-CASE WHEN ((SUM(FLC_C_COSTO_DIRECTO_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTO_DIRECTO_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTO_DIRECTO_CONSTRUCCION,
-CASE WHEN ((SUM(FLC_C_HONORARIOS_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HONORARIOS_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HONORARIOS_CONSTRUCCION,
-CASE WHEN ((SUM(FLC_C_HC_HONORARIOS_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HC_HONORARIOS_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HC_HONORARIOS_CONSTRUCCION,
-CASE WHEN ((SUM(FLC_C_HC_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HC_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HC_GASTOS_REEMBOLSABLES,
-CASE WHEN ((SUM(FLC_C_HONORARIOS_INTERVENTORIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HONORARIOS_INTERVENTORIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HONORARIOS_INTERVENTORIA,
-CASE WHEN ((SUM(FLC_C_HI_HONORARIOS_INTERVENTORIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HI_HONORARIOS_INTERVENTORIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HI_HONORARIOS_INTERVENTORIA,
-CASE WHEN ((SUM(FLC_C_HI_GASTOS_REEMBOSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HI_GASTOS_REEMBOSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HI_GASTOS_REEMBOSABLES,
-CASE WHEN ((SUM(FLC_C_OTROS_HONORARIOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OTROS_HONORARIOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OTROS_HONORARIOS,
-CASE WHEN ((SUM(FLC_C_OH_OTROS_HONORARIOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OH_OTROS_HONORARIOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OH_OTROS_HONORARIOS,
-CASE WHEN ((SUM(FLC_C_OH_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OH_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OH_GASTOS_REEMBOLSABLES,
-CASE WHEN ((SUM(FLC_C_IMPUESTOS_Y_DERECHOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IMPUESTOS_Y_DERECHOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IMPUESTOS_Y_DERECHOS,
-CASE WHEN ((SUM(FLC_C_COSTO_TOTAL_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTO_TOTAL_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTO_TOTAL_CONSTRUCCION,
-CASE WHEN ((SUM(FLC_C_HONORARIOS_GERENCIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HONORARIOS_GERENCIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HONORARIOS_GERENCIA,
-CASE WHEN ((SUM(FLC_C_HG_HONORARIOS_GERENCIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HG_HONORARIOS_GERENCIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HG_HONORARIOS_GERENCIA,
-CASE WHEN ((SUM(FLC_C_HG_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HG_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HG_GASTOS_REEMBOLSABLES,
-CASE WHEN ((SUM(FLC_C_HONORARIOS_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HONORARIOS_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HONORARIOS_VENTAS,
-CASE WHEN ((SUM(FLC_C_HV_HONORARIOS_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HV_HONORARIOS_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HV_HONORARIOS_VENTAS,
-CASE WHEN ((SUM(FLC_C_HV_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_HV_GASTOS_REEMBOLSABLES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_HV_GASTOS_REEMBOLSABLES,
-CASE WHEN ((SUM(FLC_C_COSTOS_PROMOCION_Y_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTOS_PROMOCION_Y_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTOS_PROMOCION_Y_VENTAS,
-CASE WHEN ((SUM(FLC_C_CP_SALA_DE_VENTAS_UNIDADES_MODELO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CP_SALA_DE_VENTAS_UNIDADES_MODELO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CP_SALA_DE_VENTAS_UNIDADES_MODELO,
-CASE WHEN ((SUM(FLC_C_CP_GASTOS_PUBLICIDAD)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE)= 0 THEN ' ' ELSE ((SUM(FLC_C_CP_GASTOS_PUBLICIDAD)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CP_GASTOS_PUBLICIDAD,
-CASE WHEN ((SUM(FLC_C_CP_GASTOS_SALA_DE_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CP_GASTOS_SALA_DE_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CP_GASTOS_SALA_DE_VENTAS,
-CASE WHEN ((SUM(FLC_C_CP_ADMINISTRACION_UNIDADES_POR_ENTREGAR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CP_ADMINISTRACION_UNIDADES_POR_ENTREGAR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CP_ADMINISTRACION_UNIDADES_POR_ENTREGAR,
-CASE WHEN ((SUM(FLC_C_CP_COMISIONES_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CP_COMISIONES_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CP_COMISIONES_VENTAS,
-CASE WHEN ((SUM(FLC_C_GASTOS_LEGALES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GASTOS_LEGALES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GASTOS_LEGALES,
-CASE WHEN ((SUM(FLC_C_GL_HIPOTECAS_CREDITO_CONSTRUCTOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GL_HIPOTECAS_CREDITO_CONSTRUCTOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GL_HIPOTECAS_CREDITO_CONSTRUCTOR,
-CASE WHEN ((SUM(FLC_C_GL_NOTARIALES_REGISTRO_DE_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GL_NOTARIALES_REGISTRO_DE_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GL_NOTARIALES_REGISTRO_DE_VENTAS,
-CASE WHEN ((SUM(FLC_C_GL_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GL_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GL_IMPUESTO_PREDIAL_INMUEBLES_POR_ESCRITURA,
-CASE WHEN ((SUM(FLC_C_GL_IMPUESTO_ICA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GL_IMPUESTO_ICA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GL_IMPUESTO_ICA,
-CASE WHEN ((SUM(FLC_C_COSTO_TOTAL_ANTES_TERRENO_Y_FINANCIEROS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTO_TOTAL_ANTES_TERRENO_Y_FINANCIEROS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTO_TOTAL_ANTES_TERRENO_Y_FINANCIEROS,
-CASE WHEN ((SUM(FLC_C_VALOR_TERRENO_URBANIZADO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_VALOR_TERRENO_URBANIZADO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_VALOR_TERRENO_URBANIZADO,
-CASE WHEN ((SUM(FLC_C_VT_VALOR_ADQUISICION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_VT_VALOR_ADQUISICION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_VT_VALOR_ADQUISICION,
-CASE WHEN ((SUM(FLC_C_VT_COSTOS_URBANISMO_Y_OTROS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_VT_COSTOS_URBANISMO_Y_OTROS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_VT_COSTOS_URBANISMO_Y_OTROS,
-CASE WHEN ((SUM(FLC_C_COMISIONES_FIDUCIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COMISIONES_FIDUCIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COMISIONES_FIDUCIA,
-CASE WHEN ((SUM(FLC_C_CF_PREVENTAS_Y_ADMINISTRACION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CF_PREVENTAS_Y_ADMINISTRACION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CF_PREVENTAS_Y_ADMINISTRACION,
-CASE WHEN ((SUM(FLC_C_CF_NUEVOGAR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_CF_NUEVOGAR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_CF_NUEVOGAR,
-CASE WHEN ((SUM(FLC_C_GASTOS_FINANCIEROS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GASTOS_FINANCIEROS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GASTOS_FINANCIEROS,
-CASE WHEN ((SUM(FLC_C_GF_INTERESES_CREDITOS_CONSTRUCTOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GF_INTERESES_CREDITOS_CONSTRUCTOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GF_INTERESES_CREDITOS_CONSTRUCTOR,
-CASE WHEN ((SUM(FLC_C_GF_OTROS_COSTOS_CREDITO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GF_OTROS_COSTOS_CREDITO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GF_OTROS_COSTOS_CREDITO,
-CASE WHEN ((SUM(FLC_C_GF_CORRECCION_MONETARIA_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GF_CORRECCION_MONETARIA_CONSTRUCCION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GF_CORRECCION_MONETARIA_CONSTRUCCION,
-CASE WHEN ((SUM(FLC_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_GF_IMPUESTO_TRANSACCIONES_FINANCIERAS_ITF,
-CASE WHEN ((SUM(FLC_C_OTROS_COSTOS_Y_GASTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OTROS_COSTOS_Y_GASTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OTROS_COSTOS_Y_GASTOS,
-CASE WHEN ((SUM(FLC_C_OC_COSTOS_GASTOS1)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OC_COSTOS_GASTOS1)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OC_COSTOS_GASTOS1,
-CASE WHEN ((SUM(FLC_C_OC_COSTOS_GASTOS2)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OC_COSTOS_GASTOS2)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OC_COSTOS_GASTOS2,
-CASE WHEN ((SUM(FLC_C_OC_COSTOS_GASTOS3)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OC_COSTOS_GASTOS3)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OC_COSTOS_GASTOS3,
-CASE WHEN ((SUM(FLC_C_REINTEGROS_IVA_PROYECTOS_VIS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_REINTEGROS_IVA_PROYECTOS_VIS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_REINTEGROS_IVA_PROYECTOS_VIS,
-CASE WHEN ((SUM(FLC_C_COSTO_TOTAL_DIRECTOS_E_INDIRECTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTO_TOTAL_DIRECTOS_E_INDIRECTOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTO_TOTAL_DIRECTOS_E_INDIRECTOS,
-CASE WHEN ((SUM(FLC_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_TOTAL_EGRESOS_SIN_CORRECCION_MONETARIA,
-CASE WHEN ((SUM(FLC_C_DESEMBOLSOS_CREDITOS_CONSTRUCTOR_Y_TERRENO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_DESEMBOLSOS_CREDITOS_CONSTRUCTOR_Y_TERRENO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_DESEMBOLSOS_CREDITOS_CONSTRUCTOR_Y_TERRENO,
-CASE WHEN ((SUM(FLC_C_ABONOS_EXTRAORDINARIOS_CREDITOS_CONSTRUCTOR_Y_TERRENO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_ABONOS_EXTRAORDINARIOS_CREDITOS_CONSTRUCTOR_Y_TERRENO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_ABONOS_EXTRAORDINARIOS_CREDITOS_CONSTRUCTOR_Y_TERRENO,
-CASE WHEN ((SUM(FLC_C_INGRESOS_POR_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_INGRESOS_POR_VENTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_INGRESOS_POR_VENTAS,
-CASE WHEN ((SUM(FLC_C_IV_ABONOS_SEPARACION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IV_ABONOS_SEPARACION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IV_ABONOS_SEPARACION,
-CASE WHEN ((SUM(FLC_C_IV_CARTERA_CUOTA_INICIAL)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IV_CARTERA_CUOTA_INICIAL)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IV_CARTERA_CUOTA_INICIAL,
-CASE WHEN ((SUM(FLC_C_IV_SALDO_CUOTA_INICIAL_Y_ABONO_ESCRITURA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IV_SALDO_CUOTA_INICIAL_Y_ABONO_ESCRITURA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IV_SALDO_CUOTA_INICIAL_Y_ABONO_ESCRITURA,
-CASE WHEN ((SUM(FLC_C_IV_SUBSIDIO_VIS_Y_AHORRO_PROGRAMADO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IV_SUBSIDIO_VIS_Y_AHORRO_PROGRAMADO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IV_SUBSIDIO_VIS_Y_AHORRO_PROGRAMADO,
-CASE WHEN ((SUM(FLC_C_IV_EXCEDENTES_CREDITO_COMPRADORES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IV_EXCEDENTES_CREDITO_COMPRADORES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IV_EXCEDENTES_CREDITO_COMPRADORES,
-CASE WHEN ((SUM(FLC_C_IV_GIROS_DIRECTOS_CREDITOS_OTRAS_ENTIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IV_GIROS_DIRECTOS_CREDITOS_OTRAS_ENTIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IV_GIROS_DIRECTOS_CREDITOS_OTRAS_ENTIDADES,
-CASE WHEN ((SUM(FLC_C_IV_INGRESOS_POR_RECIBIR_VENTAS_REALIZADAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IV_INGRESOS_POR_RECIBIR_VENTAS_REALIZADAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IV_INGRESOS_POR_RECIBIR_VENTAS_REALIZADAS,
-CASE WHEN ((SUM(FLC_C_OTROS_INGRESOS_VENTAS_INTERESES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OTROS_INGRESOS_VENTAS_INTERESES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OTROS_INGRESOS_VENTAS_INTERESES,
-CASE WHEN ((SUM(FLC_C_OI_INTERESES_SUBROGACION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OI_INTERESES_SUBROGACION)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OI_INTERESES_SUBROGACION,
-CASE WHEN ((SUM(FLC_C_OI_INTERESES_MORA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OI_INTERESES_MORA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OI_INTERESES_MORA,
-CASE WHEN ((SUM(FLC_C_OI_OFERTAS_COMERCIALES_OTROS_INGRESOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OI_OFERTAS_COMERCIALES_OTROS_INGRESOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OI_OFERTAS_COMERCIALES_OTROS_INGRESOS,
-CASE WHEN ((SUM(FLC_C_RENDIMIENTOS_FIDEICOMISO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_RENDIMIENTOS_FIDEICOMISO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_RENDIMIENTOS_FIDEICOMISO,
-CASE WHEN ((SUM(FLC_C_OTROS_INGRESOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OTROS_INGRESOS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OTROS_INGRESOS,
-CASE WHEN ((SUM(FLC_C_OI_INGRESOS1)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OI_INGRESOS1)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OI_INGRESOS1,
-CASE WHEN ((SUM(FLC_C_OI_INGRESOS2)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OI_INGRESOS2)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OI_INGRESOS2,
-CASE WHEN ((SUM(FLC_C_OI_INGRESOS3)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_OI_INGRESOS3)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_OI_INGRESOS3,
-CASE WHEN ((SUM(FLC_C_INGRESOS_TOTALES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_INGRESOS_TOTALES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_INGRESOS_TOTALES,
-CASE WHEN ((SUM(FLC_C_FLUJO_NETO_CAJA_CT)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_FLUJO_NETO_CAJA_CT)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_FLUJO_NETO_CAJA_CT,
-CASE WHEN ((SUM(FLC_C_FLUJO_ACUMULADO_CAJA_CT)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_FLUJO_ACUMULADO_CAJA_CT)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_FLUJO_ACUMULADO_CAJA_CT,
-CASE WHEN ((SUM(FLC_C_COSTO_CREDITOS_TESORERIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_COSTO_CREDITOS_TESORERIA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_COSTO_CREDITOS_TESORERIA,
-CASE WHEN ((SUM(FLC_C_IMPUESTO_DE_RENTA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_IMPUESTO_DE_RENTA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_IMPUESTO_DE_RENTA,
-CASE WHEN ((SUM(FLC_C_FLUJO_NETO_CAJA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_FLUJO_NETO_CAJA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_FLUJO_NETO_CAJA,
-CASE WHEN ((SUM(FLC_C_FLUJO_ACUMULADO_CAJA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_FLUJO_ACUMULADO_CAJA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_FLUJO_ACUMULADO_CAJA,
-CASE WHEN ((SUM(FLC_C_PROYECCION_VENTAS_UNIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_PROYECCION_VENTAS_UNIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_PROYECCION_VENTAS_UNIDADES,
-CASE WHEN ((SUM(FLC_C_VENTAS_BRUTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_VENTAS_BRUTAS)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_VENTAS_BRUTAS,
-CASE WHEN ((SUM(FLC_C_PRECIO_PROMEDIO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_PRECIO_PROMEDIO)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_PRECIO_PROMEDIO,
-CASE WHEN ((SUM(FLC_C_PROYECCION_ENTREGAS_UNIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_PROYECCION_ENTREGAS_UNIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_PROYECCION_ENTREGAS_UNIDADES,
-CASE WHEN ((SUM(FLC_C_PROYECCION_ESCRITURAS_VALOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_PROYECCION_ESCRITURAS_VALOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_PROYECCION_ESCRITURAS_VALOR,
-CASE WHEN ((SUM(FLC_C_PROYECCION_ESCRITURAS_UNIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_PROYECCION_ESCRITURAS_UNIDADES)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_PROYECCION_ESCRITURAS_UNIDADES,
-CASE WHEN ((SUM(FLC_C_PROYECCION_SUBROGACIONES_VALOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_PROYECCION_SUBROGACIONES_VALOR)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_PROYECCION_SUBROGACIONES_VALOR,
-CASE WHEN ((SUM(FLC_C_VPN)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_VPN)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_VPN,
-CASE WHEN ((SUM(FLC_C_TIR_EA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_TIR_EA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_TIR_EA,
-CASE WHEN ((SUM(FLC_C_TIR_EM)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_TIR_EM)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_TIR_EM,
-CASE WHEN ((SUM(FLC_C_TIR_MOD_EA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_TIR_MOD_EA)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_TIR_MOD_EA,
-CASE WHEN ((SUM(FLC_C_C_TIR_MOD_EM)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) = 0 THEN ' ' ELSE ((SUM(FLC_C_C_TIR_MOD_EM)*  CONS_UNI_PRE)/CONS_IND_VALOR_REE) END FLC_C_C_TIR_MOD_EM,
-12/CONS_PER AS CONS_PER,
-CONS_IND_VALOR_REE
-
-
-FROM tb_c_flujo_caja
-,tb_consolidados
-WHERE FLC_C_CONS_ID = CONS_ID
-AND FLC_C_CONS_ID = '$Example'
-GROUP BY FLC_C_PERIODICIDAD";
-
+include "ABT-T063-selects-D.php";
 
 $cons="SELECT RES_C_VENTAS_BRUTAS,RES_C_AREA_UTIL_LOTE_ASIGNADA_SUBPROYECTO FROM tb_c_resumen WHERE RES_C_CONS_ID = '$Example'"; 
 
 
-$resultado = $conexion->query($consulta);
+$resultado = $conexion->query($consulta_flujo_caja);
 if($resultado->num_rows > 0){
 
 	
@@ -132,19 +22,7 @@ if($resultado->num_rows > 0){
 		// Se crea el objeto PHPExcel
 	$objPHPExcel = new PHPExcel();
 
-	$BStyle = array(
-		'borders' => array(
-			'outline' => array(
-				'style' => PHPExcel_Style_Border::BORDER_THIN
-				)
-			)
-		);
-
-	$colorLetra = array(
-		'font'  => array(
-			'color' => array('rgb' => '918080'),
-
-			));
+	
 
 		// Se asignan las propiedades del libro
 		$objPHPExcel->getProperties()->setCreator("IKA") //Autor
@@ -381,11 +259,30 @@ if($resultado->num_rows > 0){
 							 	}
 							 }
 							 else{
-							 	$ven_bru = 0;
+							 	$ven_bru = 1;
 							 }
 
 
 		// FIN CALCULOS TIR Y VPN
+							 $BStyle = array(
+							 	'borders' => array(
+							 		'outline' => array(
+							 			'style' => PHPExcel_Style_Border::BORDER_THIN
+							 			)
+							 		)
+							 	);
+
+							 $colorLetra = array(
+							 	'font'  => array(
+							 		'color' => array('rgb' => '918080'),
+
+							 		));
+
+							 $objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => 'F2F2F2'))));	
 
 							 while ($fila = $resultado->fetch_array()) {
 							 	$objPHPExcel->setActiveSheetIndex(0) 
@@ -485,7 +382,7 @@ if($resultado->num_rows > 0){
 							 	->setCellValue('B89', '=NPV('.$fila['CONS_IND_VALOR_REE'].'%,E86:XFD86,E2:XFD2)')
 
 							 	->setCellValue('C88',  'TIR  (ea)')
-							 	//->setCellValue('C89', '=(IFERROR(XIRR(E85:XFD85,E2:XFD2))')
+							 	//->setCellValue('C89', '=(XIRR(E85:XFD85,E2:XFD2))')
 
 							 	->setCellValue('D88',  'TIR (em)')
 							 	->setCellValue('D89',  '=C89/'.$fila['CONS_PER'])
@@ -496,14 +393,7 @@ if($resultado->num_rows > 0){
 							 	->setCellValue('F88',  'TIR mod (em)')			 
 							 	->setCellValue('F89',  '=E89/'.$fila['CONS_PER'])
 							 	;
-
-							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'3')->applyFromArray(
-							 		array(
-							 			'fill' => array(
-							 				'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							 				'color' => array('rgb' => 'F2F2F2'))));	
-
-
+							 	
 
 
 
@@ -562,6 +452,8 @@ if($resultado->num_rows > 0){
 
 							 	$objPHPExcel->getActiveSheet()->getStyle($columnas[$c].'2')
 							 	->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+							 	
 
 							 	$i++;
 							 	$c++;
@@ -761,7 +653,7 @@ if($resultado->num_rows > 0){
 							 ->setCellValue('C96', '=B96/'.$ven_bru)
 							 ->setCellValue('C97', '=B97/'.$ven_bru);
 
-				//Formato miles Con separador.
+
 
 
 							 $objPHPExcel->getActiveSheet()->getStyle('B5:B97')
@@ -769,405 +661,400 @@ if($resultado->num_rows > 0){
 
 							 $objPHPExcel->getActiveSheet()->getStyle('C5:C97')
 							 ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+							 $objPHPExcel->getActiveSheet()->getColumnDimensionByColumn(0)->setAutoSize(true);   
 
-
-
-				//Dimension de columnas
-
-				$nCols = 500; //set the number of columns
-
-				foreach (range(3, $nCols) as $col) {
-					$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($col)->setAutoSize(true);                
-				}
-				
-				$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn(0)->setAutoSize(true);   
-				
-				$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn(1)->setWidth(16);
+							 $objPHPExcel->getActiveSheet()->getColumnDimensionByColumn(1)->setWidth(16);
 
 				//Bordes
-				$abc = array(
-					'borders' => array(
-						'allborders' => array(
-							'style' => PHPExcel_Style_Border::BORDER_NONE
-							)
-						)
-					);
-				$objPHPExcel->getDefaultStyle()->applyFromArray($abc);
+							 $abc = array(
+							 	'borders' => array(
+							 		'allborders' => array(
+							 			'style' => PHPExcel_Style_Border::BORDER_NONE
+							 			)
+							 		)
+							 	);
+							 $objPHPExcel->getDefaultStyle()->applyFromArray($abc);
 
-				$BStyle = array(
-					'borders' => array(
-						'outline' => array(
-							'style' => PHPExcel_Style_Border::BORDER_THIN
-							)
-						)
-					);
-				
-				$styleArray = array(
-					'borders' => array(
-						'allborders' => array(
-							'style' => PHPExcel_Style_Border::BORDER_THIN
-							)
-						)
-					);
+							 $BStyle = array(
+							 	'borders' => array(
+							 		'outline' => array(
+							 			'style' => PHPExcel_Style_Border::BORDER_THIN
+							 			)
+							 		)
+							 	);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A3:A4')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A5:A86')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A81:A82')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A85:A86')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A91:A93')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A94:A96')->applyFromArray($BStyle);
-				
+							 $styleArray = array(
+							 	'borders' => array(
+							 		'allborders' => array(
+							 			'style' => PHPExcel_Style_Border::BORDER_THIN
+							 			)
+							 		)
+							 	);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A3:A4')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A5:A86')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A81:A82')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A85:A86')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A91:A93')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A94:A96')->applyFromArray($BStyle);
+
 				//B
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B3:B4')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B5:B86')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B81:B82')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B85:B86')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B91:B93')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B94:B96')->applyFromArray($BStyle);
-				
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B3:B4')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B5:B86')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B81:B82')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B85:B86')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B91:B93')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B94:B96')->applyFromArray($BStyle);
+
 				//C
-				
-				$objPHPExcel->getActiveSheet()->getStyle('C3:C4')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('C5:C86')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('C81:C82')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('C85:C86')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('C91:C93')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('C94:C96')->applyFromArray($BStyle);
-				
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B88:B89')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('C88:C89')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('D88:D89')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('E88:E89')->applyFromArray($BStyle);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('F88:F89')->applyFromArray($BStyle);
-				
-				
+
+							 $objPHPExcel->getActiveSheet()->getStyle('C3:C4')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('C5:C86')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('C81:C82')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('C85:C86')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('C91:C93')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('C94:C96')->applyFromArray($BStyle);
+
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B88:B89')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('C88:C89')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('D88:D89')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('E88:E89')->applyFromArray($BStyle);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('F88:F89')->applyFromArray($BStyle);
+
+
 			//------------
 
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A13:'.$columnas[$c].'13')->applyFromArray($styleArray);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A24:'.$columnas[$c].'24')->applyFromArray($styleArray);
+							 $objPHPExcel->getActiveSheet()->getStyle('A13:'.$columnas[$c].'13')->applyFromArray($styleArray);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A42:'.$columnas[$c].'42')->applyFromArray($styleArray);
+							 $objPHPExcel->getActiveSheet()->getStyle('A24:'.$columnas[$c].'24')->applyFromArray($styleArray);
 
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A59:'.$columnas[$c].'59')->applyFromArray($styleArray);
+							 $objPHPExcel->getActiveSheet()->getStyle('A42:'.$columnas[$c].'42')->applyFromArray($styleArray);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A60:'.$columnas[$c].'60')->applyFromArray($styleArray);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A80:'.$columnas[$c].'80')->applyFromArray($styleArray);
+							 $objPHPExcel->getActiveSheet()->getStyle('A59:'.$columnas[$c].'59')->applyFromArray($styleArray);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A97:'.$columnas[$c].'97')->applyFromArray($styleArray);
+							 $objPHPExcel->getActiveSheet()->getStyle('A60:'.$columnas[$c].'60')->applyFromArray($styleArray);
 
-				
-				
+							 $objPHPExcel->getActiveSheet()->getStyle('A80:'.$columnas[$c].'80')->applyFromArray($styleArray);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A97:'.$columnas[$c].'97')->applyFromArray($styleArray);
+
+
+
 				//Cambio color Letra
-				$blanco  = array(
-					'font'  => array(
-						'color' => array('rgb' => '000000'),
+							 $blanco  = array(
+							 	'font'  => array(
+							 		'color' => array('rgb' => '000000'),
 
-						));
-				
-				
-				
+							 		));
 
-				
+
+
+
+
 				//--------Blanco
-				
-				// $objPHPExcel->getActiveSheet()->getStyle('E2:PXD2')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A3:A4')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A13')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A24')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A42')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A59:A60')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A80:A82')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A85:A86')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
-				
-				
+
+				 $objPHPExcel->getActiveSheet()->getStyle('E2:PXD2')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A3:A4')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A13')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A24')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A42')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A59:A60')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A80:A82')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A85:A86')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+
+
 				//-----------Gris
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A6:A7')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A9:A10')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A15:A16')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A18:A19')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A21:A22')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A26:A27')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A29:A30')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A32:A36')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A38:A41')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A44:A45')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A47:A48')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A50:A53')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A55:A57')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A64:A70')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A72:A74')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('A77:A79')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B6:B7')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B9:B10')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B15:B16')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B18:B19')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B21:B22')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B26:B27')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B29:B30')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B32:B36')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B38:B41')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B44:B45')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B47:B48')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B50:B53')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B55:B57')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B64:B70')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B72:B74')->applyFromArray($colorLetra);
-				
-				$objPHPExcel->getActiveSheet()->getStyle('B77:B79')->applyFromArray($colorLetra);
-				
-				
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A6:A7')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A9:A10')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A15:A16')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A18:A19')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A21:A22')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A26:A27')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A29:A30')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A32:A36')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A38:A41')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A44:A45')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A47:A48')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A50:A53')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A55:A57')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A64:A70')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A72:A74')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A77:A79')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B6:B7')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B9:B10')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B15:B16')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B18:B19')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B21:B22')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B26:B27')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B29:B30')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B32:B36')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B38:B41')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B44:B45')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B47:B48')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B50:B53')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B55:B57')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B64:B70')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B72:B74')->applyFromArray($colorLetra);
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B77:B79')->applyFromArray($colorLetra);
+
+
 					//Cambio Color Celdas
-				$objPHPExcel->getActiveSheet()->getStyle('B88:F88')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => 'F2F2F2'))));	
+							 $objPHPExcel->getActiveSheet()->getStyle('B88:F88')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => 'F2F2F2'))));	
 
-				$objPHPExcel->getActiveSheet()->getStyle('B89:F89')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => 'F2F2F2'))));					
+							 $objPHPExcel->getActiveSheet()->getStyle('B89:F89')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => 'F2F2F2'))));					
 
-				$objPHPExcel->getActiveSheet()->getStyle('A1')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '366092'))));			
-
-
-				$objPHPExcel->getActiveSheet()->getStyle('A3:A4')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '4C82B8'))));	
+							 $objPHPExcel->getActiveSheet()->getStyle('A1')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '366092'))));			
 
 
-
-				$objPHPExcel->getActiveSheet()->getStyle('A13')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '4C82B8'))));	
-
-				$objPHPExcel->getActiveSheet()->getStyle('A24')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '4C82B8'))));			
-
-				$objPHPExcel->getActiveSheet()->getStyle('A42')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '4C82B8'))));		
-
-				$objPHPExcel->getActiveSheet()->getStyle('A59:A60')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '366092'))));				
+							 $objPHPExcel->getActiveSheet()->getStyle('A3:A4')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '4C82B8'))));	
 
 
-				$objPHPExcel->getActiveSheet()->getStyle('A80:A82')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '4C82B8'))));						
 
-				$objPHPExcel->getActiveSheet()->getStyle('A85:A86')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => '4C82B8'))));			
+							 $objPHPExcel->getActiveSheet()->getStyle('A13')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '4C82B8'))));	
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A24')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '4C82B8'))));			
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A42')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '4C82B8'))));		
+
+							 $objPHPExcel->getActiveSheet()->getStyle('A59:A60')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '366092'))));				
 
 
-				$objPHPExcel->getActiveSheet()->getStyle('B3:B86')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => 'DCE6F1'))));
+							 $objPHPExcel->getActiveSheet()->getStyle('A80:A82')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '4C82B8'))));						
 
-				$objPHPExcel->getActiveSheet()->getStyle('B91:B97')->applyFromArray(
-					array(
-						'fill' => array(
-							'type' => PHPExcel_Style_Fill::FILL_SOLID,
-							'color' => array('rgb' => 'DCE6F1'))));		
+							 $objPHPExcel->getActiveSheet()->getStyle('A85:A86')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => '4C82B8'))));			
+
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B3:B86')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => 'DCE6F1'))));
+
+							 $objPHPExcel->getActiveSheet()->getStyle('B91:B97')->applyFromArray(
+							 	array(
+							 		'fill' => array(
+							 			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+							 			'color' => array('rgb' => 'DCE6F1'))));		
 
 
 
 					//Negrilla
 
 
-				$negrilla = array(
-					'font' => array(
-						'bold' => true
-						)
-					);
+							 $negrilla = array(
+							 	'font' => array(
+							 		'bold' => true
+							 		)
+							 	);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A13:'.$columnas[$c].'13')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A13:'.$columnas[$c].'13')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A24:'.$columnas[$c].'24')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A24:'.$columnas[$c].'24')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A42:'.$columnas[$c].'42')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A42:'.$columnas[$c].'42')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A59:'.$columnas[$c].'59')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A59:'.$columnas[$c].'59')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A60:'.$columnas[$c].'60')->applyFromArray(
-					$negrilla);
+							 $objPHPExcel->getActiveSheet()->getStyle('A60:'.$columnas[$c].'60')->applyFromArray(
+							 	$negrilla);
 
-				$objPHPExcel->getActiveSheet()->getStyle('A80:'.$columnas[$c].'80')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A80:'.$columnas[$c].'80')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A81:'.$columnas[$c].'81')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A81:'.$columnas[$c].'81')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A82:'.$columnas[$c].'82')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A82:'.$columnas[$c].'82')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A85:'.$columnas[$c].'85')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A85:'.$columnas[$c].'85')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A86:'.$columnas[$c].'86')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A86:'.$columnas[$c].'86')->applyFromArray(
+							 	$negrilla);	
 
 
 
-				$objPHPExcel->getActiveSheet()->getStyle('A91:'.$columnas[$c].'91')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A91:'.$columnas[$c].'91')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A92:'.$columnas[$c].'92')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A92:'.$columnas[$c].'92')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A93:'.$columnas[$c].'93')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A93:'.$columnas[$c].'93')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A94:'.$columnas[$c].'94')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A94:'.$columnas[$c].'94')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A95:'.$columnas[$c].'95')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A95:'.$columnas[$c].'95')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A96:'.$columnas[$c].'96')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A96:'.$columnas[$c].'96')->applyFromArray(
+							 	$negrilla);	
 
-				$objPHPExcel->getActiveSheet()->getStyle('A97:'.$columnas[$c].'97')->applyFromArray(
-					$negrilla);	
+							 $objPHPExcel->getActiveSheet()->getStyle('A97:'.$columnas[$c].'97')->applyFromArray(
+							 	$negrilla);	
 
 
 
 
 					//Combinar Celdas
-				$objPHPExcel->setActiveSheetIndex(0)
-				->mergeCells('A3:A4');
-				
-				$objPHPExcel->setActiveSheetIndex(0)
-				->mergeCells('A1:C1');
+							 $objPHPExcel->setActiveSheetIndex(0)
+							 ->mergeCells('A3:A4');
 
-				$objPHPExcel->setActiveSheetIndex(0)
-				->mergeCells('B3:B4');
+							 $objPHPExcel->setActiveSheetIndex(0)
+							 ->mergeCells('A1:C1');
 
-
-				$objPHPExcel->getActiveSheet()->getStyle('C89:G89')
-				->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
-				
+							 $objPHPExcel->setActiveSheetIndex(0)
+							 ->mergeCells('B3:B4');
 
 
-				PHPExcel_Shared_Font::setAutoSizeMethod(PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);		
-				
+							 $objPHPExcel->getActiveSheet()->getStyle('C89:G89')
+							 ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+
+	$nCols = 500; //set the number of columns
+
+	foreach (range(2, $nCols) as $col) {
+		$objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($col)->setAutoSize(true);                
+	}
+
+
+	PHPExcel_Shared_Font::setAutoSizeMethod(PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);	
+
+
 
 					// Se asigna el nombre a la hoja
-				$objPHPExcel->getActiveSheet()->setTitle('Flujo Caja');
+	$objPHPExcel->getActiveSheet()->setTitle('Flujo Caja');
 
 					// Se activa la hoja para que sea la que se muestre cuando el archivo se abre
-				$objPHPExcel->setActiveSheetIndex(0);
+	$objPHPExcel->setActiveSheetIndex(0);
 					// Inmovilizar paneles 
 					//$objPHPExcel->getActiveSheet(0)->freezePane('A4');
 					//$objPHPExcel->getActiveSheet(0)->freezePaneByColumnAndRow(0,4);
 
 					// Se manda el archivo al navegador web, con el nombre que se indica (Excel2007)
-				header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-				header('Content-Disposition: attachment;filename="ReporteFlujoCaja.xlsx"');
-				header('Cache-Control: max-age=0');
+	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	header('Content-Disposition: attachment;filename="ReporteFlujoCaja.xlsx"');
+	header('Cache-Control: max-age=0');
 
-				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-				$objWriter->save('php://output');
-				exit;
+	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+	$objWriter->save('php://output');
+	exit;
 
-			}
-			else{
-				print "<script>alert(\"No hay resultados para mostrar.\");window.location='ABT-T055-informesExcel-D.php';</script>";
-			}
-			?>
+}
+else{
+	print "<script>alert(\"No hay resultados para mostrar.\");window.location='ABT-T055-informesExcel-D.php';</script>";
+}
+?>

@@ -96,12 +96,15 @@ body
             ,tb_pais
             ,tb_ciudad
             ,tb_segmento
+            
                  WHERE MOD_DET_PRO_ID= PRO_ID
 					     AND PRO_ID = DET_PRO_ID
 					     AND MOD_DET_ETAPA = DET_ETAPA
 					     AND PRO_PAI_ID = PAI_ID
 					     AND PRO_CIU_ID = CIU_ID
-					     AND DET_SEG_ID = SEG_ID ";
+					     AND DET_SEG_ID = SEG_ID
+					   AND PRO_ID not in (SELECT PRO_ID FROM tb_seleccion WHERE SEL_CONS_ID = 'N'
+                                AND PRO_ID = SEL_DET_PRO_ID) ";
 
 			if ($resultado = $mysqli->query($consulta)) {
 
